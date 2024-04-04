@@ -1,0 +1,79 @@
+.separator {
+    border-top: 1px solid #73cbcc;
+    margin: 10px 0px 10px 0px;
+}
+
+.detailSection{
+    width: 50%;
+    /* border: 1px solid black; */
+}
+
+.stepSection{
+    width: 50%;
+    /* border: 1px solid black; */
+    padding-right : 15px;
+    padding-left: 15px;
+    margin-left: 10px;
+    border-left: 1px solid #73cbcc;
+}
+
+.setpDetailMain{
+    background: #73cbcc;
+    display: inline-flex;
+    margin: 30px 0 0 5px;
+    padding: 2px;
+    width: 95%;
+    
+}
+.stepDetail{
+    padding: 5px;
+    color: #fff;
+    width: 100%;
+    font-size: 16px;
+
+}
+.stepDetailImg{
+    vertical-align: middle;
+    border-style: none;
+}
+
+.bottom-block {
+    text-align: center;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.row {
+    margin: auto;
+}
+.col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+.contact-ornaz{
+    margin-top: 10px;
+    color: #fff;
+    background: #73cbcc;
+    width: 90%;
+    border-radius: 0px;
+    float: left;
+    padding: 6px 20px;
+    font-size: 16px;
+}
+
+a {
+    color: #26a5d4;
+    text-decoration: none;
+}
+a {
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+}
+a {
+    text-decoration: none;
+    color: inherit !important;
+    cursor: pointer;
+}

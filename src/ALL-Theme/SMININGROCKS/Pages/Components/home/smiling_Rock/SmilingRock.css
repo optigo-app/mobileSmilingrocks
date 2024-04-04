@@ -1,0 +1,139 @@
+.smilingRock {
+    display: flex;
+    justify-content: center;
+    margin-inline: 20%;
+}
+
+.smilingRockBox {
+    /* border: 1px solid; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 15%;
+    text-align: center;
+    margin: 15px;
+    margin-inline: 30px;
+    cursor: pointer;
+}
+
+.smilingTitle {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 50px;
+    color: #7d7f85;
+    font-family: 'FreightDispProMedium-Regular,Times New Roman,serif';
+}
+
+.smilingBoxName {
+    font-size: '';
+    color: #7d7f85;
+
+}
+.smilingRockBoxSub2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.learnMore {
+    margin-top: auto;
+    color: #7d7f85;
+    font-size: 11px;
+    font-family: 'TTCommons-Medium';
+    letter-spacing: 1.5px;
+    width: fit-content;
+}
+
+
+.smilingRockBox {
+    position: relative;
+    width: 40%;
+    /* Other styles for smilingRockBox */
+}
+
+.learnMore {
+    position: relative;
+    text-decoration: none;
+    color: #000;
+}
+
+.learnMore::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 100%;
+    /* Initially positioned outside */
+    width: 0%;
+    height: 1px;
+    background-color: black;
+    transition: width 0.3s ease-out, left 0.3s ease-out;
+    /* Added 'left' property for transition */
+}
+
+.smilingRockBox:hover .learnMore::before {
+    width: 100%;
+    left: 0;
+    right: auto;
+    transition: width 0.3s ease-out;
+}
+
+
+.simple-card__img {
+    margin-bottom: 30px;
+    max-height: 45px;
+}
+
+.smilingRockMobileDffres {
+    display: flex !important;
+}
+
+
+@media screen and (max-width: 1440px) {
+    .smilingRock {
+        margin-inline: 5px;
+    }
+
+    .smilingRockBox {
+        width: 70% !important;
+        margin-inline: 5px !important;
+    }
+
+    .smilingTitle {
+        margin: 0px !important;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .smilingRock {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .smilingRockBox {
+        width: 60% !important;
+        display: flex !important;
+        flex-direction: initial !important;
+    }
+
+    .smilingRockBoxSub1 {
+        width: 40% !important;
+    }
+
+    .smilingRockBoxSub2 {
+        width: 60% !important;
+    }
+
+    .smilingBoxName {
+        font-size: 13px !important;
+        font-weight: 500;
+        text-align: left;
+    }
+
+    .learnMore {
+        text-align: left;
+        color: #7d7f85;
+        font-weight: 800!important;
+        font-size: 10px;
+    }
+}

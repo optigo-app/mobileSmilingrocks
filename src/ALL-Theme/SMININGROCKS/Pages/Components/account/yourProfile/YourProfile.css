@@ -1,0 +1,33 @@
+.css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
+    -webkit-text-fill-color: black !important;
+}
+
+.css-1x5jdmq.Mui-disabled {
+    -webkit-text-fill-color: black !important;
+}
+
+.SmilingAddEditAddrwess {
+    height: 40px;
+    width: 160px;
+    border: none;
+    outline: none;
+    font-weight: 500;
+}
+
+
+
+@media screen and (max-width: 1000px) {
+
+    .mobileEditProfileDiv{
+        display: flex!important;
+        flex-direction: column!important;
+        align-items: center!important;
+    }
+}
+    @media screen and (max-width: 500px) {
+
+    .smilingEditProfilePopup {
+        width: 95% !important;
+        margin: 5px !important;
+    }
+}

@@ -1,0 +1,6 @@
+<svg xmlns='http://www.w3.org/2000/svg' xml:space='preserve' viewBox='0 0 24 24'>
+  <g fill='currentColor' fill-rule='evenodd'>
+    <path vector-effect='non-scaling-stroke' d='M5.392 6.357a2.036 2.036 0 1 0 0 4.071 2.036 2.036 0 0 0 0-4.071ZM1.999 8.393a3.393 3.393 0 1 1 6.786 0 3.393 3.393 0 0 1-6.786 0Zm16.287 9.821a2.036 2.036 0 1 0 0-4.071 2.036 2.036 0 0 0 0 4.071Zm3.393-2.035a3.393 3.393 0 1 1-6.786 0 3.393 3.393 0 0 1 6.786 0Z'/>
+    <path vector-effect='non-scaling-stroke' d='M21.678 9.071H8.107V7.714h13.571v1.357ZM2 15.5h13.57v1.357H2V15.5Z'/>
+  </g>
+</svg>

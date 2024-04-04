@@ -1,0 +1,680 @@
+{
+  "ProductsCount": [
+    {
+      "designcount": 335
+    }
+  ],
+  "CollectionList": [
+    {
+      "Collectionid": 14,
+      "CollectionName": "Anemone"
+    },
+    {
+      "Collectionid": 7,
+      "CollectionName": "AURORA"
+    },
+    {
+      "Collectionid": 8,
+      "CollectionName": "ELEGANT"
+    },
+    {
+      "Collectionid": 9,
+      "CollectionName": "FASHION"
+    },
+    {
+      "Collectionid": 10,
+      "CollectionName": "MOONLIGHT"
+    },
+    {
+      "Collectionid": 28,
+      "CollectionName": "Rebellious"
+    },
+    {
+      "Collectionid": 5,
+      "CollectionName": "REGULAR JEWELLERY"
+    },
+    {
+      "Collectionid": 11,
+      "CollectionName": "SPLENDENT"
+    },
+    {
+      "Collectionid": 12,
+      "CollectionName": "TRADITIONAL"
+    },
+    {
+      "Collectionid": 13,
+      "CollectionName": "TRINITY"
+    }
+  ],
+  "CategoryList": [
+    {
+      "Categoryid": 4,
+      "CategoryName": "Bangles"
+    },
+    {
+      "Categoryid": 3,
+      "CategoryName": "Bracelet"
+    },
+    {
+      "Categoryid": 12,
+      "CategoryName": "EARRING"
+    },
+    {
+      "Categoryid": 15,
+      "CategoryName": "MANGALSUTRA"
+    },
+    {
+      "Categoryid": 6,
+      "CategoryName": "Necklace"
+    },
+    {
+      "Categoryid": 19,
+      "CategoryName": "Pendant Set"
+    },
+    {
+      "Categoryid": 1,
+      "CategoryName": "Ring"
+    }
+  ],
+  "SubCategoryList": [
+    {
+      "SubCategoryid": 42,
+      "SubCategoryName": "Beautiful"
+    },
+    {
+      "SubCategoryid": 43,
+      "SubCategoryName": "Cocktail"
+    },
+    {
+      "SubCategoryid": 1,
+      "SubCategoryName": "Engagement Ring"
+    },
+    {
+      "SubCategoryid": 35,
+      "SubCategoryName": "fancy"
+    },
+    {
+      "SubCategoryid": 39,
+      "SubCategoryName": "FASHION"
+    },
+    {
+      "SubCategoryid": 36,
+      "SubCategoryName": "FOREVER"
+    },
+    {
+      "SubCategoryid": 37,
+      "SubCategoryName": "HOOP"
+    },
+    {
+      "SubCategoryid": 38,
+      "SubCategoryName": "PARTY"
+    },
+    {
+      "SubCategoryid": 44,
+      "SubCategoryName": "Party Wear"
+    },
+    {
+      "SubCategoryid": 30,
+      "SubCategoryName": "REGULAR"
+    },
+    {
+      "SubCategoryid": 47,
+      "SubCategoryName": "Ring"
+    },
+    {
+      "SubCategoryid": 45,
+      "SubCategoryName": "Studded"
+    },
+    {
+      "SubCategoryid": 40,
+      "SubCategoryName": "TRADITIONAL"
+    },
+    {
+      "SubCategoryid": 46,
+      "SubCategoryName": "Wedding"
+    }
+  ],
+  "BrandList": [
+    {
+      "Brandid": 10,
+      "BrandName": "Aistral"
+    },
+    {
+      "Brandid": 8,
+      "BrandName": "Bridal"
+    },
+    {
+      "Brandid": 1,
+      "BrandName": "Dfine"
+    },
+    {
+      "Brandid": 2,
+      "BrandName": "jaipur"
+    },
+    {
+      "Brandid": 7,
+      "BrandName": "Jewellery"
+    },
+    {
+      "Brandid": 9,
+      "BrandName": "Kian"
+    },
+    {
+      "Brandid": 3,
+      "BrandName": "mumbai"
+    },
+    {
+      "Brandid": 4,
+      "BrandName": "nagpur"
+    },
+    {
+      "Brandid": 6,
+      "BrandName": "Rich look"
+    },
+    {
+      "Brandid": 5,
+      "BrandName": "surat"
+    }
+  ],
+  "GenderList": [
+    {
+      "Genderid": 3,
+      "GenderName": "Kids"
+    },
+    {
+      "Genderid": 2,
+      "GenderName": "Man"
+    },
+    {
+      "Genderid": 1,
+      "GenderName": "women"
+    }
+  ],
+  "OcassionList": [
+    {
+      "Ocassionid": 24,
+      "OcassionName": "Casual"
+    },
+    {
+      "Ocassionid": 13,
+      "OcassionName": "Enagegment"
+    },
+    {
+      "Ocassionid": 11,
+      "OcassionName": "Engagement"
+    },
+    {
+      "Ocassionid": 19,
+      "OcassionName": "Fashion"
+    },
+    {
+      "Ocassionid": 10,
+      "OcassionName": "Mothers Day"
+    },
+    {
+      "Ocassionid": 7,
+      "OcassionName": "Office Wear"
+    },
+    {
+      "Ocassionid": 8,
+      "OcassionName": "Party Wear"
+    },
+    {
+      "Ocassionid": 9,
+      "OcassionName": "Valentine Day"
+    },
+    {
+      "Ocassionid": 12,
+      "OcassionName": "Wedding"
+    }
+  ],
+  "ThemeList": [
+    {
+      "Themeid": 11,
+      "ThemeName": "Band"
+    },
+    {
+      "Themeid": 5,
+      "ThemeName": "Bolo"
+    },
+    {
+      "Themeid": 8,
+      "ThemeName": "Bridal Set"
+    },
+    {
+      "Themeid": 3,
+      "ThemeName": "Casting"
+    },
+    {
+      "Themeid": 14,
+      "ThemeName": "Casual"
+    },
+    {
+      "Themeid": 7,
+      "ThemeName": "Chocker"
+    },
+    {
+      "Themeid": 20,
+      "ThemeName": "Cocktail"
+    },
+    {
+      "Themeid": 6,
+      "ThemeName": "Dangler"
+    },
+    {
+      "Themeid": 19,
+      "ThemeName": "Drop"
+    },
+    {
+      "Themeid": 2,
+      "ThemeName": "FANCY"
+    },
+    {
+      "Themeid": 9,
+      "ThemeName": "Fashion"
+    },
+    {
+      "Themeid": 17,
+      "ThemeName": "Hoops"
+    },
+    {
+      "Themeid": 16,
+      "ThemeName": "Hoops Drop"
+    },
+    {
+      "Themeid": 10,
+      "ThemeName": "Lockets"
+    },
+    {
+      "Themeid": 1,
+      "ThemeName": "Regular"
+    },
+    {
+      "Themeid": 4,
+      "ThemeName": "Solitaire"
+    },
+    {
+      "Themeid": 15,
+      "ThemeName": "Stackable"
+    },
+    {
+      "Themeid": 18,
+      "ThemeName": "Studs"
+    },
+    {
+      "Themeid": 13,
+      "ThemeName": "Tennis"
+    }
+  ],
+  "MetalTypeList": [
+    {
+      "MetalTypeid": 1,
+      "MetalTypeName": "GOLD"
+    }
+  ],
+  "MetalColorList": [
+    {
+      "MetalColorid": 7,
+      "MetalColorName": "P"
+    },
+    {
+      "MetalColorid": 8,
+      "MetalColorName": "PW"
+    },
+    {
+      "MetalColorid": 9,
+      "MetalColorName": "P-W"
+    },
+    {
+      "MetalColorid": 5,
+      "MetalColorName": "rd"
+    },
+    {
+      "MetalColorid": 10,
+      "MetalColorName": "W"
+    },
+    {
+      "MetalColorid": 6,
+      "MetalColorName": "yellow"
+    },
+    {
+      "MetalColorid": 2,
+      "MetalColorName": "Yellow Gold"
+    },
+    {
+      "MetalColorid": 12,
+      "MetalColorName": "YW"
+    }
+  ],
+  "MinMaxList": [
+    {
+      "Min_MetalWeight": 2.00,
+      "Max_MetalWeight": 110.96,
+      "Min_DiaWeight": 0.029,
+      "Max_DiaWeight": 21.000,
+      "Min_AddValWeight": 0.000,
+      "Max_AddValWeight": 0.000
+    }
+  ],
+  "SideMenuList": [
+    {
+      "filter_Updatemenu": "CATEGORY",
+      "Fno": "1",
+      "isfilter_title": 1
+    },
+    {
+      "filter_Updatemenu": "PRODUCT TYPE",
+      "Fno": "2",
+      "isfilter_title": 1
+    },
+    {
+      "filter_Updatemenu": "GENDER",
+      "Fno": "8",
+      "isfilter_title": 1
+    },
+    {
+      "filter_Updatemenu": "PRICE",
+      "Fno": "12",
+      "isfilter_title": 1
+    },
+    {
+      "filter_Updatemenu": "COLLECTION",
+      "Fno": "15",
+      "isfilter_title": 1
+    },
+    {
+      "filter_Updatemenu": "CENTERSTONE",
+      "Fno": "18", 
+      "isfilter_title": 1
+    }
+  ],
+  "MetalPurityList": [
+    {
+      "MetalPurityid": 2,
+      "MetalPurity": "18K"
+    },
+    {
+      "MetalPurityid": 5,
+      "MetalPurity": "14K"
+    },
+    {
+      "MetalPurityid": 6,
+      "MetalPurity": "22K"
+    },
+    {
+      "MetalPurityid": 8,
+      "MetalPurity": "10k"
+    }
+  ],
+  "ProductList_Json14": [
+    
+  ],
+  "ProductList_Json15": [
+    
+  ],
+  "ProductList_Json16": [
+    
+  ],
+  "ProductList_Json17": [
+    
+  ],
+  "ProductList_Json18": [
+    
+  ],
+  "ProductList_Json19": [
+    
+  ],
+  "ProductList_Json20": [
+    
+  ],
+  "ProductList_Json21": [
+    {
+      "designno": "LNE1020",
+      "autocode": "0003495",
+      "Column1": "2024-10-22T00:00:00",
+      "DefaultImageName": "0003495_23102023152902479.jpg",
+      "imgrandomno": "E590B7E314",
+      "TitleLine": "",
+      "DesignDiscription": "",
+      "UnitCostWithmarkup": 0.00
+    },
+    {
+      "designno": "LNE1019",
+      "autocode": "0003494",
+      "Column1": "2024-10-22T00:00:00",
+      "DefaultImageName": "0003494_23102023152900301.jpg",
+      "imgrandomno": "78A851BF2A",
+      "TitleLine": "",
+      "DesignDiscription": "",
+      "UnitCostWithmarkup": 0.00
+    },
+    {
+      "designno": "LNE1018",
+      "autocode": "0003493",
+      "Column1": "2024-10-22T00:00:00",
+      "DefaultImageName": "0003493_23102023152858254.jpg",
+      "imgrandomno": "B57EE1DCB2",
+      "TitleLine": "",
+      "DesignDiscription": "",
+      "UnitCostWithmarkup": 0.00
+    },
+    {
+      "designno": "LNE1017",
+      "autocode": "0003492",
+      "Column1": "2024-10-22T00:00:00",
+      "DefaultImageName": "0003492_23102023152856317.jpg",
+      "imgrandomno": "4884C61FBF",
+      "TitleLine": "",
+      "DesignDiscription": "",
+      "UnitCostWithmarkup": 0.00
+    },
+    {
+      "designno": "LNE1016",
+      "autocode": "0003491",
+      "Column1": "2024-10-22T00:00:00",
+      "DefaultImageName": "0003491_23102023152854364.jpg",
+      "imgrandomno": "7276D90E85",
+      "TitleLine": "",
+      "DesignDiscription": "",
+      "UnitCostWithmarkup": 0.00
+    },
+    {
+      "designno": "LNE1015",
+      "autocode": "0003490",
+      "Column1": "2024-10-22T00:00:00",
+      "DefaultImageName": "0003490_23102023152852411.jpg",
+      "imgrandomno": "17C287462B",
+      "TitleLine": "",
+      "DesignDiscription": "",
+      "UnitCostWithmarkup": 0.00
+    },
+    {
+      "designno": "LNE1014",
+      "autocode": "0003489",
+      "Column1": "2024-10-22T00:00:00",
+      "DefaultImageName": "0003489_23102023152850114.jpg",
+      "imgrandomno": "CE90C1F0F2",
+      "TitleLine": "",
+      "DesignDiscription": "",
+      "UnitCostWithmarkup": 0.00
+    },
+    {
+      "designno": "LNE1013",
+      "autocode": "0003488",
+      "Column1": "2024-10-22T00:00:00",
+      "DefaultImageName": "0003488_23102023152847926.jpg",
+      "imgrandomno": "62402DFC05",
+      "TitleLine": "",
+      "DesignDiscription": "",
+      "UnitCostWithmarkup": 0.00
+    },
+    {
+      "designno": "LNE1012",
+      "autocode": "0003487",
+      "Column1": "2024-10-22T00:00:00",
+      "DefaultImageName": "0003487_23102023152845879.jpg",
+      "imgrandomno": "14E684D399",
+      "TitleLine": "",
+      "DesignDiscription": "",
+      "UnitCostWithmarkup": 0.00
+    },
+    {
+      "designno": "LNE1011",
+      "autocode": "0003486",
+      "Column1": "2024-10-22T00:00:00",
+      "DefaultImageName": "0003486_23102023152843645.jpg",
+      "imgrandomno": "981A9BDEC4",
+      "TitleLine": "",
+      "DesignDiscription": "",
+      "UnitCostWithmarkup": 0.00
+    },
+    {
+      "designno": "LNE1010",
+      "autocode": "0003485",
+      "Column1": "2024-10-22T00:00:00",
+      "DefaultImageName": "0003485_23102023152841348.jpg",
+      "imgrandomno": "C9B05CC395",
+      "TitleLine": "",
+      "DesignDiscription": "",
+      "UnitCostWithmarkup": 0.00
+    },
+    {
+      "designno": "LNE1009",
+      "autocode": "0003484",
+      "Column1": "2024-10-22T00:00:00",
+      "DefaultImageName": "0003484_23102023152838989.jpg",
+      "imgrandomno": "421638A3F3",
+      "TitleLine": "",
+      "DesignDiscription": "",
+      "UnitCostWithmarkup": 0.00
+    }
+  ],
+  "ProductList_Json22": [
+    {
+      "srno": 1,
+      "designcount": 1,
+      "collectionid": 14,
+      "collectionname": "Anemone",
+      "categoryid": 1,
+      "categoryname": "Ring",
+      "CCName": "Anemone-Ring",
+      "DisplayOrder": 1
+    },
+    {
+      "srno": 2,
+      "designcount": 2,
+      "collectionid": 14,
+      "collectionname": "Anemone",
+      "categoryid": 12,
+      "categoryname": "EARRING",
+      "CCName": "Anemone-EARRING",
+      "DisplayOrder": 2
+    },
+    {
+      "srno": 3,
+      "designcount": 0,
+      "collectionid": 14,
+      "collectionname": "Anemone",
+      "categoryid": 3,
+      "categoryname": "Bracelet",
+      "CCName": "Anemone-Bracelet",
+      "DisplayOrder": 3
+    },
+    {
+      "srno": 4,
+      "designcount": 1,
+      "collectionid": 14,
+      "collectionname": "Anemone",
+      "categoryid": 19,
+      "categoryname": "Pendant Set",
+      "CCName": "Anemone-Pendant Set",
+      "DisplayOrder": 603
+    }
+  ],
+  "ProductTypeList": [
+    {
+      "Producttypeid": 2,
+      "ProducttypeName": "DIAMOND JEWELLERY"
+    },
+    {
+      "Producttypeid": 3,
+      "ProducttypeName": "BRACELET"
+    },
+    {
+      "Producttypeid": 4,
+      "ProducttypeName": "BANGLES"
+    },
+    {
+      "Producttypeid": 5,
+      "ProducttypeName": "EARRINGS"
+    },
+    {
+      "Producttypeid": 6,
+      "ProducttypeName": "NECKLACE"
+    },
+    {
+      "Producttypeid": 7,
+      "ProducttypeName": "RING"
+    },
+    {
+      "Producttypeid": 10,
+      "ProducttypeName": "Bridal"
+    },
+    {
+      "Producttypeid": 11,
+      "ProducttypeName": "Jewellery"
+    }
+  ],
+  "CenterStoneList": [
+    
+  ],
+  "ProductList_Json25": [
+    {
+      "IsColorWiseImages": "1"
+    }
+  ],
+  "ProductList_Json26": [
+    {
+      "MetalType": "GOLD",
+      "IsLiveScreenView": 1,
+      "Purity": "24K",
+      "SalePrice": 6200.000
+    },
+    {
+      "MetalType": "GOLD",
+      "IsLiveScreenView": 1,
+      "Purity": "14K",
+      "SalePrice": 3658.000
+    },
+    {
+      "MetalType": "GOLD",
+      "IsLiveScreenView": 1,
+      "Purity": "22K",
+      "SalePrice": 5704.000
+    },
+    {
+      "MetalType": "GOLD",
+      "IsLiveScreenView": 1,
+      "Purity": "10k",
+      "SalePrice": 2591.600
+    },
+    {
+      "MetalType": "ALLOY",
+      "IsLiveScreenView": 1,
+      "Purity": "14YG",
+      "SalePrice": 0.000
+    },
+    {
+      "MetalType": "GOLD",
+      "IsLiveScreenView": 1,
+      "Purity": "14 YG",
+      "SalePrice": 3658.000
+    }
+  ],
+  "ProductList_Json27": [
+    
+  ],
+  "ProductList_Json28": [
+    
+  ]
+}

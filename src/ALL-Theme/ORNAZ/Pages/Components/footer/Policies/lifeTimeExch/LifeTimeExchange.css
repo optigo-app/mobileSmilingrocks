@@ -1,0 +1,59 @@
+.WebBoxMain {
+    display: flex;
+    padding-bottom: 50px;
+    flex-direction: column;
+}
+
+.boxStyling {
+    width: 33%;
+    border: 1px solid lightgray;
+}
+
+.boxTopData {
+    padding-inline: 40px;
+    background-color: #f8f8f8;
+    border: 1px solid rgba(0, 0, 0, .125);
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.boxDeatilsData {
+    padding-inline: 40px;
+}
+
+.theme {
+    color: #45d4d5;
+}
+
+@media screen and (min-width:1441px) {
+    .mobileBoxMain {
+        display: none;
+    }
+}
+
+@media screen and (max-width:1440px) {
+    .WebBoxMain {
+        display: none;
+    }
+
+    .mobileBoxMain {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .boxStylingMobile {
+        width: 90% !important;
+        border: 1px solid rgb(38, 166, 166);
+        margin-bottom: 30px;
+    }
+
+    .boxTopDataMobile{
+        background-color: rgb(68, 212, 213);
+        text-align: center;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .boxDeatilsDataMobile{
+        padding: 5px;
+    }
+}

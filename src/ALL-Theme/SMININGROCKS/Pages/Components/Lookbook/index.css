@@ -1,0 +1,45 @@
+
+
+
+
+@media screen and (max-width: 1441px) {
+
+    .smilingLookBookMain{
+        padding-inline: 20px!important;
+    }
+
+    .smilingLookbookBoxmain{
+        padding: 50px!important;
+    }
+}
+
+
+@media screen and (max-width: 900px) {
+
+    .smilingLookBookMain{
+        padding-inline: 20px!important;
+    }
+
+    .smilingLookbookBoxmain{
+        padding: 20px!important;
+    }
+    .mainTitlelookBook{
+        margin-top: 0px!important;
+    }
+
+    .smilingLookBookCardMain{
+        margin-top: 10px!important;
+
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+
+    .lookBookMainDesc{
+        width: auto!important;
+    }
+
+   
+}
+

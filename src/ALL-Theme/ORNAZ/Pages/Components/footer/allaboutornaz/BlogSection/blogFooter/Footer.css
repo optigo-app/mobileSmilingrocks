@@ -1,0 +1,35 @@
+.insta {
+    background-color: #f4f4f4;
+}
+
+.emoji {
+    display: inline !important;
+    border: none !important;
+    box-shadow: none !important;
+    height: 1em !important;
+    width: 1em !important;
+    margin: 0 0.07em !important;
+    vertical-align: -0.1em !important;
+    background: none !important;
+    padding: 0 !important;
+}
+
+.white-icon svg {
+    color: white;
+}
+
+.blogFooter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@media screen and (max-width: 425px) {
+    .blogFooter{
+        display: flex;
+        flex-direction: column!important;
+    }
+
+    .white-icon{
+        margin-top: 10px;
+    }
+}

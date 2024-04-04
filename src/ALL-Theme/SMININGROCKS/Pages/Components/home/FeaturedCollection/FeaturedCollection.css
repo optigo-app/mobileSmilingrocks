@@ -1,0 +1,133 @@
+.linkingLoveMain {
+    display: flex;
+    margin-top: 50px;
+    margin-inline: 90px;
+}
+
+.linkingLove {
+    width: 60%;
+    /* border-bottom: 1px solid; */
+}
+
+.linkingLoveImage {
+
+    width: 40%;
+    /* border: 1px solid; */
+
+}
+
+.linkingTitle {
+    font-family: 'FreightDispProMedium-Regular,Times New Roman,serif';
+    font-size: 30px;
+    text-align: center;
+    color: #7d7f85;
+}
+
+.linkingDesc {
+    font-family: 'TTCommons-Regular,Helvetica,sans-serif';
+    font-size: 15px;
+    text-align: center;
+    color: #7d7f85;
+}
+
+.linkingShopCol {
+    font-family: 'TTCommons-Regular,Helvetica,sans-serif';
+    font-size: 12px;
+    text-align: center;
+    color: #7d7f85;
+}
+
+.linkRingLove {
+    display: flex !important;
+}
+
+.linkLoveRing1 {
+    /* border: 1px solid; */
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    padding: 5px;
+
+}
+
+.linkLoveRing1Desc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ring1Desc {
+    width: 70%;
+    text-align: center;
+    font-family: 'TTCommons-Medium,Helvetica,sans-serif';
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.linkLoveRing2 {
+    /* border: 1px solid; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5px;
+}
+
+.linkingLoveImageDesign {
+    height: 645px;
+    margin-top: 5px;
+}
+
+.likingLoveImages {
+    height: 400px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1700px) {
+
+    .linkingLoveImageDesign{
+        height: 100%!important;
+        width: 100%!important;
+    }
+
+
+    .likingLoveImages{
+        height: 100%!important;
+        width: 100%!important;
+    }
+
+}
+    @media screen and (max-width: 1000px) {
+
+    .linkingLoveMain {
+        display: flex;
+        margin-top: 50px;
+        flex-direction: column;
+        margin-inline: 10px;
+    }
+
+    .linkingLove {
+        width: 100%;
+        order: 2;
+    }
+
+    .linkingLoveImage {
+        width: 100%;
+        order: 1;
+    }
+
+    .linkingLoveImageDesign {
+        height: 100%;
+        width: 100%;
+        margin-top: 5px;
+    }
+    .likingLoveImages{
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+
+    .likingLoveImages{
+        height: 150px;
+    }
+}

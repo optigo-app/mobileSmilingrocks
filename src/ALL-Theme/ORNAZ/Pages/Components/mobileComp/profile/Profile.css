@@ -1,0 +1,27 @@
+.profileMenuMain {
+    display: flex;
+    height: 70px;
+    text-align: center;
+    /* border-top: 1px solid rgb(238, 238, 238); */
+    border-bottom: 1px solid rgb(238, 238, 238);
+    margin-inline: 25px;
+}
+
+
+.profileMenuMainName {
+    font-size: 19px;
+    align-self: center;
+    font-weight: 600;
+    margin-inline: 10px;
+}
+
+.btnLogout{
+    height: 40px;
+    width: 80%;
+    border: 0;
+    border-radius: 20px;
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(255, 133, 123);
+    background-color: rgba(255, 194, 194, 0.24);
+}

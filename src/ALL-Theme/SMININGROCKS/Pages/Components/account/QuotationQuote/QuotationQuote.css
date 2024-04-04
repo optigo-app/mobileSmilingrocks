@@ -1,0 +1,160 @@
+.AcountSales>div {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.salesApiTable thead tr th:first-child {
+    border-top-left-radius: 4px;
+}
+
+.salesApiTable thead tr th:last-child {
+    border-top-right-radius: 4px;
+}
+
+.salesApiTable tbody tr:last-child th:first-child {
+    border-bottom-left-radius: 4px;
+}
+
+.salesApiTable tbody tr:last-child th:last-child {
+    border-bottom-right-radius: 4px;
+}
+
+.salesApiTable .MuiTablePagination-root {
+    border-left: 1px solid rgba(224, 224, 224, 1);
+    border-right: 1px solid rgba(224, 224, 224, 1);
+    border-bottom: 1px solid rgba(224, 224, 224, 1);
+}
+
+.salesApiTable .MuiTablePagination-selectLabel,
+.salesApiTable .MuiTablePagination-displayedRows {
+    margin-bottom: 0;
+}
+
+.salesApiTable>.MuiTableContainer-root {
+    max-height: 590px;
+}
+
+.salesApiTable>div>table {
+    position: relative;
+}
+
+.salesApiTable thead>tr:first-child {
+    position: sticky;
+    top: 0;
+    background-color: rgb(235, 235, 235);
+}
+
+.salesApiSection svg {
+    font-size: 20px !important;
+    color: #7d7f85;
+}
+
+.salesApiSection * {
+    font-size: 14px !important;
+    line-height: 120%;
+}
+
+.muiSmilingRocksBtn {
+    border: 1px solid #7d7f85 !important;
+}
+
+.muiSmilingRocksBtn:hover {
+    background: #fff !important;
+    color: #7d7f85;
+}
+
+.muiSmilingRocksBtn:hover svg {
+    color: #7d7f85 !important;
+}
+
+.AllQuoteBtn {
+    padding-bottom: 35px;
+}
+
+@media(max-width: 768px) {
+    .QuotePadSec {
+        padding-bottom: 15px !important;
+    }
+
+    .AcountSales>div>p>div {
+        padding: 15px 10px;
+    }
+
+
+
+    .salesApiTable .MuiTablePagination-root {
+        padding-bottom: 0 !important;
+        max-height: 50px;
+        overflow: hidden;
+    }
+
+    .salesApiTable .MuiTablePagination-root .MuiTablePagination-toolbar {
+        padding: 0 5px;
+    }
+
+    .salesApiTable .MuiTablePagination-root .MuiInputBase-colorPrimary.MuiTablePagination-input {
+        margin-right: 5px;
+    }
+
+    .salesApiTable .MuiTablePagination-root .MuiInputBase-colorPrimary.MuiTablePagination-input div[role="combobox"] {
+        padding-left: 0;
+        margin-left: -5px;
+        padding-right: 20px;
+    }
+
+    .salesApiTable .MuiTablePagination-root .MuiTablePagination-actions {
+        margin-left: 5px;
+    }
+
+    .salesApiTable .MuiTablePagination-root .MuiTablePagination-actions button {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+@media(max-width: 576px) {
+    .salesApiTable table thead tr {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .salesApiTable>div>table {
+        min-width: 100%;
+        display: flex;
+        position: static !important;
+        flex-direction: column;
+        border: unset;
+    }
+
+    .salesApiTable>div>table>thead>tr>th,
+    .salesApiTable>div>table>tbody>tr>td {
+        text-align: start !important;
+        padding: 5px 10px !important;
+    }
+
+    .salesApiTable>div>table>thead>tr>th svg {
+        position: absolute;
+        right: -30px;
+    }
+
+    .salesApiTable>div>table>tbody>tr {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .salesApiTable>div>table>tbody>tr>td:last-child {
+        border-bottom: 1px solid #9b978f !important;
+    }
+
+    .salesApiTable>div>table>tbody>tr>td {
+        min-height: 31.02px;
+    }
+
+    .salesApiTable>div>table>tbody>tr:first-child>td:first-child {
+        border-top: 1px solid #9b978f !important;
+    }
+    .salesApiTable>div>table>thead>tr>th:last-child, .salesApiTable>div>table>thead>tr>th:first-child,.salesApiTable>div>table>thead>tr {
+        border-radius: 0 !important;
+    }
+}

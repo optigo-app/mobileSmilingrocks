@@ -1,0 +1,114 @@
+.articleDeatilMain {
+    display: flex;
+    justify-content: center;
+}
+
+.articleDetail {
+    width: 750px;
+    /* border: 1px solid; */
+    margin-top: 20px;
+
+}
+
+.articleSidePart {
+    width: 340px;
+    /* border: 1px solid; */
+    margin-top: -30px;
+    padding: 20px;
+    margin-left: 20px;
+}
+
+.articleTopIcone {
+    display: flex;
+    justify-content: center;
+}
+
+
+.topFaceBook {
+    display: flex;
+    border: 1px solid #bd9b84;
+    align-items: center;
+    height: 35px;
+    border-radius: 115px;
+    width: 35px;
+    justify-content: center;
+    margin-inline: 5px;
+}
+
+.topFaceBook:hover {
+    background-color: #bd9b84;
+}
+
+.topFaceBook svg {
+    color: #bd9b84;
+}
+
+.topFaceBook:hover svg {
+    color: white;
+}
+
+.articleImageSec{
+    width: 40%;
+}
+.articleDeatilSec{
+    width: 60%;
+    margin: 10px;
+}
+
+.furtherBox{
+    height: 300px;
+    width: 33%;
+    position: relative;
+    margin: 5px;
+
+}
+
+.furtherImg{
+    height: 250px;
+}
+
+.related-overlay{
+    position: absolute;
+    bottom: 50px;
+    color: white;
+    text-align: center;
+}
+.leaveBox{
+    width: 100%;
+    height: 200px;
+    border-color: #e3e3e3;
+}
+.leaveInputBox{
+    width: 32%;
+    margin-inline: 4px;
+    height: 50px;
+    border:1px solid #e3e3e3;
+}
+
+.leaveInputBox::placeholder {
+    padding-inline: 10px;
+  }
+
+  .articaleTop-img{
+    height: 650px;
+    width:1140px; 
+    object-fit:cover;
+    margin-top: 100px;
+}
+
+
+
+
+@media screen and (max-width: 768px) {
+    .articleDeatilMain {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .articleDetail {
+        width: 100%;
+        /* border: 1px solid; */
+    }
+    
+}

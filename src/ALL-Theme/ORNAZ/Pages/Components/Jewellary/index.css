@@ -1,0 +1,62 @@
+.mainJewellaryInedx{
+    display: flex;
+    flex-direction: row;
+}
+.sortSubMenu{
+    height: 20px;
+    width: 60px;
+    border: 1px solid red;
+}
+
+@media screen and (min-width: 771px) {
+    .jewellaryMobile {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .jewellaryWeb{
+        display: none;
+    }
+
+    .mainJewellaryMobileInedx{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+@media screen and (max-width: 375px) {
+    .jewellaryWeb{
+        display: none;
+    }
+
+    .mainJewellaryMobileInedx{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+@media screen and (max-width: 425px) {
+    .jewellaryWeb{
+        display: none;
+    }
+
+    .mainJewellaryMobileInedx{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+@media screen and (max-width: 770px) {
+    .jewellaryWeb{
+        display: none;
+    }
+
+    .mainJewellaryMobileInedx{
+        display: flex;
+        flex-direction: column;
+    }
+}

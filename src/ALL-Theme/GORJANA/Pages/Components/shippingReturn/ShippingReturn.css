@@ -1,0 +1,36 @@
+.gorShippingMain{
+    margin-top: 8%;
+    margin-inline: 15%;
+}
+
+
+@media screen and (max-width: 1441px) {
+
+    .gorShippingMain{
+        margin-top: 12%;
+        margin-inline: 10%;
+    }
+}
+
+@media screen and (max-width: 850px) {
+
+    .gorShippingMain{
+        margin-top: 17%;
+        margin-inline: 5%;
+    }
+}
+@media screen and (max-width: 600px) {
+
+    .gorShippingMain{
+        margin-top: 22%;
+        margin-inline: 2%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+
+    .gorShippingMain{
+        margin-top: 32%;
+        margin-inline: 2%;
+    }
+}

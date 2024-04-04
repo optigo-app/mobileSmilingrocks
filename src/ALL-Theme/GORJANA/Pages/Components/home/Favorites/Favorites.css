@@ -1,0 +1,105 @@
+.gorjanaFave1web{
+    padding-top: 110px;
+    cursor: pointer;
+    position: relative;
+}
+.gorjanaFaveImage{
+    width: 100%;
+}
+.gorjanaFaveBox{
+    position: absolute;
+    top: 40%;
+    right: 14%;
+}
+
+.gorjanaFavBoxLink{
+    font-size: 19px;
+    color: white;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -15px;
+    font-family: 'Freight Big Pro,serif';
+    text-decoration: underline;
+}
+
+.gorjanaFave2web{
+    padding-top: 45px;
+    cursor: pointer;
+    position: relative;
+}
+
+.gorjanaFaveBox2{
+    position: absolute;
+    top: 40%;
+    left: 15%;
+}
+.gorjanaFavBoxLink2{
+    font-size: 19px;
+    color: white;
+    font-family: 'Freight Big Pro,serif';
+    text-decoration: underline;
+}
+
+
+.gorjanaFaveBoxMobile{
+    position: absolute;
+    top: 60%;
+    text-align: center;
+    width: 100%;
+}
+.gorjanaFavBoxLinkMobile{
+    font-size: 19px;
+    color: white;
+    margin-top: -15px;
+    font-family: 'Freight Big Pro,serif';
+    text-decoration: underline;
+}
+
+.gorjanaFaveBox2Mobile{
+    position: absolute;
+    bottom: 20%;
+    width: 100%;
+}
+.gorjanaFavBoxLink2Mobile{
+    font-size: 19px;
+    color: white;
+    margin-top: -15px;
+    font-family: 'Freight Big Pro,serif';
+    text-decoration: underline;
+    text-align: center;
+} 
+@media screen and (min-width:751px) {
+    .gorjanaFave1Mobile {
+        display: none;
+    }
+    .gorjanaFave2Mobile{
+        display: none;
+    }
+}
+
+@media screen and (max-width:750px) {
+
+    .gorjanaFave1web {
+        display: none;
+    }
+    .gorjanaFave2web{
+        display: none;
+    }
+
+
+    .gorjanaFave1Mobile{
+        padding-top: 110px;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .gorjanaFave2Mobile{
+        padding-top: 60px;
+        cursor: pointer;
+        position: relative;
+    }
+
+    .gorjanaFaveImageMobile{
+            width: 100%;
+    }
+}

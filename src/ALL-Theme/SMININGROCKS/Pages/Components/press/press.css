@@ -1,0 +1,25 @@
+@media screen and (max-width: 1441px) {
+
+    .smilingPressBoxMain{
+        width: 100%!important;
+        margin-inline: 20px!important;
+    }
+    .smilingPressMainSub {
+        padding: 0px 20px !important;
+    }
+    .smilingPressTopImage{
+        height: auto!important;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .smilingPressTopTitle{
+        margin-top: 0px!important;
+    }
+    .smilingPressMainSub {
+        margin-top: 0px!important;
+    }
+    .smilingPressTopTitleSub{
+        margin-bottom: 30px!important;
+    }
+}

@@ -1,0 +1,177 @@
+.menu-toggle {
+  color: #000000;
+}
+
+.menu-toggle {
+  border: none;
+  outline: none;
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 10px;
+  background: transparent;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  color: #000;
+  font-size: 0;
+  transition: all 0.15s ease-in-out;
+  cursor: pointer;
+  margin: 40px;
+}
+
+#close-mobile-menu {
+  position: absolute;
+  right: 20px;
+  height: 22px;
+  width: 32px;
+  top: 40px;
+}
+
+.top-misc {
+  position: absolute;
+  right: 50px;
+  display: flex;
+  top: 30px;
+  transition: 0.25s ease;
+}
+
+.header-social a {
+  color: #000;
+  font-size: 16px;
+  margin-left: 14px;
+}
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.sideBar {
+  background-color: red;
+}
+
+.facebook:hover svg {
+  color: #bd9b84;
+}
+
+.twitter:hover svg {
+  color: #bd9b84;
+}
+
+.instagram:hover svg {
+  color: #bd9b84;
+}
+
+.toggle-search-box:hover svg {
+  color: #bd9b84;
+}
+
+
+.overlay-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.serachOverly {
+  background-color: transparent;
+  border: none;
+  color: black;
+  height: 70px;
+  font-size: 50px;
+
+}
+
+.serachOverly::placeholder {
+  font-size: 50px;
+  color: black;
+}
+
+.serachOverly:focus {
+  outline: none;
+  border: none;
+}
+
+
+.searchClose {
+  display: flex;
+  cursor: pointer;
+  position: absolute;
+  top: 10%;
+  left: 90%;
+}
+
+.grMenu {
+  margin: 50px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+@media screen and (max-width:1024px) {
+
+  .header-social,
+  .divider-header {
+    display: none;
+  }
+
+  .top-misc {
+    position: absolute;
+    right: 15px;
+    display: flex;
+    top: 30px;
+    transition: 0.25s ease;
+  }
+
+  .grMenu {
+    margin: 10px;
+    font-size: 25px;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width:768px) {
+
+  .serachOverly {
+    font-size: 30px;
+  }
+  
+  .serachOverly::placeholder {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width:320px) {
+
+  .serachOverly {
+    font-size: 20px;
+  }
+  
+  .serachOverly::placeholder {
+    font-size: 20px;
+  }
+
+  .searchClose {
+    left: 80%;
+  }
+}

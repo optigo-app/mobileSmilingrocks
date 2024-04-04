@@ -1,0 +1,85 @@
+.gorCharityMain{
+    margin-top: 170px;
+    margin-inline: 13%;
+}
+
+.gorCharityImageBox{
+    display: flex;
+}
+.gorGivinTopDesc1{
+    font-size: 13px;
+    width: 50%;
+    text-align: center;
+}
+.gorGivinTopDesc2{
+    font-size: 13px;
+    width: 50%;
+    text-align: center;
+
+}
+.gorCharityImageBox1{
+    width: 50%;
+    padding: 20px;
+    margin-top: 50px;
+
+}
+.gorCharityImageBox2{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.gorCharityImageBox1Img{
+    width: 100%;
+}
+
+.gorCharityOurPa1{
+    text-align: center;
+    width: 60%;
+}
+.gorCharityOurPa2{
+    text-align: center;
+    width: 60%;
+}
+
+
+@media screen and (max-width:1440px) {
+
+    .gorCharityMain{
+        margin-top: 150px;
+        margin-inline: 2%;
+    }
+
+    .gorGivinTopDesc1{
+        width: 100%!important;
+    }
+
+    .gorGivinTopDesc2{
+        width: 100%!important;
+    }
+
+    .gorCharityOurPa1{
+        width: 100%;
+    }
+    .gorCharityOurPa2{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 850px) {
+
+    .gorCharityImageBox{
+
+        display: flex;
+        flex-direction: column;
+    }
+    .gorCharityImageBox1{
+        width: 100%;
+    }
+    .gorCharityImageBox2{
+        width: 100%;
+        text-align: center;
+    }
+}

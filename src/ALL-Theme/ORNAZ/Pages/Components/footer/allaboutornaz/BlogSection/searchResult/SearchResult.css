@@ -1,0 +1,37 @@
+
+.searchFoundMain{
+    display: flex;
+    justify-content: center;
+    margin-top: 130px;
+}
+.searchFound{
+    width: 750px;
+    /* border: 1px solid; */
+    margin-top: 20px;
+    margin-right: 25px;
+}
+
+.articleSidePart{
+    width: 340px;
+    /* border: 1px solid; */
+    margin-top: -30px;
+    padding: 20px;
+    margin-left: 20px;
+}
+
+
+
+@media screen and (min-width: 1441px) {
+    .searchMobileView {
+        display: none;
+    }
+}
+
+
+@media screen and (max-width: 1440px) {
+
+    .searchwebView{
+        display: none;
+    }
+
+}

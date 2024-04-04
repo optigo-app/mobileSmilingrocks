@@ -1,0 +1,17 @@
+.tableExcelAL{
+    max-width: 1200px;
+}
+.fs_excel_al{
+    font-size: 13px;
+}
+.comapanylogo{
+    height: 100px;
+    width: 100px;
+}
+.downnone{
+    display: none !important;
+}
+
+.cursor_pointer{
+    cursor: pointer !important;
+}

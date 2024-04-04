@@ -1,0 +1,104 @@
+.outerCollDiv {
+    display: flex;
+    width: 100%;
+    border: 1px solid #e1e1e1;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.leftCollPortion {
+    width: 23%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.rightCollPortion {
+    width: 77%;
+    height: 100%;
+    display: flex;
+}
+
+.collHeading {
+    font-family: "FreightDisp Pro Medium";
+    font-size: 26px;
+    color: #7d7f85;
+    text-align: center;
+}
+
+.collBtn {
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #fff;
+    background-color: #7d7f85;
+    outline: none;
+    border: none;
+    letter-spacing: 2px;
+    padding: 20px 45px;
+    border: 1px solid #7d7f85;
+    transition: 0.3s ease;
+    margin-inline: 20px;
+}
+.collimg{
+height: 703px;
+width:100%;
+object-fit: cover;
+}
+
+.collBtn:hover {
+    background-color: white;
+    color: #7d7f85;
+}
+
+
+
+@media screen and (max-width: 1441px) {
+
+    .smilingExpolerBoxDesc {
+        width: 200px !important;
+    }
+
+    .collimg {
+        height: 100% !important;
+        margin-inline: 20px !important;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    .outerCollDiv {
+        border: none !important;
+    }
+
+}
+
+@media screen and (max-width: 1050px) {
+
+    .outerCollDiv {
+        display: flex !important;
+        flex-direction: column !important;
+
+    }
+
+    .collimg {
+        margin-inline: 0px !important;
+    }
+
+    .rightCollPortion {
+        order: 1;
+        width: auto!important;
+    }
+
+    .leftCollPortion {
+        order: 2;
+        margin-top: 15px;
+        width: auto;
+    }
+
+    .collBtn{
+        border: 0!important;
+        margin-bottom: 20px!important;
+    }
+}

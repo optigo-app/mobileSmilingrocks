@@ -1,0 +1,51 @@
+.sustaionMain {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    padding: 45px 85px 10px;
+    gap: 12px;
+}
+
+.sustaionImage1 {
+    height: 200px;
+    width: 200px;
+}
+
+.sustaionImage2 {
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 600px) {
+    .sustaionMain {
+        padding: 0px;
+    }
+    .sustaionMainTitle{
+        font-size: 25px!important;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .sustainBoxImageBoxMain{
+        padding: 0px!important;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .sustaionMain {
+        padding: 0px;
+    }
+    .sustaionImage1 {
+        height: 130px;
+        width: 130px;
+        object-fit: contain;
+    }
+    
+    .sustaionImage2 {
+        height: 130px;
+        width: 130px;
+        object-fit: contain;
+    }
+}

@@ -1,0 +1,39 @@
+.MuiDrawer-paper::-webkit-scrollbar {
+    display: none;
+}
+
+.insideDivScroll::-webkit-scrollbar{
+    display: none;
+}
+
+.submenu_img_div{
+    font-family:FreightDisp Pro Medium;
+    color:#4d5469;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.navItemsLabel{
+    padding: 8px;
+    cursor: pointer;
+}
+
+.navItemsLabel:hover{
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.spec_tags{
+    padding-left: 40px;
+    font-size: 18px;
+    margin-top:10px;
+    font-family:FreightDisp Pro Medium;
+    text-decoration:underline;
+    text-underline-offset:3px;
+    cursor:'pointer'
+}
+
+.spec_tags:hover{
+    text-decoration:underline;
+    text-underline-offset:3px;
+}

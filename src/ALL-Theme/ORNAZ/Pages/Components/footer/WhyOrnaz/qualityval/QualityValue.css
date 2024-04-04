@@ -1,0 +1,28 @@
+.qualityValueMain{
+    margin-bottom: 2rem;
+    background-color: transparent;
+    padding: 2rem 2rem;
+}
+
+section {
+    margin: 5px 0;
+
+}
+section {
+    padding-bottom: 5px;
+}
+
+h2, h4 {
+    
+    font-weight: 600 !important;
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+    font-size: 1.2rem !important;
+}
+.qualityDeatil {
+    font-weight: 400;
+}
+.qualityDeatil {
+    margin-top: 0;
+    margin-bottom: 1rem;
+}

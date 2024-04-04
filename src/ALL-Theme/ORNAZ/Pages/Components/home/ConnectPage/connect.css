@@ -1,0 +1,32 @@
+.slick-main-container{
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.main-connect-container{
+    padding-left: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.connect-img{
+    max-width: 100%;
+    width: auto;
+    transform: translate3d(0px, -0.828638%, 0px);
+}
+
+/* @media screen and (max-width:1672px) {
+    .main-connect-container{
+        margin-left: 3%;
+    }
+    .slick-main-container {
+        padding-left: 0%;
+    }
+} */
+
+/* @media screen and (max-width:1291px) {
+    .slick-main-container {
+        padding-left: 0%;
+    }
+} */

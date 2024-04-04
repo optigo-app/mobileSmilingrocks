@@ -1,0 +1,531 @@
+.mainCart {
+    display: flex;
+    flex-direction: row;
+}
+
+.cart {
+    min-height: 170px;
+    width: 700px;
+    padding: 0.8em;
+    background: #fefefe;
+    position: relative;
+    overflow: visible;
+    border: 1px solid rgb(233, 233, 233);
+    border-radius: 0.3rem;
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
+
+.cartImage {
+    height: 170px;
+    width: 170px;
+    transition: .3s ease;
+}
+
+.btnCheckOut {
+    color: white;
+    background-color: #3bc9ca;
+    height: 50px;
+    width: 340px;
+    border: none;
+    font-size: 18px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.cardDetails {
+    display: flex;
+    flex-direction: row;
+    order: 1;
+    justify-content: flex-end;
+    width: 1150px;
+    z-index: -1;
+}
+
+.cartTotal {
+    display: flex;
+    flex-direction: column;
+    order: 2;
+    position: fixed;
+    right: 390px;
+    height: 320px;
+    width: 350px;
+}
+
+.cartTotalData {
+    border: 1px solid rgb(233, 233, 233);
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.cartDetails {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.totalData {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.bold {
+    font-weight: 500;
+}
+
+.btnRemove {
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: white;
+    height: 32px;
+    width: 200px;
+    position: absolute;
+    right: 0;
+    color: #cacaca;
+    border: 1px solid #bbb9bb;
+    bottom: 0;
+    margin: 10px;
+    cursor: pointer;
+}
+
+
+@media screen and (min-width: 1441px) {
+    .mobileCart {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 320px) {
+
+    .webCart {
+        display: none;
+    }
+
+
+    .mobileCartImage {
+        height: 152px;
+        width: 140px;
+        transition: .3s ease;
+    }
+
+    .mobileMainCart {
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mobileCartTotal {
+        display: flex;
+        flex-direction: column;
+        order: 2;
+        padding: 10px;
+    }
+
+    .mobileCardDetails {
+        display: flex;
+        flex-direction: row;
+        order: 1;
+        justify-content: flex-end;
+        width: 100%;
+        z-index: -1;
+        padding: 10px;
+    }
+
+    .mobilSubCart {
+        display: flex;
+        box-shadow: rgba(0, 0, 0, 0.13) 2px 5px 8px;
+        height: 150px;
+        margin-top: 15px;
+        /* align-items: center; */
+    }
+
+    .mobileCartTotalData {
+        border: 1px solid rgb(233, 233, 233);
+        border-radius: 5px;
+        background-color: rgba(69, 212, 213, 0.14);
+        padding: 10px;
+
+
+    }
+
+    .btnConfirm {
+        color: black;
+        font-weight: 700;
+        background-color: #3bc9ca;
+        height: 50px;
+        width: 200px;
+        border: none;
+        font-size: 18px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        align-self: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+}
+
+@media screen and (max-width: 375px) {
+
+    .webCart {
+        display: none;
+    }
+
+
+    .mobileCartImage {
+        height: 152px;
+        width: 140px;
+        transition: .3s ease;
+    }
+
+    .mobileMainCart {
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mobileCartTotal {
+        display: flex;
+        flex-direction: column;
+        order: 2;
+        padding: 10px;
+    }
+
+    .mobileCardDetails {
+        display: flex;
+        flex-direction: row;
+        order: 1;
+        justify-content: flex-end;
+        width: 100%;
+        z-index: -1;
+        padding: 10px;
+    }
+
+    .mobilSubCart {
+        display: flex;
+        box-shadow: rgba(0, 0, 0, 0.13) 2px 5px 8px;
+        height: 150px;
+        margin-top: 15px;
+        /* align-items: center; */
+    }
+
+    .mobileCartTotalData {
+        border: 1px solid rgb(233, 233, 233);
+        border-radius: 5px;
+        background-color: rgba(69, 212, 213, 0.14);
+        padding: 10px;
+
+
+    }
+
+    .btnConfirm {
+        color: black;
+        font-weight: 700;
+        background-color: #3bc9ca;
+        height: 50px;
+        width: 200px;
+        border: none;
+        font-size: 18px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        align-self: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+}
+
+@media screen and (max-width: 425px) {
+
+    .webCart {
+        display: none;
+    }
+
+
+    .mobileCartImage {
+        height: 152px;
+        width: 140px;
+        transition: .3s ease;
+    }
+
+    .mobileMainCart {
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mobileCartTotal {
+        display: flex;
+        flex-direction: column;
+        order: 2;
+        padding: 10px;
+    }
+
+    .mobileCardDetails {
+        display: flex;
+        flex-direction: row;
+        order: 1;
+        justify-content: flex-end;
+        width: 100%;
+        z-index: -1;
+        padding: 10px;
+    }
+
+    .mobilSubCart {
+        display: flex;
+        box-shadow: rgba(0, 0, 0, 0.13) 2px 5px 8px;
+        height: 150px;
+        margin-top: 15px;
+        /* align-items: center; */
+    }
+
+    .mobileCartTotalData {
+        border: 1px solid rgb(233, 233, 233);
+        border-radius: 5px;
+        background-color: rgba(69, 212, 213, 0.14);
+        padding: 10px;
+
+
+    }
+
+    .btnConfirm {
+        color: black;
+        font-weight: 700;
+        background-color: #3bc9ca;
+        height: 50px;
+        width: 200px;
+        border: none;
+        font-size: 18px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        align-self: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+}
+
+@media screen and (max-width: 770px) {
+
+    .webCart {
+        display: none;
+    }
+
+
+    .mobileCartImage {
+        height: 152px;
+        width: 140px;
+        transition: .3s ease;
+    }
+
+    .mobileMainCart {
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mobileCartTotal {
+        display: flex;
+        flex-direction: column;
+        order: 2;
+        padding: 10px;
+    }
+
+    .mobileCardDetails {
+        display: flex;
+        flex-direction: row;
+        order: 1;
+        justify-content: flex-end;
+        width: 100%;
+        z-index: -1;
+        padding: 10px;
+    }
+
+    .mobilSubCart {
+        display: flex;
+        box-shadow: rgba(0, 0, 0, 0.13) 2px 5px 8px;
+        height: 150px;
+        margin-top: 15px;
+        /* align-items: center; */
+    }
+
+    .mobileCartTotalData {
+        border: 1px solid rgb(233, 233, 233);
+        border-radius: 5px;
+        background-color: rgba(69, 212, 213, 0.14);
+        padding: 10px;
+
+
+    }
+
+    .btnConfirm {
+        color: black;
+        font-weight: 700;
+        background-color: #3bc9ca;
+        height: 50px;
+        width: 200px;
+        border: none;
+        font-size: 18px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        align-self: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+}
+
+
+@media screen and (max-width: 1024px) {
+
+    .webCart {
+        display: none;
+    }
+
+
+    .mobileCartImage {
+        height: 152px;
+        width: 140px;
+        transition: .3s ease;
+    }
+
+    .mobileMainCart {
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mobileCartTotal {
+        display: flex;
+        flex-direction: column;
+        order: 2;
+        padding: 10px;
+    }
+
+    .mobileCardDetails {
+        display: flex;
+        flex-direction: row;
+        order: 1;
+        justify-content: flex-end;
+        width: 100%;
+        z-index: -1;
+        padding: 10px;
+    }
+
+    .mobilSubCart {
+        display: flex;
+        box-shadow: rgba(0, 0, 0, 0.13) 2px 5px 8px;
+        height: 150px;
+        margin-top: 15px;
+        /* align-items: center; */
+    }
+
+    .mobileCartTotalData {
+        border: 1px solid rgb(233, 233, 233);
+        border-radius: 5px;
+        background-color: rgba(69, 212, 213, 0.14);
+        padding: 10px;
+
+
+    }
+
+    .btnConfirm {
+        color: black;
+        font-weight: 700;
+        background-color: #3bc9ca;
+        height: 50px;
+        width: 200px;
+        border: none;
+        font-size: 18px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        align-self: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+}
+
+
+@media screen and (max-width: 1440px) {
+
+    .webCart {
+        display: none;
+    }
+
+
+    .mobileCartImage {
+        height: 152px;
+        width: 140px;
+        transition: .3s ease;
+    }
+
+    .mobileMainCart {
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mobileCartTotal {
+        display: flex;
+        flex-direction: column;
+        order: 2;
+        padding: 10px;
+    }
+
+    .mobileCardDetails {
+        display: flex;
+        flex-direction: row;
+        order: 1;
+        justify-content: flex-end;
+        width: 100%;
+        z-index: -1;
+        padding: 10px;
+    }
+
+    .mobilSubCart {
+        display: flex;
+        box-shadow: rgba(0, 0, 0, 0.13) 2px 5px 8px;
+        height: 150px;
+        margin-top: 15px;
+        /* align-items: center; */
+    }
+
+    .mobileCartTotalData {
+        border: 1px solid rgb(233, 233, 233);
+        border-radius: 5px;
+        background-color: rgba(69, 212, 213, 0.14);
+        padding: 10px;
+
+
+    }
+
+    .btnConfirm {
+        color: black;
+        font-weight: 700;
+        background-color: #3bc9ca;
+        height: 50px;
+        width: 200px;
+        border: none;
+        font-size: 18px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        align-self: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+}

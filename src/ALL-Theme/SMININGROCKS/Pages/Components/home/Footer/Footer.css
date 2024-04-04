@@ -1,0 +1,253 @@
+.footerTopMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-block: 7%;
+}
+
+.inputMain {
+    display: flex;
+}
+
+.foTopTitle {
+    font-size: 25px;
+    font-family: 'FreightDispProMedium-Regular,Times New Roman,serif';
+    color: #7d7f85;
+}
+
+.foInputBox {
+    height: 55px;
+    width: 300px;
+    border: 1px solid #e1e1e1;
+    color: hsla(225, 3%, 51%, .5);
+}
+
+.foInputBox::placeholder {
+    font-size: 14px;
+    margin: 10px;
+}
+
+.footerSignupBtn {
+    height: 55px;
+    width: 140px;
+    border: 0;
+    background-color: #7d7f85;
+    color: white;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.footerSignupBtn:hover {
+    background-color: white;
+    border: 1px solid #7d7f85;
+    color: #7d7f85;
+    transition: all 0.5s ease;
+}
+
+.foTopDescription {
+    margin-top: 20px;
+    color: #7d7f85;
+    font-weight: 500;
+    font-size: 14px;
+    text-align: center;
+}
+
+.footerBottomMain {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #e1e1e1;
+    padding: 20px;
+    margin-top: 15%;
+}
+
+.footerIconMain {
+    display: flex;
+    width: 33.33%;
+
+}
+
+.footerFace {
+    height: 35px;
+    width: 35px;
+    border: 1px solid #e1e1e1;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-inline: 5px;
+}
+
+.footerFace:hover {
+    border-color: #7d7f85;
+}
+
+.footerTwi {
+    height: 35px;
+    width: 35px;
+    border: 1px solid #e1e1e1;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-inline: 5px;
+
+}
+
+.footerTwi:hover {
+    border-color: #7d7f85;
+}
+
+.footerInsta {
+    height: 35px;
+    width: 35px;
+    border: 1px solid #e1e1e1;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-inline: 5px;
+}
+
+.footerInsta:hover {
+    border-color: #7d7f85;
+}
+
+.footerYou {
+    height: 35px;
+    width: 35px;
+    border: 1px solid #e1e1e1;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-inline: 5px;
+}
+
+.footerYou:hover {
+    border-color: #7d7f85;
+}
+
+.footerMoreOption {
+    display: flex;
+    width: 33.33%;
+    justify-content: center;
+
+}
+
+.footerMoreOptionData {
+    font-size: 12px;
+    color: #7d7f85;
+    font-weight: 500;
+    margin-inline: 15px;
+    letter-spacing: 1px;
+}
+
+.footerMoreText {
+    display: flex;
+    width: 33.33%;
+    justify-content: flex-end;
+}
+
+
+.footerMoreOptionData {
+    font-size: 12px;
+    color: #7d7f85;
+    font-weight: 500;
+    margin-inline: 15px;
+    letter-spacing: 1px;
+    position: relative;
+    text-decoration: none;
+    transition: color 0.3s;
+    cursor: pointer;
+}
+
+.footerMoreOptionData::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #000;
+    transition: width 0.3s ease;
+}
+
+.footerMoreOptionData:hover::before {
+    width: 100%;
+}
+
+
+@media screen and (max-width: 1024px) {
+
+    .footerBottomMain {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footerIconMain {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .footerMoreOption {
+        margin-top: 25px;
+        width: 100%;
+    }
+
+    .footerMoreText {
+        margin-top: 10px;
+        width: 100%;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+@media(max-width: 768px){
+    .footerTopMain{
+        padding-top: 10px;
+        padding-bottom: 0px;
+    }
+
+    .footerBottomMain{
+        padding-bottom: 0;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    .footerMoreOption {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .inputMain {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .foInputBox {
+        width: 100%;
+        border: 1px solid #e1e1e1;
+        color: hsla(225, 3%, 51%, .5);
+    }
+    .foInputBox::placeholder {
+       text-align: center;
+    }
+    .footerSignupBtn {
+        width: 100%;
+        border: 0;
+        background-color: #7d7f85;
+        color: white;
+        font-weight: 500;
+        font-size: 12px;
+    }
+}

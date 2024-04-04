@@ -1,0 +1,33 @@
+.bloghead::after {
+    content: "";
+    position: relative;
+    width: auto;
+    height: 1px;
+    background-color: #7f7d85;
+    left: 0;
+    bottom: -1px;
+    display: flex;
+}
+
+.smilingBlogImageMain{
+    width:800px;
+    overflow:visible; 
+    left: -17%; 
+    position:relative; 
+    margin-top:35px;
+}
+
+.smilingBlogImage{
+    width:100%
+}
+
+@media screen and (max-width: 1000px) {
+    
+   
+    .smilingBlogImageMain{
+        width:auto;
+        left: 0px;
+        display: flex;
+        justify-content: center;
+    }
+}

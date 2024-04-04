@@ -1,0 +1,82 @@
+.muiSmilingRocksBtnManage{
+    border: 1px solid #7d7f85 !important;
+    margin-left: auto !important;
+    display: block !important;
+}
+
+.muiSmilingRocksBtnManage:hover, .muiSmilingRocksBtnManageEdit:hover{
+    background: #fff !important;
+    color: #7d7f85;
+}
+
+.manageAddressBlock{
+    border: 1px solid #e9e9ed;
+    padding: 15px 15px 65px 15px;
+    position: relative;
+    height: 100%;
+}
+
+.muiSmilingRocksBtnManageEdit{
+    border: 1px solid #7d7f85 !important;
+}
+
+.addressMainSec{
+    gap: 2%;
+}
+
+.AddressSec{
+    width: 32%;
+    min-width: 32%;
+    margin-bottom: 2%;
+}
+
+.manageAddressInputRadio{
+    accent-color: #7d7f85;
+    margin-right: 10px;
+    margin-left: 1px;
+}
+
+.loadingBarManage{
+    color: #7d7f85 !important;
+}
+
+.manageAddressDefault{
+    /* box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
+    /* border: 1px solid rgba(0, 0, 0, 0.35); */
+
+}
+
+@media(max-width: 1024px){
+    .AddressSec{
+        width: 49%;
+        min-width: 49%;
+        /* margin-bottom: 1%; */
+    }
+
+}
+
+@media(max-width: 768px){
+    .manageAddressSec > div{    
+        padding: 0 !important;
+    }
+
+    .savedAddress{
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+
+    .savedAddressManageBtn{
+        padding: 3px 10px !important;
+    }
+}
+
+@media(max-width: 576px){
+    .AddressSec{
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .addressMainSec{
+        gap: 0;
+    }
+}

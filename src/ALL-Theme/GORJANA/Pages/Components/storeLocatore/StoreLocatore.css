@@ -1,0 +1,113 @@
+.gorStoreMain {
+    margin-top: 160px;
+    margin-inline: 15%;
+}
+
+.gorStoreMainTitle {
+    font-size: 45px;
+    font-family: 'Freight Big Pro,serif';
+}
+
+.gorStoreTopSection {
+    display: flex;
+}
+
+
+.gorLosAngles {
+    border: 1px solid #e4e6ec;
+    height: 50px;
+    width: 98%;
+}
+
+.gorStoreShowLoc {
+    border: 1px solid #e4e6ec;
+    width: 95%;
+    height: 50px;
+
+}
+
+.gorLosAndleMain {
+    width: 60%;
+}
+
+.gorStoreShowLocMain {
+    width: 20%;
+}
+
+.gorStoreFindBtnMain {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.gorStoreFindBtn {
+    width: 80%;
+    height: 50px;
+    border: none;
+    color: white;
+    background-color: #4d5469;
+
+}
+
+
+.gorStoreBrowmy-list {
+    list-style: none;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: fit-content 1s ease;
+}
+
+.gorStoreBrowmy-list.open {
+    max-height: fit-content;
+    margin: 0;
+}
+
+.gorBrowseTitle {
+    font-size: 22px;
+    margin: 0px;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 12px;
+}
+
+.gorBrowImges {
+    width: 25%;
+    padding: 5px;
+}
+
+@media screen and (max-width: 1200px) {
+    .gorStoreMain {
+        margin-inline: 5%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .gorStoreMain {
+        margin-inline: 2%;
+    }
+
+    .gorStoreTopSection{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .gorLosAndleMain{
+        width: 100%;
+    }
+
+    .gorStoreShowLocMain{
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .gorStoreShowLoc{
+        width: 100%;
+    }
+
+    .gorStoreFindBtnMain{
+        width: 300px;
+        margin-top: 20px;
+    }
+}

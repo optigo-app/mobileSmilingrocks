@@ -1,0 +1,62 @@
+.containerALT{
+    max-width: 1310px;
+    margin: 0 auto;
+}
+.headline_alt{
+    height: 40px;
+    background-color: #989898;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 5px;
+    text-transform: uppercase;
+    color: white;
+}
+
+/* .sminingHeaderWeb{
+    display: none;
+} */
+.hideSmilingRockHead{
+    display: none !important;
+}
+.lh_alt{
+    line-height: 14px;
+    font-size: 14px;
+}
+.firmnamealt{
+    font-size: 16px;
+}
+/* .mobileHeaderSmining{
+    display: none !important;
+} */
+
+@media print {
+    .containerALT{
+        margin-top: 0px;
+        padding: 5px;
+    }
+    .lh_alt{
+        line-height: 10px;
+        font-size: 10px;
+    }
+    .sminingHeaderWeb{
+        display: none !important;
+    }
+    .fs_alt{
+        font-size: 7px;
+    }
+    .firmnamealt{
+        font-size: 9px !important;
+    }
+    /* .mobileHeaderSmining{
+        display: none !important;
+    } */
+    .headline_alt{
+        font-size: 16px;
+    }
+    .hideSmilingRockHead{
+        display: none !important;
+    }
+}

@@ -1,0 +1,64 @@
+.contactUsTop {
+    background-color: rgba(217, 217, 217, 0.25);
+    margin: 40px;
+}
+
+.mobileContact{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.needHelpContact {
+    box-shadow: rgb(136, 165, 191) 1px 2px 13px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    width: 95%;
+    margin: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.needHelpInput{
+    height: 45px;
+    margin-bottom: 10px;
+    border: 1px solid  rgb(222, 222, 222);
+    --placeholderTextColor: #909090;
+    border-radius : 3px
+}
+.needHelpTextarea{
+    height: 90px;
+    margin-bottom: 10px;
+    border: 1px solid  rgb(222, 222, 222);
+    --placeholderTextColor: #909090;
+    border-radius : 3px
+}
+
+.needHelpBtn{
+    height: 45px;
+    background-color: rgb(68, 212, 213);
+    margin-inline: 20px;
+    border: 0;
+    font-size: 19px;
+    color: white;
+    border-radius: 5px;
+}
+
+
+.inputFiled{
+    width: 320px;
+    height: 30px;
+}
+.inputFiledLabel{
+}
+@media screen and (min-width:1441px) {
+    .mobileContact{
+        display: none;
+    }
+}
+
+@media screen and (max-width:1440px) {
+    .webContact {
+        display: none;
+    }
+
+}

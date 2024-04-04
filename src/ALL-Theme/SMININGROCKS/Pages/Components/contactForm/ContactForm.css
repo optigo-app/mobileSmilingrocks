@@ -1,0 +1,85 @@
+.commonContactMain {
+   border-top: 1px solid #e1e1e1;
+   border-bottom: 1px solid #e1e1e1;
+   padding-block: 50px;
+}
+
+
+.comonContactFormMain {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.concatctFormTextArea{
+    height: 120px;
+    width: 820px;
+    margin: 10px;
+    border: 1px solid #e1e1e1;
+}
+.concatctFormInputName {
+    height: 60px;
+    width: 400px;
+    margin: 10px;
+    border: 1px solid #e1e1e1;
+}
+
+.concatctFormInputName:focus {
+    outline: none;
+    border: 1px solid #e1e1e1;
+}
+
+.concatctFormTextArea:focus {
+    outline: none;
+    border: 1px solid #e1e1e1;
+}
+
+.commonContactFormSubmitBtn {
+    height: 60px;
+    width: 220px;
+    background-color: #7d7f85;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    transition: all 0.5s ease;
+    margin-top: 30px;
+}
+
+.commonContactFormSubmitBtn:hover {
+    background-color: white;
+    color: #7d7f85;
+    border: 1px solid #7d7f85;
+}
+
+
+
+@media screen and (max-width: 1000px) {
+
+    .commonContactMain {
+        padding-block: 50px;
+     }
+     .comonContactFormMain {
+        width: 100%;
+       }
+     .concatctFormInputName{
+        width: 100%;
+        margin: 0px 0px 10px;
+     }
+     
+    .concatctFormTextArea{
+        width: 95%;
+        margin: 0px 0px 10px;
+    }
+   
+    .concatctFormInputNameMain{
+        display: flex;
+        flex-direction: column;
+        width: 95%;
+        margin: 0px 0px 10px;
+
+    }
+}
+
+

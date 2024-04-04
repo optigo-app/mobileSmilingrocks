@@ -1,0 +1,32 @@
+.gorPrivacyMain{
+    margin-top: 8%;
+    margin-inline: 15%;
+}
+
+@media screen and (max-width: 1440px) {
+    .gorPrivacyMain{
+        margin-top: 10%;
+        margin-inline: 5%;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .gorPrivacyMain{
+        margin-top: 13%;
+        margin-inline: 2%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .gorPrivacyMain{
+        margin-top: 50%!important;
+        margin-inline: 2%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .gorPrivacyMain{
+        margin-top: 30%;
+        margin-inline: 2%;
+    }
+}

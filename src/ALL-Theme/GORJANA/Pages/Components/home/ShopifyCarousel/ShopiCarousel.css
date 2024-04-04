@@ -1,0 +1,36 @@
+.shopiCarTile {
+    margin-inline: 20px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.gorShopiTitle {
+    display: flex;
+    justify-content: center;
+    margin-top: 70px;
+    overflow-x: scroll;
+}
+
+.gorShopiTitle::-webkit-scrollbar {
+    display: none;
+}
+
+.shopiCarTile.one {
+    font-size: 30px;
+}
+
+.shopiCarTile.two {
+    font-size: 30px;
+}
+
+.shopiCarTile.three {
+    font-size: 30px;
+}
+
+.shopiCarTile.fou {
+    font-size: 30px;
+}
+
+.shopiCarTile.five {
+    font-size: 30px;
+}

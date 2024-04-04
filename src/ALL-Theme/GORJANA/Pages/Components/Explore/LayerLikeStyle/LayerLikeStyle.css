@@ -1,0 +1,52 @@
+.gorLayerLikeBoxMain {
+    margin-inline: 16%;
+    display: flex;
+    margin-top: 5%;
+}
+
+.gorLayerBox1 {
+    width: 50%;
+    padding-right: 3%;
+    margin-top: 10%;
+}
+
+.gorLayerBox2 {
+    width: 50%;
+    padding-left: 3%;
+}
+
+.gorLayerBoxImg {
+    width: 100%;
+}
+
+.gorShopTheBtn {
+    position: absolute;
+    right: 50px;
+    bottom: 30px;
+    background-color: #f1e6de;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+}
+
+.gorShopTheBtn:hover {
+    background-color: #faf5f2;
+
+}
+
+.gorLayerDescTitle {
+    font-size: 22px;
+    margin: 0px;
+}
+
+.gorLayerDesc {
+    font-size: 15px;
+}
+
+.gorLayerSub2Box1 {
+    margin-top: 10%;
+}
+
+.gorLayerSub2Box2 {
+    margin-top: 10%;
+}

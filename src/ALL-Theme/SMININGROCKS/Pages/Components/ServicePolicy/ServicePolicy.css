@@ -1,0 +1,42 @@
+.smiling-ServicePolicyMain{
+    margin-inline: 6%;
+    background-color: white;
+}
+
+.smiling-ServiPolicySubMain{
+    padding-inline: 32%;
+}
+
+.smiling-ServiceMainTitle{
+    font-size: 38px;
+    font-weight: 600;
+    color: #7d7f85;
+    font-family: 'FreightDispProBook-Regular,Times New Roman,serif';
+}
+
+.smiling-serviceSubTitle{
+    font-size: 28px;
+    font-weight: 600;
+    color: #7d7f85;
+    font-family: 'FreightDispProBook-Regular,Times New Roman,serif';
+}
+
+.smiling-serviceDesc{
+    font-size: 13px;
+    color: #7d7f85;
+    font-weight: 500;
+
+}
+
+
+
+@media screen and (max-width:1200px) {
+    .smiling-ServicePolicyMain {
+    margin-inline: 2%;
+
+    }
+    .smiling-ServiPolicySubMain{
+    padding-inline: 5%;
+
+    }
+}

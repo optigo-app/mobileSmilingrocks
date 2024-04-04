@@ -1,0 +1,302 @@
+[
+    {
+     "id": 1,
+     "outward_date": "14 Aug 2024",
+     "bill": "js1137(1)",
+     "total_amount": "$2131.00"
+    },
+    {
+     "id": 2,
+     "outward_date": "15 Aug 2024",
+     "bill": "js1138(2)",
+     "total_amount": "$1956.50"
+    },
+    {
+     "id": 3,
+     "outward_date": "16 Aug 2024",
+     "bill": "js1139(3)",
+     "total_amount": "$2245.75"
+    },
+    {
+     "id": 4,
+     "outward_date": "17 Aug 2024",
+     "bill": "js1140(4)",
+     "total_amount": "$1890.25"
+    },
+    {
+     "id": 5,
+     "outward_date": "18 Aug 2024",
+     "bill": "js1141(5)",
+     "total_amount": "$2057.80"
+    },
+    {
+     "id": 6,
+     "outward_date": "19 Aug 2024",
+     "bill": "js1142(6)",
+     "total_amount": "$2310.45"
+    },
+    {
+     "id": 7,
+     "outward_date": "20 Aug 2024",
+     "bill": "js1143(7)",
+     "total_amount": "$1988.90"
+    },
+    {
+     "id": 8,
+     "outward_date": "21 Aug 2024",
+     "bill": "js1144(8)",
+     "total_amount": "$2176.20"
+    },
+    {
+     "id": 9,
+     "outward_date": "22 Aug 2024",
+     "bill": "js1145(9)",
+     "total_amount": "$2043.75"
+    },
+    {
+     "id": 10,
+     "outward_date": "23 Aug 2024",
+     "bill": "js1146(10)",
+     "total_amount": "$2298.30"
+    },
+    {
+     "id": 11,
+     "outward_date": "24 Aug 2024",
+     "bill": "js1147(11)",
+     "total_amount": "$1925.50"
+    },
+    {
+     "id": 12,
+     "outward_date": "25 Aug 2024",
+     "bill": "js1148(12)",
+     "total_amount": "$2180.75"
+    },
+    {
+     "id": 13,
+     "outward_date": "26 Aug 2024",
+     "bill": "js1149(13)",
+     "total_amount": "$2036.25"
+    },
+    {
+     "id": 14,
+     "outward_date": "27 Aug 2024",
+     "bill": "js1150(14)",
+     "total_amount": "$2255.80"
+    },
+    {
+     "id": 15,
+     "outward_date": "28 Aug 2024",
+     "bill": "js1151(15)",
+     "total_amount": "$1978.90"
+    },
+    {
+     "id": 16,
+     "outward_date": "29 Aug 2024",
+     "bill": "js1152(16)",
+     "total_amount": "$2135.20"
+    },
+    {
+     "id": 17,
+     "outward_date": "30 Aug 2024",
+     "bill": "js1153(17)",
+     "total_amount": "$1889.75"
+    },
+    {
+     "id": 18,
+     "outward_date": "31 Aug 2024",
+     "bill": "js1154(18)",
+     "total_amount": "$2076.30"
+    },
+    {
+     "id": 19,
+     "outward_date": "01 Sep 2024",
+     "bill": "js1155(19)",
+     "total_amount": "$2312.50"
+    },
+    {
+     "id": 20,
+     "outward_date": "02 Sep 2024",
+     "bill": "js1156(20)",
+     "total_amount": "$1967.80"
+    },
+    {
+     "id": 21,
+     "outward_date": "03 Sep 2024",
+     "bill": "js1157(21)",
+     "total_amount": "$2145.25"
+    },
+    {
+     "id": 22,
+     "outward_date": "04 Sep 2024",
+     "bill": "js1158(22)",
+     "total_amount": "$1898.50"
+    },
+    {
+     "id": 23,
+     "outward_date": "05 Sep 2024",
+     "bill": "js1159(23)",
+     "total_amount": "$2090.75"
+    },
+    {
+     "id": 24,
+     "outward_date": "06 Sep 2024",
+     "bill": "js1160(24)",
+     "total_amount": "$2287.90"
+    },
+    {
+     "id": 25,
+     "outward_date": "07 Sep 2024",
+     "bill": "js1161(25)",
+     "total_amount": "$1975.65"
+    },
+    {
+     "id": 26,
+     "outward_date": "08 Sep 2024",
+     "bill": "js1162(26)",
+     "total_amount": "$2160.80"
+    },
+    {
+     "id": 27,
+     "outward_date": "09 Sep 2024",
+     "bill": "js1163(27)",
+     "total_amount": "$1856.95"
+    },
+    {
+     "id": 28,
+     "outward_date": "10 Sep 2024",
+     "bill": "js1164(28)",
+     "total_amount": "$2043.20"
+    },
+    {
+     "id": 29,
+     "outward_date": "11 Sep 2024",
+     "bill": "js1165(29)",
+     "total_amount": "$2235.45"
+    },
+    {
+     "id": 30,
+     "outward_date": "12 Sep 2024",
+     "bill": "js1166(30)",
+     "total_amount": "$1902.75"
+    },
+    {
+     "id": 31,
+     "outward_date": "13 Sep 2024",
+     "bill": "js1167(31)",
+     "total_amount": "$2098.90"
+    },
+    {
+     "id": 32,
+     "outward_date": "14 Sep 2024",
+     "bill": "js1168(32)",
+     "total_amount": "$2276.50"
+    },
+    {
+     "id": 33,
+     "outward_date": "15 Sep 2024",
+     "bill": "js1169(33)",
+     "total_amount": "$1950.75"
+    },
+    {
+     "id": 34,
+     "outward_date": "16 Sep 2024",
+     "bill": "js1170(34)",
+     "total_amount": "$2125.30"
+    },
+    {
+     "id": 35,
+     "outward_date": "17 Sep 2024",
+     "bill": "js1171(35)",
+     "total_amount": "$2310.80"
+    },
+    {
+     "id": 36,
+     "outward_date": "18 Sep 2024",
+     "bill": "js1172(36)",
+     "total_amount": "$1905.45"
+    },
+    {
+     "id": 37,
+     "outward_date": "19 Sep 2024",
+     "bill": "js1173(37)",
+     "total_amount": "$2067.20"
+    },
+    {
+     "id": 38,
+     "outward_date": "20 Sep 2024",
+     "bill": "js1174(38)",
+     "total_amount": "$2245.75"
+    },
+    {
+     "id": 39,
+     "outward_date": "21 Sep 2024",
+     "bill": "js1175(39)",
+     "total_amount": "$1978.60"
+    },
+    {
+     "id": 40,
+     "outward_date": "22 Sep 2024",
+     "bill": "js1176(40)",
+     "total_amount": "$2156.90"
+    },
+    {
+     "id": 41,
+     "outward_date": "23 Sep 2024",
+     "bill": "js1177(41)",
+     "total_amount": "$2330.25"
+    },
+    {
+     "id": 42,
+     "outward_date": "24 Sep 2024",
+     "bill": "js1178(42)",
+     "total_amount": "$2015.50"
+    },
+    {
+     "id": 43,
+     "outward_date": "25 Sep 2024",
+     "bill": "js1179(43)",
+     "total_amount": "$2198.75"
+    },
+    {
+     "id": 44,
+     "outward_date": "26 Sep 2024",
+     "bill": "js1180(44)",
+     "total_amount": "$1925.80"
+    },
+    {
+     "id": 45,
+     "outward_date": "27 Sep 2024",
+     "bill": "js1181(45)",
+     "total_amount": "$2110.65"
+    },
+    {
+     "id": 46,
+     "outward_date": "28 Sep 2024",
+     "bill": "js1182(46)",
+     "total_amount": "$2287.80"
+    },
+    {
+     "id": 47,
+     "outward_date": "29 Sep 2024",
+     "bill": "js1183(47)",
+     "total_amount": "$1975.95"
+    },
+    {
+     "id": 48,
+     "outward_date": "30 Sep 2024",
+     "bill": "js1184(48)",
+     "total_amount": "$2153.20"
+    },
+    {
+     "id": 49,
+     "outward_date": "01 Oct 2024",
+     "bill": "js1185(49)",
+     "total_amount": "$2340.45"
+    },
+    {
+     "id": 50,
+     "outward_date": "02 Oct 2024",
+     "bill": "js1186(50)",
+     "total_amount": "$1998.75"
+    }
+   ]

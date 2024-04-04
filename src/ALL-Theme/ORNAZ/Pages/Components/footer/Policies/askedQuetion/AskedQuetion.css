@@ -1,0 +1,28 @@
+.my-FAQ-Web-open {
+    list-style: none;
+    padding: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    margin: 25px;
+    max-height: 1200px;
+    margin-inline: 25px;
+    margin-top: 0px;
+}
+
+.quetions {
+    border : 1px solid #e3e3e3;
+}
+
+@media screen and (min-width:1441px) {
+    .akedsQuetionMobile {
+        display: none;
+    }
+}
+
+
+@media screen and (max-width:1440px) {
+    .akedsQuetionWeb {
+        display: none;
+    }
+
+}

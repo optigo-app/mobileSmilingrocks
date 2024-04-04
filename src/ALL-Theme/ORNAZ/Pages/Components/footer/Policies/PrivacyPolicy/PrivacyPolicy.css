@@ -1,0 +1,13 @@
+
+.privacyHeading{
+    font-size: 22px;
+    margin-bottom: 0px;
+}
+
+@media screen and (max-width:1440px) {
+
+    .privacyMain {
+        margin-top: 60px !important;
+    }
+
+}

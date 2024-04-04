@@ -1,0 +1,33 @@
+.formTitle{
+    text-align: center;
+    display: block;
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+}
+
+.formHelp{
+    margin: 5px 0 5px;
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    color: #cecece;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+}
+.formName{
+    height: 25px;
+    width: 500px;
+    margin: 5px;
+}
+.btnForm{
+    margin: 5px;
+    height: 50px;
+    border: 0.4px solid #ccc;
+    background-color: #fcfcfc;
+}

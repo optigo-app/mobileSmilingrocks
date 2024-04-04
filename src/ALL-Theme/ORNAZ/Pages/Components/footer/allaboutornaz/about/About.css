@@ -1,0 +1,88 @@
+.startUp{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 700px;
+}
+
+.statUpMain{
+    display: flex;
+    justify-content: center;
+}
+
+.ornazStory{
+    background: rgb(237,235,222);
+    display: flex;
+    justify-content: center;
+}
+
+.about-craftsmanship{
+    display: flex;
+    justify-content: center;
+    margin-block: 20px;
+}
+.gauranteeTitle{
+    font-weight: 500;
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
+}
+.gaurantee{
+    display: flex;
+    justify-content: center;
+}
+
+.funFacts{
+    background: #ff8080;
+}
+.funFactsSub{
+    width: 1500px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px;
+}
+
+.funBox{
+    /* border: 1px solid; */
+    width: 300px;
+    text-align: center;
+    margin: 50px;
+}
+
+.funBoxTitle{
+    color: white;
+    font-size: 50px;
+    font-weight: 500;
+    margin: 0;
+}
+.funBoxData{
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+
+
+@media screen and (min-width:1441px) {
+    .aboutMobileView{
+        display: none;
+    }
+}
+
+
+@media screen and (max-width:1440px) {
+    .aboutWebView {
+        display: none;
+    }
+
+    .aboutMobileView{
+        margin-top: 60px;
+    }
+}
+
+.exploreTool{
+    width: 270px;
+    text-align: center;
+}

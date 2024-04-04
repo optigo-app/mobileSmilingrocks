@@ -1,0 +1,8 @@
+.whyOrnazMain{
+    width: 22%;
+    display: flex;
+    order: 2;
+}
+.text{
+    cursor: pointer;
+}

@@ -1,0 +1,118 @@
+.goeCareGuidMain {
+    margin-top: 120px;
+}
+
+.careGuideImageTop {
+    width: 100%;
+}
+
+.gorCareFashionBoxMain {
+    margin-inline: 16%;
+    display: flex;
+}
+
+.gorCareFashionBox1 {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 50px;
+}
+
+.gorCareFashionBox2 {
+    width: 50%;
+}
+
+.gorCareFashionBox2Img {
+    width: 100%;
+}
+
+
+.gorCareGuide-list {
+    list-style: none;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: fit-content 1s ease;
+}
+
+.gorCareGuide-list.open {
+    max-height: fit-content;
+    margin: 0;
+}
+
+.gorCareImageSlideMain {
+    margin-inline: 16%;
+}
+
+.gor-Carescrollable-container {
+    width: 100%;
+    /* height: 700px; */
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    /* border: 1px solid #ccc; */
+    /* padding: 10px; */
+    cursor: pointer;
+    position: relative;
+}
+
+.gor-image-Carescroll-content {
+    display: inline-block;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.gor-Careimage-wrapper {
+    display: inline-block;
+    margin-right: 10px;
+    cursor: pointer;
+    width: 33.33%;
+}
+
+.gor-Careimage-wrapper img {
+    max-width: 100%;
+    height: 500px;
+    object-fit: cover;
+}
+
+.gorCareImageSliderLeft {
+    height: 50px;
+    width: 40px;
+    background-color: #f6efe6;
+    position: absolute;
+    left: 0px;
+    top: 40%;
+    z-index: 1;
+}
+
+.gorCareImageSliderRight{
+    height: 50px;
+    width: 40px;
+    background-color: #f6efe6;
+    position: absolute;
+    right: 0px;
+    top: 40%;
+    z-index: 1;
+}
+
+
+.gorCareGCustomeMain{
+    display: flex;
+    margin-inline: 16%;
+    margin-top: 10%;
+}
+.gorCareGCustomeBox1{
+    width: 50%;
+}
+.gorCareGCustomeBox2{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.gorcareCustomeImg{
+    width: 95%;
+    height: 80%;
+}

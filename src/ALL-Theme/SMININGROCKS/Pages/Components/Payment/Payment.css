@@ -1,0 +1,76 @@
+.smilingPaymentMain {
+    margin-inline: 6%;
+    background-color: white;
+}
+
+.smilingPayentImg {
+    height: 450px;
+    width: 450px;
+}
+
+.smilingPaySub1 {
+    padding: 50px;
+    display: flex;
+}
+
+.smilingPaySub1Box1 {
+    width: 65%;
+    padding: 50px;
+}
+
+.smilingPaySub1Box2 {
+    width: 35%;
+    padding: 50px;
+}
+
+.paymentBtn {
+    height: 40px;
+    width: 180px;
+    background-color: white;
+    border: 1px solid lightgray;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.paymentBtn:hover {
+    background-color: lightgray;
+    border: 1px solid lightgray;
+}
+
+
+
+.AddressTitle {
+    font-size: 15px;
+    margin: 0px;
+}
+
+.AdressData {
+    font-size: 16px;
+    margin: 0px;
+}
+
+.smilingPaymentBtn {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+@media screen and (max-width:1400px) {
+    .smilingPaymentMain {
+        margin-inline: 4%;
+    }
+}
+
+@media screen and (min-width:1001px) {
+    .smilingPaymentMainMobile {
+        display: none;
+    }
+
+}
+
+@media screen and (max-width:1000px) {
+
+    .smilingPaymentMainWeb {
+        display: none;
+    }
+}

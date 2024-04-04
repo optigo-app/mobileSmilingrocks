@@ -1,0 +1,67 @@
+.gj_pagetitle{
+    font-size: 45px;
+    font-family: 'FreightDisp Pro Medium';
+    color: #283045;
+}
+
+.gj_collection_container{
+    display: flex;
+    justify-content: center;
+    gap:30px;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+.gj_pcl_container{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.gj_pcl_img{
+   width:170px;
+   height: 200px;
+}
+
+.gj_pcl_title{
+    margin-top: 12px;
+    font-size: 18px;
+    font-family: 'FreightDisp Pro Medium';
+    color: #283045;
+}
+
+.gj_pcl_container:hover{
+    .gj_pcl_title{
+        text-decoration: underline;
+        text-underline-offset: 3px;
+    }
+}
+
+.filter_btn_div{
+    display: flex;
+    gap:7px;
+    justify-content: center;
+    padding: 24px 18px;
+    border-top: 1px solid #e4e6ec;
+    position: fixed;
+    bottom:0;
+    background-color: white;
+}
+
+.gjbtn{
+    outline: none;
+    border:1px solid #283045;
+    padding: 8px 20px;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.gjclear{
+  background-color: white;
+  color:#283045
+}
+
+.gjresults{
+  background-color: #283045;
+  color:white
+}

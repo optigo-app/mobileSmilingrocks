@@ -1,0 +1,46 @@
+.smcelebimg:nth-child(2n) {
+    margin-top: 25px;
+}
+
+.carousel .control-dots {
+    top: 460px;
+}
+.smcelebimg {
+    width: 25%;
+    padding: 5px;
+}
+.smilingCelebeImage {
+    object-fit: cover;
+    width: fit-content;
+    height: 517.42px;
+}
+
+@media screen and (max-width: 1440px) {
+
+    .smilingCelebeImage {
+        height: 450.42px;
+    }
+
+    .carousel .control-dots {
+        top: 400px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+
+    .smcelebimg {
+        width: 33.33%!important;
+    }
+}
+@media screen and (max-width: 800px) {
+
+    .smcelebimg {
+        width: 50%!important;
+    }
+}
+@media screen and (max-width: 500px) {
+
+    .smcelebimg {
+        width: 100%!important;
+    }
+}

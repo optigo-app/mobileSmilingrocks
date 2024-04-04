@@ -1,0 +1,188 @@
+.gorjanaHeader {
+    box-shadow: inset 0 -1px 0 0 #e4e6ec;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 999;
+    border-bottom: 1px solid #e4e6ec;
+}
+
+.gorjanaTopHeader {
+    background-color: #f6efe6;
+    padding: 5px;
+    padding-left: 60px;
+}
+
+.gorjanaHederImage {
+    cursor: pointer;
+}
+
+.gorjanaHeaderSubMenuMain {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.gorajanaBottomHeaderMain {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: white;
+}
+
+.gorjanaImgMenuMain {
+    display: flex;
+    margin-left: 44px;
+    margin-top: 2px;
+    width: 100%;
+}
+
+.gorjanaHeaderMenu {
+    display: flex;
+    list-style: none;
+    margin: 0px;
+    margin-left: 7px;
+    align-items: center;
+}
+
+.gorjana-Menu-item {
+    margin: 0px;
+    margin-inline: 20px;
+    font-family: inherit;
+    font-size: 14px;
+    color: inherit;
+    cursor: pointer;
+}
+
+.gorjana-Menu-item:hover {
+    text-decoration: underline;
+}
+
+.gorjanaHeaderMenuIconeWeb {
+    display: flex;
+    align-items: center;
+    margin-right: 55px;
+}
+
+
+.gorHeaderMobileIcoen {
+    height: 25px;
+    cursor: pointer;
+    width: 25px;
+    margin-inline: 15px;
+
+}
+
+.gorHeaderSearchBoxDiv {
+    border: 1px solid #e4e6ec;
+    margin: 0px 50px;
+    height: 45px;
+    margin-top: 30px;
+}
+
+.gorHeaderSearchBox {
+    height: 43px;
+    width: 550px;
+    border: none;
+}
+
+.css-uyjz3f-MuiPaper-root-MuiDrawer-paper {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px !important;
+    width: 35%;
+}
+
+.gorYourBagTopHeader {
+    height: 100px;
+    background-color: white;
+    display: flex;
+    position: fixed;
+    width: 34%;
+    top: 124px;
+    align-items: center;
+
+}
+
+.gorYourBagBottom {
+    height: 150px;
+    display: flex;
+    position: fixed;
+    width: 34%;
+    bottom: 0px;
+    align-items: center;
+    background-color: white;
+    flex-direction: column;
+    border-top: 1px solid #e4e6ec;
+    padding: 10px 40px;
+}
+
+.gorBagimge {
+    width: 100px;
+}
+
+.gorForgotIconeDiv{
+    background-color: #f0f2f1;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.gorBagForgetimage{
+    width: 180px;
+    cursor: pointer;
+}
+.gorbagChecoutBtn{
+    height: 50px;
+    width: 100%;
+    margin-inline: 5%;
+    color: white;
+    font-weight: 500;
+    border: none;
+    background-color: #283045;
+    margin-top: -20px;
+}
+@media screen and (min-width:1151px) {
+    .gorjanaHeaderMenuIconeMobile {
+        display: none;
+    }
+}
+
+@media screen and (max-width:1150px) {
+
+    .gorjanaHeaderMenuIconeWeb {
+        display: none;
+    }
+
+    .gorajanaBottomHeaderMain {
+        padding: 0px;
+        padding-Block: 20px;
+    }
+
+    .gorjanaHeaderMenu {
+        display: none;
+    }
+
+    .gorjanaHeaderSubMenuMain {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .gorjanaImgMenuMain {
+        margin-left: 15px;
+    }
+}
+
+
+@media screen and (max-width: 400px) {
+
+    .gorHeaderMobileIcoen {
+        height: 25px;
+        width: 25px;
+        margin-inline: 8px;
+    }
+
+}

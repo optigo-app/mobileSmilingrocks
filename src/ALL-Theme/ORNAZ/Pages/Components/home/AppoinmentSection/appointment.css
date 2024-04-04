@@ -1,0 +1,46 @@
+.outer-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:50px 0px 90px 0px
+}
+
+.inner-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:18px
+}
+
+.text1{
+    font-size: 22px;
+    font-family: 'Times New Roman', Times, serif;
+    color:#2C2C2C;
+}
+
+.text2{
+    text-align: center;
+    padding: 8px;
+    font-size: 16px;
+    color:#2C2C2C;
+}
+
+.text3{
+    font-size: 14.4px;
+    color:#2C2C2C;
+    font-weight: 500;
+}
+
+.text3-container{
+      border: 1px solid black;
+      padding: 5px 35px;
+      cursor: pointer;
+
+}
+
+.text3-container:hover .text3{
+
+    text-decoration: underline;
+    
+}

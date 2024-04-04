@@ -1,0 +1,163 @@
+.smilingDelivery {
+    margin-inline: 6%;
+    background-color: white;
+}
+
+.smilingOrderMain {
+    display: flex;
+    margin-inline: 10%;
+    padding-bottom: 50px;
+}
+
+.smilingdeliverBox1 {
+    margin-top: 8%;
+}
+
+.smilingdeliverBox2 {
+    width: 40%;
+    margin-top: 8%;
+
+}
+
+.smilingDeliverImg {
+    height: 200px;
+    width: 200px;
+}
+
+.AddressMain {
+    border: 1px solid #ccc;
+    width: 350px;
+    word-wrap: break-word;
+    margin-right: 5px;
+    padding: 22px;
+    cursor: pointer;
+    border-radius: 5px;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.addressData {
+    margin: 0px;
+    font-family: 'TTCommons-Medium,Helvetica,sans-serif';
+    color: rgb(125, 127, 133);
+    text-transform: capitalize;
+    /* font-family: "FreightDisp Pro Medium"; */
+}
+
+.deliveryAddressEdit {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    margin-inline: 2px;
+    cursor: pointer;
+}
+
+.deliveryAddressEdit:hover {
+    background-color: lightgray;
+}
+
+
+.deliveryAddressDelete {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    margin-inline: 2px;
+    cursor: pointer;
+}
+
+.deliveryAddressDelete:hover {
+    background-color: lightgray;
+
+}
+
+.smilingAddToAddressBtn {
+    height: 40px;
+    width: 170px;
+    border: none;
+    outline: none;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.smilingAddToAddressBtn:hover {
+    background-color: lightgray;
+}
+
+.smilingAddressPopupMain {
+    width: 570px;
+    height: 850px;
+}
+
+.smilingDeleveryformSaveBtn {
+    height: 35px;
+    width: 100px;
+    border: none;
+    background-color: lightgray;
+    font-weight: 500;
+    margin-inline: 5px;
+    border-radius: 5px;
+}
+
+.smilingDeleveryformSaveBtn:hover {
+    background-color: white;
+    border: 1px solid lightgray;
+}
+
+.smilingDeleveryformCansleBtn {
+    height: 35px;
+    width: 100px;
+    border: none;
+    background-color: lightgray;
+    font-weight: 500;
+    border-radius: 5px;
+}
+
+.smilingDeleveryformCansleBtn:hover {
+    background-color: white;
+    border: 1px solid lightgray;
+}
+
+.smilingDeliverDelerePopu {
+    height: 130px;
+    width: 400px;
+    padding: 10px;
+}
+
+
+
+@media screen and (max-width: 1400px) {
+    .smilingDelivery {
+        margin-inline: 2%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+
+    .smilingdeliverBox1 {
+        width: 100% !important;
+    }
+
+    .smilingDeliveyAddressMain {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center !important;
+    }
+
+    .smilingMobileDeliveryBtnMain {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .smilingAddressPopupMain {
+        width: 100% !important;
+    }
+}

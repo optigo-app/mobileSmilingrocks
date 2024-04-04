@@ -1,0 +1,48 @@
+.gorAccessibility{
+    margin-top: 8%;
+    margin-inline: 15%;
+}
+
+.groAsseccMainTitle{
+    font-family: 'Futura PT,sans-serif';
+    font-size: 25px;
+}
+
+.gorAssecceDesc{
+    font-family: 'Futura PT,sans-serif';
+    font-size: 15px;
+}
+.gorAsseccSubTitle{
+    font-family: 'Futura PT,sans-serif';
+    font-size: 16px;
+    font-weight:600;
+}
+
+
+@media screen and (max-width: 1440px) {
+    .gorAccessibility{
+        margin-top: 10%;
+        margin-inline: 5%;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .gorAccessibility{
+        margin-top: 13%;
+        margin-inline: 2%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .gorAccessibility{
+        margin-top: 50%!important;
+        margin-inline: 2%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .gorAccessibility{
+        margin-top: 30%;
+        margin-inline: 2%;
+    }
+}

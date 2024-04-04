@@ -1,0 +1,173 @@
+.gorGiftMain {
+    display: flex;
+    margin-inline: 12%;
+}
+
+.gorGiftBox1 {
+    width: 45%;
+    margin-top: 13%;
+    margin-inline: 5%;
+
+}
+
+.gorGiftBox1Images {
+    width: 100%;
+}
+
+
+.gorGiftBox2 {
+    width: 55%;
+    margin-top: 7%;
+}
+
+.gorGiftBox2Images {
+    width: 95%;
+    height: 690px;
+}
+
+.gorGiftBoxDesc {
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.25;
+    font-family: 'Freight Big Pro,serif';
+}
+
+.gorViewLookBookimg {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.gorViewLookBookDesc {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 50px;
+}
+
+.gorViewLookBookImage {
+    width: 68%;
+}
+
+.gorGiftBoxMainTitleWeb {
+    font-size: 31px;
+    font-weight: 300;
+    font-family: 'Freight Big Pro,serif';
+    line-height: 1.25;
+    margin: 0px;
+}
+
+.gorGiftBox1Sub1 {
+    margin-top: 60px;
+}
+
+.gorGiftBox2Sub1 {
+    margin-top: 50px;
+}
+
+@media screen and (max-width: 1550px) {
+
+    .gorGiftBox2Images {
+        width: 95%;
+        height: 100%;
+    }
+
+    .gorGiftMain {
+        display: flex;
+        margin-inline: 3%;
+    }
+
+}
+
+@media screen and (min-width: 751px) {
+    .gorGiftBoxMainTitleMobile {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 750px) {
+
+    .gorGiftBoxMainTitleWeb {
+        display: none;
+    }
+
+
+    .gorGiftBoxMainTitleMobile {
+        font-size: 31px;
+        font-weight: 300;
+        font-family: 'Freight Big Pro,serif';
+        line-height: 1.25px;
+        margin: 30px;
+    }
+
+
+    .gorGiftMain {
+        display: flex;
+        margin-inline: 3%;
+    }
+
+    .gorGiftBox1 {
+        width: 50%;
+        margin-top: 1%;
+        margin-inline: 2%;
+    }
+
+    .gorGiftBox1Images {
+        width: 100%;
+    }
+
+
+    .gorGiftBox2Images {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    .gorGiftBox2 {
+        width: 50%;
+        margin-top: 5px !important;
+    }
+
+    .gorGiftBoxDesc {
+        font-size: 15px;
+    }
+
+    .gorGiftBox1Sub1 {
+        margin-top: 0px;
+    }
+
+    .gorGiftBox2Sub1 {
+        margin-top: 0px;
+    }
+
+
+}
+
+@media screen and (max-width: 1100px) {
+    .gorViewLookBookimg{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .gorViewLookBookDesc{
+        width: 75%;
+    }
+}
+
+
+@media screen and (max-width: 750px) {
+    .gorLookBookMain{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .gorViewLookBookImage{
+        width: 100%;
+    }   
+    
+    .gorViewLookBookDesc{
+        width: 100%;
+        margin-left: 0px;
+    }
+}

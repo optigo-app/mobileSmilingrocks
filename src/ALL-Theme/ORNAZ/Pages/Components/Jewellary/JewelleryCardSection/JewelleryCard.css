@@ -1,0 +1,107 @@
+.main {
+    width: 75%;
+    /* border: 1px solid black; */
+    background-color: #f8f8f8;
+    background-color: transparent;
+}
+
+.images {
+    /* border: 1px solid black; */
+    width: 31%;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.imagesData {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.productImages {
+    width: 100%;
+    position: relative;
+    z-index: -1;
+}
+
+@media screen and (min-width: 1441px) {
+    .faverite {
+        display: none!important;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .main {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .images {
+        width: 43% !important;
+    }
+
+    .imagesData {
+        margin-top: 40px !important;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .main {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .images {
+        width: 43% !important;
+    }
+
+    .imagesData {
+        margin-top: 40px !important;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .main {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .images {
+        width: 43% !important;
+    }
+
+    .imagesData {
+        margin-top: 40px !important;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .main {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .images {
+        width: 43% !important;
+    }
+
+    .imagesData {
+        margin-top: 40px !important;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .main {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .images {
+        width: 40% !important;
+    }
+
+    .imagesData {
+        justify-content: center;
+    }
+
+
+}

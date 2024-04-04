@@ -1,0 +1,55 @@
+.containerDV{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.dv_headline{
+    height: 40px;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    background-color: #989898;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-transform: capitalize;
+    padding-left: 15px;
+}
+.fs_dv_spes{
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 15px;
+}
+.fs_dv_spes_2{
+    font-size: 16px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.fs_dv{
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.end_dv{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.end_bottom_dv{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.h_dv{
+    height: 100px;
+}
+@media print {
+    .p_btn_al_Dv{
+        display: none !important;
+    }
+    .h_dv{
+        height: 80px;
+    }
+}

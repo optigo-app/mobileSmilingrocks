@@ -1,0 +1,262 @@
+/* .carousel-root {
+    width: 64% !important;
+    margin: auto !important;
+    margin-top: 3% !important;
+  }
+  
+  .carousel .slide {
+    background: #fff !important;
+    color: black;
+    height: 100%;
+  }
+  
+  .carousel .slide img {
+    width: 139px !important;
+    border-radius: 50%;
+  }
+  
+  .myCarousel {
+    background: #fafafa;
+    margin-top: -6%;
+    width: 54%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 6%;
+    padding-bottom: 8%;
+    padding-left: 5%;
+    padding-right: 5%;
+    border: 1px solid #ddd;
+    height: 286px;
+  }
+  
+  .carousel .control-dots {
+    padding-left: 5px !important;
+    outline: 0;
+    bottom: 5% !important;
+  }
+  
+  .myCarousel h3 {
+    color: #222;
+    font-weight: 100;
+    letter-spacing: 0.2px;
+    margin-bottom: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 17px;
+  }
+  
+  .myCarousel h4 {
+    text-transform: uppercase;
+    margin-top: 0;
+    padding-top: 0;
+    font-weight: 500;
+    color: #787878;
+    font-size: 14px;
+  }
+  
+  .myCarousel p {
+    font-weight: 100 !important;
+    line-height: 29px !important;
+    color: #222;
+    font-size: 15px;
+    font-family: sans-serif;
+    max-height: 67px;
+  }
+  
+  .myCarousel p:before {
+    content: "“";
+    color: #aaa;
+    font-size: 26px;
+    font-family: monospace;
+    font-weight: 100;
+  }
+  
+  .myCarousel p:after {
+    content: "”";
+    color: #aaa;
+    font-size: 26px;
+    font-family: monospace;
+    font-weight: 100;
+    line-height: 0;
+  }
+  
+  .carousel .control-dots .dot {
+    box-shadow: none !important;
+    background: #454545 !important;
+    outline: 0;
+  }
+  
+  .carousel.carousel-slider .control-arrow {
+    background: #000 !important;
+    height: 50px !important;
+    position: absolute;
+    top: 35% !important;
+  }
+  
+  .App {
+    text-align: center;
+  }
+  
+  @media only screen and (max-width: 934px) {
+    .carousel-root {
+      outline: 0;
+      width: 93% !important;
+      margin: auto !important;
+    }
+  
+    .carousel.carousel-slider .control-arrow {
+      display: none !important;
+    }
+    .myCarousel {
+      background: #fafafa;
+      margin-top: -9%;
+      width: 88%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-top: 8%;
+      padding-bottom: 12.5%;
+      padding-left: 5%;
+      padding-right: 5%;
+      border: 1px solid #ddd;
+      height: 269px;
+    }
+  
+    .carousel .slide img {
+      width: 24% !important;
+      border-radius: 50%;
+    }
+  } */
+
+
+.myCarousel{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: white;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 600px;
+}
+
+.carousel.carousel-slider {
+  display: flex;
+}
+
+.custom-arrow {
+  background:none;
+  color: white;
+  font-size: 18px;
+  /* padding: 10px 20px; */
+  border: none;
+  cursor: pointer;
+}
+
+.custom-arrow-prev {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.custom-arrow-next {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+.auther{
+  font-style: italic;
+  color: #45d4d5;
+  font-weight: 500;
+}
+
+.monial-container{
+  height: 649.27px;
+  margin-top:50px;
+  width:1498.53px;
+  margin-left:189px
+}
+
+.testimonial-descrip{
+  display:flex;
+  width:456px;
+  color:#2C2C2C;
+}
+
+
+
+@media screen and (max-width:1736px) {
+  .monial-container{
+    margin-left: 2%;
+  }
+}
+
+@media screen and (max-width:1540px) {
+  .monial-container{
+    width:1388.53px;
+  }
+}
+
+@media screen and (max-width:1412px) {
+  .monial-container{
+    width:1270.53px;
+  }
+}
+
+@media screen and (max-width:1291px) {
+  .monial-container{
+    width:1146.53px;
+  }
+}
+
+@media screen and (max-width:1184px) {
+  .monial-container{
+    width:100%;
+    height:100%;
+  }
+  .testimonial-descrip {
+    width:350px;
+    font-size: 14.5px;
+  }
+}
+
+@media screen and (max-width:520px) {
+
+  .testi-info-container{
+    margin-left: 0px;
+  }
+}
+
+@media screen and (min-width:840px) {
+  .testi-info-container{
+    margin-left:24px
+  }
+}
+
+@media screen and (max-width:840px) {
+  
+  .monial-container{
+    margin-left: 0.5%;
+    width: 99%!important;
+  }
+
+  .myCarousel{
+    flex-wrap: wrap;
+    height: auto;
+    margin-top: 20px;
+  }
+  
+  .testi-image{
+    height: auto;
+    object-fit: cover;
+  }
+
+  
+ 
+}
+
+
+
+

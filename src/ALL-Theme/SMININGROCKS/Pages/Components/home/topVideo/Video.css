@@ -1,0 +1,4 @@
+.video__el.is-loaded {
+    opacity: 1;
+    visibility: visible;
+}

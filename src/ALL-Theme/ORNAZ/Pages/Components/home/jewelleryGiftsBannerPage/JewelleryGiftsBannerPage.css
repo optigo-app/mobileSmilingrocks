@@ -1,0 +1,15 @@
+
+
+.giftBanner{
+    color: inherit;
+    text-decoration: inherit;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.giftBanner-img{
+    max-width: 100%;
+    width: auto;
+    transform: translate3d(0px, -0.828638%, 0px);
+}

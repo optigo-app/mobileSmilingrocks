@@ -1,0 +1,26 @@
+
+
+.frequentlyTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    font-weight: 500;
+    height: 30px;
+    margin-inline: 20px;
+}
+
+.my-FAQ {
+    list-style: none;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    margin: 25px;
+}
+
+.my-FAQ.open {
+    max-height: 800px;
+    margin-inline: 25px;
+    margin-top: 0px;
+}

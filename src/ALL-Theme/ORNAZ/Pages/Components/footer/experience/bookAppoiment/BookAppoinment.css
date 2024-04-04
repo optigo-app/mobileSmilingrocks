@@ -1,0 +1,64 @@
+.apointTextBox {
+    border: 0.1px solid #45d4d5;
+    height: 40px;
+    width: 250px;
+    margin: 10px;
+}
+
+.appoinDeatil {
+    margin-top: 40px;
+    padding-inline: 60px;
+}
+
+.appointMessage {
+    margin-top: 50px;
+    padding-inline: 60px;
+}
+
+.appoinTextArea {
+    height: 200px;
+    width: 400px;
+
+}
+
+/* select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+} */
+
+.options {
+    text-align: center;
+}
+
+.btnBook {
+    width: 90%;
+    margin: auto;
+    color: black;
+    cursor: pointer;
+    max-width: 500px;
+    padding: 10px 20px;
+    background-color: #45d4d5;
+    border: none;
+    word-spacing: 3px;
+    font-weight: 500;
+    margin-top: 20px;
+    margin-bottom: 45px;
+}
+
+@media screen and (min-width:1441px) {
+    .mobileAppointmnet {
+        display: none;
+    }
+}
+
+@media screen and (max-width:1440px) {
+    .webViewAppoinment {
+        display: none;
+    }
+
+    .mobileWhyImpo {
+        
+    }
+
+}

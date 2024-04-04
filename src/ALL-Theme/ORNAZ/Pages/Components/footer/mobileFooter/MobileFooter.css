@@ -1,0 +1,67 @@
+.app-container {
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
+.app-container-Top {
+    background-color: #d9d9d9;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
+
+.joinBtn {
+    position: absolute;
+    right: 0px;
+    height: 55px;
+    width: 80px;
+    background-color: white;
+    cursor: pointer;
+    border: 1px solid #26a5d4;
+    border-radius: 5px;
+    color: black;
+    background-color: rgb(68, 212, 213);
+    font-weight: 500;
+    font-size: 23px;
+    margin-right: 20px;
+}
+
+.footerSignIn {
+    height: 55px;
+    width: 100%;
+    border: 1px solid #26a5d4;
+}
+
+
+.footerMainTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    font-weight: 500;
+    height: 30px;
+    margin-inline: 5px;
+}
+
+.my-SubList {
+    list-style: none;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    margin: 5px;
+}
+
+.my-SubList.open {
+    max-height: 300px;
+    margin-inline: 20px;
+}
+
+.sub-listt-title {
+    font-weight: 400;
+    height: 35px;
+    margin: 5;
+    border-bottom: 0.1px solid rgb(206, 191, 191);
+}
