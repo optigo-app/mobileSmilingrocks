@@ -211,7 +211,7 @@ export default function MyWishList() {
             )}
             <div>
                 <div className='smiling-wishlist'>
-                    <p className='SmiWishListTitle'>My Wishlist</p>
+                    <p className='SmiWishListTitle'>Wishlist</p>
 
                     {wishlistData?.length !== 0 && <div className='smilingListTopButton'>
                         <button className='smiTopClearBtn' onClick={handleRemoveAllWishList}>CLEAR ALL</button>
