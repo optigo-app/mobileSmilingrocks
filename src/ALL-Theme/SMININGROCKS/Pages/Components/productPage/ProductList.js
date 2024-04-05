@@ -26,18 +26,93 @@ import { toast } from "react-toastify";
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
+
+import { NavLink } from 'react-router-dom';
+import { BsFilterLeft } from "react-icons/bs";
+import { FaFilter } from "react-icons/fa";
+
+
+
+export const ProductPageTab = ({ toggleDetailDrawer }) => {
+  const [activeTab, setActiveTab] = useState();
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    alert("Tab changed to " + tab); // Show an alert with the tab information
+  };
+
+  const handleFilterClick = (event) => {
+    event.preventDefault(); // Prevent the default behavior
+    toggleDetailDrawer(); // Toggle the detail drawer
+  };
+
+  return (
+    <div style={styles.container}>
+      <div style={styles.tab} activeClassName="active" onClick={handleFilterClick}>
+        <FaFilter style={activeTab === "/" ? styles.activeIcon : styles.icon} />
+        <span style={activeTab === "/" ? styles.activeText : styles.text}>Filter</span>
+      </div>
+      <div style={styles.tab} onClick={() => handleTabChange("/aboutUs")}>
+        <BsFilterLeft style={activeTab === "/aboutUs" ? styles.activeIcon : styles.icon} />
+        <span style={activeTab === "/aboutUs" ? styles.activeText : styles.text}>Short By</span>
+      </div>
+    </div>
+  );
+};
+
+const styles = {
+  container: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    position: 'fixed',
+    bottom: 0,
+    width: '100%',
+    backgroundColor: '#f0f0f0',
+    height: '60px',
+    borderTop: '1px solid #ccc',
+  },
+  tab: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    textDecoration: 'none',
+    flex: 1,
+    color: '#666',
+  },
+  icon: {
+    marginBottom: '5px',
+    fontSize: '20px',
+  },
+  activeIcon: {
+    color: '#0000ff78',
+    fontSize: '20px',
+  },
+  text: {
+    fontSize: '12px',
+  },
+  activeText: {
+    color: '#0000ff78',
+    fontWeight: 'bold',
+    fontSize: '14px'
+  },
+};
+
+
+
+
+
+
 function valuetext(value) {
   return `${value}°C`;
 }
 
-const minDistance = 10;
 
-
-const ProductList = () => {
+const ProductList = ({ toggleDetailDrawer, isOpenDetail }) => {
 
   const ProductData2 = [];
 
-  const [isOpenDetail, setIsOpenDetail] = useState(false)
   const [ProductApiData, setProductApiData] = useState([])
   const [ProductApiData2, setProductApiData2] = useState([])
   const [drawerShowOverlay, setDrawerShowOverlay] = useState(false)
@@ -169,9 +244,6 @@ const ProductList = () => {
     fetchData();
   }, [priceDataApi]);
 
-  const toggleDeatilList = () => {
-    setIsOpenDetail(!isOpenDetail)
-  };
 
   const getCountFunc = async () => {
     await GetCount().then((res) => {
@@ -1219,9 +1291,7 @@ const ProductList = () => {
     setState({ ...state, [anchor]: open });
   };
 
-  const toggleDetailDrawer = () => {
-    setIsOpenDetail(!isOpenDetail);
-  };
+
 
   const list = (anchor) => (
     <Box
@@ -1230,32 +1300,6 @@ const ProductList = () => {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      {/* <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List> */}
-
       {isOpenDetail &&
         <div>
           {NewFilterData().map((ele, index) => (
@@ -1384,10 +1428,8 @@ const ProductList = () => {
 
       <div
         style={{
-          backgroundColor: "#c0bbb1",
           height: "100%",
           width: "100%",
-          // paddingBottom: "100px",
         }}
       >
         <div
@@ -1593,69 +1635,13 @@ const ProductList = () => {
                 </div>
               </div>
               {/* for mobile */}
-              <div className="smilingMobileProductListSideBar">
-
-                <hr style={{ marginTop: "0px" }} />
-                <div style={{ display: "flex", marginInline: "15px" }}>
-                  <div style={{ width: "49%" }} onClick={toggleDrawerOverlay}>
-
-                    <Drawer
-                      anchor="bottom"
-                      open={isOpenDetail}
-                      onClose={toggleDetailDrawer}
-                    >
-                      {list("bottom")}
-                    </Drawer>
-
-                    <p
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        color: "#7d7f85",
-                        fontSize: "13px",
-                        fontWeight: 500,
-                        margin: "0px",
-                      }}
-                      // onClick={toggleDeatilList}
-                      onClick={toggleDetailDrawer}
-                    >
-                      FILTER<span>{isOpenDetail ? "-" : "+"}</span>
-                    </p>
-
-                  </div>
-                  <hr
-                    style={{
-                      border: "none",
-                      marginBottom: "0px",
-                      marginInline: "5px",
-                      borderLeft: "1px solid black",
-                      height: "50px",
-                      marginTop: "-16px",
-                    }}
-                  />
-                  <div
-                    style={{
-                      width: "49%",
-                      display: "flex",
-                      marginTop: "-15px",
-                      alignItems: "center",
-                    }}
-                  >
-                    <select
-                      style={{
-                        width: "100%",
-                        border: "none",
-                        outline: "none",
-                        fontSize: "13px ",
-                      }}
-                    >
-                      <option>RECOMMENDED</option>
-                      <option>PRICE HIGH TO LOW</option>
-                      <option>PRICE LOW TO HIGH</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
+              <Drawer
+                anchor="bottom"
+                open={isOpenDetail}
+                onClose={toggleDetailDrawer}
+              >
+                {list("bottom")}
+              </Drawer>
               <div
                 style={{
                   width: "80%",
@@ -1719,45 +1705,30 @@ const ProductList = () => {
                             fontWeight: "500",
                             cursor: "pointer",
                             textoverflow: "ellipsis",
-                            overflow: "hidden",
-                            whiteSpace: "nowrap",
-                            padding: '0 15px',
-                            minHeight: '19.5px',
+                            height: '35px',
+                            overflow: 'hidden',
                             margin: '3px'
                           }}
                           className="smilingProductDeatilTitleMobile"
                         >
-                          {products?.TitleLine} -<span style={{ fontWeight: 600 }}> {products?.designno} </span>
+                          {products?.TitleLine}
                         </p>
                       </div>
                       <div style={{}}>
-                        <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'center' }}>
+                        <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'space-between', marginInline: '10px' }}>
                           {ismetalWShow === 1 &&
                             <div>
-                              <p style={{ margin: '0px', fontSize: '13px' }}>NWT : <span style={{ fontWeight: 600, marginRight: '15px' }}>{products?.netwt}</span></p>
+                              <p style={{ margin: '0px', fontSize: '13px' }}>NWT : <span style={{ fontWeight: 600, marginRight: '15px' }}>{(products?.netwt).toFixed(2)}</span></p>
                             </div>}
+                          <p style={{ margin: '0px', fontSize: '15px', fontWeight: 'bold' }}>{products?.designno}</p>
+                        </div>
+                        <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'space-between', marginInline: '10px' }}>
                           {isGrossWShow === 1 && <div>
-
-                            <p style={{ margin: '0px', fontSize: '13px' }}>GWT : <span style={{ fontWeight: 600, marginRight: '10px' }}>{products?.Grossweight}</span></p>
+                            <p style={{ margin: '0px', fontSize: '13px' }}>GWT : <span style={{ fontWeight: 600, marginRight: '10px' }}>{(products?.Grossweight).toFixed(2)}</span></p>
                           </div>}
-
-                        </div>
-                        <div className="mobileDeatilDiv2" style={{ display: 'flex', justifyContent: 'center' }}>
-                          {((isDaaimongWShow || isDaaimongWShow) === 1 && (products?.diamondweight !== 0 || products?.diamondpcs !== 0)) && <div>
-                            <p style={{ margin: '0px', fontSize: '13px' }}>DWT : <span style={{ fontWeight: 600, marginRight: '10px' }}>{(isDaaimongWShow === 1 && products?.diamondweight !== 0) && products?.diamondweight + '/'}  {(isDaaimonPShow === 1 && products?.diamondpcs !== 0) && products?.diamondpcs}</span></p>
-                          </div>}
-
-                          {((isStoneWShow || isStonePShow) === 1 && (products?.totalcolorstoneweight !== 0 || products?.totalcolorstonepcs !== 0)) && <div>
-                            <p style={{ margin: '0px', fontSize: '13px' }}>CWT : <span style={{ fontWeight: 600, marginRight: '10px' }}>{(isStoneWShow === 1 && products?.totalcolorstoneweight !== 0) && products?.totalcolorstoneweight + '/'}  {(isStonePShow === 1 && products?.totalcolorstonepcs !== 0) && products?.totalcolorstonepcs}</span></p>
-                          </div>}
-                        </div>
-
-                        <div>
-                          <p style={{ fontSize: "14px", fontWeight: 'bold' }}>
-                            {isMetalTCShow === 1 && products?.MetalTypeName}-{products?.MetalColorName}{products?.MetalPurity}
+                          <p style={{ fontSize: "15px", fontWeight: 'bold' }}>
                             {isPriceShow === 1 &&
                               <span>
-                                /
                                 {currencySym?.Currencysymbol}
                                 {((products?.UnitCost ?? 0) + (products?.price ?? 0) + (products?.markup ?? 0)).toFixed(2)}
                               </span>
@@ -1866,3 +1837,5 @@ const ProductList = () => {
 };
 
 export default ProductList;
+
+

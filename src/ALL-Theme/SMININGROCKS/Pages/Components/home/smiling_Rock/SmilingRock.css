@@ -21,7 +21,7 @@
     font-size: 25px;
     margin-bottom: 50px;
     color: #7d7f85;
-    font-family: 'FreightDispProMedium-Regular,Times New Roman,serif';
+    font-family: 'PT Sans', sans-serif;
 }
 
 .smilingBoxName {
@@ -38,7 +38,7 @@
     margin-top: auto;
     color: #7d7f85;
     font-size: 11px;
-    font-family: 'TTCommons-Medium';
+    font-family: 'PT Sans', sans-serif;
     letter-spacing: 1.5px;
     width: fit-content;
 }

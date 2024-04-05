@@ -16,7 +16,7 @@ import Account from './Pages/Components/account/Account'
 import SearchResult from './Pages/Components/searchResult/SearchResult'
 import Celeb from './Pages/Components/celebrity/Celeb'
 import Blog from './Pages/Components/Blog/Blog'
-import ProductList from './Pages/Components/productPage/ProductList'
+import ProductList, { ProductPageTab } from './Pages/Components/productPage/ProductList'
 import ProdDetail from './Pages/Components/productDetail/ProdDetail'
 import ContinueWithEmail from './Pages/Components/AuthScreen/ContinueWithEmail/ContinueWithEmail'
 import LoginWithEmail from './Pages/Components/AuthScreen/LoginWithEmail/LoginWithEmail'
@@ -50,6 +50,13 @@ export default function SMININGROCKS_App() {
     const location = useLocation();
     const setCartCount = useSetRecoilState(CartListCounts)
     const setWishCount = useSetRecoilState(WishListCounts)
+
+    const [isOpenDetail, setIsOpenDetail] = useState(false);
+
+    const toggleDetailDrawer = () => {
+      setIsOpenDetail(!isOpenDetail);
+    };
+
     const getCountFunc = async () => {
         await GetCount().then((res) => {
             if (res) {
@@ -68,52 +75,61 @@ export default function SMININGROCKS_App() {
 
     return (
         <>
-        <ToastContainer/>
-        <div>
-            {(location.pathname === "/accountledgertable" ||
-                location.pathname === "/accountledgerexcel" ||
-                location.pathname === "/accountledgerdebit" ||
-                location.pathname === "/accountledgercredit") ?
-                null : <Header />}
+            <ToastContainer />
             <div>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/impact" element={<Impact />} />
-                    <Route path="/aboutUs" element={<AboutUs />} />
-                    <Route path="/labGrowDaimonds" element={<LabGroDiamonds />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/forgotPass" element={<ForgotPass />} />
-                    <Route path="/ContinueWithEmail" element={<ContinueWithEmail />} />
-                    <Route path="/LoginWithEmail" element={<LoginWithEmail />} />
-                    <Route path="/LoginWithEmailCode" element={<LoginWithEmailCode />} />
-                    <Route path="/ContimueWithMobile" element={<ContimueWithMobile />} />
-                    <Route path="/LoginWithMobileCode" element={<LoginWithMobileCode />} />
-                    <Route path="/contactUs" element={<ContactUs />} />
-                    <Route path="/faq" element={<FAQ />} />
-                    <Route path="/servicePolicy" element={<ServicePolicy />} />
-                    <Route path="/myWishList" element={<MyWishList />} />
-                    <Route path="/lookbook" element={<Lookbook />} />
-                    <Route path="/press" element={<Press />} />
-                    <Route path="/account" element={<Account />} />
-                    <Route path="/accountledger" element={<AccountLedger />} />
-                    <Route path="/accountledgertable" element={<AccountLedgerTable />} />
-                    <Route path="/accountledgerexcel" element={<AccountLedgerExcel />} />
-                    <Route path="/accountledgerdebit" element={<DebitVoucher />} />
-                    <Route path="/accountledgercredit" element={<CreditVoucher />} />
-                    <Route path="/searchResult" element={<SearchResult />} />
-                    <Route path="/celeb" element={<Celeb />} />
-                    <Route path="/blog" element={<Blog />} />
-                    <Route path="/productpage" element={<ProductList />} />
-                    <Route path="/productdetail" element={<ProdDetail />} />
-                    <Route path="/Delivery" element={<Delivery />} />
-                    <Route path="/Payment" element={<Payment />} />
-                    <Route path="/Confirmation" element={<Confirmation />} />
-                    <Route path="/LoginOption" element={<LoginOption />} />
-                    <Route path="/CartPage" element={<CartPage />} />
-                </Routes>
-                <HomeTab />
+                {(location.pathname === "/accountledgertable" ||
+                    location.pathname === "/ContinueWithEmail" ||
+                    location.pathname === "/ContimueWithMobile" ||
+                    location.pathname === "/accountledgerexcel" ||
+                    location.pathname === "/LoginOption" ||
+                    location.pathname === "/register" ||
+                    location.pathname === "/LoginWithMobileCode" ||
+                    location.pathname === "/LoginWithEmail" ||
+                    location.pathname === "/productpage" ||
+                    location.pathname === "/LoginWithEmailCode" ||
+                    location.pathname === "/accountledgerdebit" ||
+                    location.pathname === "/accountledgercredit") ?
+                    null : <Header />}
+                <div>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/impact" element={<Impact />} />
+                        <Route path="/aboutUs" element={<AboutUs />} />
+                        <Route path="/labGrowDaimonds" element={<LabGroDiamonds />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/forgotPass" element={<ForgotPass />} />
+                        <Route path="/ContinueWithEmail" element={<ContinueWithEmail />} />
+                        <Route path="/LoginWithEmail" element={<LoginWithEmail />} />
+                        <Route path="/LoginWithEmailCode" element={<LoginWithEmailCode />} />
+                        <Route path="/ContimueWithMobile" element={<ContimueWithMobile />} />
+                        <Route path="/LoginWithMobileCode" element={<LoginWithMobileCode />} />
+                        <Route path="/contactUs" element={<ContactUs />} />
+                        <Route path="/faq" element={<FAQ />} />
+                        <Route path="/servicePolicy" element={<ServicePolicy />} />
+                        <Route path="/myWishList" element={<MyWishList />} />
+                        <Route path="/lookbook" element={<Lookbook />} />
+                        <Route path="/press" element={<Press />} />
+                        <Route path="/account" element={<Account />} />
+                        <Route path="/accountledger" element={<AccountLedger />} />
+                        <Route path="/accountledgertable" element={<AccountLedgerTable />} />
+                        <Route path="/accountledgerexcel" element={<AccountLedgerExcel />} />
+                        <Route path="/accountledgerdebit" element={<DebitVoucher />} />
+                        <Route path="/accountledgercredit" element={<CreditVoucher />} />
+                        <Route path="/searchResult" element={<SearchResult />} />
+                        <Route path="/celeb" element={<Celeb />} />
+                        <Route path="/blog" element={<Blog />} />
+                        <Route path="/productpage" element={<ProductList toggleDetailDrawer={toggleDetailDrawer} isOpenDetail={isOpenDetail}/>} />
+                        <Route path="/productdetail" element={<ProdDetail />} />
+                        <Route path="/Delivery" element={<Delivery />} />
+                        <Route path="/Payment" element={<Payment />} />
+                        <Route path="/Confirmation" element={<Confirmation />} />
+                        <Route path="/LoginOption" element={<LoginOption />} />
+                        <Route path="/CartPage" element={<CartPage />} />
+                    </Routes>
+                    {(location.pathname === "/productpage") ?
+                         <ProductPageTab toggleDetailDrawer={toggleDetailDrawer} /> : <HomeTab />}
+                </div>
             </div>
-        </div>
         </>
     )
 }

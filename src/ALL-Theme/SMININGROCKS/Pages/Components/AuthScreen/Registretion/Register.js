@@ -9,6 +9,8 @@ import CryptoJS from 'crypto-js';
 import { CommonAPI } from '../../../../Utils/API/CommonAPI';
 import { loginState } from '../../../../../../Recoil/atom';
 import { useSetRecoilState } from 'recoil';
+import { FiArrowLeft } from "react-icons/fi";
+import titleImg from "../../../assets/title/sonasons.png"
 
 export default function Register() {
   const navigation = useNavigate();
@@ -225,13 +227,19 @@ export default function Register() {
   };
 
   return (
-    <div className='paddingTopMobileSet' style={{ backgroundColor: '#c0bbb1', paddingTop: '110px' }}>
+    <div className='paddingTopMobileSet' style={{ paddingTop: '110px' }}>
       {isLoading && (
         <div className="loader-overlay">
           <CircularProgress className='loadingBarManage' />
         </div>
       )}
-      <div style={{ backgroundColor: '#c0bbb1' }}>
+      <div>
+        <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0px 0px 15px' }}>
+          <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => navigation('/LoginOption')} />
+          <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
+            <img src={titleImg} className="MainlogogMobileImage" />
+          </div>
+        </div>
         <div className='smling-register-main'>
           <p style={{
             textAlign: 'center',
@@ -367,12 +375,7 @@ export default function Register() {
               }}
             />
 
-            <button className='createBtnRegister' onClick={handleSubmit}>CREATE ACCOUNT</button>
-
-            {/* <div style={{ display: 'flex', marginTop: '10px' }}>
-              <input type='checkbox' />
-              <p style={{ margin: '5px' }}>Subscribe to our newsletter</p>
-            </div> */}
+            <button className='submitBtnForgot' onClick={handleSubmit}>CREATE ACCOUNT</button>
             <Button style={{ marginTop: '10px', color: 'gray' }} onClick={() => navigation('/LoginOption')}>BACK</Button>
           </div>
         </div>
