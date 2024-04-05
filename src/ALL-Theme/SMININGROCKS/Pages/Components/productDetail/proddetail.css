@@ -198,6 +198,14 @@
     /* margin-top:80px; */
     margin-bottom: -60px;
 }
+.part1KeyTitle{
+    font-weight: 600;
+}
+.part1Content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
 @media screen and (max-width:1731px) {
     .prodDetailWhitecont {
@@ -355,6 +363,11 @@
     .srthumb_images {
         gap: 5px;
     }
-
- 
+    .smilingProdutDetltTitle {
+        text-align: center !important;
+        font-size: 28px !important;
+    }
+ .smilingDeatilPageMainImage{
+    padding: 0px 10px 0px 10px !important;
+ }
 }
