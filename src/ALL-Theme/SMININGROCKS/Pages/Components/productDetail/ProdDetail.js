@@ -15,7 +15,7 @@ import { CartListCounts, WishListCounts, designSet, colorstoneQualityColorG, dia
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import notFound from '../../assets/image-not-found.png'
 import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import playVidoe from '../../assets/paly.png'
 import { IoIosPlayCircle } from "react-icons/io";
 
@@ -74,6 +74,7 @@ const ProdDetail = () => {
   const setWishCount = useSetRecoilState(WishListCounts)
   const getPriceData = useRecoilValue(priceData);
   const getDesignSet = useRecoilValue(designSet)
+  const location = useLocation();
   const handelImgLoad = () => {
     setImgLoading(false)
   }
@@ -1341,7 +1342,7 @@ const ProdDetail = () => {
                         color: "#7d7f85",
                       }}
                     >
-                      Metal Purity : {mtTypeOption ? mtTypeOption.split(" ")[1] : productData?.MetalPurity}
+                     <span className='part1KeyTitle'> Metal Purity : </span><span>{mtTypeOption ? mtTypeOption.split(" ")[1] : productData?.MetalPurity}</span>
                     </span>
                     <sapn
                       style={{
@@ -1350,7 +1351,7 @@ const ProdDetail = () => {
                         color: "#7d7f85",
                       }}
                     >
-                      Metal Color : {selectedColor ? selectedColor : productData?.MetalColorName}
+                      <span className='part1KeyTitle'>Metal Color : </span><span>{selectedColor ? selectedColor : productData?.MetalColorName}</span>
                     </sapn>
                     <sapn
                       style={{
@@ -1359,8 +1360,9 @@ const ProdDetail = () => {
                         color: "#7d7f85",
                       }}
                     >
-                      Diamond Quality Color:{" "}
+                      <span className='part1KeyTitle'>Diamond Quality Color : </span><span>{" "}
                       {diaQColOpt ? diaQColOpt : `${productData?.diamondquality}-${productData?.diamondcolorname}`}
+                      </span>
                     </sapn>
                   </div>
                   {/* {productData?.IsColorWiseImageExists !== null && (
