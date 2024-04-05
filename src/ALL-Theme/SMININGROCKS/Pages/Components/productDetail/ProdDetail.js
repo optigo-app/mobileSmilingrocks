@@ -78,6 +78,8 @@ const ProdDetail = () => {
     setImgLoading(false)
   }
 
+
+  console.log("prokkk",productData)
   let currencySymbol = JSON.parse(localStorage.getItem('CURRENCYCOMBO'))
   let navigate = useNavigate()
 
