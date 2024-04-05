@@ -44,6 +44,7 @@ import CartPage from './Pages/Components/home/Header/cartPage/CartPage'
 // import OrderHistory from './Pages/Components/account/accountOrderHistory/OrderHistory';
 import { ToastContainer } from 'react-toastify';
 import HomeTab from './Pages/Components/HomeTab'
+import Category from './Pages/Components/CategoryPage/Category'
 
 export default function SMININGROCKS_App() {
 
@@ -125,6 +126,7 @@ export default function SMININGROCKS_App() {
                         <Route path="/Confirmation" element={<Confirmation />} />
                         <Route path="/LoginOption" element={<LoginOption />} />
                         <Route path="/CartPage" element={<CartPage />} />
+                        <Route path="/Category" element={<Category />} />
                     </Routes>
                     {(location.pathname === "/productpage") ?
                          <ProductPageTab toggleDetailDrawer={toggleDetailDrawer} /> : <HomeTab />}

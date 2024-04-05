@@ -201,7 +201,7 @@ export default function MyWishList() {
 
     return (
         <div className='paddingTopMobileSet' style={{
-            backgroundColor: '#c0bbb1',
+            backgroundColor: !isLoading && '#c0bbb1',
             paddingTop: '110px'
         }}>
             {isLoading && (

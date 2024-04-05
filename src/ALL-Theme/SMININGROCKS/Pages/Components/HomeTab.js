@@ -24,9 +24,9 @@ const HomeTab = () => {
         <FaHome style={activeTab === "/" ? styles.activeIcon : styles.icon} />
         <span style={activeTab === "/" ? styles.activeText : styles.text}>Home</span>
       </NavLink>
-      <NavLink to="/aboutUs" style={styles.tab} activeClassName="active" onClick={() => handleTabChange("/aboutUs")}>
-        <TbCategoryFilled style={activeTab === "/aboutUs" ? styles.activeIcon : styles.icon} />
-        <span style={activeTab === "/aboutUs" ? styles.activeText : styles.text}>Category</span>
+      <NavLink to="/Category" style={styles.tab} activeClassName="active" onClick={() => handleTabChange("/aboutUs")}>
+        <TbCategoryFilled style={activeTab === "/Category" ? styles.activeIcon : styles.icon} />
+        <span style={activeTab === "/Category" ? styles.activeText : styles.text}>Category</span>
       </NavLink>
       <NavLink to="/CartPage" style={styles.tab} activeClassName="active" onClick={() => handleTabChange("/CartPage")}>
         <Badge
