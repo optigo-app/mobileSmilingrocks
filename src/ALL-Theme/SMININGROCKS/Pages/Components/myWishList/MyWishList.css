@@ -160,6 +160,7 @@
 
     .smiWishLsitBox{
         width: 33.33%;
+        padding-bottom: 150px!important;
     }
     .smiWishLsitBoxDesc1{
         margin: 0;
@@ -182,6 +183,7 @@
         display: flex!important;
         flex-wrap: nowrap!important;
         flex-direction: column!important;
+        padding-bottom: 200px!important;
     }
 
     .smiWishLsitBox{
