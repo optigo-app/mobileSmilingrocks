@@ -5,6 +5,8 @@ import Footer from '../../home/Footer/Footer';
 import { CommonAPI } from '../../../../Utils/API/CommonAPI';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
+import { FiArrowLeft } from "react-icons/fi";
+import titleImg from "../../../assets/title/sonasons.png"
 
 export default function ContimueWithMobile() {
     const [mobileNo, setMobileNo] = useState('');
@@ -78,15 +80,21 @@ export default function ContimueWithMobile() {
     };
 
     return (
-        <div className='paddingTopMobileSet' style={{ backgroundColor: '#c0bbb1', paddingTop: '110px' }}>
+        <div className='paddingTopMobileSet' style={{ paddingTop: '110px' }}>
             <ToastContainer />
             {isLoading && (
                 <div className="loader-overlay">
                     <CircularProgress className='loadingBarManage' />
                 </div>
             )}
-            <div style={{ backgroundColor: '#c0bbb1' }}>
-                <div className='smling-forgot-main'>
+            <div>
+                <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0px 0px 15px' }}>
+                    <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => navigation('/LoginOption')} />
+                    <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
+                        <img src={titleImg} className="MainlogogMobileImage" />
+                    </div>
+                </div>
+                <div className='smling-forgot-main' style={{ paddingTop: '10%' }}>
                     <p style={{
                         textAlign: 'center',
                         paddingBlock: '60px',
@@ -129,7 +137,7 @@ export default function ContimueWithMobile() {
                         <button className='submitBtnForgot' onClick={handleSubmit}>
                             SUBMIT
                         </button>
-                        <Button style={{ marginTop: '10px', color: 'gray' }} onClick={() => navigation('/LoginOption')}>CANCEL</Button>
+                        <Button style={{ marginTop: '10px', color: 'gray' }} onClick={() => navigation('/LoginOption')}>BACK</Button>
                     </div>
                 </div>
             </div>

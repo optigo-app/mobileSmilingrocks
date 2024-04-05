@@ -36,7 +36,7 @@
 
 .labGrowTopTitle {
     color: #7d7f85;
-    font-family: 'TTCommons-Medium,Helvetica,sans-serif';
+    font-family: 'PT Sans', sans-serif;
     text-align: center;
     font-size: 13px;
     margin: 5px;
@@ -44,7 +44,7 @@
 }
 
 .labGrowTopDesc {
-    font-family: 'FreightDispProMedium-Regular,Times New Roman,serif';
+    font-family: 'PT Sans', sans-serif;
     color: #7d7f85;
     text-align: center;
     font-size: 25px;
@@ -68,7 +68,7 @@
     font-size: 25px;
     color: #7d7f85;
     text-align: center;
-    font-family: 'FreightDispProMedium-Regular,Times New Roman,serif';
+    font-family: 'PT Sans', sans-serif;
 }
 
 .labGrowBox1Desc {
@@ -86,7 +86,7 @@
     text-align: center;
     font-size: 25px;
     color: #7d7f85;
-    font-family: 'FreightDispProMedium-Regular,Times New Roman,serif';
+    font-family: 'PT Sans', sans-serif;
 
 }
 

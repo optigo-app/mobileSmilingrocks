@@ -14,6 +14,8 @@ import './LoginWithEmail.css'
 import { DesignSet } from '../../../../Utils/API/DesignSet';
 import { GetCount } from '../../../../Utils/API/GetCount';
 // import { getDesignPriceList } from '../../../../Utils/API/PriceDataApi';
+import { FiArrowLeft } from "react-icons/fi";
+import titleImg from "../../../assets/title/sonasons.png"
 
 export default function LoginWithEmail() {
     const [email, setEmail] = useState('');
@@ -169,14 +171,20 @@ export default function LoginWithEmail() {
         }
     }
     return (
-        <div className='paddingTopMobileSet' style={{ backgroundColor: '#c0bbb1', paddingTop: '110px' }}>
+        <div className='paddingTopMobileSet' style={{ paddingTop: '110px' }}>
             <ToastContainer />
             {isLoading && (
                 <div className="loader-overlay">
                     <CircularProgress className='loadingBarManage' />
                 </div>
             )}
-            <div style={{ backgroundColor: '#c0bbb1' }}>
+            <div>
+                <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0px 0px 15px' }}>
+                    <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => navigation('/LoginOption')} />
+                    <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
+                        <img src={titleImg} className="MainlogogMobileImage" />
+                    </div>
+                </div>
                 <div className='smling-forgot-main'>
                     <p style={{
                         textAlign: 'center',
@@ -236,7 +244,7 @@ export default function LoginWithEmail() {
                         <Button style={{ marginTop: '10px', color: 'gray' }} onClick={() => navigation('/LoginOption')}>CANCEL</Button>
 
                         <button type='submit' className='SmilingLoginCodeBtn' onClick={handleNavigation}>Login With a Code instead on email</button>
-                        <p style={{ textAlign: 'center' }}>Go passwordless! we'll send you an email.</p>
+                        <p style={{ textAlign: 'center' , fontSize: '13px', marginTop:'5px' }}>Go passwordless! we'll send you an email.</p>
 
                         <p style={{ color: 'blue', cursor: 'pointer' }} onClick={handleForgotPassword}>Forgot Password ?</p>
                     </div>

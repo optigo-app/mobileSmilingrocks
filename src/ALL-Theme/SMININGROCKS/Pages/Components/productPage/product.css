@@ -28,8 +28,7 @@
 .prod_img {
     /* background-image: url('https://smilingrocks.com/cdn/shop/products/Lab-grown-diamond-white-gold-ring-srr00363wht_11c94dae-c1d2-45e8-ae46-d16152c77f45_800x800.jpg?v=1613627318'); */
     width: 100%;
-    min-height: 412px;
-    height: 412px;
+    height: 200px;
     background-size: cover;
     background-position: center;
     transition: all 0.7s ease;
@@ -104,33 +103,19 @@
 @media screen and (max-width: 800px) {
 
     .smilingProductImageBox {
-        width: 50% !important;
+        width: 47% !important;
+        margin: 5px;
     }
 }
 
 
 @media screen and (max-width: 600px) {
 
-    /* .prod_img{
-        height: auto!important;
-    } */
-
-    .prod_img {
-        margin-top: 30px !important;
-        min-height: 200px !important;
-        height: 200px !important;
-    }
-
     .productTitleLine p {
         font-size: 12px !important;
         white-space: unset !important;
         line-height: 1.4 !important;
         min-height: auto !important;
-    }
-
-    .mobileDeatilDiv1 {
-        display: flex !important;
-        flex-direction: column !important;
     }
 
     .mobileDeatilDiv2 {
@@ -145,15 +130,6 @@
 
 @media screen and (max-width: 500px) {
 
-    .smilingAllProductDataMainMobile {
-        display: flex!important;
-        flex-direction: column!important;
-        margin: 10px;
-    }
-
-    .smilingProductImageBox{
-        width: 100%!important;
-    }
 
     .prod_img{
         width: 80%!important;
