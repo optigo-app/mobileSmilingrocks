@@ -7,7 +7,6 @@
 .smling-forgot-main {
     margin-inline: 6%;
     background-color: white;
-    padding-bottom: 50px;
 }
 
 .labGrowForgot {
@@ -92,7 +91,7 @@
 
 @media screen and (max-width: 700px) {
     .labGrowForgot {
-        width: 70%;
+        width: 90%;
     }
 
     .submitBtnForgot {
@@ -106,7 +105,7 @@
 @media screen and (max-width: 500px) {
 
     .submitBtnForgot {
-        width: 70%;
+        width: 90%;
         height: 40px!important;
     }
 

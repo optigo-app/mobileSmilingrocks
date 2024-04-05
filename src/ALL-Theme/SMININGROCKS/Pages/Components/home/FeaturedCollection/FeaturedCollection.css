@@ -17,21 +17,21 @@
 }
 
 .linkingTitle {
-    font-family: 'FreightDispProMedium-Regular,Times New Roman,serif';
+    font-family: 'PT Sans', sans-serif;
     font-size: 30px;
     text-align: center;
     color: #7d7f85;
 }
 
 .linkingDesc {
-    font-family: 'TTCommons-Regular,Helvetica,sans-serif';
+    font-family: 'PT Sans', sans-serif;
     font-size: 15px;
     text-align: center;
     color: #7d7f85;
 }
 
 .linkingShopCol {
-    font-family: 'TTCommons-Regular,Helvetica,sans-serif';
+    font-family: 'PT Sans', sans-serif;
     font-size: 12px;
     text-align: center;
     color: #7d7f85;
@@ -59,7 +59,7 @@
 .ring1Desc {
     width: 70%;
     text-align: center;
-    font-family: 'TTCommons-Medium,Helvetica,sans-serif';
+    font-family: 'PT Sans', sans-serif;
     font-weight: 500;
     font-size: 15px;
 }

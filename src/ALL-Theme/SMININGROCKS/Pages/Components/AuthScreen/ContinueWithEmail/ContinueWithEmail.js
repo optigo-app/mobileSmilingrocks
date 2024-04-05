@@ -7,17 +7,14 @@ import { CommonAPI } from '../../../../Utils/API/CommonAPI';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { ToastContainer } from 'react-toastify';
+import { FiArrowLeft } from "react-icons/fi";
+import titleImg from "../../../assets/title/sonasons.png"
 
 export default function ContinueWithEmail() {
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const navigation = useNavigate();
-
-    // const validateEmail = (email) => {
-    //     const regex = /^[a-zA-Z][\w@$&#]*@[a-zA-Z]+\.[a-zA-Z]+$/;
-    //     return regex.test(email);
-    // };
 
     const validateEmail = (email) => {
         const regex = /^[a-zA-Z][\w@$&#]*@[a-zA-Z]+\.[a-zA-Z]+(\.[a-zA-Z]+)?$/;
@@ -67,8 +64,8 @@ export default function ContinueWithEmail() {
                 toast.error('You are not a customer, contact to admin')
             } else if (response.Data.rd[0].stat == 1 && response.Data.rd[0].islead == 0) {
                 navigation('/LoginWithEmail', { state: { email: trimmedEmail } });
-                if(trimmedEmail){
-                    localStorage.setItem("userEmailForPdList",trimmedEmail);
+                if (trimmedEmail) {
+                    localStorage.setItem("userEmailForPdList", trimmedEmail);
                 }
             } else {
                 navigation('/register', { state: { email: trimmedEmail } });
@@ -81,16 +78,22 @@ export default function ContinueWithEmail() {
     };
 
     return (
-        <div className='paddingTopMobileSet' style={{ backgroundColor: '#c0bbb1', paddingTop: '110px' }}>
-        <ToastContainer />
+        <div className='paddingTopMobileSet'>
+            <ToastContainer />
 
             {isLoading && (
                 <div className="loader-overlay">
                     <CircularProgress className='loadingBarManage' />
                 </div>
             )}
-            <div style={{ backgroundColor: '#c0bbb1' }}>
-                <div className='smling-forgot-main'>
+            <div>
+                <div style={{display:'flex', alignItems:'center', margin: '10px 0px 0px 15px' }}>
+                    <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => navigation('/LoginOption')} />
+                    <div style={{width: '85%', display: 'flex', justifyContent: 'center'}}>
+                        <img src={titleImg} className="MainlogogMobileImage" />
+                    </div>
+                </div>
+                <div className='smling-forgot-main' style={{ paddingTop: '10%' }}>
                     <p style={{
                         textAlign: 'center',
                         paddingBlock: '60px',
@@ -104,7 +107,7 @@ export default function ContinueWithEmail() {
                     <p style={{
                         textAlign: 'center',
                         marginTop: '-60px',
-                        fontSize: '15px',
+                        fontSize: '14px',
                         color: '#7d7f85',
                         fontFamily: 'FreightDispProBook-Regular,Times New Roman,serif'
                     }}
@@ -112,7 +115,7 @@ export default function ContinueWithEmail() {
                         className='AuthScreenSubTitle'
                     >We'll check if you have an account, and help create one if you don't.</p>
 
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '10px' }}>
                         <TextField
                             autoFocus
                             id="outlined-basic"
@@ -132,7 +135,8 @@ export default function ContinueWithEmail() {
                         />
 
                         <button type='submit' className='submitBtnForgot' onClick={handleSubmit}>SUBMIT</button>
-                        <Button style={{ marginTop: '10px', color: 'gray' }} onClick={() => navigation('/LoginOption')}>CANCEL</Button>
+                        <Button style={{ marginTop: '10px', color: 'gray' }} onClick={() => navigation('/LoginOption')}>BACK</Button>
+
                     </div>
                 </div>
             </div>

@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import './LoginWithEmailCode.css';
 import CryptoJS from 'crypto-js';
 import { ToastContainer, toast } from 'react-toastify';
+import { FiArrowLeft } from "react-icons/fi";
+import titleImg from "../../../assets/title/sonasons.png"
 
 export default function LoginWithEmailCode() {
     const [email, setEmail] = useState('');
@@ -154,14 +156,20 @@ export default function LoginWithEmailCode() {
     };
 
     return (
-        <div className='paddingTopMobileSet' style={{ backgroundColor: '#c0bbb1', paddingTop: '110px' }}>
+        <div className='paddingTopMobileSet' style={{ paddingTop: '110px' }}>
             <ToastContainer />
             {isLoading && (
                 <div className="loader-overlay">
                     <CircularProgress className='loadingBarManage' />
                 </div>
             )}
-            <div style={{ backgroundColor: '#c0bbb1' }}>
+            <div>
+                <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0px 0px 15px' }}>
+                    <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => navigation('/LoginOption')} />
+                    <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
+                        <img src={titleImg} className="MainlogogMobileImage" />
+                    </div>
+                </div>
                 <div className='smling-forgot-main'>
                     <p style={{
                         textAlign: 'center',
@@ -171,7 +179,7 @@ export default function LoginWithEmailCode() {
                         color: '#7d7f85',
                         fontFamily: 'FreightDispProBook-Regular,Times New Roman,serif'
                     }}
-                    className='AuthScreenMainTitle'
+                        className='AuthScreenMainTitle'
                     >Login With Code</p>
                     <p style={{
                         textAlign: 'center',
@@ -180,7 +188,7 @@ export default function LoginWithEmailCode() {
                         color: '#7d7f85',
                         fontFamily: 'FreightDispProBook-Regular,Times New Roman,serif'
                     }}
-                    className='AuthScreenSubTitle'
+                        className='AuthScreenSubTitle'
                     >Last step! To secure your account, enter the code we just sent to {email}.</p>
 
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '20px' }}>
@@ -204,7 +212,7 @@ export default function LoginWithEmailCode() {
 
                         <button className='submitBtnForgot' onClick={handleSubmit}>Login</button>
                         <p style={{ marginTop: '10px' }}>Didn't get the code ? {resendTimer === 0 ? <span style={{ fontWeight: 500, color: 'blue', textDecoration: 'underline', cursor: 'pointer' }} onClick={handleResendCode}>Resend Code</span> : <span>Resend in {Math.floor(resendTimer / 60).toString().padStart(2, '0')}:{(resendTimer % 60).toString().padStart(2, '0')}</span>}</p>
-                        <Button style={{marginTop: '10px' ,color: 'gray'}} onClick={() => navigation('/LoginOption')}>CANCEL</Button>
+                        <Button style={{ marginTop: '10px', color: 'gray' }} onClick={() => navigation('/LoginOption')}>CANCEL</Button>
                     </div>
                 </div>
             </div>
