@@ -611,8 +611,7 @@ export default function CartPage() {
   return (
     <>
       <div
-        className="paddingTopMobileSet"
-        style={{ backgroundColor: "#c0bbb1", paddingTop: "110px" }}
+        style={{ paddingTop: "0px" }}
       >
         {isLoading && (
           <div className="loader-overlay">
