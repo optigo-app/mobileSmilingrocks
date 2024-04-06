@@ -353,9 +353,7 @@ const ProdDetail = () => {
     const storedData = localStorage.getItem('designsetlist');
     const jsonData = JSON.parse(storedData);
     const filteredData = jsonData.filter(item => item.autocode === autoCode);
-    console.log('fffffffffffffffffffffffffffffffffff', filteredData);
     if (filteredData.DefaultImageName) {
-      console.log('fffffffffffffffffffffffffffffffffff', filteredData);
       setCompleteBackImage(filteredData.DefaultImageName);
     }
   }
@@ -443,8 +441,6 @@ const ProdDetail = () => {
 
   }, [selectedColor])
 
-
-  console.log("selectedcolor",selectedColor);
 
   const handleColorSelection = (color) => {
     let uploadPath = localStorage.getItem('UploadLogicalPath');
