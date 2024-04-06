@@ -1,6 +1,5 @@
 .smilingCartPageMain {
     background-color: white;
-    margin-inline: 6%;
 }
 
 
@@ -326,9 +325,6 @@
         display: none !important;
     }
 
-    .smilingCartPageMain{
-        margin-inline: 2%;
-    }
     .placeOrderCartPageBtnMobile {
         background-color: #888;
         color: white;
