@@ -241,8 +241,8 @@
         display: none !important;
     }
 
-    .smilingCompleteLookMainMobileImg{
-        width: 95%!important;
+    .smilingCompleteLookMainMobileImg {
+        width: 95% !important;
     }
 
     .ctl_img {
@@ -372,11 +372,18 @@
         height: 43px;
         border: 1px solid #e1e1e1;
     }
-    .paddingTopMobileSet{
+
+    .paddingTopMobileSet {
         background: transparent !important;
-        padding-top: 60px !important;
+        padding-top: 64px !important;
+        padding-bottom: 20px !important;
     }
-    .prodDetailWhitecont{
+
+    .smilingCompleteLookMainMobileImg {
+        width: 100% !important;
+    }
+
+    .prodDetailWhitecont {
         margin: 0px !important;
     }
 
@@ -385,14 +392,43 @@
         padding-top: 10px;
         gap: 5px;
     }
-    .srthumb_images_el{
+
+    .srthumb_images_el {
         top: 0 !important;
     }
+
+    .partTitleKey {
+        font-weight: 500;
+    }
+
     .smilingProdutDetltTitle {
         text-align: center !important;
-        font-size: 28px !important;
+        font-size: 24px !important;
     }
- .smilingDeatilPageMainImage{
-    padding: 0px 10px 0px 10px !important;
- }
+
+    .smilingDeatilPageMainImage {
+        height: 280px;
+        object-fit: contain !important;
+    }
+
+    .Acc-container {
+        margin-top: 0px;
+        padding: 0px 4px 0px 4px;
+    }
+
+    .smilingCompleteLookMainMobile {
+        margin-inline: 0px !important;
+    }
+
+    .tellmoreli {
+        border-bottom: 0px !important;
+    }
+
+   .productShowIcon {
+        margin-top: -8px;
+    }
+    .productvideo{
+        margin-left: 0px !important;
+        height: 290px !important;
+    }
 }
