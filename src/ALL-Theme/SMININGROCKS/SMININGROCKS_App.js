@@ -54,9 +54,13 @@ export default function SMININGROCKS_App() {
     const setWishCount = useSetRecoilState(WishListCounts)
 
     const [isOpenDetail, setIsOpenDetail] = useState(false);
-
     const toggleDetailDrawer = () => {
       setIsOpenDetail(!isOpenDetail);
+    };
+
+    const [isOpenShoryBy, setIsOpenShortBy] = useState(false);
+    const toggleShoryBy = () => {
+        setIsOpenShortBy(!isOpenShoryBy);
     };
 
     const getCountFunc = async () => {
@@ -119,7 +123,7 @@ export default function SMININGROCKS_App() {
                         <Route path="/searchResult" element={<SearchResult />} />
                         <Route path="/celeb" element={<Celeb />} />
                         <Route path="/blog" element={<Blog />} />
-                        <Route path="/productpage" element={<ProductList toggleDetailDrawer={toggleDetailDrawer} isOpenDetail={isOpenDetail}/>} />
+                        <Route path="/productpage" element={<ProductList toggleDetailDrawer={toggleDetailDrawer} toggleShoryBy={toggleShoryBy} isOpenShoryBy={isOpenShoryBy} isOpenDetail={isOpenDetail}/>} />
                         <Route path="/productdetail" element={<ProdDetail />} />
                         <Route path="/Delivery" element={<Delivery />} />
                         <Route path="/Payment" element={<Payment />} />
@@ -130,7 +134,7 @@ export default function SMININGROCKS_App() {
                         <Route path="/WithoutLoginCart" element={<WithoutLoginCart />} />
                     </Routes>
                     {(location.pathname === "/productpage") ?
-                         <ProductPageTab toggleDetailDrawer={toggleDetailDrawer} /> : <HomeTab />}
+                         <ProductPageTab toggleDetailDrawer={toggleDetailDrawer} toggleShoryBy={toggleShoryBy}/> : <HomeTab />}
                 </div>
             </div>
         </>

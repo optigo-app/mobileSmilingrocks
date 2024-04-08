@@ -200,10 +200,7 @@ export default function MyWishList() {
 
 
     return (
-        <div className='paddingTopMobileSet' style={{
-            backgroundColor: !isLoading && '#c0bbb1',
-            paddingTop: '110px'
-        }}>
+        <div>
             {isLoading && (
                 <div className="loader-overlay">
                     <CircularProgress className='loadingBarManage' />
@@ -215,8 +212,8 @@ export default function MyWishList() {
 
                     {wishlistData?.length !== 0 && <div className='smilingListTopButton'>
                         <button className='smiTopClearBtn' onClick={handleRemoveAllWishList}>CLEAR ALL</button>
-                        <button className='smiTopAddAllBtn' onClick={handleAddAll}>ADD TO CART ALL</button>
-                        <button className='smiTopAddAllBtn' onClick={() => navigation('/productpage')}>Show ProductList</button>
+                        <button className='smiTopClearBtn' onClick={handleAddAll}>ADD TO CART ALL</button>
+                        <button className='smiTopClearBtn' onClick={() => navigation('/productpage')}>Show ProductList</button>
                     </div>}
 
                     <div className='smiWishLsitBoxMain'>

@@ -49,7 +49,7 @@ const HomeTab = () => {
             <FaHome style={activeTab === "/" ? styles.activeIcon : styles.icon} />
             <span style={activeTab === "/" ? styles.activeText : styles.text}>Home</span>
           </NavLink>
-          <NavLink to="/Category" style={styles.tab} activeClassName="active" onClick={() => handleTabChange("/aboutUs")}>
+          <NavLink to="/Category" style={styles.tab} activeClassName="active" onClick={() => handleTabChange("/Category")}>
             <TbCategoryFilled style={activeTab === "/Category" ? styles.activeIcon : styles.icon} />
             <span style={activeTab === "/Category" ? styles.activeText : styles.text}>Category</span>
           </NavLink>
