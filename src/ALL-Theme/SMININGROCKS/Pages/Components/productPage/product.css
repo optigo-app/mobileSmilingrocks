@@ -131,13 +131,34 @@
 @media screen and (max-width: 500px) {
 
 
-    .prod_img{
-        width: 80%!important;
+    .prod_img {
+        width: 80% !important;
     }
 
 }
 
+@media screen and (max-width: 350px) {
 
+    .mobileDeatilDiv1Text1{
+        font-size: 10px!important;
+    }
+
+    .mobileDeatilDiv1Text2{
+        font-size: 12px!important;
+        margin: 0px;
+    }
+
+    .mobileDeatilDiv1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-inline: 2px!important;
+    }
+
+    .smilingProductImageBox {
+        margin: 2px;
+    }
+}
 .inputCheck:checked {
     background-color: '#7f7d85';
 }
