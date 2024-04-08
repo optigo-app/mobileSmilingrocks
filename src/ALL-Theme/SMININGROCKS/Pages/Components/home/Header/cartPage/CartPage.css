@@ -190,7 +190,7 @@
 }
 
 .cartProdSection .cartProdpart{
-    padding: 15px;
+    padding-top: 15px;
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Four columns with equal width */
     gap: 15px; 

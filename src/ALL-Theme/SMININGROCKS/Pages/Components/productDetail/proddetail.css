@@ -374,7 +374,7 @@
     }
     .paddingTopMobileSet{
         background: transparent !important;
-        padding-top: 60px !important;
+        padding-top: 0px !important;
     }
     .prodDetailWhitecont{
         margin: 0px !important;

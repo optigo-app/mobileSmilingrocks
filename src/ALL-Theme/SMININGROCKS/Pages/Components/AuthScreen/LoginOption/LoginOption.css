@@ -25,10 +25,10 @@
     background-color: #888;
     color: white;
     margin-inline: 7px;
-    height: 55px;
+    height: 45px;
     cursor: pointer;
     width: 25%;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 .loginMobile{
     display: flex;
@@ -37,7 +37,7 @@
     background-color: #888;
     color: white;
     margin-inline: 7px;
-    height: 55px;
+    height: 45px;
     cursor: pointer;
     margin-top: 25px;
     width: 25%;
@@ -60,6 +60,7 @@
 @media screen and (max-width: 900px) {
     .loginDailog{
         margin-inline: 2%!important;
+        margin-top: 15%;
     }
 
 }
@@ -74,7 +75,8 @@
     }
 
     .loginDiTile{
-        font-size: 25px;
+        font-size: 23px;
+        margin-bottom: 0px;
     }
 
 }

@@ -65,11 +65,6 @@
     margin-top: 10px;
 }
 
-.submitBtnForgot:focus,
-.submitBtnForgot.focused {
-    border-color: red; /* Change the border color to red when focused */
-}
-
 
 @media screen and (max-width: 950px) {
     .AuthScreenMainTitle {

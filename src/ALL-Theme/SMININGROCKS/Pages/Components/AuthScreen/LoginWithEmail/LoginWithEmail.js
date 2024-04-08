@@ -86,7 +86,7 @@ export default function LoginWithEmail() {
 
     const handleSubmit = async () => {
         if (!confirmPassword.trim()) {
-            errors.confirmPassword = 'Password is required';
+            setErrors(prevErrors => ({ ...prevErrors, confirmPassword: 'Password is required' }));
             return;
         }
 
@@ -179,8 +179,8 @@ export default function LoginWithEmail() {
                 </div>
             )}
             <div>
-                <div style={{ display: 'flex', alignItems: 'center', margin: '10px 0px 0px 15px' }}>
-                    <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => navigation('/LoginOption')} />
+                <div style={{ display: 'flex', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray' }}>
+                    <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => navigation('/')} />
                     <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
                         <img src={titleImg} className="MainlogogMobileImage" />
                     </div>
@@ -244,7 +244,7 @@ export default function LoginWithEmail() {
                         <Button style={{ marginTop: '10px', color: 'gray' }} onClick={() => navigation('/LoginOption')}>CANCEL</Button>
 
                         <button type='submit' className='SmilingLoginCodeBtn' onClick={handleNavigation}>Login With a Code instead on email</button>
-                        <p style={{ textAlign: 'center' , fontSize: '13px', marginTop:'5px' }}>Go passwordless! we'll send you an email.</p>
+                        <p style={{ textAlign: 'center', fontSize: '13px', marginTop: '5px' }}>Go passwordless! we'll send you an email.</p>
 
                         <p style={{ color: 'blue', cursor: 'pointer' }} onClick={handleForgotPassword}>Forgot Password ?</p>
                     </div>

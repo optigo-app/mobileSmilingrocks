@@ -341,11 +341,11 @@ export default function CartPage() {
       if (response.Data.rd[0].stat === 1) {
         await getCartData();
         await getCountFunc();
-        let prevIndexofCartList = cartListData?.findIndex((cld)=>cld?.autocode === data?.autocode)
-        if(prevIndexofCartList === 0){
+        let prevIndexofCartList = cartListData?.findIndex((cld) => cld?.autocode === data?.autocode)
+        if (prevIndexofCartList === 0) {
           setCartSelectData()
-        }else{  
-          setCartSelectData(cartListData[prevIndexofCartList -1]);
+        } else {
+          setCartSelectData(cartListData[prevIndexofCartList - 1]);
         }
       } else {
         alert("Error");
@@ -558,43 +558,43 @@ export default function CartPage() {
   };
 
   // const handleColorSelection = (color) => {
-    //     let uploadPath = localStorage.getItem('UploadLogicalPath');
-    //     const storedDataAll = localStorage.getItem('storeInit');
-    //     const data = JSON.parse(storedDataAll);
-    //     if (data.IsColorWiseImages === 1) {
-    //       const selectedColor = color;
-    //       setSelectedColor(selectedColor);
-    //       const filteredData = colorImageData.filter(item => item.colorname.toLowerCase() === selectedColor.toLowerCase());
-    //       console.log('Filter Data', filteredData);
-    //       if (filteredData.length > 0) {
-    //         const correctedData = filteredData.map(item => {
-    //           return {
-    //             ...item,
-    //             imagepath: convertPath(item.imagepath)
-    //           };
-    //         });
-    //         correctedData.forEach(item => {
-    //           item.imagepath = uploadPath + '/' + data.ukey + item.imagepath;
-    //           console.log('Updated Path:', item.imagepath);
-    //         });
-    //         correctedData.forEach((item, index) => {
-    //           correctedData[index] = item;
-    //         });
-    //         setTimeout(() => {
-    //           setUpdateColorImage(correctedData);
-    //         }, 100);
-    //       } else {
-    //         setUpdateColorImage('');
-    //       }
-    //       const selectedColorData = colorImageData.find(item => item.colorname === selectedColor);
-    //       if (selectedColorData) {
-    //         const correctedImagePath = convertPath(selectedColorData.imagepath);
-    //         let path = uploadPath + '/' + data.ukey + correctedImagePath
-    //         setSelectedImagePath(path);
-    //       } else {
-    //         setSelectedImagePath('');
-    //       }
-    //     }
+  //     let uploadPath = localStorage.getItem('UploadLogicalPath');
+  //     const storedDataAll = localStorage.getItem('storeInit');
+  //     const data = JSON.parse(storedDataAll);
+  //     if (data.IsColorWiseImages === 1) {
+  //       const selectedColor = color;
+  //       setSelectedColor(selectedColor);
+  //       const filteredData = colorImageData.filter(item => item.colorname.toLowerCase() === selectedColor.toLowerCase());
+  //       console.log('Filter Data', filteredData);
+  //       if (filteredData.length > 0) {
+  //         const correctedData = filteredData.map(item => {
+  //           return {
+  //             ...item,
+  //             imagepath: convertPath(item.imagepath)
+  //           };
+  //         });
+  //         correctedData.forEach(item => {
+  //           item.imagepath = uploadPath + '/' + data.ukey + item.imagepath;
+  //           console.log('Updated Path:', item.imagepath);
+  //         });
+  //         correctedData.forEach((item, index) => {
+  //           correctedData[index] = item;
+  //         });
+  //         setTimeout(() => {
+  //           setUpdateColorImage(correctedData);
+  //         }, 100);
+  //       } else {
+  //         setUpdateColorImage('');
+  //       }
+  //       const selectedColorData = colorImageData.find(item => item.colorname === selectedColor);
+  //       if (selectedColorData) {
+  //         const correctedImagePath = convertPath(selectedColorData.imagepath);
+  //         let path = uploadPath + '/' + data.ukey + correctedImagePath
+  //         setSelectedImagePath(path);
+  //       } else {
+  //         setSelectedImagePath('');
+  //       }
+  //     }
   // };
 
   console.log('cartListData', cartListData);
@@ -628,7 +628,7 @@ export default function CartPage() {
               zIndex: "111",
             }}
           >
-            <p className="SmiWishListTitle" style={{ paddingTop: "30px" }}>
+            <p className="SmiWishListTitle" style={{ paddingTop: "10px", margin: '0px' }}>
               My Cart
             </p>
 
@@ -636,32 +636,36 @@ export default function CartPage() {
               <div>
                 <div
                   className="smilingListTopButton"
-                  style={{ marginTop: "0px" }}
+                  style={{ marginInline: '10px' }}
                 >
-                  <button
-                    className="smiTopClearBtn"
-                    onClick={() => handleChange(0)}
-                  >
-                    List View
-                  </button>
-                  <button
-                    className="smiTopAddAllBtn"
-                    onClick={() => handleChange(1)}
-                  >
-                    Image View
-                  </button>
-                  <button
-                    className="smiTopClearBtn"
-                    onClick={handleRemoveAllWishList}
-                  >
-                    CLEAR ALL
-                  </button>
-                  <button
-                    className="smiTopAddAllBtn"
-                    onClick={() => navigation("/productpage")}
-                  >
-                    Show ProductList
-                  </button>
+                  <div style={{display: 'flex'}}>
+                    <button
+                      className="smiTopClearBtn"
+                      onClick={() => handleChange(0)}
+                    >
+                      List View
+                    </button>
+                    <button
+                      className="smiTopClearBtn"
+                      onClick={() => handleChange(1)}
+                    >
+                      Image View
+                    </button>
+                  </div>
+                  <div style={{display: 'flex'}}>
+                    <button
+                      className="smiTopClearBtn"
+                      onClick={handleRemoveAllWishList}
+                    >
+                      CLEAR ALL
+                    </button>
+                    <button
+                      className="smiTopClearBtn"
+                      onClick={() => navigation("/productpage")}
+                    >
+                      Show ProductList
+                    </button>
+                  </div>
                   <button
                     className="placeOrderCartPageBtnMobile"
                     onClick={(event) => {
@@ -1212,7 +1216,7 @@ export default function CartPage() {
                         rows={4}
                         onChange={(e) => handleInputChangeMainRemarks(e)}
                         className="YourCartPageMainRemkarBox"
-                        style={{ marginTop: "30px", width: '300px'}}
+                        style={{ marginTop: "30px", width: '300px' }}
                       />
                       <div className="addRemkarMainBottom">
                         <button

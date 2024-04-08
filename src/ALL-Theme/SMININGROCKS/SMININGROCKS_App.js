@@ -45,6 +45,7 @@ import CartPage from './Pages/Components/home/Header/cartPage/CartPage'
 import { ToastContainer } from 'react-toastify';
 import HomeTab from './Pages/Components/HomeTab'
 import Category from './Pages/Components/CategoryPage/Category'
+import WithoutLoginCart from './Pages/Components/home/Header/cartPage/WithoutLoginCart'
 
 export default function SMININGROCKS_App() {
 
@@ -82,7 +83,6 @@ export default function SMININGROCKS_App() {
                     location.pathname === "/ContinueWithEmail" ||
                     location.pathname === "/ContimueWithMobile" ||
                     location.pathname === "/accountledgerexcel" ||
-                    location.pathname === "/LoginOption" ||
                     location.pathname === "/register" ||
                     location.pathname === "/LoginWithMobileCode" ||
                     location.pathname === "/LoginWithEmail" ||
@@ -127,6 +127,7 @@ export default function SMININGROCKS_App() {
                         <Route path="/LoginOption" element={<LoginOption />} />
                         <Route path="/CartPage" element={<CartPage />} />
                         <Route path="/Category" element={<Category />} />
+                        <Route path="/WithoutLoginCart" element={<WithoutLoginCart />} />
                     </Routes>
                     {(location.pathname === "/productpage") ?
                          <ProductPageTab toggleDetailDrawer={toggleDetailDrawer} /> : <HomeTab />}
