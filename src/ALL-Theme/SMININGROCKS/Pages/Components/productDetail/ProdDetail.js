@@ -78,7 +78,7 @@ const ProdDetail = () => {
   const [csqcRate, setCsqcRate] = useState()
   const [csqcSettRate, setCsqcSettRate] = useState()
   const [getPriceData, setGetPriceData] = useState([])
-  const [globImagePath,setGlobImagepath] = useState()
+  const [globImagePath, setGlobImagepath] = useState()
 
 
   const [uploadLogicPath, setUploadLogicPath] = useState('');
@@ -92,10 +92,10 @@ const ProdDetail = () => {
     setImgLoading(false)
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     const storeInit = JSON.parse(localStorage.getItem('storeInit'))
     setGlobImagepath(storeInit?.DesignImageFol)
-  },[])
+  }, [])
 
 
 
@@ -141,11 +141,11 @@ const ProdDetail = () => {
 
     // let sizeDatafilter = sizeData?.filter((sd)=>sd?.IsDefaultSize === 1)
     // console.log("sizeData",sizeDatafilter)
-    
+
     // setSizeOption(sizeData[1]?.id)
-    
-  }, [colorData,sizeData])
-  
+
+  }, [colorData, sizeData])
+
   // console.log("productData",sizeOption)
 
   // useEffect(()=>{
@@ -281,9 +281,9 @@ const ProdDetail = () => {
 
     if (metalFilterData && metalFilterData.length) {
 
-      let CalcNetwt = ((srProductsData?.netwt ?? 0) + (metalFilterData?.Weight ?? 0) ?? 0 )
+      let CalcNetwt = ((srProductsData?.netwt ?? 0) + (metalFilterData?.Weight ?? 0) ?? 0)
 
-      let fprice = ((mtrdData?.AD ?? 0) * CalcNetwt) + ((mtrdData?.AC ?? 0)* CalcNetwt)
+      let fprice = ((mtrdData?.AD ?? 0) * CalcNetwt) + ((mtrdData?.AC ?? 0) * CalcNetwt)
 
       return fprice
     } else {
@@ -309,8 +309,8 @@ const ProdDetail = () => {
         ele?.B === srProductsData?.designno
 
     );
-    
-    
+
+
     let showPrice = 0;
     if (mtrd && mtrd.length > 0) {
       showPrice = srProductsData?.price - ((srProductsData?.price - srProductsData?.metalrd) + (mtrd[0]?.Z ?? 0));
@@ -1177,7 +1177,7 @@ const ProdDetail = () => {
     if (selectedSize) {
       setSizeMarkup(selectedSize?.MarkUp)
     }
-    setSizeOption(data) 
+    setSizeOption(data)
     const filteredData = getAllFilterSizeData?.filter(item => item.sizename === data)
     const filteredDataMetal = filteredData?.filter(item => item.DiamondStoneTypeName === "METAL")
     const filteredDataDaimond = filteredData?.filter(item => item.DiamondStoneTypeName === "DIAMOND")
@@ -1261,7 +1261,7 @@ const ProdDetail = () => {
                 />
               )}
               {isVideoPlaying ?
-                <video src={videoUrl} autoPlay={true} style={{
+                <video src={videoUrl}  className="productvideo" autoPlay={true} style={{
                   width: "100%",
                   zindex: -1,
                   position: "relative",
@@ -1279,7 +1279,7 @@ const ProdDetail = () => {
                         :
                         (
                           selectedImagePath == '' ?
-                          globImagePath + (!handelmainImg()?.length ? productData?.OriginalImagePath?.split(",")[0]
+                            globImagePath + (!handelmainImg()?.length ? productData?.OriginalImagePath?.split(",")[0]
                               :
                               handelmainImg()
                             )
@@ -1384,6 +1384,7 @@ const ProdDetail = () => {
                     style={{ display: "flex", flexDirection: "column" }}
                   >
                     <span
+                      className='partTitleKey'
                       style={{
                         // textTransform: "uppercase",
                         fontSize: "12px",
@@ -1399,7 +1400,7 @@ const ProdDetail = () => {
                         color: "#7d7f85",
                       }}
                     >
-                      Metal Purity : {mtTypeOption ? mtTypeOption.split(" ")[1] : productData?.MetalPurity}
+                      <span className='partTitleKey'>Metal Purity :</span> {mtTypeOption ? mtTypeOption.split(" ")[1] : productData?.MetalPurity}
                     </span>
                     <sapn
                       style={{
@@ -1408,7 +1409,7 @@ const ProdDetail = () => {
                         color: "#7d7f85",
                       }}
                     >
-                      Metal Color : {selectedColor ? selectedColor : productData?.MetalColorName}
+                      <span className='partTitleKey'>Metal Color : </span> {selectedColor ? selectedColor : productData?.MetalColorName}
                     </sapn>
                     <sapn
                       style={{
@@ -1417,7 +1418,7 @@ const ProdDetail = () => {
                         color: "#7d7f85",
                       }}
                     >
-                      Diamond Quality Color:{" "}
+                      <span className='partTitleKey'>Diamond Quality Color : </span>{" "}
                       {diaQColOpt ? diaQColOpt : `${productData?.diamondquality}-${productData?.diamondcolorname}`}
                     </sapn>
                   </div>
@@ -1736,11 +1737,11 @@ const ProdDetail = () => {
                         </option>
                       ))}
                     </select>
+                    <Divider sx={{
+                      marginTop: '20px', background: '#a9a7a7',
+                      marginTop: '20px'
+                    }} />
                   </div>}
-                  <Divider sx={{
-                    marginTop: '20px', background: '#a9a7a7',
-                    marginTop: '20px'
-                  }} />
 
                   {isMetalCutoMizeFlag == 1 &&
                     <div
@@ -1769,13 +1770,13 @@ const ProdDetail = () => {
                           </option>
                         ))}
                       </select>
+                      <Divider sx={{
+                        marginTop: '20px', background: '#a9a7a7',
+                        marginTop: '20px'
+                      }} />
                     </div>}
 
 
-                  <Divider sx={{
-                    marginTop: '20px', background: '#a9a7a7',
-                    marginTop: '20px'
-                  }} />
 
                   {((isDaimondCstoFlag == 1) && (productData?.diamondweight !== 0 || productData?.diamondpcs !== 0)) && <div
                     style={{
@@ -1803,12 +1804,12 @@ const ProdDetail = () => {
                         </option>
                       ))}
                     </select>
+                    <Divider sx={{
+                      marginTop: '20px', background: '#a9a7a7',
+                      marginTop: '20px'
+                    }} />
                   </div>}
 
-                  <Divider sx={{
-                    marginTop: '20px', background: '#a9a7a7',
-                    marginTop: '20px'
-                  }} />
 
                   {((isCColrStoneCustFlag === 1) && (productData?.totalcolorstonepcs !== 0 || productData?.totalcolorstoneweight !== 0)) &&
                     <div
@@ -1837,12 +1838,12 @@ const ProdDetail = () => {
                           </option>
                         ))}
                       </select>
+                      <Divider sx={{
+                        marginTop: '20px', background: '#a9a7a7',
+                        marginTop: '20px'
+                      }} />
                     </div>}
 
-                  <Divider sx={{
-                    marginTop: '20px', background: '#a9a7a7',
-                    marginTop: '20px'
-                  }} />
 
                   {(sizeData?.length !== 0 || (productData?.DefaultSize && productData.DefaultSize.length !== 0)) && (
                     <div
@@ -1881,12 +1882,12 @@ const ProdDetail = () => {
                           </option>
                         ))}
                       </select>
+                      <Divider sx={{
+                        marginTop: '20px', background: '#a9a7a7',
+                        marginTop: '20px'
+                      }} />
                     </div>
                   )}
-                  <Divider sx={{
-                    marginTop: '20px', background: '#a9a7a7',
-                    marginTop: '20px'
-                  }} />
 
                 </div>}
 
@@ -2083,7 +2084,7 @@ const ProdDetail = () => {
             </div>
           </div>
           {(designSetList.length !== 0 && showIcateDesign === 1) &&
-            <div className='smilingCompleteLookMainWeb' style={{ position: 'relative', marginInline: '10%', display: 'flex', alignItems: 'center', marginBottom: '7%',marginTop:'7%' }}>
+            <div className='smilingCompleteLookMainWeb' style={{ position: 'relative', marginInline: '10%', display: 'flex', alignItems: 'center', marginBottom: '7%', marginTop: '7%' }}>
               <div className='similiarBrand' style={{ right: '0px', position: 'absolute', display: 'flex', alignItems: 'center', flexDirection: 'column', marginBottom: '100px', marginTop: !(productData?.OriginalImagePath) && '120px' }}>
                 <div style={{ marginBottom: '12px' }}>
                   <span style={{ fontFamily: 'FreightDisp Pro Medium', color: '#7d7f85', fontSize: '26px' }}>Complete The Look</span>
@@ -2130,34 +2131,31 @@ const ProdDetail = () => {
                   className='smilingCompleteLookMainMobileImg'
                 />
               </div>
-              <div className='similiarBrand' style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', marginBottom: '100px', marginTop: !(productData?.OriginalImagePath) && '120px' }}>
-                <div style={{ marginBottom: '12px' }}>
+              <div className='similiarBrand' style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', marginTop: !(productData?.OriginalImagePath) && '120px' }}>
+                <div style={{ margin: '12px 0px 12px 0px' }}>
                   <span style={{ fontFamily: 'FreightDisp Pro Medium', color: '#7d7f85', fontSize: '26px' }}>Complete The Look</span>
                 </div>
-                <div style={{ border: '1px solid #e1e1e1', backgroundColor: 'white', borderRadius: '4px', padding: '30px', display: 'flex', flexDirection: 'column', gap: '40px' }}>
-                  {
-                    designSetList?.slice(0, 3)?.map((dsl, i) => (
-                      <>
-                        {/* {i !== 0 && <hr style={{opacity:0.06}}/>} */}
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '30px' }}>
-                          <div >
-                            <img src={!(dsl?.ThumbImagePath) ? notFound : dsl?.imagepath + dsl?.ThumbImagePath.split(",")[0]} alt={""} style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
-                          </div>
-                          <div style={{ display: 'flex', alignItems: 'center', position: 'relative', height: '100px' }}>
-                            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                              <sapn style={{ fontWeight: '500' }}>{dsl?.TitleLine}({dsl?.designno})</sapn>
-                              {/* <span></span> */}
-                              <span style={{ fontSize: '14px', color: '#888' }}>{dsl?.description}</span>
-                            </div>
-                            <div onClick={() => handelDesignSet(dsl)}>
-                              <NavigateNextRoundedIcon />
-                            </div>
-                            {(i !== designSetList?.slice(0, 3).length - 1) && <div style={{ borderBottom: '1px solid #e1e1e1', position: "absolute", bottom: "-18.5px", left: "0", width: "100%", }}></div>}
-                          </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '3px', padding:'0px 7px 0px 7px' }}>
+                  {designSetList?.map((dsl, i) => (
+                    <div key={i} style={{ width: '49%' }} onClick={() => handelDesignSet(dsl)}>
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid rgba(0, 0, 0, 0.04)', padding: '15px', borderRadius: '4px' }}>
+                        <div>
+                          <img src={!(dsl?.ThumbImagePath) ? notFound : dsl?.imagepath + dsl?.ThumbImagePath.split(",")[0]} alt={""} style={{ width: '150px', height: '150px', objectFit: 'cover' }} />
                         </div>
-                      </>
-                    ))
-                  }
+                        <div style={{ marginTop: '15px', textAlign: 'center',height:'40px', overflow:'hidden' }}>
+                          <div style={{color:'#7D7f85', fontSize:'13px' }}>
+                            {dsl?.TitleLine} ({dsl?.designno})
+                          </div>
+                          <div style={{ fontSize: '14px', color: '#888' }}>
+                            {dsl?.description}
+                          </div>
+                          {/* <div style={{ marginTop: '10px', cursor: 'pointer' }} onClick={() => handelDesignSet(dsl)}>
+                            <NavigateNextRoundedIcon />
+                          </div> */}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -2193,8 +2191,8 @@ const ProdDetail = () => {
                   style={{ userSelect: "none" }}
                 >
                   <span className="tellmorep">
-                    PRODUCT DETAILS
-                    <span style={{ fontSize: "24px" }}>
+                  {acc && accNo === "1" ? "  PRODUCT DETAILS" : " PRODUCT DETAILS"}
+                    <span className='productShowIcon' style={{ fontSize: "24px" }}>
                       {acc && accNo === "1" ? "-" : "+"}
                     </span>
                   </span>
@@ -2285,7 +2283,7 @@ const ProdDetail = () => {
                             <b>{productData?.diamondcolorname}</b>
                           </span>
                           <span>
-                            TotalDiamondWeight:
+                            TotalDiamondWeight: {" "}
                             <b>{daimondFilterData?.length
                               ? (
                                 productData?.diamondweight +

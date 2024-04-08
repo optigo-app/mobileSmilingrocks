@@ -425,11 +425,12 @@ export default function Header() {
   const [gSearch, setGSearch] = useRecoilState(searchData)
 
   const handleEnterPress = () => {
+    debugger
     const savedProductList = localStorage.getItem('allproductlist');
     if (savedProductList) {
       const productList = JSON.parse(savedProductList);
       const searchValue = searchText;
-      const filteredProducts = productList.filter(product => product.designno === searchValue || product.id === parseInt(searchValue));
+      const filteredProducts = productList.filter(product => product.designno === searchValue || product.id === parseInt(searchValue) || product.ProducttypeName === parseInt(searchValue) || product.MetalColorName === parseInt(searchValue) || product.MetalTypeName === parseInt(searchValue) || product.OcassionName === parseInt(searchValue) || product.GenderName === parseInt(searchValue) || product.BrandName === parseInt(searchValue) || product.CategoryName === parseInt(searchValue) || product.CollectionName === parseInt(searchValue) || product.autocode === parseInt(searchValue));
       setSearchedProducts(filteredProducts);
     }
     navigation('/productpage');
@@ -1108,11 +1109,20 @@ export default function Header() {
         <div className="container">
           <div className="back-arrow" onClick={handleBack}><KeyboardBackspaceIcon /></div>
           <div className="search-wrapper">
-            <a href="/">
+            <input type="text" className="search-input" placeholder="Search..." onChange={(e) => setSearchText(e.target.value)} onKeyPress={handleKeyPress} />
+            <div className="search-icon"><SearchIcon sx={{color:'rgba(0, 0, 0, 0.3  )'}} /></div>
+            {/* <a href="/">
               <img src={titleImg} className="MainlogogMobileImage" />
-            </a>
+            </a> */}
           </div>
-          <div className="cart-icon"><FaShoppingCart />  </div>
+          <Badge badgeContent={getCartListCount}
+            overlap={"rectangular"}
+            color="secondary"
+            style={{ marginInline: '6px' }}>
+            <div className="cart-icon">
+              <FaShoppingCart />
+            </div>
+          </Badge>
         </div>
         :
         location.pathname == '/productpage' ?
@@ -1120,7 +1130,7 @@ export default function Header() {
             <div className="back-arrow" onClick={handleBack}><KeyboardBackspaceIcon /></div>
             <div className="search-wrapper">
               <input type="text" className="search-input" placeholder="Search..." />
-              <div className="search-icon"><SearchIcon/></div>
+              <div className="search-icon"><SearchIcon /></div>
             </div>
             <div className="cart-icon"><FaShoppingCart />  </div>
           </div>
