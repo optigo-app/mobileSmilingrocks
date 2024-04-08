@@ -87,9 +87,9 @@ export default function ContinueWithEmail() {
                 </div>
             )}
             <div>
-                <div style={{display:'flex', alignItems:'center', margin: '10px 0px 0px 15px' }}>
-                    <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => navigation('/LoginOption')} />
-                    <div style={{width: '85%', display: 'flex', justifyContent: 'center'}}>
+                <div style={{ display: 'flex', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray' }}>
+                    <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => navigation('/')} />
+                    <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
                         <img src={titleImg} className="MainlogogMobileImage" />
                     </div>
                 </div>

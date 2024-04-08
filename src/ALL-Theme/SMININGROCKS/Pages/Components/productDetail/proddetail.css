@@ -375,8 +375,7 @@
 
     .paddingTopMobileSet {
         background: transparent !important;
-        padding-top: 64px !important;
-        padding-bottom: 20px !important;
+        padding-top: 0px !important;
     }
 
     .smilingCompleteLookMainMobileImg {

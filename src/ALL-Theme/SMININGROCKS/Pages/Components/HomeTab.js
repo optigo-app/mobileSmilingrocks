@@ -53,19 +53,35 @@ const HomeTab = () => {
             <TbCategoryFilled style={activeTab === "/Category" ? styles.activeIcon : styles.icon} />
             <span style={activeTab === "/Category" ? styles.activeText : styles.text}>Category</span>
           </NavLink>
-          <NavLink to="/CartPage" style={styles.tab} activeClassName="active" onClick={() => handleTabChange("/CartPage")}>
-            <Badge
-              badgeContent={getCartListCount}
-              overlap={"rectangular"}
-              color="secondary"
-              style={{ marginInline: '10px' }}
-            >
-              <Tooltip title="Cart">
-                <FaShoppingCart style={activeTab === "/CartPage" ? styles.activeIcon : styles.icon} />
-              </Tooltip>
-            </Badge>
-            <span style={activeTab === "/CartPage" ? styles.activeText : styles.text}>Cart</span>
-          </NavLink>
+    
+      {islogin === 'true' ?
+        <NavLink to="/CartPage" style={styles.tab} activeClassName="active" onClick={() => handleTabChange("/CartPage")}>
+              <Badge
+                badgeContent={getCartListCount}
+                overlap={"rectangular"}
+                color="secondary"
+                style={{ marginInline: '10px' }}
+              >
+                <Tooltip title="Cart">
+                  <FaShoppingCart style={activeTab === "/CartPage" ? styles.activeIcon : styles.icon} />
+                </Tooltip>
+              </Badge>
+              <span style={activeTab === "/CartPage" ? styles.activeText : styles.text}>Cart</span>
+            </NavLink>
+        :
+        <NavLink to="/WithoutLoginCart" style={styles.tab} activeClassName="active" onClick={() => handleTabChange("/WithoutLoginCart")}>
+          <Badge
+            badgeContent={getCartListCount}
+            overlap={"rectangular"}
+            color="secondary"
+            style={{ marginInline: '10px' }}
+          >
+            <Tooltip title="Cart">
+              <FaShoppingCart style={activeTab === "/WithoutLoginCart" ? styles.activeIcon : styles.icon} />
+            </Tooltip>
+          </Badge>
+          <span style={activeTab === "/WithoutLoginCart" ? styles.activeText : styles.text}>Cart</span>
+        </NavLink>}
 
 
           {islogin === 'true' ?

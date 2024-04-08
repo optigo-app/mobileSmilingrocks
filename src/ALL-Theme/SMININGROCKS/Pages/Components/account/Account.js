@@ -100,10 +100,7 @@ export default function Account() {
     }
 
     return (
-        <div style={{
-            backgroundColor: '#c0bbb1',
-            paddingTop: '110px'
-        }} className='accountPagTabSection'>
+        <div>
             {/* {isLoading && (
                 <div className="loader-overlay">
                     <CircularProgress />

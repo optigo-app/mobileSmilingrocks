@@ -589,7 +589,7 @@
     .mobileHeaderSmining {
         display: block !important;
         background-color: rgb(192, 187, 177) !important;
-        height: 90px !important;
+        height: 70px !important;
     }
 
     .placeOrderBtn {
@@ -713,7 +713,7 @@
     }
 
     .smilingMobileSubDiv {
-        padding-top: 15px !important;
+        padding-top: 5px !important;
         padding-inline: 15px !important;
     }
 

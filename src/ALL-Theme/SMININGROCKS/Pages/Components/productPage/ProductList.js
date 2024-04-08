@@ -26,6 +26,9 @@ import { toast } from "react-toastify";
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
+import { FiArrowLeft } from "react-icons/fi";
+import titleImg from "../../assets/title/sonasons.png";
+
 
 import { NavLink } from 'react-router-dom';
 import { BsFilterLeft } from "react-icons/bs";
@@ -1441,6 +1444,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail }) => {
           }}
           className='paddingTopMobileSet'
         >
+
           <div className="smilingProductMain" id="smilingProductMain">
             <div
               className="smilingProductSubMain"
@@ -1656,131 +1660,145 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail }) => {
                 <div
                   style={{
                     width: "100%",
-                    // border: "1px solid #e1e1e1",
                     display: "flex",
-                    // justifyContent: "center",
-                    alignItems: "center",
-                    flexWrap: "wrap",
+                    flexDirection: 'column'
                   }}
-                  className="smilingAllProductDataMainMobile"
                 >
-                  {/* RollOverImageName */}
-                  {/* {(newProData.length ? newProData : finalDataOfDisplaying())?.map((products, i) => ( */}
-                  {(newProData?.length ? newProData : ProductApiData2)?.map((products, i) => (
+                  <div style={{ display: 'flex',position:'fixed',width:'100%', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray', backgroundColor: 'white',zIndex: '111111' }}>
+                    <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => navigate('/')} />
+                    <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
+                      <img src={titleImg} className="MainlogogMobileImage" />
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      flexWrap: "wrap",
+                      marginTop: '15%'
+                    }}
+                    className="smilingAllProductDataMainMobile"
+                  >
 
-                    <div
-                      style={{
-                        width: "33.33%",
-                        border: "1px solid #e1e1e1",
-                        textAlign: "center",
-                        color: "#7d7f85",
-                        position: "relative",
-                        zIndex: 0,
-                      }}
-                      className="smilingProductImageBox"
 
-                    >
-                      <div onClick={() => handelProductSubmit(products)}>
-                        <img
-                          className="prod_img"
-                          src={
-                            hoveredImageUrls[i] ? hoveredImageUrls[i] : // Check if hover image URL exists
-                              (products?.MediumImagePath ?
-                                (products?.imagepath + products?.MediumImagePath?.split(",")[0])
-                                :
-                                notFound)
-                          }
-                          onMouseEnter={() => handleHoverImageShow(products?.MediumImagePath?.split(",")[0], i, products?.RollOverImageName, products?.imagepath)}
-                          // onMouseEnter={() => handleHoverImageShow(products?.MediumImagePath?.split(",")[0], i, isColorWiseImageShow === 1 ? products?.ColorWiseRollOverImageName : products?.RollOverImageName, products?.imagepath)}
-                          onMouseLeave={() => handleMouseLeave(i)}
-                          style={{ objectFit: 'cover' }}
-                          alt="#"
-                        />
-                      </div>
-                      <div className="productTitleLine" onClick={() => handelProductSubmit(products)}>
-                        <p
-                          style={{
-                            fontSize: "13px",
-                            textTransform: "uppercase",
-                            fontWeight: "500",
-                            cursor: "pointer",
-                            textoverflow: "ellipsis",
-                            height: '35px',
-                            overflow: 'hidden',
-                            margin: '3px'
-                          }}
-                          className="smilingProductDeatilTitleMobile"
-                        >
-                          {products?.TitleLine}
-                        </p>
-                      </div>
-                      <div style={{}}>
-                        <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'space-between', marginInline: '10px' }}>
-                          {ismetalWShow === 1 &&
-                            <div>
-                              <p style={{ margin: '0px', fontSize: '13px' }}>NWT : <span style={{ fontWeight: 600, marginRight: '15px' }}>{(products?.netwt).toFixed(2)}</span></p>
-                            </div>}
-                          <p style={{ margin: '0px', fontSize: '15px', fontWeight: 'bold' }}>{products?.designno}</p>
-                        </div>
-                        <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'space-between', marginInline: '10px' }}>
-                          {isGrossWShow === 1 && <div>
-                            <p style={{ margin: '0px', fontSize: '13px' }}>GWT : <span style={{ fontWeight: 600, marginRight: '10px' }}>{(products?.Grossweight).toFixed(2)}</span></p>
-                          </div>}
-                          <p style={{ fontSize: "15px", fontWeight: 'bold' }}>
-                            {isPriceShow === 1 &&
-                              <span>
-                                {currencySym?.Currencysymbol}
-                                {((products?.UnitCost ?? 0) + (products?.price ?? 0) + (products?.markup ?? 0)).toFixed(2)}
-                              </span>
+                    {/* RollOverImageName */}
+                    {/* {(newProData.length ? newProData : finalDataOfDisplaying())?.map((products, i) => ( */}
+                    {(newProData?.length ? newProData : ProductApiData2)?.map((products, i) => (
+
+                      <div
+                        style={{
+                          width: "33.33%",
+                          border: "1px solid #e1e1e1",
+                          textAlign: "center",
+                          color: "#7d7f85",
+                          position: "relative",
+                          zIndex: 0,
+                        }}
+                        className="smilingProductImageBox"
+
+                      >
+                        <div onClick={() => handelProductSubmit(products)}>
+                          <img
+                            className="prod_img"
+                            src={
+                              hoveredImageUrls[i] ? hoveredImageUrls[i] : // Check if hover image URL exists
+                                (products?.MediumImagePath ?
+                                  (products?.imagepath + products?.MediumImagePath?.split(",")[0])
+                                  :
+                                  notFound)
                             }
+                            onMouseEnter={() => handleHoverImageShow(products?.MediumImagePath?.split(",")[0], i, products?.RollOverImageName, products?.imagepath)}
+                            // onMouseEnter={() => handleHoverImageShow(products?.MediumImagePath?.split(",")[0], i, isColorWiseImageShow === 1 ? products?.ColorWiseRollOverImageName : products?.RollOverImageName, products?.imagepath)}
+                            onMouseLeave={() => handleMouseLeave(i)}
+                            style={{ objectFit: 'cover' }}
+                            alt="#"
+                          />
+                        </div>
+                        <div className="productTitleLine" onClick={() => handelProductSubmit(products)}>
+                          <p
+                            style={{
+                              fontSize: "13px",
+                              textTransform: "uppercase",
+                              fontWeight: "500",
+                              cursor: "pointer",
+                              textoverflow: "ellipsis",
+                              height: '35px',
+                              overflow: 'hidden',
+                              margin: '3px'
+                            }}
+                            className="smilingProductDeatilTitleMobile"
+                          >
+                            {products?.TitleLine}
                           </p>
                         </div>
-                      </div>
-
-
-
-                      <div style={{ position: "absolute", zIndex: 999999, top: 0, right: 0, display: 'flex' }}>
-                        <div>
-                          <Checkbox
-                            icon={
-                              <StarBorderIcon
-                                sx={{ fontSize: "22px", color: "#ffd200" }}
-                              />
-                            }
-                            checkedIcon={
-                              <StarIcon
-                                sx={{ fontSize: "22px", color: "#ffd200" }}
-                              />
-                            }
-                            disableRipple={true}
-                            sx={{ padding: "5px" }}
-
-                            checked={products?.wishCheck}
-                            onChange={(e) => handelWishList(e, products)}
-                          />
-
+                        <div style={{}}>
+                          <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'space-between', marginInline: '10px' }}>
+                            {ismetalWShow === 1 &&
+                              <div>
+                                <p style={{ margin: '0px', fontSize: '13px' }}>NWT : <span style={{ fontWeight: 600, marginRight: '15px' }}>{(products?.netwt).toFixed(2)}</span></p>
+                              </div>}
+                            <p style={{ margin: '0px', fontSize: '15px', fontWeight: 'bold' }}>{products?.designno}</p>
+                          </div>
+                          <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'space-between', marginInline: '10px' }}>
+                            {isGrossWShow === 1 && <div>
+                              <p style={{ margin: '0px', fontSize: '13px' }}>GWT : <span style={{ fontWeight: 600, marginRight: '10px' }}>{(products?.Grossweight).toFixed(2)}</span></p>
+                            </div>}
+                            <p style={{ fontSize: "15px", fontWeight: 'bold' }}>
+                              {isPriceShow === 1 &&
+                                <span>
+                                  {currencySym?.Currencysymbol}
+                                  {((products?.UnitCost ?? 0) + (products?.price ?? 0) + (products?.markup ?? 0)).toFixed(2)}
+                                </span>
+                              }
+                            </p>
+                          </div>
                         </div>
-                        <div>
-                          <Checkbox
-                            icon={
-                              <LocalMallOutlinedIcon
-                                sx={{ fontSize: "22px", color: "#ffd200" }}
-                              />
-                            }
-                            checkedIcon={
-                              <LocalMallIcon
-                                sx={{ fontSize: "22px", color: "#ffd200" }}
-                              />
-                            }
-                            disableRipple={true}
-                            sx={{ padding: "5px" }}
 
-                            checked={products?.checkFlag}
-                            onChange={(e) => handelCartList(e, products)}
-                          />
+
+
+                        <div style={{ position: "absolute", zIndex: 999999, top: 0, right: 0, display: 'flex' }}>
+                          <div>
+                            <Checkbox
+                              icon={
+                                <StarBorderIcon
+                                  sx={{ fontSize: "22px", color: "#ffd200" }}
+                                />
+                              }
+                              checkedIcon={
+                                <StarIcon
+                                  sx={{ fontSize: "22px", color: "#ffd200" }}
+                                />
+                              }
+                              disableRipple={true}
+                              sx={{ padding: "5px" }}
+
+                              checked={products?.wishCheck}
+                              onChange={(e) => handelWishList(e, products)}
+                            />
+
+                          </div>
+                          <div>
+                            <Checkbox
+                              icon={
+                                <LocalMallOutlinedIcon
+                                  sx={{ fontSize: "22px", color: "#ffd200" }}
+                                />
+                              }
+                              checkedIcon={
+                                <LocalMallIcon
+                                  sx={{ fontSize: "22px", color: "#ffd200" }}
+                                />
+                              }
+                              disableRipple={true}
+                              sx={{ padding: "5px" }}
+
+                              checked={products?.checkFlag}
+                              onChange={(e) => handelCartList(e, products)}
+                            />
+                          </div>
                         </div>
-                      </div>
-                      {/* {products?.IsColorWiseImageExists !== null && (
+                        {/* {products?.IsColorWiseImageExists !== null && (
                         <div
                           style={{
                             display: "flex",
@@ -1816,10 +1834,11 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail }) => {
                           ></div>
                         </div>
                       )} */}
-                    </div>
-                  ))}
+                      </div>
+                    ))}
 
 
+                  </div>
                 </div>
               </div>
             </div>
