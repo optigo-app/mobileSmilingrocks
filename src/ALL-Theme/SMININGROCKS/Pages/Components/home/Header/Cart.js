@@ -70,8 +70,6 @@ export default function Cart({ open, toggleCartDrawer }) {
     const [allSelectedSizeData, setAllSelectedSizeData] = useState('');
     const [openCustoMizeIndexNumber, setOpenCustoMizeIndexNumber] = useState('');
     const navigation = useNavigate();
-    // console.log("selectedMetalType", selectedMetalType)
-    // console.log("grandTotal", grandTotal)
 
 
 
@@ -156,7 +154,6 @@ export default function Cart({ open, toggleCartDrawer }) {
                 const sizeDropdownData = response.Data.rd;
                 setGetAllFilterSizeData(response.Data.rd1)
                 const selectElement = document.getElementById(`sizeDropdown_${index}`);
-                console.log('sizeDropdownDatasizeDropdownDatasizeDropdownData', sizeDropdownData);
                 if (selectElement) {
                     if (sizeDropdownData.length === 0) {
                         selectElement.innerHTML = '';
@@ -385,69 +382,6 @@ export default function Cart({ open, toggleCartDrawer }) {
         setValue(newValue);
     };
 
-    // useEffect(() => {
-
-    //     let srProductsData = JSON.parse(localStorage.getItem('srProductsData'));
-
-    //     let mtrd = getPriceData?.rd?.filter((ele) =>
-    //         ele?.A === srProductsData?.autocode &&
-    //         ele?.B === srProductsData?.designno &&
-    //         ele?.D === (selectedMetalType)
-    //     )
-    //     // console.log("metal", mtrd);
-    //     let showPrice = 0;
-    //     if (mtrd && mtrd.length > 0) {
-    //         showPrice = srProductsData?.price - ((srProductsData?.price - srProductsData?.metalrd) + (mtrd[0]?.Z ?? 0));
-    //     }
-    //     //   let showPrice = srProductsData?.price - ((srProductsData?.price - srProductsData?.metalrd) + (mtrd[0]?.Z ?? 0))
-    //     //   console.log("metal price",showPrice);
-    //     // setMetalPrice(showPrice)
-
-    //     let diaqcprice = getPriceData?.rd1?.filter((ele) =>
-    //         ele.A === srProductsData?.autocode &&
-    //         ele.B === srProductsData?.designno &&
-    //         ele.H === selectedDiamondQualityColor?.split("_")[0] &&
-    //         ele.J === selectedDiamondQualityColor?.split("_")[1]
-    //     )
-    //     // console.log("diamond ", diaqcprice);
-
-    //     let showPrice1 = 0;
-    //     if (diaqcprice && diaqcprice.length > 0) {
-    //         showPrice1 = srProductsData?.price - ((srProductsData?.price - srProductsData?.diard1) + (diaqcprice[0]?.S ?? 0));
-    //     }
-    //     //   let showPrice1 = srProductsData?.price-((srProductsData?.price - srProductsData?.diard1) + (diaqcprice[0]?.S ?? 0))
-    //     //   console.log("diamond price",showPrice1);
-    //     // setDQCPrice(showPrice1)
-
-    //     let csqcpirce = getPriceData?.rd2?.filter((ele) =>
-    //         ele.A === srProductsData?.autocode &&
-    //         ele.B === srProductsData?.designno &&
-    //         ele.H === selectedColorstoneQualityColor?.split("-")[0] &&
-    //         ele.J === selectedColorstoneQualityColor?.split("-")[1]
-    //     )
-    //     // console.log("colorstone", csqcpirce);
-
-    //     let showPrice2 = 0;
-    //     if (csqcpirce && csqcpirce.length > 0) {
-    //         showPrice2 = srProductsData?.price - ((srProductsData?.price - srProductsData?.csrd2) + (csqcpirce[0]?.S ?? 0));
-    //     }
-
-    //     // console.log({ showPrice, showPrice1, showPrice2 });
-    //     let gt = showPrice + showPrice1 + showPrice2;
-    //     setGrandTotal(gt ?? 0);
-    //     //   let showPrice2 = srProductsData?.price -((srProductsData?.price - srProductsData?.csrd2) + (csqcpirce[0]?.S ?? 0));
-    //     //   console.log("colorstone price",showPrice2);
-    //     //   setCSQCPrice(showPrice2)
-
-    //     //   let showPriceall = (srProductsData?.price - srProductsData?.metalrd) + (mtrd[0]?.Z ?? 0)
-
-    //     //   console.log({showPrice,showPrice1,showPrice2});
-    //     //   let gt = showPrice + showPrice1 + showPrice2;
-    //     //   console.log(gt);
-    //     //   setGrandTotal(gt)
-
-    // }, [selectedMetalType, selectedDiamondQualityColor, selectedColorstoneQualityColor])
-
     useEffect(() => {
         cartListData?.forEach((cartData) => {
             let mtrd = getPriceData?.rd?.find((ele) =>
@@ -455,22 +389,12 @@ export default function Cart({ open, toggleCartDrawer }) {
             ele?.B === cartData?.designno &&
             ele?.D === selectedMetalType
             );
-
-
-            console.log("mtrd", Object.values(Object.fromEntries(Object.entries(selectedMetalType).filter(([key, value]) => key === cartData.autocode))))
-            
         })
     }, [selectedMetalType])
-
-
-    // console.log("selectedMetalType",{selectedMetalType,selectedDiamondQualityColor,selectedColorstoneQualityColor})
-    // console.log("cartData",cartListData);
-    // console.log("DaimondQualityColor",DaimondQualityColor)
 
     const handelSize = (selectedId) => {
         const sizeData = allSelectedSizeData.find(item => item.id === parseInt(selectedId));
         if (sizeData) {
-            console.log('Selected size:', sizeData.sizename);
             const filteredData = getAllFilterSizeData?.filter(item => item.sizename === sizeData.sizename);
             const filteredDataMetal = filteredData?.filter(item => item.DiamondStoneTypeName === "METAL");
             const filteredDataDaimond = filteredData?.filter(item => item.DiamondStoneTypeName === "DIAMOND");
@@ -479,10 +403,6 @@ export default function Cart({ open, toggleCartDrawer }) {
         }
 
     }
-
-    console.log("metalFilterData", metalFilterData)
-    console.log("daimondFilterData", daimondFilterData)
-
 
     return (
         <Drawer

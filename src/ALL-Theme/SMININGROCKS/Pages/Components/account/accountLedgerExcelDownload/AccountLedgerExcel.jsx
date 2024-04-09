@@ -19,8 +19,6 @@ const AccountLedgerExcel = () => {
       const obj = JSON.parse(localStorage.getItem('excelData'))
       setExcelData(obj);
     }, [])
-    
-    console.log(excelData);
   
   return (
     <>

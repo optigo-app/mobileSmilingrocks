@@ -3,6 +3,26 @@
 }
 
 
+
+
+.SmiCartListTitle {
+    color: #7d7f85;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 25px;
+    margin: 0px 20px 0px 15px;
+}
+
+.smiCartPagePlaceOrderBtn{
+    position: fixed;
+    bottom: 7%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 10px;
+    z-index: 11111;
+    background-color: white;
+}
 .smilingCartDeatilSub1{
     /* width: 75%; */
     display: flex;
@@ -31,18 +51,24 @@
 
 
 .smiling-cartPageBoxMain {
-    border: 1px solid #ccc;
+    display: flex;
     position: relative;
-    /* margin: 5px; */
-    /* width: 47%; */
     border-radius: 5px;
     overflow: hidden;
-    /* max-height: 250px; */
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin: 10px;
+}
+
+.smilingCartBox1{
+    width: 50%;
+}
+.smiling-cartPageBoxMain-imageMain{
+    width: 50%;
 }
 
 .cartImageShow{
     width: 100%;
-    border-bottom: 1px solid #e1e1e1;
+    /* border-bottom: 1px solid #e1e1e1; */
 }
 
 .smilingCartPageDataMain {
@@ -191,14 +217,8 @@
 
 .cartProdSection .cartProdpart{
     padding-top: 15px;
-    display: grid;
     grid-template-columns: repeat(3, 1fr); /* Four columns with equal width */
     gap: 15px; 
-}
-
-.cartProdSection .cartProdpart .smiling-cartPageBoxMain{
-    width:unset !important;
-
 }
 
 .popUpcontainer{
@@ -326,14 +346,14 @@
     }
 
     .placeOrderCartPageBtnMobile {
-        background-color: #888;
-        color: white;
+        background-color: #ffd814;
         border: none;
         outline: none;
         height: 45px;
         border-radius: 5px;
         width: 200px;
         font-weight: 500;
+        margin: 5px;
     }
 
     .smilingCartPageDataMain {
@@ -344,13 +364,8 @@
         flex-direction: column !important;
     }
 
-    .smiling-cartPageBoxMain {
-        width: 90% !important;
-    }
-
     .similingCartPageBotttomMain {
         display: flex !important;
-
     }
 
     .placeOrderCartPageBtnMain {
@@ -365,7 +380,7 @@
 
 @media screen and (max-width: 600px) {
     .placeOrderCartPageBtnMobile {
-        width: 100%;
+        width: 50%;
         margin-top: 10px;
         height: 50px!important;
     }

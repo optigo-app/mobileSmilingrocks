@@ -92,6 +92,7 @@ export default function SMININGROCKS_App() {
                     location.pathname === "/LoginWithEmail" ||
                     location.pathname === "/productpage" ||
                     location.pathname === "/LoginWithEmailCode" ||
+                    location.pathname === "/CartPage" ||
                     location.pathname === "/accountledgerdebit" ||
                     location.pathname === "/accountledgercredit") ?
                     null : <Header />}
