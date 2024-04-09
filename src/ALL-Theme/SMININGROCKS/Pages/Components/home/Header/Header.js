@@ -1146,7 +1146,6 @@ export default function Header() {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                padding: "20px",
               }}
               className="smilingMobileSubDiv"
             >
@@ -1179,17 +1178,6 @@ export default function Header() {
 
                 className="mobileViewFirstDiv3"
               >
-
-                {islogin === "false" && (
-                  <li
-                    className="nav-li-smining"
-                    style={{ cursor: "pointer", color: 'white', marginRight: '15px' }}
-                    onClick={() => navigation('/LoginOption')}
-                  >
-                    {LOGIN}
-                  </li>
-                )}
-
 
                 {islogin === "true" &&
                   <div className="mobileHeaderFixedMobileLastDiv" style={{ display: 'flex' }}>
@@ -1271,22 +1259,6 @@ export default function Header() {
                       <img src={titleImg} className="MainlogogMobileImage" />
                     </a>
                   </div>
-                  {islogin === "false" && (
-                    <div style={{
-                      display: 'flex',
-                      justifyContent: 'flex-end',
-                      width: '23%',
-                      marginRight: '15px'
-                    }}>
-                      <li
-                        className="nav-li-smining"
-                        style={{ cursor: "pointer", color: '#7d7f85' }}
-                        onClick={() => navigation('/LoginOption')}
-                      >
-                        {LOGIN}
-                      </li>
-                    </div>
-                  )}
                   {islogin === "true" &&
                     <div className="mobileViewFirstDiv3" style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '15px' }}>
                       <Badge

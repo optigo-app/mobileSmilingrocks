@@ -582,6 +582,12 @@
 
 @media screen and (max-width:1440px) {
 
+    .smilingMobileSubDiv {
+        padding-top: 5px !important;
+        padding-inline: 15px !important;
+    }
+    
+
     .Smining-Top-Header-fixed {
         margin-inline: 10px !important;
     }
@@ -589,7 +595,7 @@
     .mobileHeaderSmining {
         display: block !important;
         background-color: rgb(192, 187, 177) !important;
-        height: 90px !important;
+        height: 70px !important;
     }
 
     .placeOrderBtn {
@@ -712,10 +718,7 @@
         width: 95% !important;
     }
 
-    .smilingMobileSubDiv {
-        padding-top: 15px !important;
-        padding-inline: 15px !important;
-    }
+ 
 
     .Smining-Top-Header-fixed {
         margin-inline: 0px !important;

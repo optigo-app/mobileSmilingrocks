@@ -26,6 +26,9 @@ import { toast } from "react-toastify";
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
+import { FiArrowLeft } from "react-icons/fi";
+import titleImg from "../../assets/title/sonasons.png";
+
 
 import { NavLink } from 'react-router-dom';
 import { BsFilterLeft } from "react-icons/bs";
@@ -33,28 +36,28 @@ import { FaFilter } from "react-icons/fa";
 
 
 
-export const ProductPageTab = ({ toggleDetailDrawer }) => {
+export const ProductPageTab = ({ toggleDetailDrawer, toggleShoryBy }) => {
   const [activeTab, setActiveTab] = useState();
 
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-    alert("Tab changed to " + tab); // Show an alert with the tab information
+  const handleTabChange = (event) => {
+    event.preventDefault();
+    toggleShoryBy();
   };
 
   const handleFilterClick = (event) => {
-    event.preventDefault(); // Prevent the default behavior
-    toggleDetailDrawer(); // Toggle the detail drawer
+    event.preventDefault();
+    toggleDetailDrawer();
   };
 
   return (
     <div style={styles.container}>
-      <div style={styles.tab} activeClassName="active" onClick={handleFilterClick}>
+      <div style={styles.tab} onClick={handleFilterClick}>
         <FaFilter style={activeTab === "/" ? styles.activeIcon : styles.icon} />
         <span style={activeTab === "/" ? styles.activeText : styles.text}>Filter</span>
       </div>
-      <div style={styles.tab} onClick={() => handleTabChange("/aboutUs")}>
-        <BsFilterLeft style={activeTab === "/aboutUs" ? styles.activeIcon : styles.icon} />
-        <span style={activeTab === "/aboutUs" ? styles.activeText : styles.text}>Short By</span>
+      <div style={styles.tab} onClick={handleTabChange}>
+        <BsFilterLeft style={activeTab === "/shortBy" ? styles.activeIcon : styles.icon} />
+        <span style={activeTab === "/shortBy" ? styles.activeText : styles.text}>Short By</span>
       </div>
     </div>
   );
@@ -109,7 +112,7 @@ function valuetext(value) {
 }
 
 
-const ProductList = ({ toggleDetailDrawer, isOpenDetail }) => {
+const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenShoryBy }) => {
 
   const ProductData2 = [];
 
@@ -1309,10 +1312,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail }) => {
                 sx={{
                   borderBottom: "1px solid #c7c8c9",
                   borderRadius: 0,
-                  marginLeft: "28px",
-                  "&.Mui-expanded": {
-                    marginLeft: "28px",
-                  },
+                  marginInline: '15px',
                   "&.MuiPaper-root.MuiAccordion-root:last-of-type": {
                     borderBottomLeftRadius: "0px",
                     borderBottomRightRadius: "0px",
@@ -1423,6 +1423,50 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail }) => {
     </Box>
   );
 
+
+  const handleSortChange = (val) => {
+    const selectedOption = val;
+    let sortedData = [...ProductApiData2];
+
+    if (selectedOption === 'PRICE HIGH TO LOW') {
+      sortedData.sort((a, b) => ((b?.UnitCost ?? 0) + (b?.price ?? 0) + (b?.markup ?? 0)) - ((a?.UnitCost ?? 0) + (a?.price ?? 0) + (a?.markup ?? 0)));
+    } else if (selectedOption === 'PRICE LOW TO HIGH') {
+      sortedData.sort((a, b) => ((a?.UnitCost ?? 0) + (a?.price ?? 0) + (a?.markup ?? 0)) - ((b?.UnitCost ?? 0) + (b?.price ?? 0) + (b?.markup ?? 0)));
+    } else {
+      sortedData = [...ProductApiData2];
+    }
+    setProductApiData2(sortedData);
+  };
+
+  const Newlist = (anchor) => (
+    <Box
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250, height: '250px' }}
+      role="presentation"
+      onClick={toggleDrawer(anchor, false)}
+      onKeyDown={toggleDrawer(anchor, false)}
+    >
+      {isOpenShoryBy &&
+        <div>
+          {/* <select
+            style={{
+              width: "100%",
+              border: "none",
+              outline: "none",
+              fontSize: "13px ",
+            }}
+            onChange={handleSortChange}
+            value={selectedSortOption}
+          > */}
+          <option value="None" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('None'); toggleShoryBy(); }}>Recommended</option>
+          <option value="None" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('None'); toggleShoryBy(); }}>New</option>
+          <option value="None" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('None'); toggleShoryBy(); }}>In stock</option>
+          <option value="PRICE HIGH TO LOW" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('PRICE HIGH TO LOW'); toggleShoryBy(); }}>PRICE HIGH TO LOW</option>
+          <option value="PRICE LOW TO HIGH" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('PRICE LOW TO HIGH'); toggleShoryBy(); }}>PRICE LOW TO HIGH</option>
+          {/* </select> */}
+        </div>}
+    </Box>
+  );
+
   return (
     <div id="top">
 
@@ -1437,9 +1481,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail }) => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            paddingTop: '110px'
           }}
-          className='paddingTopMobileSet'
         >
           <div className="smilingProductMain" id="smilingProductMain">
             <div
@@ -1642,6 +1684,16 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail }) => {
               >
                 {list("bottom")}
               </Drawer>
+
+              <Drawer
+                anchor="bottom"
+                open={isOpenShoryBy}
+                onClose={toggleShoryBy}
+              >
+                {Newlist("bottom")}
+              </Drawer>
+
+
               <div
                 style={{
                   width: "80%",
@@ -1656,130 +1708,139 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail }) => {
                 <div
                   style={{
                     width: "100%",
-                    // border: "1px solid #e1e1e1",
                     display: "flex",
-                    // justifyContent: "center",
-                    alignItems: "center",
-                    flexWrap: "wrap",
+                    flexDirection: 'column'
                   }}
-                  className="smilingAllProductDataMainMobile"
                 >
-                  {/* RollOverImageName */}
-                  {/* {(newProData.length ? newProData : finalDataOfDisplaying())?.map((products, i) => ( */}
-                  {(newProData?.length ? newProData : ProductApiData2)?.map((products, i) => (
-                    <div
-                      style={{
-                        width: "33.33%",
-                        border: "1px solid #e1e1e1",
-                        textAlign: "center",
-                        color: "#7d7f85",
-                        position: "relative",
-                        zIndex: 0,
-                      }}
-                      className="smilingProductImageBox"
+                  <div style={{ display: 'flex', position: 'fixed', width: '100%', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray', backgroundColor: 'white', zIndex: '111111' }}>
+                    <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => navigate('/')} />
+                    <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
+                      <img src={titleImg} className="MainlogogMobileImage" />
+                    </div>
+                  </div>
+                  <div
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      flexWrap: "wrap",
+                      marginTop: '15%'
+                    }}
+                    className="smilingAllProductDataMainMobile"
+                  >
+                    {(newProData?.length ? newProData : ProductApiData2)?.map((products, i) => (
 
-                    >
-                      <div onClick={() => handelProductSubmit(products)}>
-                        <img
-                          className="prod_img"
-                          src={
-                            hoveredImageUrls[i] ? hoveredImageUrls[i] : // Check if hover image URL exists
-                              (products?.MediumImagePath ?
-                                (products?.imagepath + products?.MediumImagePath?.split(",")[0])
-                                :
-                                notFound)
-                          }
-                          onMouseEnter={() => handleHoverImageShow(products?.MediumImagePath?.split(",")[0], i, products?.RollOverImageName, products?.imagepath)}
-                          // onMouseEnter={() => handleHoverImageShow(products?.MediumImagePath?.split(",")[0], i, isColorWiseImageShow === 1 ? products?.ColorWiseRollOverImageName : products?.RollOverImageName, products?.imagepath)}
-                          onMouseLeave={() => handleMouseLeave(i)}
-                          style={{ objectFit: 'cover' }}
-                          alt="#"
-                        />
-                      </div>
-                      <div className="productTitleLine" onClick={() => handelProductSubmit(products)}>
-                        <p
-                          style={{
-                            fontSize: "13px",
-                            textTransform: "uppercase",
-                            fontWeight: "500",
-                            cursor: "pointer",
-                            textoverflow: "ellipsis",
-                            height: '35px',
-                            overflow: 'hidden',
-                            margin: '3px'
-                          }}
-                          className="smilingProductDeatilTitleMobile"
-                        >
-                          {products?.TitleLine}
-                        </p>
-                      </div>
-                      <div style={{}}>
-                        <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'space-between', marginInline: '10px' }}>
-                          {ismetalWShow === 1 &&
-                            <div>
-                              <p style={{ margin: '0px', fontSize: '13px' }}>NWT : <span style={{ fontWeight: 600, marginRight: '15px' }}>{(products?.netwt).toFixed(2)}</span></p>
-                            </div>}
-                          <p style={{ margin: '0px', fontSize: '15px', fontWeight: 'bold' }}>{products?.designno}</p>
-                        </div>
-                        <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'space-between', marginInline: '10px' }}>
-                          {isGrossWShow === 1 && <div>
-                            <p style={{ margin: '0px', fontSize: '13px' }}>GWT : <span style={{ fontWeight: 600, marginRight: '10px' }}>{(products?.Grossweight).toFixed(2)}</span></p>
-                          </div>}
-                          <p style={{ fontSize: "15px", fontWeight: 'bold' }}>
-                            {isPriceShow === 1 &&
-                              <span>
-                                {currencySym?.Currencysymbol}
-                                {((products?.UnitCost ?? 0) + (products?.price ?? 0) + (products?.markup ?? 0)).toFixed(2)}
-                              </span>
+                      <div
+                        style={{
+                          width: "33.33%",
+                          border: "1px solid #e1e1e1",
+                          textAlign: "center",
+                          color: "#7d7f85",
+                          position: "relative",
+                          zIndex: 0,
+                        }}
+                        className="smilingProductImageBox"
+
+                      >
+                        <div onClick={() => handelProductSubmit(products)}>
+                          <img
+                            className="prod_img"
+                            src={
+                              hoveredImageUrls[i] ? hoveredImageUrls[i] : // Check if hover image URL exists
+                                (products?.MediumImagePath ?
+                                  (products?.imagepath + products?.MediumImagePath?.split(",")[0])
+                                  :
+                                  notFound)
                             }
+                            onMouseEnter={() => handleHoverImageShow(products?.MediumImagePath?.split(",")[0], i, products?.RollOverImageName, products?.imagepath)}
+                            // onMouseEnter={() => handleHoverImageShow(products?.MediumImagePath?.split(",")[0], i, isColorWiseImageShow === 1 ? products?.ColorWiseRollOverImageName : products?.RollOverImageName, products?.imagepath)}
+                            onMouseLeave={() => handleMouseLeave(i)}
+                            style={{ objectFit: 'cover' }}
+                            alt="#"
+                          />
+                        </div>
+                        <div className="productTitleLine" onClick={() => handelProductSubmit(products)}>
+                          <p
+                            style={{
+                              fontSize: "13px",
+                              textTransform: "uppercase",
+                              fontWeight: "500",
+                              cursor: "pointer",
+                              textoverflow: "ellipsis",
+                              height: '35px',
+                              overflow: 'hidden',
+                              margin: '3px'
+                            }}
+                            className="smilingProductDeatilTitleMobile"
+                          >
+                            {products?.TitleLine}
                           </p>
                         </div>
-                      </div>
-
-
-
-                      <div style={{ position: "absolute", zIndex: 999999, top: 0, right: 0, display: 'flex' }}>
-                        <div>
-                          <Checkbox
-                            icon={
-                              <StarBorderIcon
-                                sx={{ fontSize: "22px", color: "#ffd200" }}
-                              />
-                            }
-                            checkedIcon={
-                              <StarIcon
-                                sx={{ fontSize: "22px", color: "#ffd200" }}
-                              />
-                            }
-                            disableRipple={true}
-                            sx={{ padding: "5px" }}
-
-                            checked={products?.wishCheck}
-                            onChange={(e) => handelWishList(e, products)}
-                          />
-
+                        <div style={{}}>
+                          <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'space-between', marginInline: '10px' }}>
+                            {ismetalWShow === 1 &&
+                              <div>
+                                <p className="mobileDeatilDiv1Text1" style={{ margin: '0px', fontSize: '13px' }}>NWT : <span style={{ fontWeight: 600, marginRight: '15px' }}>{(products?.netwt).toFixed(2)}</span></p>
+                              </div>}
+                            <p className="mobileDeatilDiv1Text2" style={{ margin: '0px', fontSize: '15px', fontWeight: 'bold' }}>{products?.designno}</p>
+                          </div>
+                          <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'space-between', marginInline: '10px' }}>
+                            {isGrossWShow === 1 && <div>
+                              <p className="mobileDeatilDiv1Text1" style={{ margin: '0px', fontSize: '13px' }}>GWT : <span style={{ fontWeight: 600, marginRight: '10px' }}>{(products?.Grossweight).toFixed(2)}</span></p>
+                            </div>}
+                            <p style={{ fontSize: "15px", fontWeight: 'bold' }} className="mobileDeatilDiv1Text2">
+                              {isPriceShow === 1 &&
+                                <span>
+                                  {currencySym?.Currencysymbol}
+                                  {((products?.UnitCost ?? 0) + (products?.price ?? 0) + (products?.markup ?? 0)).toFixed(2)}
+                                </span>
+                              }
+                            </p>
+                          </div>
                         </div>
-                        <div>
-                          <Checkbox
-                            icon={
-                              <LocalMallOutlinedIcon
-                                sx={{ fontSize: "22px", color: "#ffd200" }}
-                              />
-                            }
-                            checkedIcon={
-                              <LocalMallIcon
-                                sx={{ fontSize: "22px", color: "#ffd200" }}
-                              />
-                            }
-                            disableRipple={true}
-                            sx={{ padding: "5px" }}
 
-                            checked={products?.checkFlag}
-                            onChange={(e) => handelCartList(e, products)}
-                          />
+                        <div style={{ position: "absolute", zIndex: 999999, top: 0, right: 0, display: 'flex' }}>
+                          <div>
+                            <Checkbox
+                              icon={
+                                <StarBorderIcon
+                                  sx={{ fontSize: "22px", color: "#ffd200" }}
+                                />
+                              }
+                              checkedIcon={
+                                <StarIcon
+                                  sx={{ fontSize: "22px", color: "#ffd200" }}
+                                />
+                              }
+                              disableRipple={true}
+                              sx={{ padding: "5px" }}
+
+                              checked={products?.wishCheck}
+                              onChange={(e) => handelWishList(e, products)}
+                            />
+
+                          </div>
+                          <div>
+                            <Checkbox
+                              icon={
+                                <LocalMallOutlinedIcon
+                                  sx={{ fontSize: "22px", color: "#ffd200" }}
+                                />
+                              }
+                              checkedIcon={
+                                <LocalMallIcon
+                                  sx={{ fontSize: "22px", color: "#ffd200" }}
+                                />
+                              }
+                              disableRipple={true}
+                              sx={{ padding: "5px" }}
+
+                              checked={products?.checkFlag}
+                              onChange={(e) => handelCartList(e, products)}
+                            />
+                          </div>
                         </div>
-                      </div>
-                      {/* {products?.IsColorWiseImageExists !== null && (
+                        {/* {products?.IsColorWiseImageExists !== null && (
                         <div
                           style={{
                             display: "flex",
@@ -1815,19 +1876,13 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail }) => {
                           ></div>
                         </div>
                       )} */}
-                    </div>
-                  ))}
-
-
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
-            <SmilingRock />
-            <Footer />
           </div>
-        </div>
-        <div style={{ display: 'flex', justifyContent: 'center', paddingBlock: '30px' }}>
-          <p style={{ margin: '0px', fontWeight: 500, width: '100px', color: 'white', cursor: 'pointer' }} onClick={() => window.scrollTo(0, 0)}>BACK TO TOP</p>
         </div>
       </div>
 

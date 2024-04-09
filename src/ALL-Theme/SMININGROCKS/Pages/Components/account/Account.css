@@ -4,13 +4,11 @@
 }
 
 .SmilingAccountTitle {
-
     font-size: 40px;
     text-align: center;
     color: #7d7f85;
     font-family: 'PT Sans', sans-serif;
     font-weight: 500;
-    padding-top: 80px;
 }
 
 .smling-AccountTabMain {
@@ -131,6 +129,7 @@
 
     .smling-AccountTabMain {
     margin-inline: 5%;
+    padding-bottom: 100px;
 
     }
 }
@@ -179,7 +178,6 @@
 
     .youraccountpagesec{
         font-size: calc(1.375rem + 1.5vw) !important;
-        padding-bottom: 10px;
     }
 
     .accountTabSection .MuiTabs-scrollButtons{

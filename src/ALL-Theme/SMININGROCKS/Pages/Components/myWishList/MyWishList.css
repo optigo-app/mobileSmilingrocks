@@ -6,8 +6,8 @@
 .SmiWishListTitle {
     color: #7d7f85;
     font-family: 'PT Sans', sans-serif;
-    font-size: 40px;
-    padding-top: 80px;
+    font-size: 30px;
+    padding-top: 10px;
     text-align: center;
 }
 
@@ -35,16 +35,17 @@
 }
 
 .smiTopClearBtn {
-    height: 60px;
+    height: 50px;
     width: 150px;
     color: #7d7f85;
     background-color: white;
     border: 1px solid #7d7f85;
     font-size: 13px;
     font-weight: 500;
-    margin: 10px;
+    margin: 2px;
 
 }
+
 .smiTopClearBtn:hover {
     color: white;
     background-color: #7d7f85;
@@ -68,8 +69,8 @@
 
 .smiWishLsitBoxMain {
     display: flex;
-    margin: 50px 5% 5% 5%;
     flex-wrap: wrap;
+    margin-top: 20px;
 }
 
 .smiWishLsitBox {
@@ -111,83 +112,87 @@
     cursor: pointer;
 }
 
-
-@media screen and (max-width: 600px) {
-    .smilingListTopButton {
-       display: flex;
-       flex-direction: column;
-       margin: 20px;
-    }
-    .smiTopShareBtn{
-        width: 100%;
-        margin: 0px;
-    }
-    .smiTopClearBtn{
-        width: 100%;
-        margin: 0px;
-        margin-top: 15px;
-    }
-    .smiTopAddAllBtn{
-        width: 100%;
-        margin: 0px;
-        margin-top: 15px;
-
-    }
-
-}
 @media screen and (max-width: 1441px) {
 
-    .smiWishLsitBoxMain{
+    .smiWishLsitBoxMain {
         padding-bottom: 80px;
     }
 
-    .smiWishLsitBoxDesc1{
+    .smiWishLsitBoxDesc1 {
         margin-inline: 5px;
     }
-    .smiWishLsitBoxDesc2{
+
+    .smiWishLsitBoxDesc2 {
         margin-inline: 5px;
 
     }
-    .smiWishLsitBoxDesc3{
+
+    .smiWishLsitBoxDesc3 {
         margin-inline: 5px;
 
     }
-    .smiling-wishlist{
-        margin-inline: 2%;
+
+    .smiling-wishlist {
+        margin-inline: 0px;
     }
 }
+
 @media screen and (max-width: 1000px) {
 
-    .smiWishLsitBox{
+    .smiWishLsitBox {
         width: 33.33%;
-        padding-bottom: 150px!important;
     }
-    .smiWishLsitBoxDesc1{
+
+    .smiWishLsitBoxDesc1 {
         margin: 0;
     }
 }
 
 @media screen and (max-width: 800px) {
 
-    .smiWishLsitBox{
-        width: 50%;
+    .smiWishLsitBox {
+        width: 47%;
     }
-    .smiWishLsitBoxMain{
-        display: flex!important;
-        flex-wrap: nowrap!important;
+
+    .smiWishLsitBoxMain {
+        display: flex !important;
     }
 }
 
-@media screen and (max-width: 450px) {
-    .smiWishLsitBoxMain{
-        display: flex!important;
-        flex-wrap: nowrap!important;
-        flex-direction: column!important;
-        padding-bottom: 200px!important;
+@media screen and (max-width: 600px) {
+    .smilingListTopButton {
+        display: flex;
+        flex-direction: column;
     }
 
-    .smiWishLsitBox{
-        width: 100%!important;
+    .smiTopShareBtn {
+        width: 100%;
+        margin: 0px;
+    }
+
+    .smiTopClearBtn {
+        width: 100%;
+    }
+
+    .smiTopAddAllBtn {
+        width: 100%;
+        margin: 0px;
+        margin-top: 15px;
+
+    }
+
+}
+
+@media screen and (max-width: 350px) {
+    .smiWishLsitBoxMain {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        flex-direction: column !important;
+        padding-bottom: 200px !important;
+    }
+
+    .smiWishLsitBox {
+        width: 100% !important;
     }
 
 }

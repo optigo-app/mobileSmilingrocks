@@ -45,6 +45,7 @@ import CartPage from './Pages/Components/home/Header/cartPage/CartPage'
 import { ToastContainer } from 'react-toastify';
 import HomeTab from './Pages/Components/HomeTab'
 import Category from './Pages/Components/CategoryPage/Category'
+import WithoutLoginCart from './Pages/Components/home/Header/cartPage/WithoutLoginCart'
 
 export default function SMININGROCKS_App() {
 
@@ -53,9 +54,13 @@ export default function SMININGROCKS_App() {
     const setWishCount = useSetRecoilState(WishListCounts)
 
     const [isOpenDetail, setIsOpenDetail] = useState(false);
-
     const toggleDetailDrawer = () => {
       setIsOpenDetail(!isOpenDetail);
+    };
+
+    const [isOpenShoryBy, setIsOpenShortBy] = useState(false);
+    const toggleShoryBy = () => {
+        setIsOpenShortBy(!isOpenShoryBy);
     };
 
     const getCountFunc = async () => {
@@ -82,7 +87,6 @@ export default function SMININGROCKS_App() {
                     location.pathname === "/ContinueWithEmail" ||
                     location.pathname === "/ContimueWithMobile" ||
                     location.pathname === "/accountledgerexcel" ||
-                    location.pathname === "/LoginOption" ||
                     location.pathname === "/register" ||
                     location.pathname === "/LoginWithMobileCode" ||
                     location.pathname === "/LoginWithEmail" ||
@@ -119,7 +123,7 @@ export default function SMININGROCKS_App() {
                         <Route path="/searchResult" element={<SearchResult />} />
                         <Route path="/celeb" element={<Celeb />} />
                         <Route path="/blog" element={<Blog />} />
-                        <Route path="/productpage" element={<ProductList toggleDetailDrawer={toggleDetailDrawer} isOpenDetail={isOpenDetail}/>} />
+                        <Route path="/productpage" element={<ProductList toggleDetailDrawer={toggleDetailDrawer} toggleShoryBy={toggleShoryBy} isOpenShoryBy={isOpenShoryBy} isOpenDetail={isOpenDetail}/>} />
                         <Route path="/productdetail" element={<ProdDetail />} />
                         <Route path="/Delivery" element={<Delivery />} />
                         <Route path="/Payment" element={<Payment />} />
@@ -127,9 +131,10 @@ export default function SMININGROCKS_App() {
                         <Route path="/LoginOption" element={<LoginOption />} />
                         <Route path="/CartPage" element={<CartPage />} />
                         <Route path="/Category" element={<Category />} />
+                        <Route path="/WithoutLoginCart" element={<WithoutLoginCart />} />
                     </Routes>
                     {(location.pathname === "/productpage") ?
-                         <ProductPageTab toggleDetailDrawer={toggleDetailDrawer} /> : <HomeTab />}
+                         <ProductPageTab toggleDetailDrawer={toggleDetailDrawer} toggleShoryBy={toggleShoryBy}/> : <HomeTab />}
                 </div>
             </div>
         </>
