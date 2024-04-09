@@ -372,7 +372,6 @@
         height: 43px;
         border: 1px solid #e1e1e1;
     }
-
     .paddingTopMobileSet {
         background: transparent !important;
         padding-top: 0px !important;
@@ -429,5 +428,18 @@
     .productvideo{
         margin-left: 0px !important;
         height: 290px !important;
+    }
+    .srprodetail1 {
+        height: 320px;
+        margin-top: 60px;
+    }
+    .srprodetail1 span{
+        margin-left: 0px !important;
+    }
+    .smilingProdutDetltTitle{
+        margin-bottom: 0px !important;
+    }
+    .srprodetail2{
+        margin-top: 10px;
     }
 }

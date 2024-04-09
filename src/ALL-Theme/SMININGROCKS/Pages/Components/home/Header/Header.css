@@ -805,9 +805,10 @@
 .container {
     display: flex;
     align-items: center;
-    background-color: #f0f0f0;
+    background-color: #fff;
+    border-bottom: 1px solid #f0efef;
     justify-content: space-between;
-    padding: 10px 15px 10px 10px;
+    padding: 5px 15px 5px 10px;
     position: fixed;
     top: 0;
     width: 100%;

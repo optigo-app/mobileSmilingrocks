@@ -19,11 +19,15 @@ const HomeTab = () => {
     setActiveTab(tab);
   };
 
+
+
+
+
   return (
     <>
       {location.pathname == '/productdetail' ?
         <>
-          <button
+          {/* <button
             style={{
               position:'fixed',
               bottom:0,
@@ -41,7 +45,7 @@ const HomeTab = () => {
             }}
           >
             Add to cart
-          </button>
+          </button> */}
         </>
         :
         <div style={styles.container}>

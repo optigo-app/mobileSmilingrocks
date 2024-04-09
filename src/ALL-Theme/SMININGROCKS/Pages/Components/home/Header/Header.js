@@ -449,7 +449,9 @@ export default function Header() {
   const handleBack = () => {
     navigation(-1);
   }
-
+  const handleCartPage = () => {
+    navigation('/CartPage')
+  }
 
   return (
     <>
@@ -1108,18 +1110,18 @@ export default function Header() {
         <div className="container">
           <div className="back-arrow" onClick={handleBack}><KeyboardBackspaceIcon /></div>
           <div className="search-wrapper">
-            <input type="text" className="search-input" placeholder="Search..."  value={searchText} onChange={(e) => setSearchText(e.target.value)} onKeyPress={handleKeyPress} />
-            <div className="search-icon"><SearchIcon sx={{color:'rgba(0, 0, 0, 0.3  )'}} /></div>
-            {/* <a href="/">
+            {/* <input type="text" className="search-input" placeholder="Search..." value={searchText} onChange={(e) => setSearchText(e.target.value)} onKeyPress={handleKeyPress} /> */}
+            {/* <div className="search-icon"><SearchIcon sx={{ color: 'rgba(0, 0, 0, 0.3  )' }} /></div> */}
+            <a href="/">
               <img src={titleImg} className="MainlogogMobileImage" />
-            </a> */}
+            </a>
           </div>
           <Badge badgeContent={getCartListCount}
             overlap={"rectangular"}
             color="secondary"
             style={{ marginInline: '6px' }}>
             <div className="cart-icon">
-              <FaShoppingCart />
+              <FaShoppingCart onClick={handleCartPage} />
             </div>
           </Badge>
         </div>
