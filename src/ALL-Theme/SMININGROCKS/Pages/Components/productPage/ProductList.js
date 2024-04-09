@@ -1667,7 +1667,6 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail }) => {
                   {/* RollOverImageName */}
                   {/* {(newProData.length ? newProData : finalDataOfDisplaying())?.map((products, i) => ( */}
                   {(newProData?.length ? newProData : ProductApiData2)?.map((products, i) => (
-
                     <div
                       style={{
                         width: "33.33%",

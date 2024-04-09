@@ -425,7 +425,6 @@ export default function Header() {
   const [gSearch, setGSearch] = useRecoilState(searchData)
 
   const handleEnterPress = () => {
-    debugger
     const savedProductList = localStorage.getItem('allproductlist');
     if (savedProductList) {
       const productList = JSON.parse(savedProductList);
@@ -448,7 +447,7 @@ export default function Header() {
   }
 
   const handleBack = () => {
-    navigation('/productpage');
+    navigation(-1);
   }
 
 
@@ -1109,7 +1108,7 @@ export default function Header() {
         <div className="container">
           <div className="back-arrow" onClick={handleBack}><KeyboardBackspaceIcon /></div>
           <div className="search-wrapper">
-            <input type="text" className="search-input" placeholder="Search..." onChange={(e) => setSearchText(e.target.value)} onKeyPress={handleKeyPress} />
+            <input type="text" className="search-input" placeholder="Search..."  value={searchText} onChange={(e) => setSearchText(e.target.value)} onKeyPress={handleKeyPress} />
             <div className="search-icon"><SearchIcon sx={{color:'rgba(0, 0, 0, 0.3  )'}} /></div>
             {/* <a href="/">
               <img src={titleImg} className="MainlogogMobileImage" />
