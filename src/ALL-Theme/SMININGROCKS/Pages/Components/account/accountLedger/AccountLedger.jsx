@@ -222,7 +222,6 @@ const AccountLedger = () => {
       const backToInitial2 = () => {
           const firstDayOfMonth = dayjs().startOf('month');
           const lastDayOfMonth = dayjs().endOf('month');
-          console.log("back ini", firstDayOfMonth, lastDayOfMonth);
           setFromDate(null);
           setToDate(null);
           setSelectedDays(null)
@@ -1213,7 +1212,6 @@ const AccountLedger = () => {
                                     // onChange={(newValue) => setFromDate(newValue)}
                                     // onChange={handleFromDateChange}
                                     onChange={(newValue) => {
-                                        console.log(moment(newValue));
                                         if (newValue === null) {
                                           setFromDate(null)
                                         } else {

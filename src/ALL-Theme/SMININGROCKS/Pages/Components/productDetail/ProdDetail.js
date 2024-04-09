@@ -88,6 +88,13 @@ const ProdDetail = () => {
   const setCartCount = useSetRecoilState(CartListCounts)
   const setWishCount = useSetRecoilState(WishListCounts)
   const getDesignSet = useRecoilValue(designSet)
+  const [currData, setCurrData] = useState([])
+
+  useEffect(() => {
+    let currencyData = JSON.parse(localStorage.getItem("currencyData"))
+    setCurrData(currencyData)
+  }, [])
+
   const handelImgLoad = () => {
     setImgLoading(false)
   }
@@ -292,6 +299,7 @@ const ProdDetail = () => {
 
 
   }
+
 
   useEffect(() => {
     let srProductsData = JSON.parse(localStorage.getItem('srProductsData'));
@@ -1211,8 +1219,8 @@ const ProdDetail = () => {
   useEffect(() => {
 
     let srData = JSON.parse(localStorage.getItem("srProductsData"))
-    let price = ((productData?.UnitCost ?? 0) + (mtrdData?.Z ?? 0) + (dqcData ?? 0) + (csqcData ?? 0) + (sizeMarkup ?? 0) + (metalUpdatedPrice() ?? 0) + (diaUpdatedPrice() ?? 0) + (colUpdatedPrice() ?? 0))
-
+    let price = ((productData?.UnitCost ?? 0) + (((mtrdData?.V ?? 0)/currData?.CurrencyRate) + (mtrdData?.W ?? 0)) + (dqcData ?? 0) + (csqcData ?? 0) + (sizeMarkup ?? 0) + (metalUpdatedPrice() ?? 0) + (diaUpdatedPrice() ?? 0) + (colUpdatedPrice() ?? 0))
+    //((mtrdData?.V/currData[0]?.CurrencyRate ?? 0) + mtrdData?.W ?? 0)
     if (price) {
       srData.price = Number(price)
     }
@@ -1221,7 +1229,16 @@ const ProdDetail = () => {
 
   }, [mtrdData, dqcData, csqcData, sizeMarkup, metalUpdatedPrice, diaUpdatedPrice, colUpdatedPrice])
 
-  // console.log("pricedata",mtrdData,dqcData,csqcData,sizeMarkup,metalUpdatedPrice(),diaUpdatedPrice(),colUpdatedPrice())
+  console.log("pricedata",(((mtrdData?.V ?? 0)/currData?.CurrencyRate) + (mtrdData?.W ?? 0)),dqcData,csqcData,sizeMarkup,metalUpdatedPrice(),diaUpdatedPrice(),colUpdatedPrice())
+  console.log("pricedatacv",((productData?.UnitCost ?? 0) + (((mtrdData?.V ?? 0)/currData?.CurrencyRate) + (mtrdData?.W ?? 0))+ (dqcData ?? 0) + (csqcData ?? 0) + (sizeMarkup ?? 0) + (metalUpdatedPrice() ?? 0) + (diaUpdatedPrice() ?? 0) + (colUpdatedPrice() ?? 0)))
+
+
+  const decodeEntities = (html) => {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+  }
+
 
   return (
     <div
@@ -1883,27 +1900,27 @@ const ProdDetail = () => {
               </div>}
 
               {isPriseShow == 1 && (
-                <div style={{ marginTop: "23px" }}>
-                  <p style={{ color: "#7d7f85", fontSize: "14px" }}>
-                    {/* Price: <span style={{ fontWeight: '500', fontSize: '16px' }}>{currencySymbol?.Currencysymbol}{`${(productData?.price - grandTotal) === 0 ? "Not Availabel" : (productData?.price - grandTotal)?.toFixed(2)}`}</span> */}
-                    {/* Price: <span style={{ fontWeight: '500', fontSize: '16px' }}>{currencySymbol?.Currencysymbol}{`${productData?.UnitCost + (productData?.price - grandTotal)?.toFixed(2)}`}</span> */}
-                    Price:{" "}
-                    <span style={{ fontWeight: "500", fontSize: "16px" }}>
-                      {currencySymbol?.Currencysymbol}
-                      {`${(
-                        productData?.UnitCost +
-                        (mtrdData?.Z ?? 0) +
-                        (dqcData ?? 0) +
-                        (csqcData ?? 0) +
-                        (sizeMarkup ?? 0) +
-                        (metalUpdatedPrice() ?? 0) +
-                        (diaUpdatedPrice() ?? 0) +
-                        (colUpdatedPrice() ?? 0)
-                      ).toFixed(2)}`}
-                    </span>
-                  </p>
-                </div>
-              )}
+                  <div style={{ marginTop: "23px" }}>
+                    <p style={{ color: "#7d7f85", fontSize: "14px",display:'flex'}}>
+                      {/* Price: <span style={{ fontWeight: '500', fontSize: '16px' }}>{currencySymbol?.Currencysymbol}{`${(productData?.price - grandTotal) === 0 ? "Not Availabel" : (productData?.price - grandTotal)?.toFixed(2)}`}</span> */}
+                      {/* Price: <span style={{ fontWeight: '500', fontSize: '16px' }}>{currencySymbol?.Currencysymbol}{`${productData?.UnitCost + (productData?.price - grandTotal)?.toFixed(2)}`}</span> */}
+                       Price:{" "}
+                      <span style={{ fontWeight: "500", fontSize: "16px",display:'flex'}}>
+                      <div dangerouslySetInnerHTML={{ __html: decodeEntities(currData?.Currencysymbol) }} />
+                        {`${(
+                          productData?.UnitCost +
+                          (((mtrdData?.V ?? 0)/currData?.CurrencyRate) + (mtrdData?.W ?? 0))+
+                          (dqcData ?? 0) +
+                          (csqcData ?? 0) +
+                          (sizeMarkup ?? 0) +
+                          (metalUpdatedPrice() ?? 0) +
+                          (diaUpdatedPrice() ?? 0) +
+                          (colUpdatedPrice() ?? 0)
+                        ).toFixed(2)}`}
+                      </span>
+                    </p>
+                  </div>
+                )}
 
               {/* <div>
                   <button className="prodetailbtn">

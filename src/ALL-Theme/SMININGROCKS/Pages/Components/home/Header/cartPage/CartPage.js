@@ -127,7 +127,6 @@ export default function CartPage() {
 
 
   useEffect(() => {
-    console.log('getPriceDatagetPriceData', getPriceData);
     let mtrd = getPriceData?.rd?.filter(
       (ele) =>
         ele?.A === cartSelectData?.autocode &&
@@ -147,8 +146,6 @@ export default function CartPage() {
         ele.H === diaQColOpt?.split("_")[0] &&
         ele.J === diaQColOpt?.split("_")[1]
     );
-
-    console.log("diaqcprice", diaqcprice)
 
     if (diaqcprice && diaqcprice.length > 0) {
       let totalPrice = diaqcprice.reduce((acc, obj) => acc + obj.S, 0)
@@ -557,56 +554,7 @@ export default function CartPage() {
     setDaimondFiletrData(filteredDataDaimond)
   };
 
-  // const handleColorSelection = (color) => {
-  //     let uploadPath = localStorage.getItem('UploadLogicalPath');
-  //     const storedDataAll = localStorage.getItem('storeInit');
-  //     const data = JSON.parse(storedDataAll);
-  //     if (data.IsColorWiseImages === 1) {
-  //       const selectedColor = color;
-  //       setSelectedColor(selectedColor);
-  //       const filteredData = colorImageData.filter(item => item.colorname.toLowerCase() === selectedColor.toLowerCase());
-  //       console.log('Filter Data', filteredData);
-  //       if (filteredData.length > 0) {
-  //         const correctedData = filteredData.map(item => {
-  //           return {
-  //             ...item,
-  //             imagepath: convertPath(item.imagepath)
-  //           };
-  //         });
-  //         correctedData.forEach(item => {
-  //           item.imagepath = uploadPath + '/' + data.ukey + item.imagepath;
-  //           console.log('Updated Path:', item.imagepath);
-  //         });
-  //         correctedData.forEach((item, index) => {
-  //           correctedData[index] = item;
-  //         });
-  //         setTimeout(() => {
-  //           setUpdateColorImage(correctedData);
-  //         }, 100);
-  //       } else {
-  //         setUpdateColorImage('');
-  //       }
-  //       const selectedColorData = colorImageData.find(item => item.colorname === selectedColor);
-  //       if (selectedColorData) {
-  //         const correctedImagePath = convertPath(selectedColorData.imagepath);
-  //         let path = uploadPath + '/' + data.ukey + correctedImagePath
-  //         setSelectedImagePath(path);
-  //       } else {
-  //         setSelectedImagePath('');
-  //       }
-  //     }
-  // };
-
-  console.log('cartListData', cartListData);
-  console.log('dqcData', dqcData);
-  console.log('csqcData', csqcData);
-  console.log('mtrdData', mtrdData?.Z);
-
-  useEffect(() => {
-
-  }, [])
-
-
+  console.log('cartListDatacartListData', cartListData);
 
   return (
     <>
@@ -628,17 +576,14 @@ export default function CartPage() {
               zIndex: "111",
             }}
           >
-            <p className="SmiWishListTitle" style={{ paddingTop: "10px", margin: '0px' }}>
+            <p className="SmiCartListTitle">
               My Cart
             </p>
 
             {cartListData?.length !== 0 && (
               <div>
-                <div
-                  className="smilingListTopButton"
-                  style={{ marginInline: '10px' }}
-                >
-                  <div style={{display: 'flex'}}>
+                <div className="smiCartPagePlaceOrderBtn">
+                  {/* <div style={{display: 'flex'}}>
                     <button
                       className="smiTopClearBtn"
                       onClick={() => handleChange(0)}
@@ -651,8 +596,8 @@ export default function CartPage() {
                     >
                       Image View
                     </button>
-                  </div>
-                  <div style={{display: 'flex'}}>
+                  </div> */}
+                  {/* <div style={{display: 'flex'}}>
                     <button
                       className="smiTopClearBtn"
                       onClick={handleRemoveAllWishList}
@@ -665,6 +610,9 @@ export default function CartPage() {
                     >
                       Show ProductList
                     </button>
+                  </div> */}
+                  <div>
+                    {/* <p style={{ margin: '0px', fontWeight: 600 }}>$ 121.152</p> */}
                   </div>
                   <button
                     className="placeOrderCartPageBtnMobile"
@@ -1118,116 +1066,114 @@ export default function CartPage() {
                         </div>
                       </div>
                     )}
-                    {!isLoading && <div className="cartProdSection resCon">
-                      <div
-                        // style={{
-                        //   display: "flex",
-                        //   flexWrap: "wrap",
-                        //   height: "565px",
-                        //   overflowY: "auto",
-                        // }}
-                        className="cartProdpart"
-                      >
-                        {cartListData?.map((item, index) => (
-                          <div
-                            key={item.id}
-                            className="smiling-cartPageBoxMain"
-                            onClick={() => {
-                              setCartSelectData(item);
-                              getSizeData(item.autocode)
-                              window.innerWidth <= 1080 && setDialogOpen(true)
-                            }}
-                          >
+                    {
+                      !isLoading && <div className="cartProdSection resCon">
+                        <div className="cartProdpart">
+                          {cartListData?.map((item, index) => (
                             <div
-                              style={{
-                                cursor: "pointer",
-                                position: "absolute",
-                                right: "0px",
-                                top: "0px",
-                                backgroundColor: "black",
-                                borderRadius: "2px",
-                                opacity: "0.8",
+                              key={item.id}
+                              className="smiling-cartPageBoxMain"
+                              onClick={() => {
+                                setCartSelectData(item);
+                                getSizeData(item.autocode)
+                                window.innerWidth <= 1080 && setDialogOpen(true)
                               }}
-                              onClick={() => handleRemove(item)}
                             >
-                              <CloseIcon
-                                sx={{ color: "white", fontSize: "22px" }}
-                              />
-                            </div>
-                            <img
-                              src={`${imageURL}/${yKey}/${item.DefaultImageName}`}
-                              alt="#"
-                              className="cartImageShow"
-                            />
-                            <div
-                              className="smilingCartBox1"
-                              style={{ padding: "5px" }}
-                            >
-                              <div
+                              {/* <div
                                 style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
+                                  cursor: "pointer",
+                                  position: "absolute",
+                                  right: "0px",
+                                  top: "0px",
+                                  backgroundColor: "black",
+                                  borderRadius: "2px",
+                                  opacity: "0.8",
                                 }}
+                                onClick={() => handleRemove(item)}
                               >
-                                <p style={{ margin: "0px", fontSize: "12px" }}>
-                                  NWT :{" "}
-                                  <span style={{ fontWeight: 600 }}>
-                                    {item?.MetalWeight}
-                                  </span>
-                                </p>
-                                <p style={{ margin: "0px", fontSize: "12px" }}>
-                                  DWT :{" "}
-                                  <span style={{ fontWeight: 600 }}>
-                                    {item?.Rec_DiamondWeight} /{" "}
-                                    {item?.totaldiamondpcs}
-                                  </span>
-                                </p>
+                                <CloseIcon
+                                  sx={{ color: "white", fontSize: "22px" }}
+                                />
+                              </div> */}
+                              <div className="smiling-cartPageBoxMain-imageMain">
+                                <img
+                                  src={`${imageURL}/${yKey}/${item.DefaultImageName}`}
+                                  alt="#"
+                                  className="cartImageShow"
+                                />
                               </div>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  justifyContent: "space-between",
-                                }}
-                              >
-                                <p style={{ margin: "0px", fontSize: "12px" }}>
-                                  CWT :{" "}
-                                  <span style={{ fontWeight: 600 }}>
-                                    {item?.Rec_CSWeight} /{" "}
-                                    {item?.totalcolorstonepcs}
-                                  </span>
-                                </p>
-                                <p style={{ margin: "0px", fontSize: "12px" }}>
-                                  GWT :{" "}
-                                  <span style={{ fontWeight: 600 }}>
-                                    {item?.grossweight}
-                                  </span>
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
 
-                      <textarea
-                        label="Enter Remarks"
-                        variant="outlined"
-                        placeholder="Enter Order Remark"
-                        value={Mainremarks}
-                        rows={4}
-                        onChange={(e) => handleInputChangeMainRemarks(e)}
-                        className="YourCartPageMainRemkarBox"
-                        style={{ marginTop: "30px", width: '300px' }}
-                      />
-                      <div className="addRemkarMainBottom">
-                        <button
-                          onClick={submitMainRemrks}
-                          className="SmilingAddRemkarBtn"
-                          style={{ marginTop: "10px" }}
-                        >
-                          Add Order Remark
-                        </button>
+                              <div
+                                className="smilingCartBox1"
+                                style={{ padding: "5px" }}
+                              >
+                                  <p>{item.DesDetStr}</p>
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                  }}
+                                >
+                                  <p style={{ margin: "0px", fontSize: "12px" }}>
+                                    NWT :{" "}
+                                    <span style={{ fontWeight: 600 }}>
+                                      {item?.MetalWeight}
+                                    </span>
+                                  </p>
+                                  <p style={{ margin: "0px", fontSize: "12px" }}>
+                                    DWT :{" "}
+                                    <span style={{ fontWeight: 600 }}>
+                                      {item?.Rec_DiamondWeight} /{" "}
+                                      {item?.totaldiamondpcs}
+                                    </span>
+                                  </p>
+                                </div>
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                  }}
+                                >
+                                  <p style={{ margin: "0px", fontSize: "12px" }}>
+                                    CWT :{" "}
+                                    <span style={{ fontWeight: 600 }}>
+                                      {item?.Rec_CSWeight} /{" "}
+                                      {item?.totalcolorstonepcs}
+                                    </span>
+                                  </p>
+                                  <p style={{ margin: "0px", fontSize: "12px" }}>
+                                    GWT :{" "}
+                                    <span style={{ fontWeight: 600 }}>
+                                      {item?.grossweight}
+                                    </span>
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* <textarea
+                          label="Enter Remarks"
+                          variant="outlined"
+                          placeholder="Enter Order Remark"
+                          value={Mainremarks}
+                          rows={4}
+                          onChange={(e) => handleInputChangeMainRemarks(e)}
+                          className="YourCartPageMainRemkarBox"
+                          style={{ marginTop: "30px", width: '300px' }}
+                        />
+                        <div className="addRemkarMainBottom">
+                          <button
+                            onClick={submitMainRemrks}
+                            className="SmilingAddRemkarBtn"
+                            style={{ marginTop: "10px" }}
+                          >
+                            Add Order Remark
+                          </button>
+                        </div> */}
                       </div>
-                    </div>}
+                    }
                   </div>
                 )}
               </div>

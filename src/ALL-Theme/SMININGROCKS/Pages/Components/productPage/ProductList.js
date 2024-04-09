@@ -140,9 +140,6 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
   const getHeaderData2 = useRecoilValue(HeaderData2)
   const getnewMenuData = useRecoilValue(newMenuData)
 
-  // console.log("getnewMenuData",getnewMenuData)  
-  // console.log("getHeaderData2",getHeaderData2)
-
   const [minPrice, setMinPrice] = useState(null);
   const [maxPrice, setMaxPrice] = useState(null);
   const [minNetwt, setMinNetwt] = useState(null);
@@ -162,8 +159,6 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
   const mtName = useRecoilValue(metalTypeG)
   const dqcName = useRecoilValue(diamondQualityColorG)
   const csqcName = useRecoilValue(colorstoneQualityColorG)
-  // console.log(mtName, dqcName, csqcName);
-  //RANGE FILTERS
 
   const [value1, setValue1] = useState([minPrice, maxPrice]);
   const [value2, setValue2] = useState([minNetwt, maxNetwt]);
@@ -178,6 +173,14 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
   const [isStonePShow, setIsStonePShow] = useState('');
   const [isMetalTCShow, setIsMetalTCShow] = useState('');
   const [isPriceShow, setIsPriceShow] = useState('');
+  const [currData,setCurrData] = useState([])
+
+  useEffect(()=>{
+    let currencyData = JSON.parse(localStorage.getItem("currencyData"))
+    setCurrData(currencyData)
+  },[])
+
+  console.log("currData",currData?.Currencysymbol);
 
   useEffect(() => {
     setNewProData(getSearchData)
@@ -188,57 +191,91 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
     setProductApiData2(data)
   }, [])
 
+
   useEffect(() => {
     const fetchData = async () => {
       const data = JSON.parse(localStorage.getItem("allproductlist"));
       const loginUserDetail = JSON.parse(localStorage.getItem('loginUserDetail'));
+      const storeInit = JSON.parse(localStorage.getItem('storeInit'));
 
+      // let newRd = [];
       const updatedData = await Promise?.all(data?.map(async (product) => {
         const newPriceData = priceDataApi?.rd?.find(
           (pda) =>
-            pda.A === product.autocode &&
-            pda.B === product.designno &&
-            pda.D === loginUserDetail?.cmboMetalType
+            storeInit?.IsMetalCustomization === 1
+              ?
+              pda.A === product.autocode &&
+              pda.B === product.designno &&
+              pda.D === loginUserDetail?.cmboMetalType
+              :
+              pda.A === product.autocode &&
+              pda.B === product.designno
         );
 
-        const newPriceData1 = priceDataApi?.rd1?.find(
+        const newPriceData1 = priceDataApi?.rd1?.filter(
           (pda) =>
-            pda.A === product.autocode &&
-            pda.B === product.designno &&
-            pda.H === loginUserDetail?.cmboDiaQualityColor?.split('#@#')[0] &&
-            pda.J === loginUserDetail?.cmboDiaQualityColor?.split('#@#')[1]
-        );
+
+            storeInit?.IsDiamondCustomization === 1
+              ?
+              pda.A === product.autocode &&
+              pda.B === product.designno &&
+              pda.H === loginUserDetail?.cmboDiaQualityColor?.split('#@#')[0] &&
+              pda.J === loginUserDetail?.cmboDiaQualityColor?.split('#@#')[1]
+              :
+              pda.A === product.autocode &&
+              pda.B === product.designno
+
+        ).reduce((acc, obj) => acc + obj.S, 0)
+
+        // const newPriceData11 = priceDataApi?.rd1?.filter(
+        //   (pda) =>
+        //     pda.A === product.autocode &&
+        //     pda.B === product.designno &&
+        //     pda.H === loginUserDetail?.cmboDiaQualityColor?.split('#@#')[0] &&
+        //     pda.J === loginUserDetail?.cmboDiaQualityColor?.split('#@#')[1]
+        // )
+        // if(newPriceData1){
+        //   newRd.push(newPriceData1);
+        // }
+
+        // console.log("newPriceData11",newPriceData11)
 
 
-        const newPriceData2 = priceDataApi?.rd2?.find(
+
+        const newPriceData2 = priceDataApi?.rd2?.filter(
           (pda) =>
-            pda.A === product.autocode &&
-            pda.B === product.designno &&
-            pda.H === loginUserDetail?.cmboCSQualityColor?.split('#@#')[0].toUpperCase() &&
-            pda.J === loginUserDetail?.cmboCSQualityColor?.split('#@#')[1].toUpperCase()
-        );
+
+            storeInit?.IsCsCustomization === 1
+              ?
+              pda.A === product.autocode &&
+              pda.B === product.designno &&
+              pda.H === loginUserDetail?.cmboCSQualityColor?.split('#@#')[0].toUpperCase() &&
+              pda.J === loginUserDetail?.cmboCSQualityColor?.split('#@#')[1].toUpperCase()
+              :
+              pda.A === product.autocode &&
+              pda.B === product.designno
+
+        ).reduce((acc, obj) => acc + obj.S, 0)
 
         let price = 0;
-        let isLoading = true;
         let markup = 0;
         let metalrd = 0;
         let diard1 = 0;
         let csrd2 = 0;
 
         if (newPriceData || newPriceData1 || newPriceData2) {
-          price = (newPriceData?.Z ?? 0) + (newPriceData1?.S ?? 0) + (newPriceData2?.S ?? 0);
-          metalrd = newPriceData?.Z
-          diard1 = newPriceData1?.S
-          csrd2 = newPriceData2?.S ?? 0
+          price = (((newPriceData?.V ?? 0)/currData?.CurrencyRate ?? 0) + newPriceData?.W ?? 0) + (newPriceData1 ?? 0) + (newPriceData2 ?? 0);
+          console.log('priceprice',((newPriceData?.V ?? 0)/currData?.CurrencyRate));
+          metalrd = (((newPriceData?.V ?? 0)/currData?.CurrencyRate ?? 0) + newPriceData?.W ?? 0)
+          diard1 = newPriceData1 ?? 0
+          csrd2 = newPriceData2 ?? 0
           markup = newPriceData?.AB
-          isLoading = false;
-        }
-        else {
-          isLoading = false;
         }
 
-        return { ...product, price, isLoading, markup, metalrd, diard1, csrd2 };
+        return { ...product, price, markup, metalrd, diard1, csrd2 }
       }));
+
+      // console.log("newRd",newRd);
 
       localStorage.setItem("allproductlist", JSON.stringify(updatedData));
       setProductApiData2(updatedData);
@@ -246,6 +283,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
 
     fetchData();
   }, [priceDataApi]);
+
 
 
   const getCountFunc = async () => {
@@ -365,213 +403,6 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
     element.scrollIntoView()
   }, []);
 
-
-
-  // function updateProductsWithMetalColorName() {
-  //   productData?.forEach((product) => {
-  //     const metalColor = filterData?.MetalColorList?.find(
-  //       (color) => color.MetalColorid === product.MetalColorid
-  //     );
-  //     const categoryName = filterData?.CategoryList?.find(
-  //       (cate) => cate.Categoryid === product.Categoryid
-  //     );
-  //     const collectionName = filterData?.CollectionList?.find(
-  //       (coll) => coll.Collectionid === product.Collectionid
-  //     );
-  //     const mtpurity = filterData?.MetalPurityList?.find(
-  //       (mtp) => mtp.MetalPurityid === product.MetalPurityid
-  //     );
-  //     const prodtype = filterData?.ProductTypeList?.find(
-  //       (pt) => pt.Producttypeid === product.Producttypeid
-  //     );
-  //     const gendertype = filterData?.GenderList?.find(
-  //       (gen) => gen.Genderid === product.Genderid
-  //     );
-  //     const Berandtype = filterData?.BrandList?.find(
-  //       (brand) => brand.Brandid === product.Brandid
-  //     )
-  //     const MetalType = filterData?.MetalTypeList?.find(
-  //       (mt) => mt.MetalTypeid === product.MetalTypeid
-  //     )
-  //     const OcassionType = filterData?.OcassionList?.find(
-  //       (ocs) => ocs.Ocassionid === product.Ocassionid
-  //     )
-  //     const SubCategoryType = filterData?.SubCategoryList?.find(
-  //       (sct) => sct.SubCategoryid === product.SubCategoryid
-  //     )
-  //     const ThemeType = filterData?.ThemeList?.find(
-  //       (tl) => tl.Themeid === product.Themeid
-  //     )
-
-  //     if (metalColor) {
-  //       product.MetalColorName = metalColor.MetalColorName;
-  //     }
-  //     if (categoryName) {
-  //       product.CategoryName = categoryName.CategoryName;
-  //     }
-  //     if (collectionName) {
-  //       product.CollectionName = collectionName.CollectionName;
-  //     }
-  //     if (mtpurity) {
-  //       product.MetalPurity = mtpurity.MetalPurity;
-  //     }
-  //     if (prodtype) {
-  //       product.ProducttypeName = prodtype.ProducttypeName;
-  //     }
-  //     if (gendertype) {
-  //       product.GenderName = gendertype.GenderName;
-  //     }
-  //     if (Berandtype) {
-  //       product.BrandName = Berandtype.BrandName
-  //     }
-  //     if (MetalType) {
-  //       product.MetalTypeName = MetalType.MetalTypeName
-  //     }
-  //     if (OcassionType) {
-  //       product.OcassionName = OcassionType.OcassionName
-  //     }
-  //     if (SubCategoryType) {
-  //       product.SubCategoryName = SubCategoryType.SubCategoryName
-  //     }
-  //     if (ThemeType) {
-  //       product.ThemeName = ThemeType.ThemeName
-  //     }
-  //   });
-
-  //   return productData;
-  // }
-
-
-  // const diffCartData = useCallback(() => {
-
-  //   // let pdata;
-
-  //   ProductApiData2.forEach((pd) => {
-  //     const pdata = cartData?.find((cd) => pd.designno === cd.DesignNo)
-
-
-
-  //     if (pdata && !pd?.checkFlag) {
-  //       pd.checkFlag = true
-  //     }
-  //     else {
-  //       pd.checkFlag = false
-  //     }
-  //   })
-
-
-  //   return ProductApiData2
-
-  // }, [ProductApiData2, cartData])
-
-  // diffCartData()
-
-  // const diffWishData = useCallback(() => {
-
-  //   ProductApiData2.forEach((pd) => {
-  //     const pdata = WishData.find((cd) => pd.designno === cd.DesignNo)
-
-
-  //     if (pdata && !pd?.wishCheck) {
-  //       pd.wishCheck = true
-  //     }
-  //     else {
-  //       pd.wishCheck = false
-  //     }
-  //   })
-
-  //   return ProductApiData2
-
-  // }, [ProductApiData2, WishData])
-
-
-  // diffWishData()
-
-  // const removefromCart = () => {
-  //   ProductApiData2.map((pd) => {
-
-
-  //     if (cartRemoveData && pd.designno === cartRemoveData) {
-  //       pd.checkFlag = false
-  //     }
-
-  //     if (wishListRemoveData && pd.designno === wishListRemoveData) {
-  //       pd.wishCheck = false
-  //     }
-
-  //   })
-
-
-  //   return ProductApiData2
-  //   // // console.log("prodddd",product);
-  //   // let prodD;
-  //   // productData.forEach((pd)=>{
-
-  //   //   // let prodD = productData.find((p)=>p?.designno === product?.designno && p?.checkFlag === true)
-
-  //   //   // if(prodD){
-  //   //   //   pd.checkFlag = false
-  //   //   // }
-
-  //   // if(pd?.designno===product?.designno){
-  //   //    prodD = pd
-  //   // }
-  //   // if(prodD){
-  //   //   pd.checkFlag = false
-  //   // }
-
-  //   // })
-
-  //   // console.log("prodD",prodD);
-  //   // return productData
-  // }
-
-  // removefromCart()
-
-  // ProductApiData2?.map((product) => {
-  //     console.log("product",product);
-
-  //    let loginUserDetail = JSON.parse(localStorage.getItem('loginUserDetail')) 
-
-  //   const newPriceData = priceDataApi.rd?.find(
-  //     (pda) => 
-  //       pda.A === product.autocode && 
-  //       pda.B === product.designno &&
-  //       pda.D === loginUserDetail?.cmboMetalType 
-  //   )
-
-  //   const newPriceData1 = priceDataApi.rd1?.find(
-  //     (pda) => 
-  //       pda.A === product.autocode && 
-  //       pda.B === product.designno && 
-  //       pda.H === loginUserDetail?.cmboDiaQualityColor?.split('#@#')[0] &&
-  //       pda.J === loginUserDetail?.cmboDiaQualityColor?.split('#@#')[1]
-  //   )
-
-  //   const newPriceData2 = priceDataApi.rd2?.find(
-  //     (pda) => 
-  //       pda.A === product.autocode && 
-  //       pda.B === product.designno && 
-  //       pda.H === loginUserDetail?.cmboCSQualityColor?.split('#@#')[0] &&
-  //       pda.J === loginUserDetail?.cmboCSQualityColor?.split('#@#')[1]
-
-  //   )
-
-
-
-  //   if (newPriceData || newPriceData1 || newPriceData2) {
-  //     product['price'] = (newPriceData?.Z ?? 0) + (newPriceData1?.S ?? 0) + (newPriceData2?.S ?? 0)
-  //   } else {
-  //     product['price'] = "Not Availabel";
-  //   }
-
-
-
-  // });
-
-  //     localStorage.setItem("allproductlist",JSON?.stringify(product))
-  //     setProductApiData2(product)
-
   useEffect(() => {
     let newWishCheckData = (ProductApiData2 || []).map((pd) => {
       const newWish = WishData?.find((cd) => pd.designno === cd.DesignNo && pd.autocode === cd.autocode);
@@ -649,9 +480,6 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
     }));
   }
 
-
-  // console.log("NewFilterArr",NewFilterArr)
-
   useEffect(() => {
     let FilterDataVar = [];
     let NewFilterArr = Object?.values(filterChecked).filter((ele) => ele?.checked === true)
@@ -665,7 +493,6 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
       let reverseData = FilterDataVar.reverse()
       const mergedArray = [].concat(...reverseData);
       setNewProData(mergedArray)
-      console.log("FilterDataVar", mergedArray)
     } else {
       setNewProData(ProductApiData2)
     }
@@ -846,23 +673,16 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
         }
 
         await CommonAPI(body).then(async (res) => {
-          // console.log("responsePlist",res?.Data?.rd[0]?.msg === "success");
           if (res?.Data?.rd[0]?.stat_msg === "success") {
-            // removefromCart()
             await getCartAndWishListData()
-            // await getCountApi()
             getCountFunc()
-            // removefromCart(prod)
           }
         })
-
       }
     }
     catch (error) {
       console.log("error", error);
     }
-    // console.log("productsWish",prod)
-    // prod["checkFlag"] = event.target.checked
   }
 
   const handelCartList = async (event, prod) => {
@@ -878,7 +698,6 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
         const product = prod
 
         let isWishHasCartData = WishData?.filter((pd) => product.autocode === pd.autocode)
-        // console.log("isWishHasCartData", isWishHasCartData)
 
         let wishToCartEncData = { "autocodelist": `${isWishHasCartData[0]?.autocode}`, "ischeckall": 0, "FrontEnd_RegNo": `${storeInit?.FrontEnd_RegNo}`, "Customerid": `${Customer_id?.id}` }
 
@@ -997,12 +816,9 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
 
 
         await CommonAPI(isWishHasCartData.length ? body1 : body).then(async (res) => {
-          // console.log("responsePlist",res?.Data?.rd[0]?.msg === "success");
           if (!isWishHasCartData.length && res?.Data?.rd[0]?.msg === "success") {
             await getCartAndWishListData()
-            // await getCountApi()
             getCountFunc()
-            // prod.checkFlag=false
           }
 
           if (isWishHasCartData.length && res?.Data?.rd[0]?.stat_msg === "success") {
@@ -1032,13 +848,9 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
         }
 
         await CommonAPI(body).then(async (res) => {
-          // console.log("responsePlist",res?.Data?.rd[0]?.msg === "success");
           if (res?.Data?.rd[0]?.stat_msg === "success") {
-            // removefromCart()
             await getCartAndWishListData()
-            // await getCountApi()
             getCountFunc()
-            // removefromCart(prod)
           }
         })
 
@@ -1467,6 +1279,12 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
     </Box>
   );
 
+  const decodeEntities = (html) => {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+  }
+
   return (
     <div id="top">
 
@@ -1790,10 +1608,9 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                             </div>}
                             <p style={{ fontSize: "15px", fontWeight: 'bold' }} className="mobileDeatilDiv1Text2">
                               {isPriceShow === 1 &&
-                                <span>
-                                  {currencySym?.Currencysymbol}
-                                  {((products?.UnitCost ?? 0) + (products?.price ?? 0) + (products?.markup ?? 0)).toFixed(2)}
-                                </span>
+                                <span className="feature-count" style={{display:'flex'}}>
+                                <div className="currencyFont" dangerouslySetInnerHTML={{ __html: decodeEntities(currData?.Currencysymbol) }} />
+                                {((products?.UnitCost ?? 0) + (products?.price ?? 0) + (products?.markup ?? 0)).toFixed(2)}</span>
                               }
                             </p>
                           </div>

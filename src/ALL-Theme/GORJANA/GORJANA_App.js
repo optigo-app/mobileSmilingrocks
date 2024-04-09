@@ -280,7 +280,6 @@ export default function GORJANA_App() {
                               ? "1px"
                               : "",
                         }}
-                        onClick={()=>console.log("navItem",navItem)}
                       >
                         {navi.label}
                       </span>
