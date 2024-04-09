@@ -18,12 +18,13 @@ import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
 import { useNavigate } from 'react-router-dom'
 import playVidoe from '../../assets/paly.png'
 import { IoIosPlayCircle } from "react-icons/io";
+import { toast } from 'react-toastify'
 
 const ProdDetail = () => {
 
   const [acc, setAcc] = useState(false);
   const [accNo, setAccNo] = useState('');
-  const [imgLoading, setImgLoading] = useState(true);
+  const [imgLoading, setImgLoading] = useState(false);
   const [cartFlag, setCartFlag] = useState(false);
   const [WishListFlag, setWishListFlag] = useState(false);
   const [cartData, setCartData] = useState([]);
@@ -79,6 +80,8 @@ const ProdDetail = () => {
   const [csqcSettRate, setCsqcSettRate] = useState()
   const [getPriceData, setGetPriceData] = useState([])
   const [globImagePath, setGlobImagepath] = useState()
+  const [addToCartFlag, setAddToCartFlag] = useState(false)
+  const [addToWishlistFlag, setAddWishlistFlag] = useState(false);
 
 
   const [uploadLogicPath, setUploadLogicPath] = useState('');
@@ -96,7 +99,7 @@ const ProdDetail = () => {
   }, [])
 
   const handelImgLoad = () => {
-    setImgLoading(false)
+    setImgLoading(true)
   }
 
   useEffect(() => {
@@ -650,17 +653,29 @@ const ProdDetail = () => {
     getCartAndWishListData()
   }, [])
 
-  const handelCart = async (event) => {
+  useEffect(() => {
+    if (productData?.checkFlag) {
+      setAddToCartFlag(true)
+    }
+  }, [productData])
+
+  useEffect(() => {
+    if (productData?.wishCheck) {
+      setAddWishlistFlag(true)
+    }
+  }, [productData])
+
+  const handelCart = async () => {
 
     try {
-      setCartFlag(event.target.checked)
+      // setCartFlag(event.target.checked)
 
-      if (event.target.checked === true) {
+      if (addToCartFlag) {
         const storeInit = JSON.parse(localStorage.getItem("storeInit"))
         const UserEmail = localStorage.getItem("registerEmail")
         const Customer_id = JSON.parse(localStorage.getItem("loginUserDetail"));
 
-        productData.wishCheck = event.target.checked;
+        productData.checkFlag = addToCartFlag;
         localStorage.setItem("srProductsData", JSON.stringify(productData))
         const product = productData
 
@@ -820,8 +835,8 @@ const ProdDetail = () => {
           // "UnitCost": `${(product?.UnitCost + mtrdData?.Z + (dqcData?.S ?? 0) + (csqcData?.S ?? 0) + (sizeMarkup ?? 0) + (metalUpdatedPrice() ?? 0) + (diaUpdatedPrice() ?? 0) + (colUpdatedPrice() ?? 0)).toFixed(2)}`,
           // "UnitCostWithmarkup":(`${(product?.price === "Not Available" ? 0 : product?.price) + (product?.markup ?? 0)}`),
           "UnitCostWithmarkup": (`${(product?.UnitCost ?? 0) + (product?.markup ?? 0)}`),
-          "colorstonecolorname": `${cSQopt ? cSQopt?.split('_')[1] : product?.colorstonecolorname}`,
-          "colorstonequality": `${cSQopt ? cSQopt?.split('_')[0] : product?.colorstonequality}`,
+          "colorstonecolorname": `${cSQopt ? cSQopt?.split('-')[1] : product?.colorstonecolorname}`,
+          "colorstonequality": `${cSQopt ? cSQopt?.split('-')[0] : product?.colorstonequality}`,
           // "diamondcolorname": `${product?.diamondcolorname ? product?.diamondcolorname : diaQColOpt?.split('_')[1]}`,
           "diamondcolorname": `${diaQColOpt ? diaQColOpt?.split('_')[1] : product?.diamondcolorname}`,
           "diamondpcs": Number(`${product?.diamondpcs}`),
@@ -852,14 +867,13 @@ const ProdDetail = () => {
           "remarks_design": `${product?.remarks_design ?? ""}`,
           "diamondcolorid": `${product?.diamondcolorid ?? ""}`,
           "diamondqualityid": `${product?.diamondqualityid ?? ""}`,
-          "detail_ringsize": `${sizeOption ? (sizeOption ?? "") : (product?.DefaultSize ?? "")}`,
+          "detail_ringsize": `${sizeOption ? (sizeOption ?? "") : (product?.detail_ringsize ?? "")}`,
           "ProjMode": `${product?.ProjMode ?? ""}`,
           "AlbumMasterid": `${product?.AlbumMasterid ?? ""}`,
           "AlbumMastername": `${product?.AlbumMastername ?? ""}`,
           "Albumcode": `${product?.Albumcode ?? ""}`,
           "Designid": `${product?.Designid ?? ""}`
         }
-
         const encodedCombinedValue = btoa(JSON.stringify(finalJSON));
         const wishToCartEncData1 = btoa(JSON.stringify(wishToCartEncData));
         const body = {
@@ -878,11 +892,13 @@ const ProdDetail = () => {
           if (!isWishHasCartData.length && res?.Data?.rd[0]?.msg === "success") {
             await getCartAndWishListData()
             getCountFunc()
+            // toast.success('Product added to cart successfully!');
           }
 
           if (isWishHasCartData.length && res?.Data?.rd[0]?.stat_msg === "success") {
             await getCartAndWishListData()
             getCountFunc()
+            // toast.success('Product added to wishlist successfully!')
           }
         })
 
@@ -892,10 +908,12 @@ const ProdDetail = () => {
         const UserEmail = localStorage.getItem("registerEmail")
         const Customer_id = JSON.parse(localStorage.getItem("loginUserDetail"));
 
-        productData.wishCheck = false;
+        productData.checkFlag = addToCartFlag;
         localStorage.setItem("srProductsData", JSON.stringify(productData))
 
         let prod = productData
+
+        // setCartRemoveData(prod.designno)
 
         let Data = { "designno": `${prod?.designno}`, "autocode": `${prod?.autocode}`, "metalcolorid": 0, "isSolStockNo": 0, "is_show_stock_website": "0", "isdelete_all": 0, "FrontEnd_RegNo": `${storeInit?.FrontEnd_RegNo}`, "Customerid": `${Customer_id?.id}`, "cartidlist": "" }
 
@@ -913,6 +931,7 @@ const ProdDetail = () => {
             // await getCountApi()
             getCountFunc()
             // removefromCart(prod)
+            // toast.success('Product removed from cart successfully!');
           }
         })
 
@@ -925,20 +944,23 @@ const ProdDetail = () => {
 
   }
 
+  useEffect(() => {
+    handelCart()
+  }, [addToCartFlag])
 
-  const handelWishList = async (event) => {
+  const handelWishList = async () => {
 
     try {
-      setWishListFlag(event.target.checked)
+      // setWishListFlag(event.target.checked)
 
-      if (event.target.checked === true) {
+      if (addToWishlistFlag) {
 
         const storeInit = JSON.parse(localStorage.getItem("storeInit"))
         const UserEmail = localStorage.getItem("registerEmail")
         const Customer_id = JSON.parse(localStorage.getItem("loginUserDetail"));
 
 
-        productData.wishCheck = event.target.checked;
+        productData.wishCheck = addToWishlistFlag;
         // setWishListFlag(e.target.checked)
         localStorage.setItem("srProductsData", JSON.stringify(productData))
 
@@ -1129,11 +1151,10 @@ const ProdDetail = () => {
         await CommonAPI(body).then(async (res) => {
 
           if (res?.Data?.rd[0]?.msg === "success") {
-
-
             await getCartAndWishListData()
             // await getCountApi()
             getCountFunc()
+            // toast.success('Product added to wishlist successfully!')
 
           }
         })
@@ -1164,6 +1185,7 @@ const ProdDetail = () => {
             // await getCountApi()
             getCountFunc()
             // removefromCart(prod)
+            // toast.success('Data removed from wishlist successfully!');
           }
         })
 
@@ -1176,6 +1198,10 @@ const ProdDetail = () => {
       console.log("error", error);
     }
   }
+
+  useEffect(() => {
+    handelWishList()
+  }, [addToWishlistFlag])
 
   const handelSize = (data) => {
 
@@ -1253,7 +1279,7 @@ const ProdDetail = () => {
           <div className="srprodetail1">
             {/* {!imgLoading */}
 
-            {imgLoading && (
+            {/* {imgLoading && (
               <Skeleton
                 sx={{
                   width: "100%",
@@ -1267,48 +1293,66 @@ const ProdDetail = () => {
                 }}
                 variant="rounded"
               />
-            )}
-            {isVideoPlaying ?
-              <video src={videoUrl} className="productvideo" autoPlay={true} style={{
-                width: "100%",
-                zindex: -1,
-                position: "relative",
-                objectFit: "cover",
-                padding: '10%',
-                marginLeft: "51px",
-                display: imgLoading ? "none" : "block",
-              }} />
-              :
-              <img
-                src={
-                  (productData?.OriginalImagePath) ?
-                    updatedColorImage?.length !== 0 ?
-                      updatedColorImage[0]?.imagepath
-                      :
-                      (
-                        selectedImagePath == '' ?
-                          globImagePath + (!handelmainImg()?.length ? productData?.OriginalImagePath?.split(",")[0]
-                            :
-                            handelmainImg()
-                          )
-                          :
-                          selectedImagePath)
-                    :
-                    notFound
-                }
-                alt={""}
+            )} */}
+            {isVideoPlaying ? (
+              <video
+                src={videoUrl}
+                className="productvideo"
+                autoPlay={true}
                 style={{
-                  width: "100%",
-                  zindex: -1,
-                  position: "relative",
-                  objectFit: "cover",
-                  marginLeft: "51px",
-                  display: imgLoading ? "none" : "block",
+                  width: '100%',
+                  // zIndex: -1,
+                  position: 'relative',
+                  objectFit: 'cover',
+                  padding: '10%',
+                  marginLeft: '51px',
+                  display: imgLoading ? 'none' : 'block',
                 }}
-                className='smilingDeatilPageMainImage'
-                onLoad={handelImgLoad}
               />
-            }
+            ) : (
+              <>
+                {!imgLoading && (
+                  <Skeleton
+                    sx={{
+                      width: "100%",
+                      // zindex: 11111,
+                      // position: "relative",
+                      // objectFit: "cover",
+                      marginLeft: "51px",
+                      marginTop: "5%",
+                      height: "90%",
+                      // display: !imgLoading ? "none": "block"
+                    }}
+                    variant="rounded"
+                  />
+                )}
+                <img
+                  src={
+                    productData?.OriginalImagePath
+                      ? updatedColorImage?.length !== 0
+                        ? updatedColorImage[0]?.imagepath
+                        : selectedImagePath == ''
+                          ? globImagePath +
+                          (!handelmainImg()?.length
+                            ? productData?.OriginalImagePath?.split(',')[0]
+                            : handelmainImg())
+                          : selectedImagePath
+                      : notFound
+                  }
+                  alt={''}
+                  style={{
+                    width: '100%',
+                    // zIndex: -1,
+                    position: 'relative',
+                    objectFit: 'cover',
+                    marginLeft: '51px',
+                    display: imgLoading ? 'block' : 'none',
+                  }}
+                  className="smilingDeatilPageMainImage"
+                  onLoad={handelImgLoad}
+                />
+              </>
+            )}
             {updatedColorImage?.length === 0 ?
               <>
                 {productData?.ThumbImagePath && <div className="srthumb_images">
@@ -1930,7 +1974,7 @@ const ProdDetail = () => {
 
               <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
 
-                <div style={{ marginLeft: "-12px", display: 'flex', alignItems: 'center' }}>
+                {/* <div style={{ marginLeft: "-12px", display: 'flex', alignItems: 'center' }}>
                   <Checkbox
                     icon={
                       <StarBorderIcon
@@ -1947,7 +1991,7 @@ const ProdDetail = () => {
                   <span style={{ fontSize: "16px", color: "#7d7f85" }}>
                     Add To Wishlist
                   </span>
-                </div>
+                </div> */}
 
                 {/* <Divider
                     orientation="vertical"
@@ -1959,7 +2003,7 @@ const ProdDetail = () => {
                     }}
                   /> */}
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
+                {/* <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
                   <Checkbox
                     icon={
                       <LocalMallOutlinedIcon
@@ -1983,7 +2027,7 @@ const ProdDetail = () => {
                   <span style={{ fontSize: "16px", color: "#7d7f85" }}>
                     Add To Cart
                   </span>
-                </div>
+                </div> */}
               </div>
 
               {/* <div
@@ -2536,6 +2580,60 @@ const ProdDetail = () => {
             </div>
           </div> */}
         {/* <SmilingRock /> */}
+        <div style={{ display: 'flex', borderTop: '1px solid rgba(0, 0, 0, 0.06)', position: 'fixed', bottom: '0', background: 'white', width: "100%", height: '7vh', boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px' }}>
+          <button
+            style={{
+              width: '50%',
+              padding: '10px',
+              textAlign: 'center',
+              border: 'none',
+              cursor: 'pointer',
+              fontSize: '16px',
+              fontWeight: '600',
+              backgroundColor: '#fff',
+              color: 'black',
+            }}
+            onClick={() => setAddWishlistFlag(!addToWishlistFlag)}
+          >
+            {addToWishlistFlag ? "Remove to Wishlist" : "Add to Wishlist"}
+          </button>
+          <button
+            style={{
+              width: '50%',
+              padding: '10px',
+              textAlign: 'center',
+              border: 'none',
+              cursor: 'pointer',
+              fontSize: '16px',
+              fontWeight: '600',
+              backgroundColor: 'rgba(255, 159, 0, 0.7)',
+              color: 'black',
+            }}
+            onClick={() => setAddToCartFlag(!addToCartFlag)}
+          >
+            {addToCartFlag ? "Remove from cart" : "Add to cart"}
+          </button>
+        </div>
+        {/* <button
+          style={{
+            position: 'fixed',
+            bottom: 0,
+            height: '8vh',
+            width: '100%',
+            padding: '10px 20px',
+            fontSize: '16px',
+            backgroundColor: '#f0f0f0',
+            color: '#7D7f85',
+            border: 'none',
+            cursor: 'pointer',
+            fontWeight: 'bold',
+            boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
+            transition: 'background-color 0.3s',
+          }}
+          onClick={() => setAddToCartFlag(!addToCartFlag)}
+        >
+          {addToCartFlag ? "REMOVE FROM CART" : "ADD TO CART"}
+        </button> */}
       </div>
     </div>
   );
