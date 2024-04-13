@@ -7,8 +7,21 @@ export default function Category() {
     const [imageURL, setImageURL] = useState('');
     const [uKey, setYouKey] = useState('');
     const [availableImages, setAvailableImages] = useState([]);
-    const [loadedImages, setLoadedImages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+
+    const checkImageAvailability = async (imageUrl) => {
+        try {
+            const img = await fetch(imageUrl);
+            if (img.ok) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            return false;
+        }
+    };
 
     useEffect(() => {
         const getCategoryData = async () => {
@@ -34,32 +47,25 @@ export default function Category() {
 
                 const response = await CommonAPI(body);
                 if (response.Data?.rd) {
-                    setAvailableImages(response.Data?.rd);
-                    checkAvailableImages(response.Data?.rd);
+                    setTimeout(async () => {
+                        const formattedImages = await Promise.all(response.Data.rd.map(async item => {
+                            const imageUrl = `${ImageURL}/${ukey}/categoryimages/${encodeURIComponent(item.collectionname)}-${encodeURIComponent(item.categoryname)}/${encodeURIComponent(item.collectionname)}-${encodeURIComponent(item.categoryname)}.jpg`;
+                            const isAvailable = await checkImageAvailability(imageUrl);
+                            return { ...item, imageURL: imageUrl, isAvailable: isAvailable };
+                        }));
+                        const filteredImages = formattedImages.filter(item => item.isAvailable);
+                        setAvailableImages(filteredImages);
+                        setIsLoading(false);
+                    }, 100);
                 }
             } catch (error) {
                 console.error('Error:', error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-
-        const checkAvailableImages = async (images) => {
-            const loaded = await Promise.all(images.map(item => checkImageAvailability(`${imageURL}/${uKey}/categoryimages/${encodeURIComponent(item.collectionname)}-${encodeURIComponent(item.categoryname)}/${encodeURIComponent(item.collectionname)}-${encodeURIComponent(item.categoryname)}.jpg`)));
-            setLoadedImages(loaded);
+            } 
         };
 
         getCategoryData();
-    }, [imageURL]);
 
-    const checkImageAvailability = (imageUrl) => {
-        return new Promise((resolve, reject) => {
-            const img = new Image();
-            img.onload = () => resolve(true);
-            img.onerror = () => resolve(false);
-            img.src = imageUrl;
-        });
-    };
+    }, []);
 
     return (
         <div>
@@ -68,7 +74,10 @@ export default function Category() {
                     <CircularProgress className='loadingBarManage' />
                 </div>
             )}
-            {availableImages.length === 0 ?
+            <p className="SmiCartListTitle">
+                Category
+            </p>
+            {availableImages.length === 0 && !isLoading ?
                 <div
                     style={{
                         display: "flex",
@@ -89,13 +98,12 @@ export default function Category() {
                     </p>
                 </div>
                 :
-                <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: '80px' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: '80px', marginInline: '15px', marginTop: '20px' }}>
                     {availableImages.map((item, id) => (
                         <div key={id} className='imagesViewCategoryDiv'>
-                            {loadedImages[id] && (
-                                <img src={`${imageURL}/${uKey}/categoryimages/${encodeURIComponent(item.collectionname)}-${encodeURIComponent(item.categoryname)}/${encodeURIComponent(item.collectionname)}-${encodeURIComponent(item.categoryname)}.jpg`} alt={`${item.collectionname}-${item.categoryname}`}
-                                    className='imagesViewCategory' />
-                            )}
+                            <img src={item.imageURL} alt={`${item.collectionname}-${item.categoryname}`}
+                                className='imagesViewCategory' />
+                            <p>{item.collectionname}</p>
                         </div>
                     ))}
                 </div>

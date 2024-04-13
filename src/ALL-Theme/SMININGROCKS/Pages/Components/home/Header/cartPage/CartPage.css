@@ -9,12 +9,12 @@
     color: #7d7f85;
     font-family: 'PT Sans', sans-serif;
     font-size: 25px;
-    margin: 0px 20px 0px 15px;
+    margin: 0px 20px 0px 20px;
 }
 
 .smiCartPagePlaceOrderBtn{
     position: fixed;
-    bottom: 7%;
+    bottom: 60px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -22,19 +22,14 @@
     padding-inline: 10px;
     z-index: 11111;
     background-color: white;
+    border-top: 0.5px solid lightgray;
 }
 .smilingCartDeatilSub1{
-    /* width: 75%; */
     display: flex;
     justify-content: center;
-    /* background-color: whitesmoke; */
-    /* border:1px solid #e1e1e1; */
     margin: 2px 20px;
     border-radius: 12px;
     height: 100%;
-    padding: 70px 0px;
-
-    /* border:1px solid red */
 }
 
 .smilingCartDeatilSub2{
@@ -52,11 +47,21 @@
 
 .smiling-cartPageBoxMain {
     display: flex;
-    position: relative;
+    flex-direction: column;
     border-radius: 5px;
     overflow: hidden;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     margin: 10px;
+    height: 200px;
+}
+
+.cartRemoveBtn{
+    border: none;
+    height: 35px;
+    width: 45%;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 5px;
 }
 
 .smilingCartBox1{
@@ -64,10 +69,13 @@
 }
 .smiling-cartPageBoxMain-imageMain{
     width: 50%;
+    height: 150px;
 }
 
 .cartImageShow{
     width: 100%;
+    height: 80%;
+    object-fit: cover;
     /* border-bottom: 1px solid #e1e1e1; */
 }
 
@@ -389,21 +397,22 @@
         width: 100%!important;
     }
     .similingCartPageBotttomMain{
-        margin: 0px!important;
-        padding: 10px!important;
+        margin-top: 20px!important;
     }
 }
 
 @media screen and (max-width: 800px) {
 
-    .similingCartPageBotttomMain {
+    /* .similingCartPageBotttomMain {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
+    } */
+    .smilingAddresingleMobileMain{
+        margin-inline: 10px;
     }
-
     .smilingQualityMain {
-        margin-block: 10px !important;
+        padding-right: 10px !important;
         width: 100% !important;
         margin-right: 0px!important;
     }

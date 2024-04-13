@@ -3,13 +3,19 @@ import './YourProfile.css';
 import { TextField, Modal, Button, CircularProgress } from '@mui/material';
 import { ToastContainer, toast } from 'react-toastify';
 import { CommonAPI } from '../../../../Utils/API/CommonAPI';
+import { loginState } from '../../../../../../Recoil/atom';
+import { useSetRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
+import { FiArrowLeft } from 'react-icons/fi';
+import titleImg from "../../../assets/title/sonasons.png"
+
 
 export default function YourProfile() {
     const [userData, setUserData] = useState(null);
     const [editMode, setEditMode] = useState(false);
     const [editedUserData, setEditedUserData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-
+    const naviagation = useNavigate();
     useEffect(() => {
         const storedUserData = localStorage.getItem('loginUserDetail');
         if (storedUserData) {
@@ -41,7 +47,7 @@ export default function YourProfile() {
             const { FrontEnd_RegNo } = storeInit;
 
             const combinedValue = JSON.stringify({
-                firstname: `${editedUserData.defaddress_shippingfirstname}`, lastname: `${editedUserData.defaddress_shippinglastname}`, street: `${editedUserData.defaddress_state}`, addressprofile: `${editedUserData.defaddress_shippingfirstname +' '+ editedUserData.defaddress_shippinglastname}`, city: `${editedUserData.city}`, state: `${editedUserData.state}`, country: `${userData.defaddress_country}`, zip: `${userData.defaddress_zip}`, mobile: `${userData.defaddress_shippingmobile}`, FrontEnd_RegNo: `${FrontEnd_RegNo}`, Customerid: `${editedUserData.id}`
+                firstname: `${editedUserData.defaddress_shippingfirstname}`, lastname: `${editedUserData.defaddress_shippinglastname}`, street: `${editedUserData.defaddress_state}`, addressprofile: `${editedUserData.defaddress_shippingfirstname + ' ' + editedUserData.defaddress_shippinglastname}`, city: `${editedUserData.city}`, state: `${editedUserData.state}`, country: `${userData.defaddress_country}`, zip: `${userData.defaddress_zip}`, mobile: `${userData.defaddress_shippingmobile}`, FrontEnd_RegNo: `${FrontEnd_RegNo}`, Customerid: `${editedUserData.id}`
             });
 
             const encodedCombinedValue = btoa(combinedValue);
@@ -70,6 +76,23 @@ export default function YourProfile() {
 
     };
 
+    const setIsLoginState = useSetRecoilState(loginState)
+    const handleLogout = () => {
+        setIsLoginState('false')
+        localStorage.setItem('LoginUser', 'false');
+        localStorage.removeItem('storeInit');
+        localStorage.removeItem('loginUserDetail');
+        localStorage.removeItem('remarks');
+        localStorage.removeItem('selectedAddressId');
+        localStorage.removeItem('orderNumber');
+        localStorage.removeItem('registerEmail');
+        localStorage.removeItem('UploadLogicalPath');
+        localStorage.removeItem('remarks');
+        localStorage.removeItem('registerMobile');
+        naviagation('/')
+        window.location.reload();
+    }
+
     const handleClose = () => {
         setEditMode(false);
     };
@@ -83,8 +106,17 @@ export default function YourProfile() {
                     <CircularProgress className='loadingBarManage' />
                 </div>
             )}
+            <div style={{ display: 'flex', width: '100%', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray', backgroundColor: 'white', zIndex: '111111' }}>
+                <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => naviagation('/account')} />
+                <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
+                    <img src={titleImg} className="MainlogogMobileImage" />
+                </div>
+            </div>
+
+            <p className='accountPageTitle'>Your Profile</p>
+
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' , width: '100%' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%' }}>
                     {userData && (
                         <>
                             <div className='mobileEditProfileDiv'>
@@ -148,8 +180,9 @@ export default function YourProfile() {
                     )}
                 </div>
                 <div>
-                    <button onClick={handleEdit} className='SmilingAddEditAddrwess' style={{ backgroundColor: 'lightgray' ,marginTop: '15px' }}>Edit Profile</button>
+                    <button onClick={handleEdit} className='SmilingAddEditAddrwess' style={{ backgroundColor: 'lightgray', marginTop: '15px' }}>Edit Profile</button>
                 </div>
+
             </div>
 
             <Modal
@@ -205,8 +238,8 @@ export default function YourProfile() {
                         )}
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px', marginBottom: '25px' }}>
-                        <button onClick={handleSave} className='SmilingAddEditAddrwess' style={{ backgroundColor: 'lightgray' ,marginInline: '5px' }}>Save</button>
-                        <button onClick={() => setEditMode(false)} className='SmilingAddEditAddrwess' style={{ backgroundColor: 'lightgray' }}>Cancel</button>
+                        <button onClick={handleSave} className='SmilingAddEditAddrwess' style={{ backgroundColor: 'lightgray', marginInline: '5px' }}>Save</button>
+                        <button onClick={() => setEditMode(false)} className='SmilingAddEditAddrwess' style={{ backgroundColor: 'lightgray', marginInline: '5px' }}>Cancel</button>
                     </div>
                 </div>
             </Modal>

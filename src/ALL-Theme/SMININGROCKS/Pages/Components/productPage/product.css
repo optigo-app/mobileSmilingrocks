@@ -73,6 +73,21 @@
     color: #555050 !important;
 }
 
+.smilingAddCartBrtnList{
+ 
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    background-color: white;
+    border: 1px solid rgb(225, 225, 225);
+    color: rgb(125, 127, 133);
+    height: 30px;
+    width: 60%;
+    font-family: 'PT Sans', sans-serif;
+
+}   
+
 @media screen and (min-width: 1441px) {
     .smilingMobileProductListSideBar {
         display: none;
@@ -133,6 +148,7 @@
 
     .prod_img {
         width: 80% !important;
+        height: 160px;
     }
 
 }

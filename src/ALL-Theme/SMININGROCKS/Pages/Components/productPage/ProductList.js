@@ -20,17 +20,9 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { CartListCounts, HeaderData, HeaderData2, WishListCounts, colorstoneQualityColorG, diamondQualityColorG, metalTypeG, newMenuData, priceData, productDataNew, searchData } from "../../../../../Recoil/atom";
 import { GetCount } from "../../../Utils/API/GetCount";
 import notFound from "../../assets/image-not-found.png";
-import { Category } from "@mui/icons-material";
-import { toast } from "react-toastify";
 
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-
-import { FiArrowLeft } from "react-icons/fi";
-import titleImg from "../../assets/title/sonasons.png";
-
-
-import { NavLink } from 'react-router-dom';
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import { BsFilterLeft } from "react-icons/bs";
 import { FaFilter } from "react-icons/fa";
 
@@ -173,18 +165,20 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
   const [isStonePShow, setIsStonePShow] = useState('');
   const [isMetalTCShow, setIsMetalTCShow] = useState('');
   const [isPriceShow, setIsPriceShow] = useState('');
-  const [currData,setCurrData] = useState([])
-
-  useEffect(()=>{
-    let currencyData = JSON.parse(localStorage.getItem("currencyData"))
-    setCurrData(currencyData)
-  },[])
-
-  console.log("currData",currData?.Currencysymbol);
+  const [currData, setCurrData] = useState([])
 
   useEffect(() => {
-    setNewProData(getSearchData)
-  }, [getSearchData])
+    let currencyData = JSON.parse(localStorage.getItem("currencyData"))
+    setCurrData(currencyData)
+  }, [])
+
+  useEffect(() => {
+    setTimeout(() => {
+      if (getSearchData) {
+        setNewProData(getSearchData);
+      }
+    }, 100);
+  }, [getSearchData]);
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("allproductlist"));
@@ -264,9 +258,9 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
         let csrd2 = 0;
 
         if (newPriceData || newPriceData1 || newPriceData2) {
-          price = (((newPriceData?.V ?? 0)/currData?.CurrencyRate ?? 0) + newPriceData?.W ?? 0) + (newPriceData1 ?? 0) + (newPriceData2 ?? 0);
-          console.log('priceprice',((newPriceData?.V ?? 0)/currData?.CurrencyRate));
-          metalrd = (((newPriceData?.V ?? 0)/currData?.CurrencyRate ?? 0) + newPriceData?.W ?? 0)
+          price = (((newPriceData?.V ?? 0) / currData?.CurrencyRate ?? 0) + newPriceData?.W ?? 0) + (newPriceData1 ?? 0) + (newPriceData2 ?? 0);
+          console.log('priceprice', ((newPriceData?.V ?? 0) / currData?.CurrencyRate));
+          metalrd = (((newPriceData?.V ?? 0) / currData?.CurrencyRate ?? 0) + newPriceData?.W ?? 0)
           diard1 = newPriceData1 ?? 0
           csrd2 = newPriceData2 ?? 0
           markup = newPriceData?.AB
@@ -686,7 +680,6 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
   }
 
   const handelCartList = async (event, prod) => {
-
     try {
       setCartFlag(event.target.checked)
 
@@ -1245,9 +1238,11 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
     } else if (selectedOption === 'PRICE LOW TO HIGH') {
       sortedData.sort((a, b) => ((a?.UnitCost ?? 0) + (a?.price ?? 0) + (a?.markup ?? 0)) - ((b?.UnitCost ?? 0) + (b?.price ?? 0) + (b?.markup ?? 0)));
     } else {
+      setNewProData(ProductApiData2);
+
       sortedData = [...ProductApiData2];
     }
-    setProductApiData2(sortedData);
+    setNewProData(sortedData);
   };
 
   const Newlist = (anchor) => (
@@ -1530,12 +1525,13 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                     flexDirection: 'column'
                   }}
                 >
-                  <div style={{ display: 'flex', position: 'fixed', width: '100%', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray', backgroundColor: 'white', zIndex: '111111' }}>
+                  {/* <div style={{ display: 'flex', position: 'fixed', width: '100%', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray', backgroundColor: 'white', zIndex: '111111' }}>
                     <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => navigate('/')} />
                     <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
                       <img src={titleImg} className="MainlogogMobileImage" />
                     </div>
-                  </div>
+                  </div> */}
+
                   <div
                     style={{
                       width: "100%",
@@ -1577,7 +1573,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                             alt="#"
                           />
                         </div>
-                        <div className="productTitleLine" onClick={() => handelProductSubmit(products)}>
+                        <div className="productTitleLine">
                           <p
                             style={{
                               fontSize: "13px",
@@ -1594,7 +1590,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                             {products?.TitleLine}
                           </p>
                         </div>
-                        <div style={{}}>
+                        <div>
                           <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'space-between', marginInline: '10px' }}>
                             {ismetalWShow === 1 &&
                               <div>
@@ -1606,27 +1602,49 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                             {isGrossWShow === 1 && <div>
                               <p className="mobileDeatilDiv1Text1" style={{ margin: '0px', fontSize: '13px' }}>GWT : <span style={{ fontWeight: 600, marginRight: '10px' }}>{(products?.Grossweight).toFixed(2)}</span></p>
                             </div>}
-                            <p style={{ fontSize: "15px", fontWeight: 'bold' }} className="mobileDeatilDiv1Text2">
+                            <p style={{ fontSize: "15px", fontWeight: 'bold', margin: '0px' }} className="mobileDeatilDiv1Text2">
                               {isPriceShow === 1 &&
-                                <span className="feature-count" style={{display:'flex'}}>
-                                <div className="currencyFont" dangerouslySetInnerHTML={{ __html: decodeEntities(currData?.Currencysymbol) }} />
-                                {((products?.UnitCost ?? 0) + (products?.price ?? 0) + (products?.markup ?? 0)).toFixed(2)}</span>
+                                <span className="feature-count" style={{ display: 'flex' }}>
+                                  <div className="currencyFont" dangerouslySetInnerHTML={{ __html: decodeEntities(currData?.Currencysymbol) }} />
+                                  {((products?.UnitCost ?? 0) + (products?.price ?? 0) + (products?.markup ?? 0)).toFixed(2)}</span>
                               }
                             </p>
                           </div>
+                          {/* <div style={{ display: 'flex', width: '100%', justifyContent: 'center', margin: '5px 0px 5px 0px' }}>
+                            <button className='smilingAddCartBrtnList' onClick={(e) => handelCartList(products?.checkFlag, products)}>{products?.checkFlag ? 'REMOVE CART' : 'ADD TO CART'}</button>
+                          </div> */}
                         </div>
-
-                        <div style={{ position: "absolute", zIndex: 999999, top: 0, right: 0, display: 'flex' }}>
-                          <div>
+                        <div style={{ position: "absolute", width: '92%',marginInline:"5%", justifyContent: 'space-between', zIndex: 999999, top: 5, right: 0, display: 'flex' }}>
+                          <div style={{border:'1px solid rgb(186 194 219)', borderRadius: '50px'}}>
                             <Checkbox
                               icon={
-                                <StarBorderIcon
-                                  sx={{ fontSize: "22px", color: "#ffd200" }}
+                                <LocalMallOutlinedIcon
+                                  sx={{ fontSize: "17px", color: "rgb(186 194 219)" }}
                                 />
                               }
                               checkedIcon={
-                                <StarIcon
-                                  sx={{ fontSize: "22px", color: "#ffd200" }}
+                                <LocalMallIcon
+                                  sx={{ fontSize: "17px", color: "rgb(186 194 219)" }}
+                                />
+                              }
+                              disableRipple={true}
+                              sx={{ padding: "5px" }}
+
+                              checked={products?.checkFlag}
+                              onChange={(e) => handelCartList(e, products)}
+                            />
+                          </div>
+
+                          <div style={{border:'1px solid rgb(186 194 219)', borderRadius: '50px'}}>
+                            <Checkbox
+                              icon={
+                                <FavoriteBorderIcon
+                                  sx={{ fontSize: "17px", color: "rgb(186 194 219)" }}
+                                />
+                              }
+                              checkedIcon={
+                                <FavoriteIcon
+                                  sx={{ fontSize: "17px", color: "rgb(186 194 219)" }}
                                 />
                               }
                               disableRipple={true}
@@ -1637,62 +1655,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                             />
 
                           </div>
-                          <div>
-                            <Checkbox
-                              icon={
-                                <LocalMallOutlinedIcon
-                                  sx={{ fontSize: "22px", color: "#ffd200" }}
-                                />
-                              }
-                              checkedIcon={
-                                <LocalMallIcon
-                                  sx={{ fontSize: "22px", color: "#ffd200" }}
-                                />
-                              }
-                              disableRipple={true}
-                              sx={{ padding: "5px" }}
-
-                              checked={products?.checkFlag}
-                              onChange={(e) => handelCartList(e, products)}
-                            />
-                          </div>
                         </div>
-                        {/* {products?.IsColorWiseImageExists !== null && (
-                        <div
-                          style={{
-                            display: "flex",
-                            gap: "8px",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            marginBottom: "12px",
-                          }}
-                        >
-                          <div
-                            style={{
-                              width: "9px",
-                              height: "9px",
-                              backgroundColor: "#c8c8c8",
-                              borderRadius: "50%",
-                            }}
-                          ></div>
-                          <div
-                            style={{
-                              width: "9px",
-                              height: "9px",
-                              backgroundColor: "#ffcfbc",
-                              borderRadius: "50%",
-                            }}
-                          ></div>
-                          <div
-                            style={{
-                              width: "9px",
-                              height: "9px",
-                              backgroundColor: "#e0be77",
-                              borderRadius: "50%",
-                            }}
-                          ></div>
-                        </div>
-                      )} */}
                       </div>
                     ))}
                   </div>

@@ -5,6 +5,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { Badge, Dialog, Divider, Drawer, SwipeableDrawer, TextField } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import { PiStarThin } from "react-icons/pi";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { IoSearchOutline } from "react-icons/io5";
 import { ABOUT_US, ACCOUNT, BLOG, CELEBRITY, CUSTERM_SERVICES, ETERNITY_BANDS, FINE_JEWELLERY_GIFTS, FOR_HIM, FREE_INTERNATIONAL_SHIPPING, IMPACT, LAB_GROWN, LIFETIME_WARRANTY, LOGIN, LOGOUT_MESSAGE, LOOK_BOOK, MONEY_BACK_GUARANTEE, PRESS, SHOP } from "../../../../lib/consts/Strings";
 import { RiArrowDropDownLine } from "react-icons/ri";
@@ -21,6 +22,7 @@ import menu2Img from '../../../assets/456.jpg'
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { FaShoppingCart } from "react-icons/fa";
 import SearchIcon from '@mui/icons-material/Search';
+import { FiArrowLeft } from "react-icons/fi";
 
 export default function Header() {
   const navigation = useNavigate();
@@ -412,32 +414,32 @@ export default function Header() {
   };
 
 
-
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-      toggleOverlay();
-      handleEnterPress();
+  const setGSearch = useSetRecoilState(searchData);
+  function searchDataFucn(e) {
+    if (e.key === 'Enter') {
+      let ProductApiData2 = JSON.parse(localStorage.getItem("allproductlist"));
+      if (ProductApiData2) {
+        let searchText = e.target.value.toLowerCase();
+        let data = ProductApiData2.filter((pd) => {
+          for (const key in pd) {
+            if (pd.hasOwnProperty(key) && pd[key]?.toString().toLowerCase().includes(searchText)) {
+              return true;
+            }
+          }
+          return false;
+        });
+        if (data.length > 0) {
+          setGSearch(data);
+          navigation('/productpage');
+          toggleOverlay();
+        } else {
+          setGSearch([]);
+        }
+      } else {
+        setGSearch([]);
+      }
     }
-  };
-
-  const [searchedProducts, setSearchedProducts] = useState([]);
-  const [gSearch, setGSearch] = useRecoilState(searchData)
-
-  const handleEnterPress = () => {
-    const savedProductList = localStorage.getItem('allproductlist');
-    if (savedProductList) {
-      const productList = JSON.parse(savedProductList);
-      const searchValue = searchText;
-      const filteredProducts = productList.filter(product => product.designno === searchValue || product.id === parseInt(searchValue) || product.ProducttypeName === parseInt(searchValue) || product.MetalColorName === parseInt(searchValue) || product.MetalTypeName === parseInt(searchValue) || product.OcassionName === parseInt(searchValue) || product.GenderName === parseInt(searchValue) || product.BrandName === parseInt(searchValue) || product.CategoryName === parseInt(searchValue) || product.CollectionName === parseInt(searchValue) || product.autocode === parseInt(searchValue));
-      setSearchedProducts(filteredProducts);
-    }
-    navigation('/productpage');
-  };
-
-  useEffect(() => {
-    setGSearch(searchedProducts);
-  }, [searchedProducts])
+  }
 
 
   function capitalizeText(text) {
@@ -462,12 +464,12 @@ export default function Header() {
               <IoSearchOutline style={{ height: "15px", width: "15px", marginRight: "10px" }} />
               <input
                 type="text"
-                placeholder="Enter Design Number End Click Enter"
+                placeholder="Search..."
                 value={searchText}
                 autoFocus
                 onChange={(e) => setSearchText(e.target.value)}
                 className="serachinputBoxOverly"
-                onKeyPress={handleKeyPress}
+                onKeyDown={searchDataFucn}
               />
               <IoClose
                 style={{
@@ -486,12 +488,12 @@ export default function Header() {
               <IoSearchOutline style={{ height: "15px", width: "15px", marginRight: "10px" }} />
               <input
                 type="text"
-                placeholder="Enter Design Number End Click Enter"
+                placeholder="Search..."
                 value={searchText}
                 autoFocus
                 onChange={(e) => setSearchText(e.target.value)}
                 className="serachinputBoxOverly"
-                onKeyPress={handleKeyPress}
+                onKeyDown={searchDataFucn}
               />
               <IoClose
                 style={{
@@ -573,7 +575,7 @@ export default function Header() {
                 >
                   <Tooltip title="WishList">
                     <li style={{ listStyle: 'none' }} onClick={() => navigation("/myWishList")}>
-                      <PiStarThin
+                      <FavoriteBorderIcon
                         style={{
                           height: "25px",
                           cursor: "pointer",
@@ -844,7 +846,7 @@ export default function Header() {
                   >
                     <Tooltip title="WishList">
                       <li onClick={() => navigation("/myWishList")}>
-                        <PiStarThin
+                        <FavoriteBorderIcon
                           style={{
                             height: "20px",
                             cursor: "pointer",
@@ -1064,7 +1066,7 @@ export default function Header() {
                     >
                       <Tooltip title="WishList">
                         <li onClick={() => navigation("/myWishList")}>
-                          <PiStarThin
+                          <FavoriteBorderIcon
                             style={{
                               height: "20px",
                               cursor: "pointer",
@@ -1110,8 +1112,6 @@ export default function Header() {
         <div className="container">
           <div className="back-arrow" onClick={handleBack}><KeyboardBackspaceIcon /></div>
           <div className="search-wrapper">
-            {/* <input type="text" className="search-input" placeholder="Search..." value={searchText} onChange={(e) => setSearchText(e.target.value)} onKeyPress={handleKeyPress} /> */}
-            {/* <div className="search-icon"><SearchIcon sx={{ color: 'rgba(0, 0, 0, 0.3  )' }} /></div> */}
             <a href="/">
               <img src={titleImg} className="MainlogogMobileImage" />
             </a>
@@ -1126,14 +1126,60 @@ export default function Header() {
           </Badge>
         </div>
         :
-        location.pathname == '/productpage' ?
-          <div className="container">
-            <div className="back-arrow" onClick={handleBack}><KeyboardBackspaceIcon /></div>
-            <div className="search-wrapper">
-              <input type="text" className="search-input" placeholder="Search..." />
-              <div className="search-icon"><SearchIcon /></div>
+        location.pathname == '/productpage' && !serachsShowOverlay ?
+          <div style={{ display: 'flex', position: 'fixed', width: '100%', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray', backgroundColor: 'white', zIndex: '111111' }}>
+            <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => navigation('/')} />
+            <div style={{ width: '85%', display: 'flex', justifyContent: 'center', marginLeft: '40px' }}>
+              <img src={titleImg} className="MainlogogMobileImage" />
             </div>
-            <div className="cart-icon"><FaShoppingCart />  </div>
+            <ul className="mobileViewTopIconeMain" style={{ listStyle: 'none',margin: '0px', display: 'flex', padding:'0px' , width: '25%'}}>
+              <Badge
+                badgeContent={getCartListCount}
+                overlap={"rectangular"}
+                color="secondary"
+                style={{ marginRight: '15px' }}
+                className="mobileCartIconePage"
+              >
+                <Tooltip title="Cart">
+                  <li
+                    onClick={() => navigation('/CartPage')}
+                    // onClick={toggleCartDrawer(true)}CartPage
+                    style={{
+                      marginTop: "0px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <ShoppingCartOutlinedIcon
+                      sx={{ height: '25x', width: '25px' }}
+                    />
+                  </li>
+                </Tooltip>
+              </Badge>
+
+              <Badge
+                badgeContent={getWishListCount}
+                overlap={"rectangular"}
+                color="secondary"
+                style={{ marginRight: '15px' }}
+              >
+                <Tooltip title="WishList">
+                  <li onClick={() => navigation("/myWishList")}>
+                    <FavoriteBorderIcon
+                      style={{
+                        height: "20px",
+                        cursor: "pointer",
+                        width: "20px",
+                      }}
+                    />
+                  </li>
+                </Tooltip>
+              </Badge>
+
+              <li onClick={toggleOverlay}>
+                <SearchIcon />
+              </li>
+
+            </ul>
           </div>
           :
           <div
@@ -1200,10 +1246,11 @@ export default function Header() {
                       color="secondary"
                       style={{ marginInline: '6px' }}
                       className="smilingHeaderWhishlistIcon"
+                    // className="smilingHeaderWhishlistIcon badge12"
                     >
                       <Tooltip title="WishList">
                         <li style={{ listStyle: 'none' }} onClick={() => navigation("/myWishList")}>
-                          <PiStarThin
+                          <FavoriteBorderIcon
                             style={{
                               height: "25px",
                               cursor: "pointer",
@@ -1283,7 +1330,7 @@ export default function Header() {
 
                         <Tooltip title="WishList">
                           <li style={{ listStyle: 'none' }} onClick={() => navigation("/myWishList")}>
-                            <PiStarThin
+                            <FavoriteBorderIcon
                               style={{
                                 height: "25px",
                                 cursor: "pointer",

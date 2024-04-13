@@ -8,10 +8,18 @@
 
 .SmilingAddEditAddrwess {
     height: 40px;
-    width: 160px;
+    width: 250px;
     border: none;
     outline: none;
     font-weight: 500;
+}
+
+.accountPageTitle{
+    font-size: 22px;
+    margin: 20px 0px 5px 0px;
+    text-align: center;
+    font-weight: 500;
+    color: #7d7f85;
 }
 
 
@@ -28,6 +36,5 @@
 
     .smilingEditProfilePopup {
         width: 95% !important;
-        margin: 5px !important;
     }
 }

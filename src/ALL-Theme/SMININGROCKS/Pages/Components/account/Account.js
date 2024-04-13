@@ -18,6 +18,7 @@ import QuotationJob from './quotationFilters/QuotationJob';
 import QuotationQuote from './QuotationQuote/QuotationQuote';
 import Sales from '../sales/Sales/Sales';
 import { accountDetailPage, accountDetailPages, accountValidation } from '../../../Utils/globalFunctions/GlobalFunction';
+import { FaChevronRight } from "react-icons/fa";
 
 function CustomTabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -67,7 +68,7 @@ const tabIndicator = {
 
 export default function Account() {
 
-    const [value, setValue] = useState(0);
+    const [value, setValue] = useState(3);
     const [value1, setValue1] = useState(0);
     const naviagation = useNavigate();
     const setIsLoginState = useSetRecoilState(loginState)
@@ -102,36 +103,39 @@ export default function Account() {
     return (
         <div>
             <div className='Smiling-AccountMain'>
-                <p className='SmilingAccountTitle youraccountpagesec'>Your Account</p>
+
+                <p className='SmiCartListTitle'>Your Account</p>
                 <div className='smling-AccountTabMain'>
-                    <Box sx={{ width: '100%' }}>
-                        <div className='smlingAccountTabWebView'>
-                            <Box sx={{ display: 'flex', justifyContent: 'center', borderBottom: 1, borderColor: 'divider' }}>
-                                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example"  >   {/*  orientation="vertical" indicatorColor="#7d7f85" */}
-                                    <Tab label="Your Profile" {...a11yProps(0)} />
-                                    <Tab label="ORDER HISTORY" {...a11yProps(1)} />
-                                    <Tab label="MANAGE ADDRESSES" {...a11yProps(2)} />
-                                    {accountValidation() && <Tab label="ACCOUNT" {...a11yProps(3)} />}
-                                    <Tab label="CHANGE PASSWORD" {...a11yProps(accountValidation() ? 4 : 3)} />
-                                </Tabs>
-                                <p className='smilingAccountLogout' onClick={handleLogout}>LOG OUT</p>
-                            </Box>
+                    <div className='smlingAccountTabMobileView YourAccountPageTabs' style={{ marginTop: '15px' }}>
+                        <div className='menuMainAccount' onClick={() => naviagation('/YourProfile')}>
+                            <p className='menuMainAccountTitle'>Your Profile</p>
+                            <FaChevronRight />
                         </div>
-                        <div className='smlingAccountTabMobileView YourAccountPageTabs'>
-                            <Box sx={{ display: 'flex', justifyContent: 'flex-start', borderBottom: 1, borderColor: 'divider' }}>
-                                <Tabs value={value} orientation="vertical" onChange={handleChange} sx={{ width: '100%' }} >   {/*  indicatorColor="#7d7f85" */}
-                                    <Tab label="Your Profile" {...a11yProps(0)} sx={{ textAlign: 'start', borderBottom: 1, width: '90%', borderColor: 'divider' }} />
-                                    <Tab label="ORDER HISTORY" {...a11yProps(1)} />
-                                    <Tab label="MANAGE ADDRESSES" {...a11yProps(2)} />
-                                    {accountValidation() && <Tab label="ACCOUNT" {...a11yProps(3)} />}
-                                    <Tab label="CHANGE PASSWORD" {...a11yProps(accountValidation() ? 4 : 3)} />
-                                </Tabs>
-                            </Box>
-                            <div>
-                                <p className='smilingAccountLogoutMobile' onClick={handleLogout}>LOG OUT</p>
-                            </div>
+                        <div className='menuMainAccount' onClick={() => naviagation('/OrderHistory')}>
+                            <p className='menuMainAccountTitle'>ORDER HISTORY</p>
+                            <FaChevronRight />
+                        </div>
+                        <div className='menuMainAccount' onClick={() => naviagation('/ManageAddress')}>
+                            <p className='menuMainAccountTitle'>MANAGE ADDRESSES</p>
+                            <FaChevronRight />
+                        </div>
+                        {accountValidation() && <div className='menuMainAccount' onClick={() => naviagation('/QuotationQuote')}>
+                            <p className='menuMainAccountTitle'>ACCOUNT</p>
+                            <FaChevronRight />
+                        </div>}
+                        <div className='menuMainAccount' onClick={() => naviagation('/ChangePassword')}>
+                            <p className='menuMainAccountTitle'>CHANGE PASSWORD</p>
+                            <FaChevronRight />
                         </div>
 
+                        <div style={{display: 'flex', justifyContent: 'center', marginTop: '30px'}}>
+                            <p className='smilingAccountLogoutMobile' onClick={handleLogout}>LOG OUT</p>
+                        </div>
+
+                    </div>
+
+{/* 
+                     <Box sx={{ width: '100%' }}>
                         <CustomTabPanel value={value} index={0}>
                             <div>
                                 <YourProfile />
@@ -146,57 +150,49 @@ export default function Account() {
                         <CustomTabPanel value={value} index={2} className="manageAddressSec">
                             <ManageAddress />
                         </CustomTabPanel>
-
-                        {/* {accountValidation() && <CustomTabPanel value={value} index={3} className="accountSalesPage"> */}
-                        {accountValidation() && <CustomTabPanel value={value} index={3} className="accountSalesPage">
-                            {/* <QuotationFilters /> */}
-                            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                                <Tabs value={value1} className='accountTabSection' variant="scrollable" onChange={handleChangeSub} aria-label="basic tabs example" sx={{ background: "#7d7f8529", ...tabIndicator }} scrollButtons="auto">
-                                    {
-                                        accountInner?.map((e, i) => {
-                                            return <Tab label={e?.tabLabel} {...a11yProps(i)} sx={{ color: "#7d7f85" }} key={i} />
-                                        })
-                                    }
-
-                                    {/* {accountDetailPage(1163) && <Tab label="Quote" {...a11yProps(0)} sx={{ color: "#7d7f85" }} />}
-                                        {accountDetailPage(1164) && <Tab label="Job" {...a11yProps(1)} sx={{ color: "#7d7f85" }} />}
-                                        {accountDetailPage(1157) && <Tab label="Sales" {...a11yProps(2)} sx={{ color: "#7d7f85" }} />}
-                                        {accountDetailPage(1314) && <Tab label="Sales Report" {...a11yProps(3)} sx={{ color: "#7d7f85" }} />}
-                                        {accountDetailPage(17020) && <Tab label="Design Wise Sales Report" {...a11yProps(4)} sx={{ color: "#7d7f85" }} />}
-                                        {accountDetailPage(1159) && <Tab label="Account Ledger" {...a11yProps(5)} sx={{ color: "#7d7f85" }} />} */}
-                                </Tabs>
-                            </Box>
-                            {
-                                accountInner?.map((e, i) => {
-                                    return <React.Fragment key={i}>
-                                        {e?.id === 1163 && <CustomTabPanel value={value1} index={i} className="AcountSales">
-                                            <QuotationQuote />
-                                        </CustomTabPanel>}
-                                        {e?.id === 1164 && <CustomTabPanel value={value1} index={i} className="quotationFilters">
-                                            <QuotationJob />
-                                        </CustomTabPanel>}
-                                        {e?.id === 1157 && <CustomTabPanel value={value1} index={i} className="salesPage">
-                                            <Sales />
-                                        </CustomTabPanel>}
-                                        {e?.id === 1314 && <CustomTabPanel value={value1} index={i} className="salesReport">
-                                            <SalesReport />
-                                        </CustomTabPanel>}
-                                        {e?.id === 17020 && <CustomTabPanel value={value1} index={i} className="DesignWiseSalesReport">
-                                            <DesignWiseSalesReport />
-                                        </CustomTabPanel>}
-                                        {e?.id === 1159 && <CustomTabPanel value={value1} index={i}>
-                                            <AccountLedger />
-                                        </CustomTabPanel>}
-                                    </React.Fragment>
-                                })
-                            }
-                        </CustomTabPanel>}
+                        {accountValidation() &&
+                            <CustomTabPanel value={value} index={3} className="accountSalesPage">
+                                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                                    <Tabs value={value1} className='accountTabSection' variant="scrollable" onChange={handleChangeSub} aria-label="basic tabs example" sx={{ background: "#7d7f8529", ...tabIndicator }} scrollButtons="auto">
+                                        {
+                                            accountInner?.map((e, i) => {
+                                                return <Tab label={e?.tabLabel} {...a11yProps(i)} sx={{ color: "#7d7f85" }} key={i} />
+                                            })
+                                        }
+                                    </Tabs>
+                                </Box>
+                                {
+                                    accountInner?.map((e, i) => {
+                                        return <React.Fragment key={i}>
+                                            {e?.id === 1163 && <CustomTabPanel value={value1} index={i} className="AcountSales">
+                                                <QuotationQuote />
+                                            </CustomTabPanel>}
+                                            {e?.id === 1164 && <CustomTabPanel value={value1} index={i} className="quotationFilters">
+                                                <QuotationJob />
+                                            </CustomTabPanel>}
+                                            {e?.id === 1157 && <CustomTabPanel value={value1} index={i} className="salesPage">
+                                                <Sales />
+                                            </CustomTabPanel>}
+                                            {e?.id === 1314 && <CustomTabPanel value={value1} index={i} className="salesReport">
+                                                <SalesReport />
+                                            </CustomTabPanel>}
+                                            {e?.id === 17020 && <CustomTabPanel value={value1} index={i} className="DesignWiseSalesReport">
+                                                <DesignWiseSalesReport />
+                                            </CustomTabPanel>}
+                                            {e?.id === 1159 && <CustomTabPanel value={value1} index={i}>
+                                                <AccountLedger />
+                                            </CustomTabPanel>}
+                                        </React.Fragment>
+                                    })
+                                }
+                            </CustomTabPanel>
+                        }
                         <CustomTabPanel value={value} index={accountValidation() ? 4 : 3}>
                             <div>
                                 <ChangePassword />
                             </div>
                         </CustomTabPanel>
-                    </Box>
+                    </Box> */}
                 </div>
             </div>
         </div>

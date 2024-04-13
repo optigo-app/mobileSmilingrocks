@@ -84,12 +84,23 @@ export default function CartPage() {
   const [csqcData, setCsqcData] = useState();
   const [selectedColor, setSelectedColor] = useState()
   const [getPriceData, setGetPriceData] = useState([])
+  const [csqcRate, setCsqcRate] = useState()
+  const [csqcSettRate, setCsqcSettRate] = useState()
+
 
   const [dialogOpen, setDialogOpen] = useState(false)
+  const [dqcSettRate, setDqcSettRate] = useState()
+  const [dqcRate, setDqcRate] = useState()
+  const [totalValue, setTotlaValue] = useState(0);
 
   const setCartCount = useSetRecoilState(CartListCounts);
   const setWishCount = useSetRecoilState(WishListCounts);
   //   const getPriceData = useRecoilValue(priceData);
+  const [currData, setCurrData] = useState()
+  useEffect(() => {
+    let currencyData = JSON.parse(localStorage.getItem("currencyData"))
+    setCurrData(currencyData)
+  }, [])
 
   const navigation = useNavigate();
   let currencySymbol = JSON.parse(localStorage.getItem('CURRENCYCOMBO'))
@@ -100,13 +111,21 @@ export default function CartPage() {
   }, [])
 
   useEffect(() => {
+    if (cartListData) {
+      let totalUnitCost = cartListData.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue.UnitCost;
+      }, 0);
+
+      setTotlaValue(totalUnitCost);
+    }
+
 
     if (!cartListData && cartListData.length === 0) {
       setProdSelectData();
       setCartSelectData();
     }
 
-  }, [])
+  }, [cartListData])
 
 
   const getCountFunc = async () => {
@@ -127,44 +146,97 @@ export default function CartPage() {
 
 
   useEffect(() => {
-    let mtrd = getPriceData?.rd?.filter(
-      (ele) =>
+    let srProductsData = JSON.parse(localStorage.getItem('srProductsData'));
+    const storeInit = JSON.parse(localStorage.getItem('storeInit'));
+
+    let mtrd = getPriceData?.rd?.filter((ele) =>
+      storeInit?.IsMetalCustomization === 1
+        ?
         ele?.A === cartSelectData?.autocode &&
         ele?.B === cartSelectData?.designno &&
         ele?.D === mtTypeOption
+        :
+        ele?.A === cartSelectData?.autocode &&
+        ele?.B === cartSelectData?.designno
+
     );
 
 
+    let showPrice = 0;
     if (mtrd && mtrd.length > 0) {
-      setMtrdData(mtrd[0] ?? []);
+      // showPrice = srProductsData?.price - ((srProductsData?.price - srProductsData?.metalrd) + (mtrd[0]?.Z ?? 0));
+      setMtrdData(mtrd[0])
+      // setMetalPrice(mtrd[0]?.Z ?? 0)
+    } else {
+      setMtrdData([]);
     }
 
-    let diaqcprice = getPriceData?.rd1?.filter(
-      (ele) =>
+    let diaqcprice = getPriceData?.rd1?.filter((ele) =>
+      storeInit?.IsDiamondCustomization === 1
+        ?
         ele.A === cartSelectData?.autocode &&
         ele.B === cartSelectData?.designno &&
         ele.H === diaQColOpt?.split("_")[0] &&
         ele.J === diaQColOpt?.split("_")[1]
-    );
+        :
+        ele.A === cartSelectData?.autocode &&
+        ele.B === cartSelectData?.designno
 
+    )
+
+    let showPrice1 = 0;
     if (diaqcprice && diaqcprice.length > 0) {
-      let totalPrice = diaqcprice.reduce((acc, obj) => acc + obj.S, 0)
-      setDqcData(totalPrice ?? 0);
+      // showPrice1 = srProductsData?.price - ((srProductsData?.price - srProductsData?.diard1) + (diaqcprice[0]?.S ?? 0));
+      let totalPrice = diaqcprice?.reduce((acc, obj) => acc + obj.S, 0)
+      let diaRate = diaqcprice?.reduce((acc, obj) => acc + obj.O, 0)
+      let diaSettRate = diaqcprice?.reduce((acc, obj) => acc + obj.Q, 0)
+
+      setDqcRate(diaRate)
+      setDqcSettRate(diaSettRate)
+      setDqcData(totalPrice)
+      // setDQCPrice(diaqcprice[0]?.S ?? 0)
+    } else {
+      setDqcRate(0)
+      setDqcSettRate(0)
+      setDqcData(0)
     }
 
-    let csqcpirce = getPriceData?.rd2?.filter(
-      (ele) =>
+
+    let csqcpirce = getPriceData?.rd2?.filter((ele) =>
+      storeInit?.IsCsCustomization === 1
+        ?
         ele.A === cartSelectData?.autocode &&
         ele.B === cartSelectData?.designno &&
         ele.H === cSQopt?.split("_")[0] &&
         ele.J === cSQopt?.split("_")[1]
+        :
+        ele.A === cartSelectData?.autocode &&
+        ele.B === cartSelectData?.designno
+
     );
 
+
+    let showPrice2 = 0;
     if (csqcpirce && csqcpirce.length > 0) {
-      let totalPrice = csqcpirce.reduce((acc, obj) => acc + obj.S, 0)
-      setCsqcData(totalPrice ?? 0)
+      // showPrice2 = srProductsData?.price - ((srProductsData?.price - srProductsData?.csrd2) + (csqcpirce[0]?.S ?? 0));
+      let totalPrice = csqcpirce?.reduce((acc, obj) => acc + obj.S, 0)
+      let diaRate = csqcpirce?.reduce((acc, obj) => acc + obj.O, 0)
+      let diaSettRate = csqcpirce?.reduce((acc, obj) => acc + obj.Q, 0)
+      setCsqcData(totalPrice)
+      setCsqcRate(diaRate)
+      setCsqcSettRate(diaSettRate)
+      // setCSQCPrice(csqcpirce[0]?.S ?? 0)
+    } else {
+      setCsqcData(0)
+      setCsqcRate(0)
+      setCsqcSettRate(0)
     }
-  }, [mtTypeOption, diaQColOpt, cSQopt, cartSelectData, getPriceData]);
+
+    // let gt = showPrice + showPrice1 + showPrice2;
+    // setGrandTotal(gt ?? 0);
+
+  }, [getPriceData, mtTypeOption, diaQColOpt, cSQopt, cartSelectData])
+
 
   useEffect(() => {
     setmtTypeOption(cartSelectData?.metal);
@@ -255,6 +327,54 @@ export default function CartPage() {
       setIsLoading(false);
     }
   };
+
+
+
+
+  let diaUpdatedPrice = () => {
+    let srProductsData = JSON.parse(localStorage.getItem('srProductsData'))
+
+    if (daimondFilterData && daimondFilterData.length) {
+
+      let calcDiaWt = (srProductsData?.diamondweight ?? 0) + (daimondFilterData?.Weight ?? 0)
+
+      let CalcPics = (srProductsData?.diamondpcs ?? 0) + (daimondFilterData?.pieces ?? 0)
+
+      let fpprice = ((dqcRate ?? 0) * (calcDiaWt ?? 0)) + ((dqcSettRate ?? 0) * (CalcPics ?? 0))
+
+      return fpprice
+    }
+    else {
+      return 0
+    }
+
+  }
+
+  let colUpdatedPrice = () => {
+
+    let srProductsData = JSON.parse(localStorage.getItem('srProductsData'))
+
+    if (daimondFilterData && daimondFilterData.length) {
+      let calcDiaWt = (srProductsData?.totalcolorstoneweight ?? 0) + (daimondFilterData?.Weight ?? 0)
+      let CalcPics = (srProductsData?.totalcolorstonepcs ?? 0) + (daimondFilterData?.pieces ?? 0)
+      let fpprice = ((csqcRate ?? 0) * (calcDiaWt ?? 0)) + ((csqcSettRate ?? 0) * (CalcPics ?? 0))
+      return fpprice
+    } else {
+      return 0
+    }
+  }
+
+  let metalUpdatedPrice = () => {
+    let srProductsData = JSON.parse(localStorage.getItem('srProductsData'));
+    if (metalFilterData && metalFilterData.length) {
+      let CalcNetwt = ((srProductsData?.netwt ?? 0) + (metalFilterData?.Weight ?? 0) ?? 0)
+      let fprice = ((mtrdData?.AD ?? 0) * CalcNetwt) + ((mtrdData?.AC ?? 0) * CalcNetwt)
+      return fprice
+    } else {
+      return 0
+    }
+  }
+
 
   const handleSave = (index) => {
     // Your save logic here
@@ -441,16 +561,20 @@ export default function CartPage() {
 
   const handleInputChange = (event) => {
     let { value } = event.target;
+    // Prevent entering "0" as the first character
+    if (value.length === 1 && value === '0') {
+      value = '';
+    }
     setLastEnteredQuantity(value);
   };
 
 
-  const handleUpdateQuantity = async (num) => {
+  const handleUpdateQuantity = async (autocode, updatedQuantity) => {
     try {
       const storeInit = JSON.parse(localStorage.getItem("storeInit"));
       const { FrontEnd_RegNo } = storeInit;
       const combinedValue = JSON.stringify({
-        designno: `${num}`,
+        designno: `${autocode}`,
         Quantity: `${lastEnteredQuantity}`,
         FrontEnd_RegNo: `${FrontEnd_RegNo}`,
         Customerid: `${customerID}`,
@@ -554,8 +678,220 @@ export default function CartPage() {
     setDaimondFiletrData(filteredDataDaimond)
   };
 
-  console.log('cartListDatacartListData', cartListData);
 
+  const decodeEntities = (html) => {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = html;
+    return txt.value;
+  }
+
+
+
+  const getCartAndWishListData = async () => {
+
+    const UserEmail = localStorage.getItem("registerEmail")
+    const storeInit = JSON.parse(localStorage.getItem("storeInit"))
+    const Customer_id = JSON.parse(localStorage.getItem("loginUserDetail"));
+
+    let EncodeData = { FrontEnd_RegNo: `${storeInit?.FrontEnd_RegNo}`, Customerid: `${Customer_id?.id}` }
+
+    const encodedCombinedValue = btoa(JSON.stringify(EncodeData));
+
+    const body = {
+      "con": `{\"id\":\"Store\",\"mode\":\"getdesignnolist\",\"appuserid\":\"${UserEmail}\"}`,
+      "f": " useEffect_login ( getdataofcartandwishlist )",
+      "p": encodedCombinedValue
+    }
+
+    await CommonAPI(body).then((res) => {
+      // if (res?.Message === "Success") {
+      //   setCartData(res?.Data?.rd)
+      //   setWishData(res?.Data?.rd1)
+      // }
+    })
+
+  }
+
+  const handleCartUpdate = async () => {
+    console.log("save")
+    const allproductlist = JSON.parse(localStorage.getItem("allproductlist"));
+
+    const filterProdData = allproductlist?.filter(
+      (allpd) =>
+        allpd?.autocode === cartListData[0]?.autocode &&
+        allpd?.designno === cartListData[0]?.designno
+    );
+
+    const storeInit = JSON.parse(localStorage.getItem("storeInit"))
+    const UserEmail = localStorage.getItem("registerEmail")
+    const Customer_id = JSON.parse(localStorage.getItem("loginUserDetail"));
+
+
+
+    let product = filterProdData[0]
+    let updatPrice = ((((mtrdData?.V ?? 0) / currData?.CurrencyRate + (mtrdData?.W ?? 0)) +
+      (dqcData ?? 0) +
+      (csqcData ?? 0) +
+      (sizeMarkup ?? 0) +
+      (metalUpdatedPrice() ?? 0) +
+      (diaUpdatedPrice() ?? 0) +
+      (colUpdatedPrice() ?? 0)
+    ).toFixed(2) ?? 0)
+
+
+    console.log('updatPrice', updatPrice);
+
+    const finalJSON = {
+      "stockweb_event": "",
+      "designno": `${product?.designno}`,
+      "autocode": `${product?.autocode}`,
+      "imgrandomno": `${product?.imgrandomno}`,
+      "producttypeid": `${product?.Producttypeid}`,
+      "metaltypeid": `${product?.MetalTypeid}`,
+      "metalcolorid": `${product?.MetalColorid}`,
+      "stockno": "",
+      "DQuality": `${(diaQColOpt ? diaQColOpt?.split('_')[0] : product?.diamondquality?.split(",")[0])}`,
+      "DColor": `${diaQColOpt ? diaQColOpt?.split('_')[1] : product?.diamondcolorname}`,
+      "cmboMetalType": `${product?.MetalTypeName} ${product?.MetalPurity}`,
+      "AdditionalValWt": `${product?.AdditionalValWt}`,
+      "BrandName": `${product?.BrandName ?? ""}`,
+      "Brandid": `${product?.Brandid}`,
+      "CategoryName": `${product?.CategoryName}`,
+      "Categoryid": `${product?.Categoryid}`,
+      "CenterStoneId": `${product?.CenterStoneId}`,
+      "CenterStonePieces": `${product?.CenterStonePieces}`,
+      "CollectionName": `${product?.CollectionName}`,
+      "Collectionid": `${product?.Collectionid}`,
+      "ColorWiseRollOverImageName": `${product?.ColorWiseRollOverImageName}`,
+      "DefaultImageName": `${product?.DefaultImageName}`,
+      "DisplayOrder": `${product?.DisplayOrder}`,
+      "FrontEnd_OrderCnt": `${product?.FrontEnd_OrderCnt}`,
+      "GenderName": `${product?.GenderName}`,
+      "Genderid": `${product?.Genderid}`,
+      "Grossweight": `${product?.Grossweight}`,
+      "InReadyStockCnt": `${product?.InReadyStockCnt}`,
+      "IsBestSeller": `${product?.IsBestSeller}`,
+      "IsColorWiseImageExists": `${product?.IsColorWiseImageExists ?? 0}`,
+      "IsInReadyStock": `${product?.IsInReadyStock}`,
+      "IsNewArrival": `${product?.IsNewArrival}`,
+      "IsRollOverColorWiseImageExists": `${product?.IsRollOverColorWiseImageExists ?? ""}`,
+      "IsTrending": `${product?.IsTrending}`,
+      "MasterManagement_labid": `${product?.MasterManagement_labid}`,
+      "MasterManagement_labname": "",
+      "MetalColorName": `${selectedColor ?? product?.MetalColorName}`,
+      "MetalColorid": `${product?.MetalColorid}`,
+      "MetalPurity": `${mtTypeOption ? (mtTypeOption?.split(' ')[1]) : product?.MetalPurity}`,
+      "MetalPurityid": `${product?.MetalTypeid}`,
+      "MetalTypeName": `${mtTypeOption ? mtTypeOption?.split(' ')[0] : product?.MetalTypeName}`,
+      "MetalTypeid": `${product?.IsInReadyStock}`,
+      "MetalWeight": `${product?.MetalWeight}`,
+      "OcassionName": `${product?.OcassionName ?? ""}`,
+      "Ocassionid": `${product?.Ocassionid}`,
+      "ProducttypeName": `${product?.ProducttypeName}`,
+      "Producttypeid": `${product?.Producttypeid}`,
+      "RollOverImageName": `${product?.RollOverImageName}`,
+      "SubCategoryName": `${product?.SubCategoryName ?? ""}`,
+      "SubCategoryid": `${product?.SubCategoryid}`,
+      "ThemeName": `${product?.ThemeName ?? ""}`,
+      "Themeid": `${product?.Themeid}`,
+      "TitleLine": `${product?.TitleLine}`,
+      "UnitCost": `${updatPrice ? (updatPrice ?? 0) : (product?.UnitCost ?? 0)}`,
+      "UnitCostWithmarkup": (`${(updatPrice ? (updatPrice ?? 0) : (product?.UnitCost ?? 0)) + (product?.markup ?? 0)}`),
+      "colorstonecolorname": `${cSQopt ? cSQopt?.split('_')[1] : product?.colorstonecolorname}`,
+      "colorstonequality": `${cSQopt ? cSQopt?.split('_')[0] : product?.colorstonequality}`,
+      "diamondcolorname": `${diaQColOpt ? diaQColOpt?.split('_')[1] : product?.diamondcolorname}`,
+      "diamondpcs": `${product?.diamondpcs}`,
+      "diamondquality": `${(diaQColOpt ? diaQColOpt?.split('_')[0] : product?.diamondquality?.split(",")[0])}`,
+      "diamondsetting": `${product?.diamondsetting}`,
+      "diamondshape": `${product?.diamondshape}`,
+      "diamondweight": `${product?.diamondweight}`,
+      "encrypted_designno": `${product?.encrypted_designno ?? ""}`,
+      "hashtagid": `${product?.Hashtagid ?? ""}`,
+      "hashtagname": `${product?.Hashtagname ?? ""}`,
+      "imagepath": `${product?.imagepath}`,
+      "mediumimage": `${product?.MediumImagePath ?? ""}`,
+      "originalimage": `${product?.OriginalImagePath}`,
+      "storyline_html": `${product?.storyline_html ?? ""}`,
+      "storyline_video": `${product?.storyline_video ?? ""}`,
+      "thumbimage": `${product?.ThumbImagePath}`,
+      "totaladditionalvalueweight": `${product?.totaladditionalvalueweight}`,
+      "totalcolorstoneweight": `${product?.totalcolorstoneweight}`,
+      "totaldiamondweight": `${product?.totaldiamondweight}`,
+      "updatedate": `${product?.UpdateDate}`,
+      "videoname": `${product?.videoname ?? ""}`,
+      "FrontEnd_RegNo": `${storeInit?.FrontEnd_RegNo}`,
+      "Customerid": `${Customer_id?.id}`,
+      "PriceMastersetid": `${product?.PriceMastersetid ?? ""}`,
+      "quantity": `${product?.quantity ?? "1"}`,
+      "CurrencyRate": `${product?.CurrencyRate ?? ""}`,
+      "remarks_design": `${product?.remarks_design ?? ""}`,
+      "diamondcolorid": `${product?.diamondcolorid ?? ""}`,
+      "diamondqualityid": `${product?.diamondqualityid ?? ""}`,
+      "detail_ringsize": `${sizeOption ? (sizeOption ?? "") : (product?.detail_ringsize ?? "")}`,
+      "ProjMode": `${product?.ProjMode ?? ""}`,
+      "AlbumMasterid": `${product?.AlbumMasterid ?? ""}`,
+      "AlbumMastername": `${product?.AlbumMastername ?? ""}`,
+      "Albumcode": `${product?.Albumcode ?? ""}`,
+      "Designid": `${product?.Designid ?? ""}`
+    }
+
+    let Data = { "designno": `${cartSelectData?.designno}`, "autocode": `${cartSelectData?.autocode}`, "metalcolorid": 0, "isSolStockNo": 0, "is_show_stock_website": "0", "isdelete_all": 0, "FrontEnd_RegNo": `${storeInit?.FrontEnd_RegNo}`, "Customerid": `${Customer_id?.id}`, "cartidlist": "" }
+    console.log('DataDataRemovee', Data);
+    let encodedCombinedValue1 = btoa(JSON.stringify(Data))
+
+    const body1 = {
+      con: `{\"id\":\"\",\"mode\":\"removeFromCartList\",\"appuserid\":\"${UserEmail}\"}`,
+      f: "RemoveFromCartIconClick (removeFromCartList)",
+      p: encodedCombinedValue1,
+    }
+
+    await CommonAPI(body1).then(async (res) => {
+      if (res?.Data?.rd[0]?.stat_msg === "success") {
+        // await getCartAndWishListData()
+        // getCountFunc()
+
+        const encodedCombinedValue = btoa(JSON.stringify(finalJSON));
+
+        const body = {
+          con: `{\"id\":\"\",\"mode\":\"ADDTOCART\",\"appuserid\":\"${UserEmail}\"}`,
+          f: "AddToCartIconClick (ADDTOCART)",
+          p: encodedCombinedValue,
+        };
+
+        await CommonAPI(body).then(async (res) => {
+          if (res?.Data?.rd[0]?.msg === "success") {
+            await getCartAndWishListData()
+            getCountFunc()
+            getCartData()
+          }
+          else {
+            console.log("error", res);
+          }
+        }).catch((error) => {
+          console.log("error", error);
+
+        })
+
+      }
+    })
+  }
+
+
+  const [count, setCount] = useState(0);
+
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  // Function to decrement the counter
+  const decrement = () => {
+    setCount(count - 1);
+  };
+
+  console.log('cartListData', cartListData);
+  // console.log('cartSelectData', cartSelectData);
+  // console.log('getPriceData', getPriceData);
+  // console.log('priceData', ((mtrdData?.V ?? 0) / currData?.CurrencyRate + (mtrdData?.W ?? 0)), (dqcData ?? 0), (csqcData ?? 0), (sizeMarkup ?? 0), (metalUpdatedPrice() ?? 0), (diaUpdatedPrice() ?? 0), (colUpdatedPrice() ?? 0));
   return (
     <>
       <div
@@ -582,37 +918,26 @@ export default function CartPage() {
 
             {cartListData?.length !== 0 && (
               <div>
-                <div className="smiCartPagePlaceOrderBtn">
-                  {/* <div style={{display: 'flex'}}>
-                    <button
-                      className="smiTopClearBtn"
-                      onClick={() => handleChange(0)}
-                    >
-                      List View
-                    </button>
-                    <button
-                      className="smiTopClearBtn"
-                      onClick={() => handleChange(1)}
-                    >
-                      Image View
-                    </button>
-                  </div> */}
-                  {/* <div style={{display: 'flex'}}>
-                    <button
-                      className="smiTopClearBtn"
-                      onClick={handleRemoveAllWishList}
-                    >
-                      CLEAR ALL
-                    </button>
-                    <button
-                      className="smiTopClearBtn"
-                      onClick={() => navigation("/productpage")}
-                    >
-                      Show ProductList
-                    </button>
-                  </div> */}
+                {!dialogOpen && <div className="smiCartPagePlaceOrderBtn">
                   <div>
-                    {/* <p style={{ margin: '0px', fontWeight: 600 }}>$ 121.152</p> */}
+                    <span
+                      style={{
+                        fontWeight: "500",
+                        fontSize: "18px",
+                        color: "black",
+                        display: 'flex'
+                      }}
+                    >
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: decodeEntities(
+                            currData?.Currencysymbol
+                          ),
+                        }}
+                        style={{ fontFamily: "sans-serif" }}
+                      />
+                      {totalValue}
+                    </span>
                   </div>
                   <button
                     className="placeOrderCartPageBtnMobile"
@@ -622,7 +947,7 @@ export default function CartPage() {
                   >
                     Place Order
                   </button>
-                </div>
+                </div>}
                 <div
                   className="smilingCartPagePlaceOrderBtnMainWeb"
                   style={{
@@ -717,7 +1042,7 @@ export default function CartPage() {
                               >
                                 <div
                                   style={{
-                                    fontSize: "40px",
+                                    fontSize: "30px",
                                     fontFamily: "FreightDisp Pro Medium",
                                     color: "#7d7f85",
                                     lineHeight: "40px",
@@ -1020,9 +1345,7 @@ export default function CartPage() {
                                     inputMode="numeric"
                                     onClick={(event) => event.target.select()}
                                     value={lastEnteredQuantity}
-                                    onChange={(event) =>
-                                      handleInputChange(event)
-                                    }
+                                    onChange={(event) => handleInputChange(event)}
                                   />
                                   <button
                                     className="SmilingUpdateQuantityBtn"
@@ -1076,78 +1399,58 @@ export default function CartPage() {
                               onClick={() => {
                                 setCartSelectData(item);
                                 getSizeData(item.autocode)
-                                window.innerWidth <= 1080 && setDialogOpen(true)
+                                // window.innerWidth <= 1080 && setDialogOpen(true)
                               }}
                             >
-                              {/* <div
-                                style={{
-                                  cursor: "pointer",
-                                  position: "absolute",
-                                  right: "0px",
-                                  top: "0px",
-                                  backgroundColor: "black",
-                                  borderRadius: "2px",
-                                  opacity: "0.8",
-                                }}
-                                onClick={() => handleRemove(item)}
-                              >
-                                <CloseIcon
-                                  sx={{ color: "white", fontSize: "22px" }}
-                                />
-                              </div> */}
-                              <div className="smiling-cartPageBoxMain-imageMain">
-                                <img
-                                  src={`${imageURL}/${yKey}/${item.DefaultImageName}`}
-                                  alt="#"
-                                  className="cartImageShow"
-                                />
-                              </div>
+                              <div style={{ display: 'flex' }}>
+                                <div className="smiling-cartPageBoxMain-imageMain">
+                                  <img
+                                    src={`${imageURL}/${yKey}/${item.DefaultImageName}`}
+                                    alt="#"
+                                    className="cartImageShow"
+                                  />
+                                </div>
+                                <div
+                                  className="smilingCartBox1"
+                                  style={{ padding: "5px" }}
+                                >
+                                  <p style={{ margin: "10px 0px 5px 0px", fontSize: '14px' }}>{item.TitleLine} <span style={{ fontWeight: 500 }}>- {item.Mastermanagement_CategoryName}({item.designno})</span></p>
+                                  <span
+                                    style={{
+                                      fontWeight: "500",
+                                      fontSize: "18px",
+                                      color: "black",
+                                      display: 'flex'
+                                    }}
+                                  >
+                                    <div
+                                      dangerouslySetInnerHTML={{
+                                        __html: decodeEntities(
+                                          currData?.Currencysymbol
+                                        ),
+                                      }}
+                                      style={{ fontFamily: "sans-serif" }}
+                                    />
+                                    {
+                                      // (((mtrdData?.V ?? 0) /
+                                      //     currData?.CurrencyRate +
+                                      //     (mtrdData?.W ?? 0)) +
+                                      //   (dqcData ?? 0) +
+                                      //   (csqcData ?? 0) +
+                                      //   (sizeMarkup ?? 0) +
+                                      //   (metalUpdatedPrice() ?? 0) +
+                                      //   (diaUpdatedPrice() ?? 0) +
+                                      //   (colUpdatedPrice() ?? 0)
+                                      // ).toFixed(2) ?? 
+                                      item?.UnitCost
+                                    }
+                                  </span>
 
-                              <div
-                                className="smilingCartBox1"
-                                style={{ padding: "5px" }}
-                              >
-                                  <p>{item.DesDetStr}</p>
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                  }}
-                                >
-                                  <p style={{ margin: "0px", fontSize: "12px" }}>
-                                    NWT :{" "}
-                                    <span style={{ fontWeight: 600 }}>
-                                      {item?.MetalWeight}
-                                    </span>
-                                  </p>
-                                  <p style={{ margin: "0px", fontSize: "12px" }}>
-                                    DWT :{" "}
-                                    <span style={{ fontWeight: 600 }}>
-                                      {item?.Rec_DiamondWeight} /{" "}
-                                      {item?.totaldiamondpcs}
-                                    </span>
-                                  </p>
                                 </div>
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    justifyContent: "space-between",
-                                  }}
-                                >
-                                  <p style={{ margin: "0px", fontSize: "12px" }}>
-                                    CWT :{" "}
-                                    <span style={{ fontWeight: 600 }}>
-                                      {item?.Rec_CSWeight} /{" "}
-                                      {item?.totalcolorstonepcs}
-                                    </span>
-                                  </p>
-                                  <p style={{ margin: "0px", fontSize: "12px" }}>
-                                    GWT :{" "}
-                                    <span style={{ fontWeight: 600 }}>
-                                      {item?.grossweight}
-                                    </span>
-                                  </p>
-                                </div>
+                              </div>
+                              <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row-reverse' }}>
+                                <button className="cartRemoveBtn" onClick={() => handleRemove(item)}>Remove</button>
+                                <button className="cartRemoveBtn" style={{ marginInline: '10px' }} onClick={() => { setDialogOpen(true); setCartSelectData(item); }}>Update</button>
                               </div>
                             </div>
                           ))}
@@ -1273,7 +1576,7 @@ export default function CartPage() {
                   style={{
                     border: "1px solid #e1e1e1",
                     borderRadius: "12px",
-                    width: "35%",
+                    width: "65%",
                   }}
                 />
 
@@ -1288,7 +1591,7 @@ export default function CartPage() {
                   >
                     <div
                       style={{
-                        fontSize: "40px",
+                        fontSize: "30px",
                         fontFamily: "FreightDisp Pro Medium",
                         color: "#7d7f85",
                         lineHeight: "40px",
@@ -1299,13 +1602,6 @@ export default function CartPage() {
                       {prodSelectData?.TitleLine}
                     </div>
 
-                    {/* <Divider
-                    sx={{
-                        margin: "12px",
-                        backgroundColor: "#e1e1e1",
-                        marginLeft: "-5px",
-                    }}
-                    /> */}
                     {isProductCuFlag === 1 && <div
                       style={{
                         borderTop: "1px solid #e1e1e1",
@@ -1316,7 +1612,7 @@ export default function CartPage() {
                       <div
                         style={{
                           display: "flex",
-                          justifyContent: "space-between",
+                          flexWrap: "wrap",
                           marginTop: "12px",
                         }}
                       >
@@ -1387,14 +1683,8 @@ export default function CartPage() {
                             </select>
                           </div>
                         )}
-                      </div>
 
-                      <div
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                        }}
-                      >
+
                         {isDaimondCstoFlag == 1 && (
                           <div
                             style={{
@@ -1470,75 +1760,108 @@ export default function CartPage() {
                             </select>
                           </div>
                         )}
-                      </div>
 
-                      {(sizeData?.length !== 0 ||
-                        (productData?.DefaultSize &&
-                          productData.DefaultSize.length !== 0)) && (
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              width: "49%",
-                              marginTop: "30px",
-                            }}
-                          >
-                            <label
-                              style={{ fontSize: "12.5px", color: "#7d7f85" }}
-                            >
-                              SIZE:
-                            </label>
-                            <select
+                        {(sizeData?.length !== 0 ||
+                          (productData?.DefaultSize &&
+                            productData.DefaultSize.length !== 0)) && (
+                            <div
                               style={{
-                                border: "none",
-                                outline: "none",
-                                color: "#7d7f85",
-                                fontSize: "12.5px",
+                                display: "flex",
+                                flexDirection: "column",
+                                width: "49%",
+                                marginTop: "30px",
                               }}
-                              onChange={(e) => handelSize(e.target.value)}
-                              defaultValue={
-                                productData && productData.DefaultSize
-                                  ? productData.DefaultSize
-                                  : sizeData.find(
-                                    (size) => size.IsDefaultSize === 1
-                                  )?.id
-                              }
                             >
-                              {sizeData?.map((size) => (
-                                <option
-                                  key={size.id}
-                                  value={size.sizename} // Pass sizename as value
-                                  selected={
-                                    productData &&
-                                    productData.DefaultSize === size.sizename
-                                  }
-                                >
-                                  {size.sizename}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                        )}
-                    </div>}
+                              <label
+                                style={{ fontSize: "12.5px", color: "#7d7f85" }}
+                              >
+                                SIZE:
+                              </label>
+                              <select
+                                style={{
+                                  border: "none",
+                                  outline: "none",
+                                  color: "#7d7f85",
+                                  fontSize: "12.5px",
+                                }}
+                                onChange={(e) => handelSize(e.target.value)}
+                                defaultValue={
+                                  productData && productData.DefaultSize
+                                    ? productData.DefaultSize
+                                    : sizeData.find(
+                                      (size) => size.IsDefaultSize === 1
+                                    )?.id
+                                }
+                              >
+                                {sizeData?.map((size) => (
+                                  <option
+                                    key={size.id}
+                                    value={size.sizename} // Pass sizename as value
+                                    selected={
+                                      productData &&
+                                      productData.DefaultSize === size.sizename
+                                    }
+                                  >
+                                    {size.sizename}
+                                  </option>
+                                ))}
+                              </select>
+                            </div>
+                          )}
+                      </div>
+                    </div>
+                    }
                   </div>
-                  <div
-                    style={{
-                      marginTop: "20px",
-                      color: "#7d7f85",
-                      fontSize: "14px",
-                    }}
-                  >
-                    Price :{" "}
-                    <span style={{ fontWeight: "500", fontSize: "16px" }}>
-                      {currencySymbol?.Currencysymbol}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span
+                      style={{
+                        fontWeight: "500",
+                        fontSize: "18px",
+                        color: "black",
+                        display: 'flex'
+                      }}
+                    >
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: decodeEntities(
+                            currData?.Currencysymbol
+                          ),
+                        }}
+                        style={{ fontFamily: "sans-serif" }}
+                      />
                       {(
-                        cartSelectData?.UnitCost +
-                        (mtrdData?.Z ?? 0) +
+                        ((mtrdData?.V ?? 0) /
+                          currData?.CurrencyRate +
+                          (mtrdData?.W ?? 0)) +
                         (dqcData ?? 0) +
-                        (csqcData ?? 0)
+                        (csqcData ?? 0) +
+                        (sizeMarkup ?? 0) +
+                        (metalUpdatedPrice() ?? 0) +
+                        (diaUpdatedPrice() ?? 0) +
+                        (colUpdatedPrice() ?? 0)
                       ).toFixed(2)}
                     </span>
+                    <button
+                      style={{
+                        border: "none",
+                        outline: "none",
+                        backgroundColor: "#e1e1e1",
+                        padding: "6px 60px",
+                        borderRadius: "4px",
+                      }}
+                    >
+                      <span
+                        style={{
+                          fontSize: "16px",
+                          fontWeight: "500",
+                        }}
+                        onClick={handleCartUpdate}
+                      >
+                        Save
+                      </span>
+                    </button>
                   </div>
+
                   <div className="similingCartPageBotttomMain">
                     <div
                       className="smilingQualityMain"
@@ -1581,7 +1904,7 @@ export default function CartPage() {
                     >
                       <textarea
                         type="text"
-                        placeholder="Enter Remarks..."
+                        placeholder="Add Remarks..."
                         value={remarks}
                         onChange={(event) => handleInputChangeRemarks(event)}
                         className="YourCartMainRemkarBoxSingle"
@@ -1594,6 +1917,12 @@ export default function CartPage() {
                       </button>
                     </div>
                   </div>
+                  <div style={{ border: '1px solid', width: '100px' }}>
+                    <button onClick={decrement} style={{ backgroundColor: 'transparent', border: 'none', width: '33.33%' }}>-</button>
+                    <input type="text" value={count} style={{ height: '30px', textAlign: 'center', width: '33.33%', borderRight: '1px solid', borderLeft: '1px solid', borderTop: 'none', borderBottom: 'none' }} />
+                    <button onClick={increment} style={{ backgroundColor: 'transparent', border: 'none', width: '33.33%' }}>+</button>
+                  </div>
+                  <h2>Counter: {count}</h2>
                 </div>
               </div>
             </div>
