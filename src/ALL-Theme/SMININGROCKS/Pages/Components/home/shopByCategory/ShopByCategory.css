@@ -2,9 +2,9 @@
 
 .shopbycategoryTitle{
     font-family: 'PT Sans', sans-serif;
-    font-size: 40px;
-    text-align: center;
+    font-size: 22px;
     color: rgb(125, 127, 133);
+    margin: 20px 0px 5px 5px;
 }
 
 .shopbycategoryDesc{
@@ -30,25 +30,17 @@
 
 @media screen and (max-width: 550px) {
 
-    .shopbycategoryTitle{
-        margin-top: 50px!important;
-    }
 
     .shopByCategoryBox{
         width: 50%!important;
         margin: 5px!important;
+        height: 230px;
     }
 
     .shopByCategoryBoxImg{
-        height: 80%!important;
+        height: 90%!important;
         width: 100%!important;
+        object-fit: cover;
     }
 
-    .shopbycategoryTitle{
-        font-size: 40px!important;
-    }
-
-    .shopByCategoryBox{
-        padding: 20px!important;
-    }
 }

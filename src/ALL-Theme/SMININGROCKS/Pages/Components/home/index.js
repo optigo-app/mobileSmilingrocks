@@ -273,10 +273,10 @@ export default function Home() {
     <div style={{ backgroundColor: '#c0bbb1', paddingTop: '0px' }}>
       <div className='homeMain'>
         <Video />
-        <SmilingRock />
-        <FestiveFinds />
-        <DaimondEveyone />
+        {/* <SmilingRock /> */}
         <ShopByCategory />
+        <FestiveFinds />
+        {/* <DaimondEveyone /> */}
         <SmilingBrides />
         <FeaturedCollection />
         <div style={{ marginTop: '60px' }}>
