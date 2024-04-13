@@ -58,6 +58,7 @@ export default function CartPage() {
   const [isCColrStoneCustFlag, setIsCColrStoneCustFlag] = useState("");
   const [currency, setCurrency] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingDrawer, setIsLoadingDrawer] = useState(false);
   const [colorData, setColorData] = useState([]);
   const [metalColorData, setMetalColorData] = useState([]);
   const [metalType, setMetalType] = useState([]);
@@ -569,13 +570,18 @@ export default function CartPage() {
   };
 
 
-  const handleUpdateQuantity = async (autocode, updatedQuantity) => {
+  const handleUpdateQuantity = async (designNo, updatedQuantity) => {
+
+    console.log('dessssssssss', designNo);
+    console.log('updateddddd', updatedQuantity);
+
     try {
+      setIsLoadingDrawer(true);
       const storeInit = JSON.parse(localStorage.getItem("storeInit"));
       const { FrontEnd_RegNo } = storeInit;
       const combinedValue = JSON.stringify({
-        designno: `${autocode}`,
-        Quantity: `${lastEnteredQuantity}`,
+        designno: `${designNo}`,
+        Quantity: `${updatedQuantity}`,
         FrontEnd_RegNo: `${FrontEnd_RegNo}`,
         Customerid: `${customerID}`,
       });
@@ -588,14 +594,13 @@ export default function CartPage() {
       const response = await CommonAPI(body);
       if (response.Data.rd[0].stat === 1) {
         await getCartData()
-        toast.success("QTY change successfully");
       } else {
-        alert("Error");
+        toast.error("Error");
       }
     } catch (error) {
       console.error("Error:", error);
     } finally {
-
+      setIsLoadingDrawer(false);
     }
   };
 
@@ -877,18 +882,16 @@ export default function CartPage() {
   }
 
 
-  const [count, setCount] = useState(0);
 
   const increment = () => {
-    setCount(count + 1);
+    setLastEnteredQuantity(lastEnteredQuantity + 1);
   };
 
-  // Function to decrement the counter
   const decrement = () => {
-    setCount(count - 1);
+    setLastEnteredQuantity(lastEnteredQuantity - 1);
   };
 
-  console.log('cartListData', cartListData);
+  // console.log('cartListData', cartListData);
   // console.log('cartSelectData', cartSelectData);
   // console.log('getPriceData', getPriceData);
   // console.log('priceData', ((mtrdData?.V ?? 0) / currData?.CurrencyRate + (mtrdData?.W ?? 0)), (dqcData ?? 0), (csqcData ?? 0), (sizeMarkup ?? 0), (metalUpdatedPrice() ?? 0), (diaUpdatedPrice() ?? 0), (colUpdatedPrice() ?? 0));
@@ -1037,6 +1040,7 @@ export default function CartPage() {
                                   width: "100%",
                                   display: "flex",
                                   flexDirection: "column",
+                                  paddingInline: '5%'
                                 }}
                                 className="srcolorsizecarat"
                               >
@@ -1306,6 +1310,7 @@ export default function CartPage() {
                                   fontSize: "14px",
                                 }}
                               >
+
                                 Price :{" "}
                                 <span
                                   style={{
@@ -1445,7 +1450,6 @@ export default function CartPage() {
                                       item?.UnitCost
                                     }
                                   </span>
-
                                 </div>
                               </div>
                               <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row-reverse' }}>
@@ -1547,387 +1551,404 @@ export default function CartPage() {
         // maxWidth={"xl"}
         fullScreen
       >
-        {!isLoading && (
-          <div style={{ marginTop: "50px" }}>
-            <div>
+        <div style={{ marginTop: "50px" }}>
+          {isLoadingDrawer && (
+            <div className="loader-overlay">
+              <CircularProgress className="loadingBarManage" />
+            </div>
+          )}
+
+          <div>
+            <div
+              style={{
+                cursor: "pointer",
+                position: "absolute",
+                right: "12px",
+                top: "12px",
+                borderRadius: "12px",
+              }}
+              onClick={() => setDialogOpen(false)}
+            >
+              <CloseIcon sx={{ color: "black", fontSize: "30px" }} />
+            </div>
+          </div>
+          <div
+            className="smilingCartDeatilSub1"
+            style={{ display: !prodSelectData && !cartSelectData && "none" }}
+          >
+            <div className="popUpcontainer">
+              <img
+                src={
+                  prodSelectData?.imagepath +
+                  prodSelectData?.MediumImagePath?.split(",")[0]
+                }
+                style={{
+                  border: "1px solid #e1e1e1",
+                  borderRadius: "12px",
+                  width: "65%",
+                }}
+              />
               <div
                 style={{
-                  cursor: "pointer",
-                  position: "absolute",
-                  right: "12px",
-                  top: "12px",
-                  borderRadius: "12px",
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "column",
                 }}
-                onClick={() => setDialogOpen(false)}
+                className="srcolorsizecarat"
               >
-                <CloseIcon sx={{ color: "black", fontSize: "30px" }} />
-              </div>
-            </div>
-            <div
-              className="smilingCartDeatilSub1"
-              style={{ display: !prodSelectData && !cartSelectData && "none" }}
-            >
-              <div className="popUpcontainer">
-                <img
-                  src={
-                    prodSelectData?.imagepath +
-                    prodSelectData?.MediumImagePath?.split(",")[0]
-                  }
+                <div
                   style={{
-                    border: "1px solid #e1e1e1",
-                    borderRadius: "12px",
-                    width: "65%",
+                    fontSize: "30px",
+                    fontFamily: "FreightDisp Pro Medium",
+                    color: "#7d7f85",
+                    lineHeight: "40px",
+                    marginBottom: "14px",
                   }}
-                />
+                  className="prodTitleLine"
+                >
+                  {prodSelectData?.TitleLine}
+                </div>
 
-                <div>
+                {isProductCuFlag === 1 && <div
+                  style={{
+                    borderTop: "1px solid #e1e1e1",
+                  }}
+                >
                   <div
                     style={{
-                      width: "100%",
                       display: "flex",
-                      flexDirection: "column",
+                      flexWrap: "wrap",
+                      marginTop: "12px",
                     }}
-                    className="srcolorsizecarat"
                   >
-                    <div
-                      style={{
-                        fontSize: "30px",
-                        fontFamily: "FreightDisp Pro Medium",
-                        color: "#7d7f85",
-                        lineHeight: "40px",
-                        marginBottom: "14px",
-                      }}
-                      className="prodTitleLine"
-                    >
-                      {prodSelectData?.TitleLine}
-                    </div>
-
-                    {isProductCuFlag === 1 && <div
-                      style={{
-                        borderTop: "1px solid #e1e1e1",
-                        marginInline: "-10px",
-                        padding: "20px",
-                      }}
-                    >
+                    {isMetalCutoMizeFlag == 1 && (
                       <div
                         style={{
                           display: "flex",
-                          flexWrap: "wrap",
-                          marginTop: "12px",
+                          flexDirection: "column",
+                          width: "49%",
                         }}
                       >
-                        {isMetalCutoMizeFlag == 1 && (
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              width: "49%",
-                            }}
+                        <label
+                          style={{ fontSize: "12.5px", color: "#7d7f85" }}
+                        >
+                          METAL COLOR:
+                        </label>
+                        <select
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            color: "#7d7f85",
+                            fontSize: "12.5px",
+                          }}
+                          value={selectedColor}
+                          onChange={(e) => setSelectedColor(e.target.value)}
+                        >
+                          {metalColorData.map((colorItem) => (
+                            <option
+                              key={colorItem.ColorId}
+                              value={colorItem.metalcolorname}
+                            >
+                              {colorItem.metalcolorname}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    )}
+
+                    {isMetalCutoMizeFlag == 1 && (
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          width: "49%",
+                        }}
+                      >
+                        <label
+                          style={{ fontSize: "12.5px", color: "#7d7f85" }}
+                        >
+                          METAL TYPE:
+                        </label>
+                        <select
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            color: "#7d7f85",
+                            fontSize: "12.5px",
+                          }}
+                          // value={mtTypeOption ?? cartSelectData?.metal}
+                          value={mtTypeOption}
+                          onChange={(e) => setmtTypeOption(e.target.value)}
+                        >
+                          {metalType.map((data, index) => (
+                            <option key={index} value={data.metalType}>
+                              {data.metaltype}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    )}
+
+
+                    {isDaimondCstoFlag == 1 && (
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          width: "49%",
+                          marginTop: "30px",
+                        }}
+                      >
+                        <label
+                          style={{ fontSize: "12.5px", color: "#7d7f85" }}
+                        >
+                          DAIMOND :
+                        </label>
+                        <select
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            color: "#7d7f85",
+                            fontSize: "12.5px",
+                          }}
+                          value={diaQColOpt}
+                          onChange={(e) => setDiaQColOpt(e.target.value)}
+                        >
+                          {colorData?.map((colorItem) => (
+                            <option
+                              key={colorItem.ColorId}
+                              value={`${colorItem.Quality}_${colorItem.color}`}
+                            >
+                              {`${colorItem.Quality}_${colorItem.color}`}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    )}
+
+                    {isCColrStoneCustFlag == 1 && (
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          width: "49%",
+                          marginTop: "20px",
+                        }}
+                      >
+                        <label
+                          style={{
+                            fontSize: "12.5px",
+                            color: "#7d7f85",
+                            marginTop: "10px",
+                          }}
+                        >
+                          COLOR STONE:
+                        </label>
+                        <select
+                          style={{
+                            border: "none",
+                            outline: "none",
+                            color: "#7d7f85",
+                            fontSize: "12.5px",
+                          }}
+                          value={cSQopt}
+                          onChange={(e) => setCSQOpt(e.target.value)}
+                        >
+                          {DaimondQualityColor.map((data, index) => (
+                            <option
+                              key={index}
+                              value={`${data.Quality}-${data.color}`}
+                            >
+                              {`${data.Quality}-${data.color}`}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+                    )}
+
+                    {(sizeData?.length !== 0 ||
+                      (productData?.DefaultSize &&
+                        productData.DefaultSize.length !== 0)) && (
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            width: "49%",
+                            marginTop: "30px",
+                          }}
+                        >
+                          <label
+                            style={{ fontSize: "12.5px", color: "#7d7f85" }}
                           >
-                            <label
-                              style={{ fontSize: "12.5px", color: "#7d7f85" }}
-                            >
-                              METAL COLOR:
-                            </label>
-                            <select
-                              style={{
-                                border: "none",
-                                outline: "none",
-                                color: "#7d7f85",
-                                fontSize: "12.5px",
-                              }}
-                              value={selectedColor}
-                              onChange={(e) => setSelectedColor(e.target.value)}
-                            >
-                              {metalColorData.map((colorItem) => (
-                                <option
-                                  key={colorItem.ColorId}
-                                  value={colorItem.metalcolorname}
-                                >
-                                  {colorItem.metalcolorname}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                        )}
-
-                        {isMetalCutoMizeFlag == 1 && (
-                          <div
+                            SIZE:
+                          </label>
+                          <select
                             style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              width: "49%",
+                              border: "none",
+                              outline: "none",
+                              color: "#7d7f85",
+                              fontSize: "12.5px",
                             }}
+                            onChange={(e) => handelSize(e.target.value)}
+                            defaultValue={
+                              productData && productData.DefaultSize
+                                ? productData.DefaultSize
+                                : sizeData.find(
+                                  (size) => size.IsDefaultSize === 1
+                                )?.id
+                            }
                           >
-                            <label
-                              style={{ fontSize: "12.5px", color: "#7d7f85" }}
-                            >
-                              METAL TYPE:
-                            </label>
-                            <select
-                              style={{
-                                border: "none",
-                                outline: "none",
-                                color: "#7d7f85",
-                                fontSize: "12.5px",
-                              }}
-                              // value={mtTypeOption ?? cartSelectData?.metal}
-                              value={mtTypeOption}
-                              onChange={(e) => setmtTypeOption(e.target.value)}
-                            >
-                              {metalType.map((data, index) => (
-                                <option key={index} value={data.metalType}>
-                                  {data.metaltype}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                        )}
-
-
-                        {isDaimondCstoFlag == 1 && (
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              width: "49%",
-                              marginTop: "30px",
-                            }}
-                          >
-                            <label
-                              style={{ fontSize: "12.5px", color: "#7d7f85" }}
-                            >
-                              DAIMOND :
-                            </label>
-                            <select
-                              style={{
-                                border: "none",
-                                outline: "none",
-                                color: "#7d7f85",
-                                fontSize: "12.5px",
-                              }}
-                              value={diaQColOpt}
-                              onChange={(e) => setDiaQColOpt(e.target.value)}
-                            >
-                              {colorData?.map((colorItem) => (
-                                <option
-                                  key={colorItem.ColorId}
-                                  value={`${colorItem.Quality}_${colorItem.color}`}
-                                >
-                                  {`${colorItem.Quality}_${colorItem.color}`}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                        )}
-
-                        {isCColrStoneCustFlag == 1 && (
-                          <div
-                            style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              width: "49%",
-                              marginTop: "20px",
-                            }}
-                          >
-                            <label
-                              style={{
-                                fontSize: "12.5px",
-                                color: "#7d7f85",
-                                marginTop: "10px",
-                              }}
-                            >
-                              COLOR STONE:
-                            </label>
-                            <select
-                              style={{
-                                border: "none",
-                                outline: "none",
-                                color: "#7d7f85",
-                                fontSize: "12.5px",
-                              }}
-                              value={cSQopt}
-                              onChange={(e) => setCSQOpt(e.target.value)}
-                            >
-                              {DaimondQualityColor.map((data, index) => (
-                                <option
-                                  key={index}
-                                  value={`${data.Quality}-${data.color}`}
-                                >
-                                  {`${data.Quality}-${data.color}`}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                        )}
-
-                        {(sizeData?.length !== 0 ||
-                          (productData?.DefaultSize &&
-                            productData.DefaultSize.length !== 0)) && (
-                            <div
-                              style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                width: "49%",
-                                marginTop: "30px",
-                              }}
-                            >
-                              <label
-                                style={{ fontSize: "12.5px", color: "#7d7f85" }}
-                              >
-                                SIZE:
-                              </label>
-                              <select
-                                style={{
-                                  border: "none",
-                                  outline: "none",
-                                  color: "#7d7f85",
-                                  fontSize: "12.5px",
-                                }}
-                                onChange={(e) => handelSize(e.target.value)}
-                                defaultValue={
-                                  productData && productData.DefaultSize
-                                    ? productData.DefaultSize
-                                    : sizeData.find(
-                                      (size) => size.IsDefaultSize === 1
-                                    )?.id
+                            {sizeData?.map((size) => (
+                              <option
+                                key={size.id}
+                                value={size.sizename} // Pass sizename as value
+                                selected={
+                                  productData &&
+                                  productData.DefaultSize === size.sizename
                                 }
                               >
-                                {sizeData?.map((size) => (
-                                  <option
-                                    key={size.id}
-                                    value={size.sizename} // Pass sizename as value
-                                    selected={
-                                      productData &&
-                                      productData.DefaultSize === size.sizename
-                                    }
-                                  >
-                                    {size.sizename}
-                                  </option>
-                                ))}
-                              </select>
-                            </div>
-                          )}
-                      </div>
-                    </div>
-                    }
+                                {size.sizename}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      )}
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span
-                      style={{
-                        fontWeight: "500",
-                        fontSize: "18px",
-                        color: "black",
-                        display: 'flex'
-                      }}
-                    >
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: decodeEntities(
-                            currData?.Currencysymbol
-                          ),
-                        }}
-                        style={{ fontFamily: "sans-serif" }}
-                      />
-                      {(
-                        ((mtrdData?.V ?? 0) /
-                          currData?.CurrencyRate +
-                          (mtrdData?.W ?? 0)) +
-                        (dqcData ?? 0) +
-                        (csqcData ?? 0) +
-                        (sizeMarkup ?? 0) +
-                        (metalUpdatedPrice() ?? 0) +
-                        (diaUpdatedPrice() ?? 0) +
-                        (colUpdatedPrice() ?? 0)
-                      ).toFixed(2)}
-                    </span>
+                </div>
+                }
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span
+                  style={{
+                    fontWeight: "500",
+                    fontSize: "18px",
+                    color: "black",
+                    display: 'flex'
+                  }}
+                >
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: decodeEntities(
+                        currData?.Currencysymbol
+                      ),
+                    }}
+                    style={{ fontFamily: "sans-serif" }}
+                  />
+                  {(
+                    ((mtrdData?.V ?? 0) /
+                      currData?.CurrencyRate +
+                      (mtrdData?.W ?? 0)) +
+                    (dqcData ?? 0) +
+                    (csqcData ?? 0) +
+                    (sizeMarkup ?? 0) +
+                    (metalUpdatedPrice() ?? 0) +
+                    (diaUpdatedPrice() ?? 0) +
+                    (colUpdatedPrice() ?? 0)
+                  ).toFixed(2) * lastEnteredQuantity}
+                </span>
+                <button
+                  style={{
+                    border: "none",
+                    outline: "none",
+                    backgroundColor: "#e1e1e1",
+                    padding: "6px 60px",
+                    borderRadius: "4px",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: "16px",
+                      fontWeight: "500",
+                    }}
+                    onClick={handleCartUpdate}
+                  >
+                    Save
+                  </span>
+                </button>
+              </div>
+
+              <div className="similingCartPageBotttomMain">
+                <div
+                  className="smilingQualityMain"
+                  style={{ display: "flex", alignItems: "center" }}
+                >
+                  <div style={{ border: '1px solid', width: '100px' }}>
                     <button
-                      style={{
-                        border: "none",
-                        outline: "none",
-                        backgroundColor: "#e1e1e1",
-                        padding: "6px 60px",
-                        borderRadius: "4px",
+                      onClick={() => {
+                        if (lastEnteredQuantity !== 1) {
+                          decrement();
+                          handleUpdateQuantity(prodSelectData?.designno, lastEnteredQuantity - 1);
+                        }
                       }}
+                      style={{ backgroundColor: 'transparent', border: 'none', width: '33.33%' }}
+                    > -
+                    </button>
+
+                    <input type="text" readOnly value={lastEnteredQuantity} style={{ height: '30px', outline: 'none', textAlign: 'center', width: '33.33%', borderRight: '1px solid', borderLeft: '1px solid', borderTop: 'none', borderBottom: 'none' }} />
+
+                    <button
+                      onClick={() => {
+                        increment();
+                        handleUpdateQuantity(prodSelectData?.designno, lastEnteredQuantity + 1);
+                      }}
+                      style={{ backgroundColor: 'transparent', border: 'none', width: '33.33%' }}
                     >
-                      <span
-                        style={{
-                          fontSize: "16px",
-                          fontWeight: "500",
-                        }}
-                        onClick={handleCartUpdate}
-                      >
-                        Save
-                      </span>
+                      +
                     </button>
                   </div>
-
-                  <div className="similingCartPageBotttomMain">
-                    <div
-                      className="smilingQualityMain"
-                      style={{ display: "flex", alignItems: "center" }}
-                    >
-                      <input
-                        type="text"
-                        style={{
-                          border: "0px",
-                          textAlign: "center",
-                          outline: "none",
-                          width: "80px",
-                          height: "35px",
-                          border: "1px solid #7d7f85",
-                        }}
-                        maxLength={2}
-                        className="simlingQualityBox"
-                        inputMode="numeric"
-                        onClick={(event) => event.target.select()}
-                        value={lastEnteredQuantity}
-                        onChange={(event) => handleInputChange(event)}
-                      />
-                      <button
-                        className="SmilingUpdateQuantityBtn"
-                        onClick={() =>
-                          handleUpdateQuantity(prodSelectData?.designno)
-                        }
-                      >
-                        QTY
-                      </button>
-                    </div>
-
-                    <div
-                      className="smilingAddresingleMobileMain"
+                  {/* <input
+                      type="text"
                       style={{
-                        display: "flex",
-                        alignItems: "center",
-                        marginLeft: "30px",
+                        border: "0px",
+                        textAlign: "center",
+                        outline: "none",
+                        width: "80px",
+                        height: "35px",
+                        border: "1px solid #7d7f85",
                       }}
+                      maxLength={2}
+                      className="simlingQualityBox"
+                      inputMode="numeric"
+                      onClick={(event) => event.target.select()}
+                      value={lastEnteredQuantity}
+                      onChange={(event) => handleInputChange(event)}
+                    />
+                    <button
+                      className="SmilingUpdateQuantityBtn"
+                      onClick={() =>
+                        handleUpdateQuantity(prodSelectData?.designno)
+                      }
                     >
-                      <textarea
-                        type="text"
-                        placeholder="Add Remarks..."
-                        value={remarks}
-                        onChange={(event) => handleInputChangeRemarks(event)}
-                        className="YourCartMainRemkarBoxSingle"
-                      />
-                      <button
-                        onClick={() => handleSubmit(cartSelectData)}
-                        className="SmilingAddSingleRemkarBtn"
-                      >
-                        Add
-                      </button>
-                    </div>
-                  </div>
-                  <div style={{ border: '1px solid', width: '100px' }}>
-                    <button onClick={decrement} style={{ backgroundColor: 'transparent', border: 'none', width: '33.33%' }}>-</button>
-                    <input type="text" value={count} style={{ height: '30px', textAlign: 'center', width: '33.33%', borderRight: '1px solid', borderLeft: '1px solid', borderTop: 'none', borderBottom: 'none' }} />
-                    <button onClick={increment} style={{ backgroundColor: 'transparent', border: 'none', width: '33.33%' }}>+</button>
-                  </div>
-                  <h2>Counter: {count}</h2>
+                      QTY
+                    </button> */}
+                </div>
+
+                <div
+                  className="smilingAddresingleMobileMain"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginLeft: "30px",
+                  }}
+                >
+                  <textarea
+                    type="text"
+                    placeholder="Add Remarks..."
+                    value={remarks}
+                    onChange={(event) => handleInputChangeRemarks(event)}
+                    className="YourCartMainRemkarBoxSingle"
+                  />
+                  <button
+                    onClick={() => handleSubmit(cartSelectData)}
+                    className="SmilingAddSingleRemkarBtn"
+                  >
+                    Add
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-        )}
+        </div>
       </Dialog>
     </>
   );
