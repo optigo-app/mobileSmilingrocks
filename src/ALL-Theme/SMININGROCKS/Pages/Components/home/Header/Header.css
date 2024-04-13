@@ -4,6 +4,23 @@
     width: 100%;
 }
 
+.searchBoxOnlyProductPageMain{
+    height: 35px;
+    width: 85%;
+    outline: none;
+    border: 1px solid lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+.searchBoxOnlyProductPage{
+    height: 30px;
+    width: 80%;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+}
 
 .smilingCartRemoveBtn {
     height: 40px;
