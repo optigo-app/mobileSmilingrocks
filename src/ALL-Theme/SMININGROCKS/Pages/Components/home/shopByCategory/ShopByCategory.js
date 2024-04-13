@@ -11,7 +11,7 @@ export default function ShopByCategory() {
     <div>
       <div>
         <p className='shopbycategoryTitle'>Shop By Category</p>
-        <div className='shopbycategoryDesc'>
+        {/* <div className='shopbycategoryDesc'>
           <p style={{
             color: 'rgb(125, 127, 133)',
             fontSize: '13px',
@@ -19,7 +19,7 @@ export default function ShopByCategory() {
             textAlign: 'center'
 
           }}>Discover Sonasons Fine Jewelry! Brilliant and Better!</p>
-        </div>
+        </div> */}
         <div style={{
           display: 'flex',
           justifyContent: 'center',

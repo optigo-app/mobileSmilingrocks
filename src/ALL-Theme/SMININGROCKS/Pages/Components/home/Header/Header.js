@@ -15,7 +15,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { CartListCounts, HeaderData, HeaderData2, WishListCounts, loginState, newMenuData, openSignInModal, searchData } from "../../../../../../Recoil/atom";
 import { CommonAPI } from "../../../../Utils/API/CommonAPI";
 import Cart from "./Cart";
-import titleImg from "../../../assets/title/sonasons.png"
+import titleImg from "../../../assets/title/sonasons1.png"
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import menu1Img from '../../../assets/45.jpg'
 import menu2Img from '../../../assets/456.jpg'
