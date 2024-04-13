@@ -5,6 +5,10 @@ import { Accordion, AccordionDetails, AccordionSummary, Box, CircularProgress } 
 import AccountOrderHistory from "../../../jsonFile/account/AccountOrderHistoryApi.json";
 import axios from "axios";
 import { CommonAPI } from "../../../../Utils/API/CommonAPI";
+import { FiArrowLeft } from "react-icons/fi";
+import titleImg from "../../../assets/title/sonasons.png"
+import { useNavigate } from "react-router-dom";
+
 // import ReactPaginate from 'react-paginate';
 const OrderHistory = () => {
   const [orderHistoryData, setOrderHistoryData] = useState([]);
@@ -14,6 +18,7 @@ const OrderHistory = () => {
   const [orderInfo, setOrderInfo] = useState(false);
   const [ukey, setUkey] = useState('');
   const [image_path, setImagePath] = useState('');
+  const naviagation = useNavigate();
 
   // const [itemOffset, setItemOffset] = useState(0);
   // const itemsPerPage = 4;
@@ -179,8 +184,16 @@ const OrderHistory = () => {
       {/* <div className="text-center text-secondary w-100 fs-4 fw-bold mt-2 pt-2 pb-2 yourOrderHistory bg_oh">
         Your Order History
       </div> */}
+          <div style={{ display: 'flex', width: '100%', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray', backgroundColor: 'white', zIndex: '111111' }}>
+                <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => naviagation('/account')} />
+                <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
+                    <img src={titleImg} className="MainlogogMobileImage" />
+                </div>
+            </div>
+            <p className='accountPageTitle'>Order History</p>
+            
       {loaderOH ? (
-        <Box sx={{ display: "flex", justifyContent: "center", paddingTop: "10px" }}><CircularProgress className='loadingBarManage' /></Box>
+        <Box sx={{ display: "flex", justifyContent: "center", paddingTop: "200px" }}><CircularProgress className='loadingBarManage' /></Box>
       ) : (
         <div className="orderedItems user-select-none">
           {orderHistoryData?.length > 0 ?

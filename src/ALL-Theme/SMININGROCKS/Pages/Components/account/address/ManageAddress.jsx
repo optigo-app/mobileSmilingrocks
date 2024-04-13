@@ -5,7 +5,10 @@ import StayPrimaryPortraitIcon from '@mui/icons-material/StayPrimaryPortrait';
 import { Label } from '@mui/icons-material';
 import { ToastContainer, toast } from 'react-toastify';
 import { CommonAPI } from '../../../../Utils/API/CommonAPI';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { FiArrowLeft } from 'react-icons/fi';
+import titleImg from "../../../assets/title/sonasons.png"
+
 const ManageAddress = () => {
 
     const [defaultAdd, setDefaultAdd] = useState('female');
@@ -18,6 +21,8 @@ const ManageAddress = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [editId, setEditId] = useState('');
     const [editAddressIndex, setEditAddressIndex] = useState(null);
+    const naviagation = useNavigate();
+
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
@@ -438,7 +443,16 @@ const ManageAddress = () => {
 
     return (
         <div>
-            <p style={{
+
+            <div style={{ display: 'flex', width: '100%', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray', backgroundColor: 'white', zIndex: '111111' }}>
+                <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => naviagation('/account')} />
+                <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
+                    <img src={titleImg} className="MainlogogMobileImage" />
+                </div>
+            </div>
+            <p className='accountPageTitle'>Manage Address</p>
+
+            {/* <p style={{
                 textAlign: 'center',
                 padding: "15px 15px",
                 marginTop: '30px',
@@ -446,7 +460,8 @@ const ManageAddress = () => {
                 background: '#7d7f85',
                 color: "#fff",
                 fontWeight: "500",
-            }} className='savedAddress'>Saved Addresses</p>
+            }} className='savedAddress'>Saved Addresses</p> */}
+
             <Box sx={{ paddingLeft: "15px" }}>
                 <Button className='muiSmilingRocksBtnManage savedAddressManageBtn' variant="contained" sx={{ background: "#7d7f85", padding: "6px 15px", textAlign: "end", fontSize: "0.9rem", marginBottom: "10px", borderRadius: "0" }} onClick={handleOpen}>ADD NEW ADDRESS</Button></Box>
             {/* <Button className='smilingAcoountAddNewBtn' sx={{marginLeft: "auto"}} >ADD NEW ADDRESS</Button> */}

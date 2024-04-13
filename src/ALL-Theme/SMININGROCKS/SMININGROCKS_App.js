@@ -46,6 +46,11 @@ import { ToastContainer } from 'react-toastify';
 import HomeTab from './Pages/Components/HomeTab'
 import Category from './Pages/Components/CategoryPage/Category'
 import WithoutLoginCart from './Pages/Components/home/Header/cartPage/WithoutLoginCart'
+import YourProfile from './Pages/Components/account/yourProfile/YourProfile'
+import OrderHistory from './Pages/Components/account/accountOrderHistory/OrderHistory'
+import ManageAddress from './Pages/Components/account/address/ManageAddress'
+import ChangePassword from './Pages/Components/account/changePassword/ChangePassword'
+import QuotationQuote from './Pages/Components/account/QuotationQuote/QuotationQuote'
 
 export default function SMININGROCKS_App() {
 
@@ -90,9 +95,16 @@ export default function SMININGROCKS_App() {
                     location.pathname === "/register" ||
                     location.pathname === "/LoginWithMobileCode" ||
                     location.pathname === "/LoginWithEmail" ||
-                    location.pathname === "/productpage" ||
+                    location.pathname === "/Category" ||
                     location.pathname === "/LoginWithEmailCode" ||
                     location.pathname === "/CartPage" ||
+                    location.pathname === "/ChangePassword" ||
+                    location.pathname === "/YourProfile" ||
+                    location.pathname === "/account" ||
+                    location.pathname === "/myWishList" ||
+                    location.pathname === "/OrderHistory" ||
+                    location.pathname === "/ManageAddress" ||
+                    location.pathname === "/QuotationQuote" ||
                     location.pathname === "/accountledgerdebit" ||
                     location.pathname === "/accountledgercredit") ?
                     null : <Header />}
@@ -133,6 +145,11 @@ export default function SMININGROCKS_App() {
                         <Route path="/CartPage" element={<CartPage />} />
                         <Route path="/Category" element={<Category />} />
                         <Route path="/WithoutLoginCart" element={<WithoutLoginCart />} />
+                        <Route path="/YourProfile" element={<YourProfile />} />
+                        <Route path="/ManageAddress" element={<ManageAddress />} />
+                        <Route path="/OrderHistory" element={<OrderHistory />} />
+                        <Route path="/QuotationQuote" element={<QuotationQuote />} />
+                        <Route path="/ChangePassword" element={<ChangePassword />} />
                     </Routes>
                     {(location.pathname === "/productpage") ?
                          <ProductPageTab toggleDetailDrawer={toggleDetailDrawer} toggleShoryBy={toggleShoryBy}/> : <HomeTab />}

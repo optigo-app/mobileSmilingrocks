@@ -9,6 +9,9 @@ import { CircularProgress } from '@mui/material'
 import { useSetRecoilState } from 'recoil'
 import { CartListCounts, WishListCounts } from '../../../../../Recoil/atom'
 import { GetCount } from '../../../Utils/API/GetCount'
+import { FiArrowLeft } from 'react-icons/fi'
+import titleImg from "../../assets/title/sonasons.png"
+
 
 export default function MyWishList() {
 
@@ -206,14 +209,21 @@ export default function MyWishList() {
                     <CircularProgress className='loadingBarManage' />
                 </div>
             )}
+            <div style={{ display: 'flex', width: '100%', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray', backgroundColor: 'white', zIndex: '111111' }}>
+                <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => navigation('/')} />
+                <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
+                    <img src={titleImg} className="MainlogogMobileImage" />
+                </div>
+            </div>
+
+            <p className='accountPageTitle'>My Wishlist</p>
+
             <div>
                 <div className='smiling-wishlist'>
-                    <p className='SmiWishListTitle'>My Wishlist</p>
-
                     {wishlistData?.length !== 0 && <div className='smilingListTopButton'>
                         <button className='smiTopClearBtn' onClick={handleRemoveAllWishList}>CLEAR ALL</button>
                         <button className='smiTopClearBtn' onClick={handleAddAll}>ADD TO CART ALL</button>
-                        <button className='smiTopClearBtn' onClick={() => navigation('/productpage')}>Show ProductList</button>
+                        {/* <button className='smiTopClearBtn' onClick={() => navigation('/productpage')}>Show ProductList</button> */}
                     </div>}
 
                     <div className='smiWishLsitBoxMain'>
@@ -230,7 +240,7 @@ export default function MyWishList() {
                                         <IoClose style={{ height: '30px', width: '30px', cursor: 'pointer', color: 'rgb(0 0 0 / 66%)' }} onClick={() => handleRemoveWichList(item)} />
                                     </div>
                                     <img src={`${imageURL}/${yKey}/${item.DefaultImageName}`} className='smiWishLsitBoxImge' style={{ cursor: 'pointer' }} alt='Wishlist item' onClick={() => handelProductSubmit(item)} />
-                                   
+
                                     <p className='smiWishLsitBoxDesc1'>{item.designno}</p>
                                     <p className='smiWishLsitBoxDesc2'>{item.mastermanagement_goldtypename} / {item.mastermanagement_goldcolorname} / {item.ActualGrossweight} <br /> {isPriseShow == 1 && <p>$ {item.TotalUnitCost}</p>}</p>
                                     <p className='smiWishLsitBoxDesc3' onClick={() => handleAddToCart(item.autocode)}>ADD TO CART +</p>

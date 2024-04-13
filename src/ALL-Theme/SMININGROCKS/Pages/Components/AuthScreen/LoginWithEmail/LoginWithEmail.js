@@ -16,6 +16,7 @@ import { GetCount } from '../../../../Utils/API/GetCount';
 // import { getDesignPriceList } from '../../../../Utils/API/PriceDataApi';
 import { FiArrowLeft } from "react-icons/fi";
 import titleImg from "../../../assets/title/sonasons.png"
+import { getDesignPriceList } from '../../../../Utils/API/PriceDataApi';
 
 export default function LoginWithEmail() {
     const [email, setEmail] = useState('');
@@ -63,16 +64,20 @@ export default function LoginWithEmail() {
         if (storedEmail) setEmail(storedEmail);
     }, []);
 
-    const handelCurrencyData = (param) =>{
+    const handelCurrencyData = (param) => {
         let currencyData = JSON.parse(localStorage.getItem('CURRENCYCOMBO'));
 
-        let filterData = currencyData?.filter((cd)=>cd?.Currencyid === param?.CurrencyCodeid)
-        
-        console.log("currencyData",filterData);
+        let filterData = currencyData?.filter((cd) => cd?.Currencyid === param?.CurrencyCodeid)
 
-        if(filterData){
-            localStorage.setItem("currencyData",JSON.stringify(filterData))
-        }else{
+        console.log("currencyData", filterData);
+
+        if (filterData) {
+            if (Array.isArray(filterData)) {
+                localStorage.setItem("currencyData", JSON.stringify(filterData[0]))
+            } else {
+                localStorage.setItem("currencyData", JSON.stringify(filterData))
+            }
+        } else {
             let DefaultObj = {
                 "Currencyid": 42,
                 "Currencycode": "INR",
@@ -81,9 +86,9 @@ export default function LoginWithEmail() {
                 "CurrencyRate": 1.00000,
                 "IsDefault": 1
             }
-            localStorage.setItem("currencyData",JSON.stringify(DefaultObj))
+            localStorage.setItem("currencyData", JSON.stringify(DefaultObj))
         }
-    }  
+    }
 
     const handleInputChange = (e, setter, fieldName) => {
         const { value } = e.target;
@@ -139,6 +144,7 @@ export default function LoginWithEmail() {
                 pdDataCalling()
                 designDataCall()
                 getCountFunc()
+                getDesignPriceList()
                 handelCurrencyData(resData)
                 // getDesignPriceList()
                 // window.location.reload(); 
