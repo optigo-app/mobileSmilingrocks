@@ -19,6 +19,7 @@ import { useNavigate } from 'react-router-dom'
 import playVidoe from '../../assets/paly.png'
 import { IoIosPlayCircle } from "react-icons/io";
 import { toast } from 'react-toastify'
+import Slider from 'react-slick'
 
 const ProdDetail = () => {
 
@@ -413,7 +414,7 @@ const ProdDetail = () => {
     const jsonData = JSON.parse(storedData);
     const filteredData = jsonData.filter(item => item.autocode === autoCode);
 
-    console.log('filteredData', filteredData);
+    // console.log('filteredData', filteredData);
 
     if (filteredData.length > 0) {
       const num = filteredData[0].designsetuniqueno;
@@ -459,7 +460,7 @@ const ProdDetail = () => {
       return;
     }
     const filteredData = storedData.filter(item => item.autocode === autoCode);
-    console.log('filteredDatafilteredDatafilteredDatafilteredData', filteredData)
+    // console.log('filteredDatafilteredDatafilteredDatafilteredData', filteredData)
     setColorImageData(filteredData)
   }
 
@@ -479,7 +480,7 @@ const ProdDetail = () => {
       img.src = imageUrl;
     });
   }
-  console.log('updatedColorImageupdatedColorImageupdatedColorImage', updatedColorImage)
+  // console.log('updatedColorImageupdatedColorImageupdatedColorImage', updatedColorImage)
 
   useEffect(() => {
     let uploadPath = localStorage.getItem('UploadLogicalPath');
@@ -1245,7 +1246,7 @@ const ProdDetail = () => {
   useEffect(() => {
 
     let srData = JSON.parse(localStorage.getItem("srProductsData"))
-    let price = ((productData?.UnitCost ?? 0) + (((mtrdData?.V ?? 0)/currData?.CurrencyRate) + (mtrdData?.W ?? 0)) + (dqcData ?? 0) + (csqcData ?? 0) + (sizeMarkup ?? 0) + (metalUpdatedPrice() ?? 0) + (diaUpdatedPrice() ?? 0) + (colUpdatedPrice() ?? 0))
+    let price = ((productData?.UnitCost ?? 0) + (((mtrdData?.V ?? 0) / currData?.CurrencyRate) + (mtrdData?.W ?? 0)) + (dqcData ?? 0) + (csqcData ?? 0) + (sizeMarkup ?? 0) + (metalUpdatedPrice() ?? 0) + (diaUpdatedPrice() ?? 0) + (colUpdatedPrice() ?? 0))
     //((mtrdData?.V/currData[0]?.CurrencyRate ?? 0) + mtrdData?.W ?? 0)
     if (price) {
       srData.price = Number(price)
@@ -1255,8 +1256,8 @@ const ProdDetail = () => {
 
   }, [mtrdData, dqcData, csqcData, sizeMarkup, metalUpdatedPrice, diaUpdatedPrice, colUpdatedPrice])
 
-  console.log("pricedata",(((mtrdData?.V ?? 0)/currData?.CurrencyRate) + (mtrdData?.W ?? 0)),dqcData,csqcData,sizeMarkup,metalUpdatedPrice(),diaUpdatedPrice(),colUpdatedPrice())
-  console.log("pricedatacv",((productData?.UnitCost ?? 0) + (((mtrdData?.V ?? 0)/currData?.CurrencyRate) + (mtrdData?.W ?? 0))+ (dqcData ?? 0) + (csqcData ?? 0) + (sizeMarkup ?? 0) + (metalUpdatedPrice() ?? 0) + (diaUpdatedPrice() ?? 0) + (colUpdatedPrice() ?? 0)))
+  // console.log("pricedata",(((mtrdData?.V ?? 0)/currData?.CurrencyRate) + (mtrdData?.W ?? 0)),dqcData,csqcData,sizeMarkup,metalUpdatedPrice(),diaUpdatedPrice(),colUpdatedPrice())
+  // console.log("pricedatacv",((productData?.UnitCost ?? 0) + (((mtrdData?.V ?? 0)/currData?.CurrencyRate) + (mtrdData?.W ?? 0))+ (dqcData ?? 0) + (csqcData ?? 0) + (sizeMarkup ?? 0) + (metalUpdatedPrice() ?? 0) + (diaUpdatedPrice() ?? 0) + (colUpdatedPrice() ?? 0)))
 
 
   const decodeEntities = (html) => {
@@ -1265,6 +1266,159 @@ const ProdDetail = () => {
     return txt.value;
   }
 
+
+
+  // slider code
+  //   const defaultMedia = [];
+  //   if (Array.isArray(updatedColorImage)) {
+  //     const processedColorImages = updatedColorImage.map(image => {
+  //         return {
+  //             url: image.imagepath
+  //         };
+  //     });
+  //     defaultMedia.push(...processedColorImages);
+  // }
+
+  // if (productData?.OriginalImagePath) {
+  //     defaultMedia.push({ url: globImagePath +productData.OriginalImagePath });
+  // }
+
+  // if (videoUrl) {
+  //     defaultMedia.push({ url: videoUrl });
+  // }
+  //   console.log('Default Image and Video--', defaultMedia);
+  //   console.log('Default Image--',productData?.OriginalImagePath);
+  //   console.log('Color Image--',updatedColorImage);
+  //   console.log('Default Video--',videoUrl);
+
+
+  // const defaultMedia = [];
+
+  // if (Array.isArray(updatedColorImage)) {
+  //     const processedColorImages = updatedColorImage.map(image => {
+  //         const img = new Image();
+  //         img.onload = () => {
+  //             defaultMedia.push({ url: image.imagepath });
+  //             // console.log('Image loaded successfully:', image.imagepath);
+  //         };
+  //         img.onerror = () => {
+  //             console.error('Error loading image:', image.imagepath);
+  //         };
+  //         img.src = image.imagepath;
+  //         return img;
+  //     });
+  // }
+
+  // if (productData?.OriginalImagePath) {
+  //     const originalImage = new Image();
+  //     originalImage.onload = () => {
+  //         defaultMedia.push({ url: globImagePath + productData.OriginalImagePath });
+  //         // console.log('Original Image loaded successfully:', productData.OriginalImagePath);
+  //     };
+  //     originalImage.onerror = () => {
+  //         console.error('Error loading Original Image:', productData.OriginalImagePath);
+  //     };
+  //     originalImage.src = globImagePath + productData.OriginalImagePath;
+  // }
+
+  // if (videoUrl) {
+  //     defaultMedia.push({ url: videoUrl });
+  //     // console.log('Video loaded successfully:', videoUrl);
+  // }
+
+  const [imagesData, setImagesData] = useState();
+
+  // useEffect(() => {
+  // const defaultMedia = [];
+
+  //     const processedColorImages = updatedColorImage.map(image => {
+  //         const img = new Image();
+  //         img.onload = () => {
+  //             defaultMedia.push({ url: image.imagepath });
+  //         };
+  //         img.onerror = () => {
+  //             console.error('Error loading image:', image.imagepath);
+  //         };
+  //         img.src = image.imagepath;
+  //         return img;
+  //     });
+
+  // if (productData?.OriginalImagePath) {
+  //     const originalImage = new Image();
+  //     originalImage.onload = () => {
+  //         defaultMedia.push({ url: globImagePath + productData.OriginalImagePath });
+  //     };
+  //     originalImage.onerror = () => {
+  //         console.error('Error loading Original Image:', productData.OriginalImagePath);
+  //     };
+  //     originalImage.src = globImagePath + productData.OriginalImagePath;
+  // }
+
+  // if (videoUrl) {
+  //     defaultMedia.push({ url: videoUrl });
+  // }
+  //   setImagesData(defaultMedia)
+
+  // }, [updatedColorImage, productData?.OriginalImagePath, videoUrl])
+
+  useEffect(() => {
+    const defaultMedia = [];
+    const loadImage = (src) => {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = () => {
+          resolve({ url: src });
+        };
+        img.onerror = () => {
+          console.error('Error loading image:', src);
+          reject(new Error('Error loading image'));
+        };
+        img.src = src;
+      });
+    };
+    const loadColorImages = async () => {
+      try {
+        const colorImagePromises = updatedColorImage.map(image => loadImage(image.imagepath));
+        const processedColorImages = await Promise.all(colorImagePromises);
+        defaultMedia.push(...processedColorImages);
+      } catch (error) {
+        console.error('Error loading color images:', error);
+      }
+    };
+    const loadOriginalImage = async () => {
+      if (productData?.OriginalImagePath) {
+        try {
+          const originalImageData = await loadImage(globImagePath + productData?.OriginalImagePath?.split(',')[0]);
+          defaultMedia.push(originalImageData);
+        } catch (error) {
+          console.error('Error loading original image:', error);
+        }
+      }
+    };
+    const loadVideo = () => {
+      if (videoUrl) {
+        defaultMedia.push({ url: videoUrl });
+      }
+    };
+    loadColorImages();
+    loadOriginalImage();
+    loadVideo();
+    setImagesData(defaultMedia);
+
+  }, [updatedColorImage, productData?.OriginalImagePath, videoUrl]);
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [mediaItems, setMediaItems] = useState([]);
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    // autoplay: true,
+    // autoplaySpeed: 3000,
+    beforeChange: (current, next) => setCurrentSlide(next),
+  };
 
   return (
     <div
@@ -1277,124 +1431,20 @@ const ProdDetail = () => {
       <div className="prodDetailWhitecont">
         <div className="product-detail-container">
           <div className="srprodetail1">
-            {/* {!imgLoading */}
-
-            {/* {imgLoading && (
-              <Skeleton
-                sx={{
-                  width: "100%",
-                  // zindex: 11111,
-                  // position: "relative",
-                  // objectFit: "cover",
-                  marginLeft: "51px",
-                  marginTop: "5%",
-                  height: "90%",
-                  // display: !imgLoading ? "none": "block"
-                }}
-                variant="rounded"
-              />
-            )} */}
-            {isVideoPlaying ? (
-              <video
-                src={videoUrl}
-                className="productvideo"
-                autoPlay={true}
-                style={{
-                  width: '100%',
-                  // zIndex: -1,
-                  position: 'relative',
-                  objectFit: 'cover',
-                  padding: '10%',
-                  marginLeft: '51px',
-                  display: imgLoading ? 'none' : 'block',
-                }}
-              />
-            ) : (
-              <>
-                {!imgLoading && (
-                  <Skeleton
-                    sx={{
-                      width: "100%",
-                      // zindex: 11111,
-                      // position: "relative",
-                      // objectFit: "cover",
-                      marginLeft: "51px",
-                      marginTop: "5%",
-                      height: "90%",
-                      // display: !imgLoading ? "none": "block"
-                    }}
-                    variant="rounded"
-                  />
-                )}
-                <img
-                  src={
-                    productData?.OriginalImagePath
-                      ? updatedColorImage?.length !== 0
-                        ? updatedColorImage[0]?.imagepath
-                        : selectedImagePath == ''
-                          ? globImagePath +
-                          (!handelmainImg()?.length
-                            ? productData?.OriginalImagePath?.split(',')[0]
-                            : handelmainImg())
-                          : selectedImagePath
-                      : notFound
-                  }
-                  alt={''}
-                  style={{
-                    width: '100%',
-                    // zIndex: -1,
-                    position: 'relative',
-                    objectFit: 'cover',
-                    marginLeft: '51px',
-                    display: imgLoading ? 'block' : 'none',
-                  }}
-                  className="smilingDeatilPageMainImage"
-                  onLoad={handelImgLoad}
-                />
-              </>
-            )}
-            {updatedColorImage?.length === 0 ?
-              <>
-                {productData?.ThumbImagePath && <div className="srthumb_images">
-                  {productData?.ThumbImagePath?.split(",").map((data, i) => (
-                    <img
-                      src={globImagePath + data}
-                      alt={""}
-                      className="srthumb_images_el"
-                      onClick={() => setThumbImg(i)}
-                    />
-                  ))}
-
-                </div>}
-              </>
-              :
-              <div>
-                {
-                  <div className="srthumb_images">
-                    {updatedColorImage?.map((data, i) => (
-
-                      <img
-                        src={data.imagepath}
-                        alt={""}
-                        className="srthumb_images_el"
-                        onClick={() => { setSelectedImagePath(data.imagepath); setIsVideoPlaying(false); }}
-                      // onClick={() => setThumbImg(data.imagepath)}
-                      />
-                    ))}
-
-                    {
-                      videoUrl && (
-                        <div style={{ position: 'relative' }} onClick={handleClick}>
-                          <video src={videoUrl} autoPlay={false} className="srthumb_images_el" style={{ position: 'absolute' }} />
-                          <IoIosPlayCircle className="srthumb_images_el" style={{ position: 'absolute', height: '45px', top: '10px', border: 'none' }} />
-                        </div>
-                      )
-                    }
-                  </div>
-                }
-              </div>
-            }
-
+            <Slider {...settings}>
+              {imagesData?.map((image, index) => (
+                <div key={index}>
+                  {image.url.endsWith('.mp4') ? (
+                    <video autoPlay muted className="smilingDeatilPageMainImage">
+                      <source src={image.url} type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  ) : (
+                    <img src={image.url} alt={`Slide ${index + 1}`} className="smilingDeatilPageMainImage" />
+                  )}
+                </div>
+              ))}
+            </Slider>
           </div>
           <div className="srprodetail2">
             <div className="srprodetail2-cont">
@@ -1925,7 +1975,7 @@ const ProdDetail = () => {
                       {sizeData?.map((size) => (
                         <option
                           key={size.id}
-                          value={size.sizename} // Pass sizename as value
+                          value={size.sizename}
                           selected={
                             productData && productData.DefaultSize === size.sizename
                           }
@@ -1944,27 +1994,27 @@ const ProdDetail = () => {
               </div>}
 
               {isPriseShow == 1 && (
-                  <div style={{ marginTop: "23px" }}>
-                    <p style={{ color: "#7d7f85", fontSize: "14px",display:'flex'}}>
-                      {/* Price: <span style={{ fontWeight: '500', fontSize: '16px' }}>{currencySymbol?.Currencysymbol}{`${(productData?.price - grandTotal) === 0 ? "Not Availabel" : (productData?.price - grandTotal)?.toFixed(2)}`}</span> */}
-                      {/* Price: <span style={{ fontWeight: '500', fontSize: '16px' }}>{currencySymbol?.Currencysymbol}{`${productData?.UnitCost + (productData?.price - grandTotal)?.toFixed(2)}`}</span> */}
-                       Price:{" "}
-                      <span style={{ fontWeight: "500", fontSize: "16px",display:'flex'}}>
+                <div style={{ marginTop: "23px" }}>
+                  <p style={{ color: "#7d7f85", fontSize: "14px", display: 'flex' }}>
+                    {/* Price: <span style={{ fontWeight: '500', fontSize: '16px' }}>{currencySymbol?.Currencysymbol}{`${(productData?.price - grandTotal) === 0 ? "Not Availabel" : (productData?.price - grandTotal)?.toFixed(2)}`}</span> */}
+                    {/* Price: <span style={{ fontWeight: '500', fontSize: '16px' }}>{currencySymbol?.Currencysymbol}{`${productData?.UnitCost + (productData?.price - grandTotal)?.toFixed(2)}`}</span> */}
+                    Price:{" "}
+                    <span style={{ fontWeight: "500", fontSize: "16px", display: 'flex' }}>
                       <div dangerouslySetInnerHTML={{ __html: decodeEntities(currData?.Currencysymbol) }} />
-                        {`${(
-                          productData?.UnitCost +
-                          (((mtrdData?.V ?? 0)/currData?.CurrencyRate) + (mtrdData?.W ?? 0))+
-                          (dqcData ?? 0) +
-                          (csqcData ?? 0) +
-                          (sizeMarkup ?? 0) +
-                          (metalUpdatedPrice() ?? 0) +
-                          (diaUpdatedPrice() ?? 0) +
-                          (colUpdatedPrice() ?? 0)
-                        ).toFixed(2)}`}
-                      </span>
-                    </p>
-                  </div>
-                )}
+                      {`${(
+                        productData?.UnitCost +
+                        (((mtrdData?.V ?? 0) / currData?.CurrencyRate) + (mtrdData?.W ?? 0)) +
+                        (dqcData ?? 0) +
+                        (csqcData ?? 0) +
+                        (sizeMarkup ?? 0) +
+                        (metalUpdatedPrice() ?? 0) +
+                        (diaUpdatedPrice() ?? 0) +
+                        (colUpdatedPrice() ?? 0)
+                      ).toFixed(2)}`}
+                    </span>
+                  </p>
+                </div>
+              )}
 
               {/* <div>
                   <button className="prodetailbtn">
@@ -2187,7 +2237,7 @@ const ProdDetail = () => {
               <div style={{ margin: '12px 0px 12px 0px' }}>
                 <span style={{ fontFamily: 'FreightDisp Pro Medium', color: '#7d7f85', fontSize: '26px' }}>Complete The Look</span>
               </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '3px', padding: '0px 7px 0px 7px' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3px', padding: '0px 7px 0px 7px' }}>
                 {designSetList?.map((dsl, i) => (
                   <div key={i} style={{ width: '49%' }} onClick={() => handelDesignSet(dsl)}>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid rgba(0, 0, 0, 0.04)', padding: '15px', borderRadius: '4px' }}>

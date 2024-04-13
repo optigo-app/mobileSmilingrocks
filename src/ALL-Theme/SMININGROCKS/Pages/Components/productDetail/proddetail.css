@@ -405,7 +405,8 @@
     }
 
     .smilingDeatilPageMainImage {
-        height: 280px;
+        width: 100%;
+        height: 310px;
         object-fit: contain !important;
     }
 
@@ -441,5 +442,9 @@
     }
     .srprodetail2{
         margin-top: 10px;
+    }
+    .Acc-container {
+        margin-bottom: 28px;
+        margin-top: 40px;
     }
 }
