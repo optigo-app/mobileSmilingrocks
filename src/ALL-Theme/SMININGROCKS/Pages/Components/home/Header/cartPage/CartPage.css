@@ -39,7 +39,6 @@
     font-size: 40px;
     font-family: FreightDisp Pro Medium;
     color: #7d7f85;
-    line-height: 40px;
     margin-bottom: 14px;
 }
 
@@ -97,12 +96,6 @@
     border-radius: 5px;
     width: 200px;
     font-weight: 500;
-}
-
-.similingCartPageBotttomMain {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 15px;
 }
 
 .smilingCartPageTab1Main {
@@ -179,13 +172,11 @@
     width: 0px !important;
 }
 
-.YourCartMainRemkarBoxSingle {
+.YourCartMainRemkarBoxSingle1 {
+    height: 80px;
+    border: 1px solid #e1e1e1;
     outline: none;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    height: 33px;
-    border-bottom: 1px solid lightgray;
+    width: 100%;
 }
 
 .SmilingCustomzeSaveBtn {
@@ -253,6 +244,10 @@
  width:30%;
  height: 600px;
  overflow-y: scroll;
+}
+
+.SmilingAddSingleRemkarBtn{
+    margin-top: 10px;
 }
 
 @media (max-width: 1284px){
@@ -371,10 +366,6 @@
         flex-direction: column !important;
     }
 
-    .similingCartPageBotttomMain {
-        display: flex !important;
-    }
-
     .placeOrderCartPageBtnMain {
         position: fixed;
         bottom: 0px;
@@ -384,6 +375,7 @@
         margin: 10px 50px 10px 0px!important;
     }
 }
+
 
 @media screen and (max-width: 600px) {
     .placeOrderCartPageBtnMobile {
@@ -395,18 +387,10 @@
     .YourCartPageMainRemkarBox{
         width: 100%!important;
     }
-    .similingCartPageBotttomMain{
-        margin-top: 20px!important;
-    }
 }
 
 @media screen and (max-width: 800px) {
 
-    /* .similingCartPageBotttomMain {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-    } */
     .smilingAddresingleMobileMain{
         margin-inline: 10px;
     }
@@ -422,10 +406,6 @@
 
     .smilingAddresingleMobileMain {
         width: 100% !important;
-    }
-
-    .YourCartMainRemkarBoxSingle {
-        width: 60% !important
     }
 
     .SmilingAddSingleRemkarBtn {
@@ -452,9 +432,4 @@
     .smiling-cartPageBoxImgView {
         width: 250px !important;
     }
-
-    .YourCartMainRemkarBoxSingle {
-        width: 70% !important
-    }
-
 }

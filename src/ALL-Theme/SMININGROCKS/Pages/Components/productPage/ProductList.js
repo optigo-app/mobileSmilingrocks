@@ -1253,7 +1253,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
       onKeyDown={toggleDrawer(anchor, false)}
     >
       {isOpenShoryBy &&
-        <div>
+        <div style={{paddingInline: '10px'}}>
           {/* <select
             style={{
               width: "100%",
@@ -1538,7 +1538,8 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                       display: "flex",
                       alignItems: "center",
                       flexWrap: "wrap",
-                      marginTop: '15%'
+                      marginTop: '15%',
+                      paddingLeft: '12px'
                     }}
                     className="smilingAllProductDataMainMobile"
                   >
@@ -1547,10 +1548,11 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                       <div
                         style={{
                           width: "33.33%",
-                          border: "1px solid #e1e1e1",
                           textAlign: "center",
                           color: "#7d7f85",
                           position: "relative",
+                          boxShadow: 'rgba(0, 0, 0, 0.35) 0px 5px 15px',
+                          borderRadius: '10px',
                           zIndex: 0,
                         }}
                         className="smilingProductImageBox"
@@ -1574,7 +1576,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                           />
                         </div>
                         <div className="productTitleLine">
-                          <p
+                          {/* <p
                             style={{
                               fontSize: "13px",
                               textTransform: "uppercase",
@@ -1588,7 +1590,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                             className="smilingProductDeatilTitleMobile"
                           >
                             {products?.TitleLine}
-                          </p>
+                          </p> */}
                         </div>
                         <div>
                           <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'space-between', marginInline: '10px' }}>
@@ -1596,7 +1598,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                               <div>
                                 <p className="mobileDeatilDiv1Text1" style={{ margin: '0px', fontSize: '13px' }}>NWT : <span style={{ fontWeight: 600, marginRight: '15px' }}>{(products?.netwt).toFixed(2)}</span></p>
                               </div>}
-                            <p className="mobileDeatilDiv1Text2" style={{ margin: '0px', fontSize: '15px', fontWeight: 'bold' }}>{products?.designno}</p>
+                            <p className="mobileDeatilDiv1Text2" style={{ margin: '0px', fontSize: '13px', fontWeight: '600' }}>{products?.designno}</p>
                           </div>
                           <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'space-between', marginInline: '10px' }}>
                             {isGrossWShow === 1 && <div>
@@ -1614,7 +1616,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                             <button className='smilingAddCartBrtnList' onClick={(e) => handelCartList(products?.checkFlag, products)}>{products?.checkFlag ? 'REMOVE CART' : 'ADD TO CART'}</button>
                           </div> */}
                         </div>
-                        <div style={{ position: "absolute", width: '92%',marginInline:"5%", justifyContent: 'space-between', zIndex: 999999, top: 5, right: 0, display: 'flex' }}>
+                        <div style={{ position: "absolute", width: '87%',marginInline:"7%", justifyContent: 'space-between', zIndex: 999999, top: 10, right: 0, display: 'flex' }}>
                           <div style={{border:'1px solid rgb(186 194 219)', borderRadius: '50px'}}>
                             <Checkbox
                               icon={
