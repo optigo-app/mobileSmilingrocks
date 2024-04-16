@@ -25,6 +25,7 @@ import { GetCount } from "../../../../../Utils/API/GetCount";
 import { CommonAPI } from "../../../../../Utils/API/CommonAPI";
 import "./CartPage.css";
 import { ToastContainer, toast } from "react-toastify";
+import { FiArrowLeft } from "react-icons/fi";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -1563,13 +1564,13 @@ export default function CartPage() {
               style={{
                 cursor: "pointer",
                 position: "absolute",
-                right: "12px",
+                left: "20px",
                 top: "12px",
                 borderRadius: "12px",
               }}
               onClick={() => setDialogOpen(false)}
             >
-              <CloseIcon sx={{ color: "black", fontSize: "30px" }} />
+              <FiArrowLeft style={{ color: "black", height: "30px" , width: '30px'}} />
             </div>
           </div>
           <div
@@ -1577,43 +1578,97 @@ export default function CartPage() {
             style={{ display: !prodSelectData && !cartSelectData && "none" }}
           >
             <div className="popUpcontainer">
-              <img
-                src={
-                  prodSelectData?.imagepath +
-                  prodSelectData?.MediumImagePath?.split(",")[0]
-                }
-                style={{
-                  border: "1px solid #e1e1e1",
-                  borderRadius: "12px",
-                  width: "65%",
-                }}
-              />
+              <div style={{ display: 'flex', marginInline: '5%', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>
+                <div style={{ width: '50%' }}>
+                  <img
+                    src={
+                      prodSelectData?.imagepath +
+                      prodSelectData?.MediumImagePath?.split(",")[0]
+                    }
+                    style={{
+                      borderRadius: "12px",
+                      width: "100%",
+                      height: '90%',
+                      objectFit: 'cover'
+                    }}
+                  />
+                </div>
+                <div style={{ width: '50%' }}>
+                  <p
+                    style={{
+                      fontSize: "16px",
+                      fontFamily: "FreightDisp Pro Medium",
+                      margin: "20px 0px 5px",
+                    }}
+                  >
+                    {prodSelectData?.TitleLine} <span style={{ fontWeight: 500 }}>- {prodSelectData?.Mastermanagement_CategoryName}({prodSelectData?.designno})</span>
+                  </p>
+                  <span
+                    style={{
+                      fontWeight: "500",
+                      fontSize: "18px",
+                      color: "black",
+                      display: 'flex'
+                    }}
+                  >
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: decodeEntities(
+                          currData?.Currencysymbol
+                        ),
+                      }}
+                      style={{ fontFamily: "sans-serif" }}
+                    />
+                    {(
+                      ((mtrdData?.V ?? 0) /
+                        currData?.CurrencyRate +
+                        (mtrdData?.W ?? 0)) +
+                      (dqcData ?? 0) +
+                      (csqcData ?? 0) +
+                      (sizeMarkup ?? 0) +
+                      (metalUpdatedPrice() ?? 0) +
+                      (diaUpdatedPrice() ?? 0) +
+                      (colUpdatedPrice() ?? 0)
+                    ).toFixed(2) * lastEnteredQuantity}
+                  </span>
+                  <div style={{ border: '1px solid', width: '100px', marginTop: '10px' }}>
+                    <button
+                      onClick={() => {
+                        if (lastEnteredQuantity !== 1) {
+                          decrement();
+                          handleUpdateQuantity(prodSelectData?.designno, lastEnteredQuantity - 1);
+                        }
+                      }}
+                      style={{ backgroundColor: 'transparent', border: 'none', width: '33.33%' }}
+                    > -
+                    </button>
+
+                    <input type="text" readOnly value={lastEnteredQuantity} style={{ height: '30px', outline: 'none', textAlign: 'center', width: '33.33%', borderRight: '1px solid', borderLeft: '1px solid', borderTop: 'none', borderBottom: 'none' }} />
+
+                    <button
+                      onClick={() => {
+                        increment();
+                        handleUpdateQuantity(prodSelectData?.designno, lastEnteredQuantity + 1);
+                      }}
+                      style={{ backgroundColor: 'transparent', border: 'none', width: '33.33%' }}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+
               <div
                 style={{
                   width: "100%",
                   display: "flex",
                   flexDirection: "column",
+                  paddingInline: '5%'
                 }}
                 className="srcolorsizecarat"
               >
-                <div
-                  style={{
-                    fontSize: "30px",
-                    fontFamily: "FreightDisp Pro Medium",
-                    color: "#7d7f85",
-                    lineHeight: "40px",
-                    marginBottom: "14px",
-                  }}
-                  className="prodTitleLine"
-                >
-                  {prodSelectData?.TitleLine}
-                </div>
 
-                {isProductCuFlag === 1 && <div
-                  style={{
-                    borderTop: "1px solid #e1e1e1",
-                  }}
-                >
+                {isProductCuFlag === 1 && <div>
                   <div
                     style={{
                       display: "flex",
@@ -1626,7 +1681,7 @@ export default function CartPage() {
                         style={{
                           display: "flex",
                           flexDirection: "column",
-                          width: "49%",
+                          width: "100%",
                         }}
                       >
                         <label
@@ -1636,10 +1691,12 @@ export default function CartPage() {
                         </label>
                         <select
                           style={{
-                            border: "none",
                             outline: "none",
                             color: "#7d7f85",
+                            border: "1px solid #e1e1e1",
                             fontSize: "12.5px",
+                            height: '35px',
+                            paddingInline: '5px'
                           }}
                           value={selectedColor}
                           onChange={(e) => setSelectedColor(e.target.value)}
@@ -1661,7 +1718,8 @@ export default function CartPage() {
                         style={{
                           display: "flex",
                           flexDirection: "column",
-                          width: "49%",
+                          width: "100%",
+                          marginTop: '10px'
                         }}
                       >
                         <label
@@ -1671,10 +1729,13 @@ export default function CartPage() {
                         </label>
                         <select
                           style={{
-                            border: "none",
                             outline: "none",
                             color: "#7d7f85",
+                            border: "1px solid #e1e1e1",
+
                             fontSize: "12.5px",
+                            height: '35px',
+                            paddingInline: '5px'
                           }}
                           // value={mtTypeOption ?? cartSelectData?.metal}
                           value={mtTypeOption}
@@ -1695,8 +1756,8 @@ export default function CartPage() {
                         style={{
                           display: "flex",
                           flexDirection: "column",
-                          width: "49%",
-                          marginTop: "30px",
+                          width: "100%",
+                          marginTop: "10px",
                         }}
                       >
                         <label
@@ -1706,10 +1767,13 @@ export default function CartPage() {
                         </label>
                         <select
                           style={{
-                            border: "none",
                             outline: "none",
                             color: "#7d7f85",
+                            border: "1px solid #e1e1e1",
+
                             fontSize: "12.5px",
+                            height: '35px',
+                            paddingInline: '5px'
                           }}
                           value={diaQColOpt}
                           onChange={(e) => setDiaQColOpt(e.target.value)}
@@ -1731,8 +1795,8 @@ export default function CartPage() {
                         style={{
                           display: "flex",
                           flexDirection: "column",
-                          width: "49%",
-                          marginTop: "20px",
+                          width: "100%",
+                          marginTop: "10px",
                         }}
                       >
                         <label
@@ -1746,10 +1810,12 @@ export default function CartPage() {
                         </label>
                         <select
                           style={{
-                            border: "none",
                             outline: "none",
+                            border: "1px solid #e1e1e1",
                             color: "#7d7f85",
                             fontSize: "12.5px",
+                            height: '35px',
+                            paddingInline: '5px'
                           }}
                           value={cSQopt}
                           onChange={(e) => setCSQOpt(e.target.value)}
@@ -1773,8 +1839,8 @@ export default function CartPage() {
                           style={{
                             display: "flex",
                             flexDirection: "column",
-                            width: "49%",
-                            marginTop: "30px",
+                            width: "100%",
+                            marginTop: "10px",
                           }}
                         >
                           <label
@@ -1784,10 +1850,12 @@ export default function CartPage() {
                           </label>
                           <select
                             style={{
-                              border: "none",
                               outline: "none",
                               color: "#7d7f85",
+                              border: "1px solid #e1e1e1",
                               fontSize: "12.5px",
+                              height: '35px',
+                              paddingInline: '5px'
                             }}
                             onChange={(e) => handelSize(e.target.value)}
                             defaultValue={
@@ -1817,7 +1885,7 @@ export default function CartPage() {
                 </div>
                 }
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              {/* <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', paddingInline: '5%' }}>
                 <span
                   style={{
                     fontWeight: "500",
@@ -1846,6 +1914,11 @@ export default function CartPage() {
                     (colUpdatedPrice() ?? 0)
                   ).toFixed(2) * lastEnteredQuantity}
                 </span>
+
+              </div> */}
+
+              <div className="similingCartPageBotttomMain">
+
                 <button
                   style={{
                     border: "none",
@@ -1865,86 +1938,31 @@ export default function CartPage() {
                     Save
                   </span>
                 </button>
+
               </div>
-
-              <div className="similingCartPageBotttomMain">
-                <div
-                  className="smilingQualityMain"
-                  style={{ display: "flex", alignItems: "center" }}
+              <div
+                className="smilingAddresingleMobileMain"
+                style={{
+                  marginLeft: "30px",
+                  display:'flex',
+                  flexDirection: 'column',
+                  paddingInline: '5%'
+                }}
+              >
+                <textarea
+                  type="text"
+                  placeholder="Add Remarks..."
+                  value={remarks}
+                  
+                  onChange={(event) => handleInputChangeRemarks(event)}
+                  className="YourCartMainRemkarBoxSingle1"
+                />
+                <button
+                  onClick={() => handleSubmit(cartSelectData)}
+                  className="SmilingAddSingleRemkarBtn"
                 >
-                  <div style={{ border: '1px solid', width: '100px' }}>
-                    <button
-                      onClick={() => {
-                        if (lastEnteredQuantity !== 1) {
-                          decrement();
-                          handleUpdateQuantity(prodSelectData?.designno, lastEnteredQuantity - 1);
-                        }
-                      }}
-                      style={{ backgroundColor: 'transparent', border: 'none', width: '33.33%' }}
-                    > -
-                    </button>
-
-                    <input type="text" readOnly value={lastEnteredQuantity} style={{ height: '30px', outline: 'none', textAlign: 'center', width: '33.33%', borderRight: '1px solid', borderLeft: '1px solid', borderTop: 'none', borderBottom: 'none' }} />
-
-                    <button
-                      onClick={() => {
-                        increment();
-                        handleUpdateQuantity(prodSelectData?.designno, lastEnteredQuantity + 1);
-                      }}
-                      style={{ backgroundColor: 'transparent', border: 'none', width: '33.33%' }}
-                    >
-                      +
-                    </button>
-                  </div>
-                  {/* <input
-                      type="text"
-                      style={{
-                        border: "0px",
-                        textAlign: "center",
-                        outline: "none",
-                        width: "80px",
-                        height: "35px",
-                        border: "1px solid #7d7f85",
-                      }}
-                      maxLength={2}
-                      className="simlingQualityBox"
-                      inputMode="numeric"
-                      onClick={(event) => event.target.select()}
-                      value={lastEnteredQuantity}
-                      onChange={(event) => handleInputChange(event)}
-                    />
-                    <button
-                      className="SmilingUpdateQuantityBtn"
-                      onClick={() =>
-                        handleUpdateQuantity(prodSelectData?.designno)
-                      }
-                    >
-                      QTY
-                    </button> */}
-                </div>
-
-                <div
-                  className="smilingAddresingleMobileMain"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginLeft: "30px",
-                  }}
-                >
-                  <textarea
-                    type="text"
-                    placeholder="Add Remarks..."
-                    value={remarks}
-                    onChange={(event) => handleInputChangeRemarks(event)}
-                    className="YourCartMainRemkarBoxSingle"
-                  />
-                  <button
-                    onClick={() => handleSubmit(cartSelectData)}
-                    className="SmilingAddSingleRemkarBtn"
-                  >
-                    Add
-                  </button>
-                </div>
+                  Add
+                </button>
               </div>
             </div>
           </div>
