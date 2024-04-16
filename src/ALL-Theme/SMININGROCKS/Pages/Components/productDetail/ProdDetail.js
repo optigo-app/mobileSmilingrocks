@@ -1327,6 +1327,7 @@ const ProdDetail = () => {
   // }
 
   const [imagesData, setImagesData] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   // useEffect(() => {
   // const defaultMedia = [];
@@ -1378,7 +1379,7 @@ const ProdDetail = () => {
     };
     const loadColorImages = async () => {
       try {
-        const colorImagePromises = updatedColorImage.map(image => loadImage(image.imagepath));
+        const colorImagePromises = updatedColorImage?.map(image => loadImage(image.imagepath));
         const processedColorImages = await Promise.all(colorImagePromises);
         defaultMedia.push(...processedColorImages);
       } catch (error) {
@@ -1400,15 +1401,32 @@ const ProdDetail = () => {
         defaultMedia.push({ url: videoUrl });
       }
     };
-    loadColorImages();
-    loadOriginalImage();
-    loadVideo();
+
+    const loadMedia = async () => {
+      if(updatedColorImage){
+        await loadColorImages();
+      }else{
+        await loadOriginalImage();
+      }
+      await loadOriginalImage();
+      loadVideo();
+    };
+
+    loadMedia().then(() => setIsLoading(false));
+
     setImagesData(defaultMedia);
 
   }, [updatedColorImage, productData?.OriginalImagePath, videoUrl]);
 
+    console.log('Default Image and Video--', imagesData);
+    console.log('Default Image--',productData?.OriginalImagePath);
+    console.log('Color Image--',updatedColorImage);
+    console.log('Default Video--',videoUrl);
+
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [mediaItems, setMediaItems] = useState([]);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -1431,20 +1449,24 @@ const ProdDetail = () => {
       <div className="prodDetailWhitecont">
         <div className="product-detail-container">
           <div className="srprodetail1">
-            <Slider {...settings}>
-              {imagesData?.map((image, index) => (
-                <div key={index}>
-                  {image.url.endsWith('.mp4') ? (
-                    <video autoPlay muted className="smilingDeatilPageMainImage">
-                      <source src={image.url} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  ) : (
-                    <img src={image.url} alt={`Slide ${index + 1}`} className="smilingDeatilPageMainImage" />
-                  )}
-                </div>
-              ))}
-            </Slider>
+            {isLoading ? (
+              <Skeleton variant="rectangular" width={"100%"} height={"300px"} />
+            ) : (
+              <Slider {...settings}>
+                {imagesData?.map((image, index) => (
+                  <div key={index}>
+                    {image.url.endsWith('.mp4') ? (
+                      <video autoPlay muted className="smilingDeatilPageMainImage">
+                        <source src={image.url} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    ) : (
+                      <img  src={image.url} alt={`Slide ${index + 1}`} className="smilingDeatilPageMainImage" />
+                    )}
+                  </div>
+                ))}
+              </Slider>
+            )}
           </div>
           <div className="srprodetail2">
             <div className="srprodetail2-cont">
