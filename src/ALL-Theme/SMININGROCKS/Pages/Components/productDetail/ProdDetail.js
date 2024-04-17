@@ -1341,6 +1341,7 @@ const ProdDetail = () => {
   // }
 
   const [imagesData, setImagesData] = useState();
+  const [imageLoadingStates, setImageLoadingStates] = useState({});
 
   // useEffect(() => {
   // const defaultMedia = [];
@@ -1375,67 +1376,139 @@ const ProdDetail = () => {
 
   // }, [updatedColorImage, productData?.OriginalImagePath, videoUrl])
 
-  useEffect(() => {
-    const defaultMedia = [];
-    const loadImage = (src) => {
-      return new Promise((resolve, reject) => {
-        const img = new Image();
-        img.onload = () => {
-          resolve({ url: src });
-        };
-        img.onerror = () => {
-          console.error('Error loading image:', src);
-          reject(new Error('Error loading image'));
-        };
-        img.src = src;
-      });
-    };
-    const loadColorImages = async () => {
-      try {
-        const colorImagePromises = updatedColorImage.map(image => loadImage(image.imagepath));
-        const processedColorImages = await Promise.all(colorImagePromises);
-        defaultMedia.push(...processedColorImages);
-      } catch (error) {
-        console.error('Error loading color images:', error);
-      }
-    };
-    const loadOriginalImage = async () => {
-      if (productData?.OriginalImagePath) {
-        try {
-          const originalImageData = await loadImage(globImagePath + productData?.OriginalImagePath?.split(',')[0]);
-          defaultMedia.push(originalImageData);
-        } catch (error) {
-          console.error('Error loading original image:', error);
-        }
-      }
-    };
-    const loadVideo = () => {
-      if (videoUrl) {
-        defaultMedia.push({ url: videoUrl });
-      }
-    };
-    loadColorImages();
-    loadOriginalImage();
-    loadVideo();
-    setImagesData(defaultMedia);
+  // useEffect(() => {
+  //   const defaultMedia = [];
+  //   const loadImage = (src) => {
+  //     return new Promise((resolve, reject) => {
+  //       const img = new Image();
+  //       img.onload = () => {
+  //         resolve({ url: src });
+  //       };
+  //       img.onerror = () => {
+  //         console.error('Error loading image:', src);
+  //         reject(new Error('Error loading image'));
+  //       };
+  //       img.src = src;
+  //     });
+  //   };
+  //   const loadColorImages = async () => {
+  //     try {
+  //       const colorImagePromises = updatedColorImage?.map(image => loadImage(image.imagepath));
+  //       const processedColorImages = await Promise.all(colorImagePromises);
+  //       defaultMedia.push(...processedColorImages);
+  //     } catch (error) {
+  //       console.error('Error loading color images:', error);
+  //     }
+  //   };
+  //   const loadOriginalImage = async () => {
+  //     if (productData?.OriginalImagePath) {
+  //       try {
+  //         const originalImageData = await loadImage(globImagePath + productData?.OriginalImagePath?.split(',')[0]);
+  //         defaultMedia.push(originalImageData);
+  //       } catch (error) {
+  //         console.error('Error loading original image:', error);
+  //       }
+  //     }
+  //   };
+  //   const loadVideo = () => {
+  //     if (videoUrl) {
+  //       defaultMedia.push({ url: videoUrl });
+  //     }
+  //   };
 
+  //   const loadMedia = async () => {
+  //     if(updatedColorImage){
+  //       await loadColorImages();
+  //     }
+  //     await loadOriginalImage();
+  //     loadVideo();
+  //   };
+
+  //   loadMedia().then(() => setIsLoading(false));
+
+  //   setImagesData(defaultMedia);
+
+  // }, [updatedColorImage, productData?.OriginalImagePath, videoUrl]);
+
+
+  useEffect(() => {
+    const loadMedia = async () => {
+      const defaultMedia = [];
+      const newImageLoadingStates = {};
+
+      const loadImage = (src) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => resolve({ url: src });
+          img.onerror = (error) => reject(error);
+          img.src = src;
+        });
+      };
+
+      try {
+        if (updatedColorImage) {
+          const colorImagePromises = updatedColorImage.map(async (image, index) => {
+            try {
+              const loadedImage = await loadImage(image.imagepath);
+              defaultMedia.push(loadedImage);
+            } catch (error) {
+              console.error('Error loading color image:', error);
+            } finally {
+              newImageLoadingStates[`color-${index}`] = false;
+              setImageLoadingStates({ ...newImageLoadingStates });
+            }
+          });
+          await Promise.all(colorImagePromises);
+        }
+
+        if (productData?.OriginalImagePath) {
+          try {
+            const originalImagePath = globImagePath + productData.OriginalImagePath.split(',')[0];
+            const originalImageData = await loadImage(originalImagePath);
+            defaultMedia.push(originalImageData);
+          } catch (error) {
+            console.error('Error loading original image:', error);
+          } finally {
+            newImageLoadingStates['original'] = false;
+            setImageLoadingStates({ ...newImageLoadingStates });
+          }
+        }
+
+        if (videoUrl) {
+          defaultMedia.push({ url: videoUrl });
+          newImageLoadingStates['video'] = false;
+        }
+
+        setImagesData(defaultMedia);
+      } catch (error) {
+        console.error('Error loading media:', error);
+      } finally {
+        // setIsLoading(false);
+      }
+    };
+
+    loadMedia();
   }, [updatedColorImage, productData?.OriginalImagePath, videoUrl]);
+
+  console.log('Default Image and Video--', imagesData);
+  console.log('Default Image--', productData?.OriginalImagePath);
+  console.log('Color Image--', updatedColorImage);
+  console.log('Default Video--', videoUrl);
+
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [mediaItems, setMediaItems] = useState([]);
+
   const settings = {
     dots: true,
     infinite: true,
     speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    prevArrow: null, 
-    nextArrow: null,
-    // autoplay: true,
-    // autoplaySpeed: 3000,
+    arrows: false,
     beforeChange: (current, next) => setCurrentSlide(next),
   };
-
+  console.log("default media", imagesData);
   return (
     <div
       style={{
@@ -1447,20 +1520,24 @@ const ProdDetail = () => {
       <div className="prodDetailWhitecont">
         <div className="product-detail-container">
           <div className="srprodetail1">
-            <Slider {...settings}>
-              {imagesData?.map((image, index) => (
-                <div key={index}>
-                  {image.url.endsWith('.mp4') ? (
-                    <video autoPlay muted className="smilingDeatilPageMainImage">
-                      <source src={image.url} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  ) : (
-                    <img src={image.url} alt={`Slide ${index + 1}`} className="smilingDeatilPageMainImage" />
-                  )}
-                </div>
-              ))}
-            </Slider>
+            {imagesData?.length <= 0 ?
+              <Skeleton variant="rectangular" width='100%' height='100%'/>
+              :
+              <Slider {...settings}>
+                {imagesData?.map((image, index) => (
+                  <div key={index}>
+                    {image.url.endsWith('.mp4') ? (
+                      <video autoPlay muted className="smilingDeatilPageMainImage">
+                        <source src={image.url} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    ) : (
+                      <img src={image.url} alt={`Slide ${index + 1}`} className="smilingDeatilPageMainImage" />
+                    )}
+                  </div>
+                ))}
+              </Slider>
+            }
           </div>
           <div className="srprodetail2">
             <div className="srprodetail2-cont">
