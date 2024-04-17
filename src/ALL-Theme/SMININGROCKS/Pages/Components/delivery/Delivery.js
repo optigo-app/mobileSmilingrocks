@@ -406,7 +406,7 @@ export default function Delivery() {
         }
     };
 
-    console.log('addddddddd',addressData);
+    console.log('addddddddd', addressData);
     return (
         <div className='paddingTopMobileSet' style={{
             backgroundColor: '#c0bbb1',
@@ -450,11 +450,12 @@ export default function Delivery() {
 
             <Dialog
                 open={open}
-            //  onClose={handleClose}
+                //  onClose={handleClose}
+                className='smilingAddressDailogMain'
             >
                 <div className='smilingAddressPopupMain'>
                     <DialogTitle style={{ textAlign: 'center', textDecoration: 'underline' }}>Add Shipping Info</DialogTitle>
-                    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: "100%" }}>
                         <TextField
                             id="firstName"
                             label="First Name"
@@ -564,10 +565,10 @@ export default function Delivery() {
                         <div className='smilingDeliveyAddressMain' style={{ display: 'flex', flexWrap: 'wrap' }}>
                             {
                                 addressData?.map((item, index) => (
-                                    <div key={item.id} className='AddressMain' style={{backgroundColor: item.isdefault === 1 && 'rgb(245 244 244)'}} onClick={() => handleDefaultSelection(item.id)}>
-                                        <div style={{ display: 'flex', height: '25px' , justifyContent: 'flex-end'}}>
-                                            {item.isdefault === 1 && <p style={{ margin: '0px 0px 0px 5px' , backgroundColor: 'blue', fontWeight: 500,borderRadius:'5px', padding: '0px 10px 0px 10px', color: 'white' }}>Selected</p>}
-                                        </div>
+                                    <div key={item.id} className='AddressMain' style={{ backgroundColor: item.isdefault === 1 && 'rgb(245 244 244)' }} onClick={() => handleDefaultSelection(item.id)}>
+                                        {item.isdefault === 1 && <div style={{ display: 'flex', height: '25px', justifyContent: 'flex-end' }}>
+                                            <p style={{ margin: '0px 0px 0px 5px', backgroundColor: 'blue', fontWeight: 500, borderRadius: '5px', padding: '0px 10px 0px 10px', color: 'white' }}>Selected</p>
+                                        </div>}
                                         <p className='addressData' style={{ margin: '0px 0px 5px 0px' }}>{item.shippingfirstname} {item.shippinglastname}</p>
                                         <p className='addressData'>{item.street}</p>
                                         <p className='addressData'>{item.city}-{item.zip}</p>

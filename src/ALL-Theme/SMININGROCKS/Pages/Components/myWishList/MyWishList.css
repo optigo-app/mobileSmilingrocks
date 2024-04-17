@@ -121,12 +121,12 @@
     }
 
     .smiWishLsitBoxDesc2 {
-        margin-inline: 5px;
+        margin:0px;
 
     }
 
     .smiWishLsitBoxDesc3 {
-        margin-inline: 5px;
+        margin: 10px 0px 10px 0px; 
 
     }
 

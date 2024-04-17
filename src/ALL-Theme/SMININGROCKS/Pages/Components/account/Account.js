@@ -19,6 +19,8 @@ import QuotationQuote from './QuotationQuote/QuotationQuote';
 import Sales from '../sales/Sales/Sales';
 import { accountDetailPage, accountDetailPages, accountValidation } from '../../../Utils/globalFunctions/GlobalFunction';
 import { FaChevronRight } from "react-icons/fa";
+import { LuBox } from "react-icons/lu";
+import { MdFavoriteBorder } from "react-icons/md";
 
 function CustomTabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -74,7 +76,9 @@ export default function Account() {
     const setIsLoginState = useSetRecoilState(loginState)
     const navigation = useNavigate();
     const [accountInner, setAccountInner] = useState(accountDetailPages());
-
+    const [fName, setFname] = useState('');
+    const [lastNamr, setLasnane] = useState('');
+    const [userMobile, setUserMobile] = useState('');
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -84,6 +88,13 @@ export default function Account() {
         setValue1(newValue);
     }
 
+    useEffect(() => {
+        const loginUserDetail = JSON.parse(localStorage.getItem('loginUserDetail'));
+
+        setFname(loginUserDetail?.firstname);
+        setLasnane(loginUserDetail?.lastname);
+        setUserMobile(loginUserDetail?.defaddress_shippingmobile)
+    })
     const handleLogout = () => {
         setIsLoginState('false')
         localStorage.setItem('LoginUser', 'false');
@@ -103,8 +114,24 @@ export default function Account() {
     return (
         <div>
             <div className='Smiling-AccountMain'>
+                <div className='titleMain'>
+                    <div style={{width :'100%'}}>
+                        <p style={{margin: '0px' , fontSize: '15px', fontWeight: 600}}>{fName + ' ' + lastNamr}</p>
+                        <p style={{margin: '0px', fontSize: '15px'}}>+91 {userMobile}</p>
 
-                <p className='SmiCartListTitle'>Your Account</p>
+                        <div style={{display: 'flex', justifyContent: 'space-around', width: '100%' , marginTop: '10px'}}>
+                            <div className='boxMainTopSection'>
+                                <LuBox style={{marginLeft: '15px'}}/>
+                                <p style={{margin: '0px 0px 0px 10px' , fontWeight: 600}}>Orders</p>
+                            </div>
+                            <div className='boxMainTopSection'>
+                                <MdFavoriteBorder style={{marginLeft: '15px'}}/>
+                                <p style={{margin: '0px 0px 0px 10px' , fontWeight: 600}}>Wishlist</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
                 <div className='smling-AccountTabMain'>
                     <div className='smlingAccountTabMobileView YourAccountPageTabs' style={{ marginTop: '15px' }}>
                         <div className='menuMainAccount' onClick={() => naviagation('/YourProfile')}>
@@ -119,7 +146,7 @@ export default function Account() {
                             <p className='menuMainAccountTitle'>MANAGE ADDRESSES</p>
                             <FaChevronRight />
                         </div>
-                        {accountValidation() && <div className='menuMainAccount' onClick={() => naviagation('/QuotationQuote')}>
+                        {accountValidation() && <div className='menuMainAccount' onClick={() => naviagation('/MobileViewCompo')}>
                             <p className='menuMainAccountTitle'>ACCOUNT</p>
                             <FaChevronRight />
                         </div>}
@@ -128,14 +155,13 @@ export default function Account() {
                             <FaChevronRight />
                         </div>
 
-                        <div style={{display: 'flex', justifyContent: 'center', marginTop: '30px'}}>
+                        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
                             <p className='smilingAccountLogoutMobile' onClick={handleLogout}>LOG OUT</p>
                         </div>
-
                     </div>
 
-{/* 
-                     <Box sx={{ width: '100%' }}>
+
+                    {/* <Box sx={{ width: '100%' }}>
                         <CustomTabPanel value={value} index={0}>
                             <div>
                                 <YourProfile />

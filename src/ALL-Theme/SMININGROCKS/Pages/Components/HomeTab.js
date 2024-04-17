@@ -57,9 +57,19 @@ const HomeTab = () => {
             <TbCategoryFilled style={activeTab === "/Category" ? styles.activeIcon : styles.icon} />
             <span style={activeTab === "/Category" ? styles.activeText : styles.text}>Category</span>
           </NavLink>
-    
-      {islogin === 'true' ?
-        <NavLink to="/CartPage" style={styles.tab} activeClassName="active" onClick={() => handleTabChange("/CartPage")}>
+
+          {islogin === 'true' ?
+            <NavLink to="/account" style={styles.tab} activeClassName="active" onClick={() => handleTabChange("/account")}>
+              <FaUser style={activeTab === "/account" ? styles.activeIcon : styles.icon} />
+              <span style={activeTab === "/account" ? styles.activeText : styles.text}>Account</span>
+            </NavLink>
+            : <NavLink to="/LoginOption" style={styles.tab} activeClassName="active" onClick={() => handleTabChange("/LoginOption")}>
+              <FaUser style={activeTab === "/LoginOption" ? styles.activeIcon : styles.icon} />
+              <span style={activeTab === "/LoginOption" ? styles.activeText : styles.text}>Login</span>
+            </NavLink>}
+
+          {islogin === 'true' ?
+            <NavLink to="/CartPage" style={styles.tab} activeClassName="active" onClick={() => handleTabChange("/CartPage")}>
               <Badge
                 badgeContent={getCartListCount}
                 overlap={"rectangular"}
@@ -72,31 +82,23 @@ const HomeTab = () => {
               </Badge>
               <span style={activeTab === "/CartPage" ? styles.activeText : styles.text}>Cart</span>
             </NavLink>
-        :
-        <NavLink to="/WithoutLoginCart" style={styles.tab} activeClassName="active" onClick={() => handleTabChange("/WithoutLoginCart")}>
-          <Badge
-            badgeContent={getCartListCount}
-            overlap={"rectangular"}
-            color="secondary"
-            style={{ marginInline: '10px' }}
-          >
-            <Tooltip title="Cart">
-              <FaShoppingCart style={activeTab === "/WithoutLoginCart" ? styles.activeIcon : styles.icon} />
-            </Tooltip>
-          </Badge>
-          <span style={activeTab === "/WithoutLoginCart" ? styles.activeText : styles.text}>Cart</span>
-        </NavLink>}
-
-
-          {islogin === 'true' ?
-            <NavLink to="/account" style={styles.tab} activeClassName="active" onClick={() => handleTabChange("/account")}>
-              <FaUser style={activeTab === "/account" ? styles.activeIcon : styles.icon} />
-              <span style={activeTab === "/account" ? styles.activeText : styles.text}>Account</span>
-            </NavLink>
-            : <NavLink to="/LoginOption" style={styles.tab} activeClassName="active" onClick={() => handleTabChange("/LoginOption")}>
-              <FaUser style={activeTab === "/LoginOption" ? styles.activeIcon : styles.icon} />
-              <span style={activeTab === "/LoginOption" ? styles.activeText : styles.text}>Login</span>
+            :
+            <NavLink to="/WithoutLoginCart" style={styles.tab} activeClassName="active" onClick={() => handleTabChange("/WithoutLoginCart")}>
+              <Badge
+                badgeContent={getCartListCount}
+                overlap={"rectangular"}
+                color="secondary"
+                style={{ marginInline: '10px' }}
+              >
+                <Tooltip title="Cart">
+                  <FaShoppingCart style={activeTab === "/WithoutLoginCart" ? styles.activeIcon : styles.icon} />
+                </Tooltip>
+              </Badge>
+              <span style={activeTab === "/WithoutLoginCart" ? styles.activeText : styles.text}>Cart</span>
             </NavLink>}
+
+
+
         </div>
       }
     </>
@@ -129,34 +131,18 @@ const styles = {
     fontSize: '20px',
   },
   activeIcon: {
-    color: '#0000ff78',
+    color: '#0000ff78', 
     fontSize: '20px',
   },
   text: {
     fontSize: '12px',
   },
   activeText: {
-    color: '#0000ff78',
-    fontWeight: 'bold',
-    fontSize: '14px'
+    color: '#0000ff78', 
+    fontSize: '12px',
+    marginBottom: '-5px',
+    paddingBlock: '5px'
   },
-};
-const buttonStyles = {
-  backgroundColor: '#4CAF50',
-  color: 'white',
-  padding: '12px 20px',
-  fontSize: '16px',
-  border: 'none',
-  borderRadius: '4px',
-  cursor: 'pointer',
-  transition: 'background-color 0.3s'
-};
-const buttonHoverStyles = {
-  backgroundColor: '#45a049'
-};
-const buttonResponsiveStyles = {
-  padding: '10px 15px',
-  fontSize: '14px'
 };
 
 export default HomeTab;

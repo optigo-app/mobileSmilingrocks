@@ -94,9 +94,23 @@ const ProdDetail = () => {
   const getDesignSet = useRecoilValue(designSet)
   const [currData, setCurrData] = useState([])
 
+  const handelCurrencyData = () => {
+    let currencyData = JSON.parse(localStorage.getItem('CURRENCYCOMBO'));
+    let loginData = JSON.parse(localStorage.getItem('loginUserDetail'));
+    console.log("param", loginData);
+
+    if (currencyData && loginData) {
+      if (Array.isArray(currencyData)) {
+        const filterData = currencyData?.filter((cd) => cd?.Currencyid === loginData?.CurrencyCodeid)[0]
+        setCurrData(filterData)
+      } else {
+        setCurrData(currencyData)
+      }
+    }
+  }
+
   useEffect(() => {
-    let currencyData = JSON.parse(localStorage.getItem("currencyData"))
-    setCurrData(currencyData)
+    handelCurrencyData();
   }, [])
 
   const handelImgLoad = () => {
@@ -1415,6 +1429,8 @@ const ProdDetail = () => {
     speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
+    prevArrow: null, 
+    nextArrow: null,
     // autoplay: true,
     // autoplaySpeed: 3000,
     beforeChange: (current, next) => setCurrentSlide(next),
@@ -1825,10 +1841,11 @@ const ProdDetail = () => {
                   </label>
                   <select
                     style={{
-                      border: "none",
                       outline: "none",
                       color: "#7d7f85",
+                      border: "1px solid #e1e1e1",
                       fontSize: "12.5px",
+                      height: '35px',
                     }}
                     defaultValue={mtTypeOption}
                     onChange={(e) => setmtTypeOption(e.target.value)}
@@ -1839,10 +1856,6 @@ const ProdDetail = () => {
                       </option>
                     ))}
                   </select>
-                  <Divider sx={{
-                    marginTop: '20px', background: '#a9a7a7',
-                    marginTop: '20px'
-                  }} />
                 </div>}
 
                 {isMetalCutoMizeFlag == 1 &&
@@ -1859,9 +1872,10 @@ const ProdDetail = () => {
                     </label>
                     <select
                       style={{
-                        border: "none",
                         outline: "none",
                         color: "#7d7f85",
+                        border: "1px solid #e1e1e1",
+                        height: '35px',
                         fontSize: "12.5px",
                       }}
                       onChange={(e) => handleColorSelection(e.target.value)}
@@ -1872,10 +1886,6 @@ const ProdDetail = () => {
                         </option>
                       ))}
                     </select>
-                    <Divider sx={{
-                      marginTop: '20px', background: '#a9a7a7',
-                      marginTop: '20px'
-                    }} />
                   </div>}
 
 
@@ -1892,10 +1902,11 @@ const ProdDetail = () => {
                   </label>
                   <select
                     style={{
-                      border: "none",
                       outline: "none",
                       color: "#7d7f85",
                       fontSize: "12.5px",
+                      border: "1px solid #e1e1e1",
+                      height: '35px',
                     }}
                     defaultValue={diaQColOpt}
                     onChange={(e) => setDiaQColOpt(e.target.value)}
@@ -1906,10 +1917,6 @@ const ProdDetail = () => {
                       </option>
                     ))}
                   </select>
-                  <Divider sx={{
-                    marginTop: '20px', background: '#a9a7a7',
-                    marginTop: '20px'
-                  }} />
                 </div>}
 
 
@@ -1926,10 +1933,11 @@ const ProdDetail = () => {
                     </label>
                     <select
                       style={{
-                        border: "none",
                         outline: "none",
                         color: "#7d7f85",
                         fontSize: "12.5px",
+                        border: "1px solid #e1e1e1",
+                        height: '35px',
                       }}
                       onChange={(e) => setCSQOpt(e.target.value)}
                       defaultValue={cSQopt}
@@ -1940,10 +1948,6 @@ const ProdDetail = () => {
                         </option>
                       ))}
                     </select>
-                    <Divider sx={{
-                      marginTop: '20px', background: '#a9a7a7',
-                      marginTop: '20px'
-                    }} />
                   </div>}
 
 
@@ -1960,10 +1964,11 @@ const ProdDetail = () => {
                     </label>
                     <select
                       style={{
-                        border: "none",
                         outline: "none",
                         color: "#7d7f85",
                         fontSize: "12.5px",
+                        border: "1px solid #e1e1e1",
+                        height: '35px',
                       }}
                       onChange={(e) => handelSize(e.target.value)}
                       defaultValue={

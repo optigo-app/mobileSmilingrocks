@@ -8,3 +8,8 @@
     width: 100%;
     object-fit: cover;
 }
+
+.colletioname{
+    font-family: 'PT Sans', sans-serif;
+    font-size: 13px;
+}

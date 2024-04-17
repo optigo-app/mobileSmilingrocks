@@ -282,7 +282,7 @@ export default function Home() {
         <div style={{ marginTop: '60px' }}>
           <SustainAbility />
         </div>
-        <ShopifySection />
+        {/* <ShopifySection /> */}
       </div>
     </div>
   )

@@ -462,14 +462,9 @@ const QuotationQuote = () => {
 
     return (
         <div>
-            <div style={{ display: 'flex', width: '100%', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray', backgroundColor: 'white', zIndex: '111111' }}>
-                <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => naviagation('/account')} />
-                <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
-                    <img src={titleImg} className="MainlogogMobileImage" />
-                </div>
-            </div>
+           
             <Box className='smilingSavedAddressMain salesApiSection' sx={{ padding: "20px", }}>
-                {accountValidation() &&
+                {/* {accountValidation() &&
                     <CustomTabPanel value={value} index={3} className="accountSalesPage" sx={{marginTop: '50px'}}>
                         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                             <Tabs value={value1} className='accountTabSection' variant="scrollable" onChange={handleChangeSub} aria-label="basic tabs example" sx={{ background: "#7d7f8529", ...tabIndicator }} scrollButtons="auto">
@@ -505,7 +500,7 @@ const QuotationQuote = () => {
                             })
                         }
                     </CustomTabPanel>
-                }
+                } */}
 
                 <Box sx={{ display: "flex", flexWrap: "wrap" }}>
                     <Box sx={{ paddingRight: "15px" }} className="AllQuoteBtn QuotePadSec">

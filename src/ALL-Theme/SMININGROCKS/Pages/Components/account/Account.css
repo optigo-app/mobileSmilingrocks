@@ -10,6 +10,28 @@
     font-weight: 500;
 }
 
+
+.titleMain {
+    color: #7d7f85;
+    font-family: 'PT Sans', sans-serif;
+    display: flex;
+    font-size: 18px;
+    padding: 10px;
+    height: 150px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.boxMainTopSection {
+    display: flex;
+    border: 1px solid gray;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 50%;
+}
+
 .smling-AccountTabMain {
     margin-inline: 10%;
 }
@@ -118,13 +140,14 @@
     padding-right: 0;
 }
 
-.menuMainAccountTitle{
+.menuMainAccountTitle {
     margin: 0px;
     font-weight: 500;
-    font-size: 17px;
+    font-size: 14px;
     color: #7d7f85;
 }
-.menuMainAccount{
+
+.menuMainAccount {
     height: 60px;
     display: flex;
     justify-content: space-between;

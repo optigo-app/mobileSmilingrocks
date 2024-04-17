@@ -29,7 +29,7 @@
     width: 350px;
     word-wrap: break-word;
     margin-right: 5px;
-    padding: 22px;
+    padding: 10px 10px;
     cursor: pointer;
     border-radius: 5px;
     position: relative;
@@ -86,14 +86,8 @@
     margin-top: 10px;
 }
 
-.smilingAddToAddressBtn:hover {
-    background-color: lightgray;
-}
 
-.smilingAddressPopupMain {
-    width: 570px;
-    height: 850px;
-}
+
 
 .smilingDeleveryformSaveBtn {
     height: 35px;
@@ -130,11 +124,18 @@
     padding: 10px;
 }
 
+.smilingAddressDailogMain .MuiPaper-root{
+    width: 100%!important;
+}
 
 
 @media screen and (max-width: 1400px) {
     .smilingDelivery {
         margin-inline: 2%;
+    }
+
+    .smilingAddressPopupMain {
+        height: 850px;
     }
 }
 
@@ -157,7 +158,7 @@
         align-items: center;
     }
 
-    .smilingAddressPopupMain {
-        width: 100% !important;
-    }
+
+
+  
 }

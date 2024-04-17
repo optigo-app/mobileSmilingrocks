@@ -51,6 +51,7 @@ import OrderHistory from './Pages/Components/account/accountOrderHistory/OrderHi
 import ManageAddress from './Pages/Components/account/address/ManageAddress'
 import ChangePassword from './Pages/Components/account/changePassword/ChangePassword'
 import QuotationQuote from './Pages/Components/account/QuotationQuote/QuotationQuote'
+import MobileViewCompo from './Pages/Components/account/MobileViewCompo'
 
 export default function SMININGROCKS_App() {
 
@@ -106,6 +107,7 @@ export default function SMININGROCKS_App() {
                     location.pathname === "/ManageAddress" ||
                     location.pathname === "/QuotationQuote" ||
                     location.pathname === "/accountledgerdebit" ||
+                    location.pathname === "/MobileViewCompo" ||
                     location.pathname === "/accountledgercredit") ?
                     null : <Header />}
                 <div>
@@ -150,6 +152,7 @@ export default function SMININGROCKS_App() {
                         <Route path="/OrderHistory" element={<OrderHistory />} />
                         <Route path="/QuotationQuote" element={<QuotationQuote />} />
                         <Route path="/ChangePassword" element={<ChangePassword />} />
+                        <Route path="/MobileViewCompo" element={<MobileViewCompo />} />
                     </Routes>
                     {(location.pathname === "/productpage") ?
                          <ProductPageTab toggleDetailDrawer={toggleDetailDrawer} toggleShoryBy={toggleShoryBy}/> : <HomeTab />}

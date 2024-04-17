@@ -118,9 +118,9 @@
 @media screen and (max-width: 800px) {
 
     .smilingProductImageBox {
-        width: 46% !important;
-        margin: 5px;
-    }
+        width: 48% !important;
+        margin: 5px 4px;
+    } 
 }
 
 
@@ -147,8 +147,8 @@
 
 
     .prod_img {
-        width: 80% !important;
-        height: 180px;
+        width: 100% !important;
+        height: 220px;
     }
 
 }

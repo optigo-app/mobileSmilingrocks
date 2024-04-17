@@ -26,6 +26,7 @@ import { CommonAPI } from "../../../../../Utils/API/CommonAPI";
 import "./CartPage.css";
 import { ToastContainer, toast } from "react-toastify";
 import { FiArrowLeft } from "react-icons/fi";
+import { IoArrowBack } from "react-icons/io5";
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -99,10 +100,29 @@ export default function CartPage() {
   const setWishCount = useSetRecoilState(WishListCounts);
   //   const getPriceData = useRecoilValue(priceData);
   const [currData, setCurrData] = useState()
+
+
+
+  const handelCurrencyData = () => {
+    let currencyData = JSON.parse(localStorage.getItem('CURRENCYCOMBO'));
+    let loginData = JSON.parse(localStorage.getItem('loginUserDetail'));
+    console.log("param", loginData);
+
+    if (currencyData && loginData) {
+      if (Array.isArray(currencyData)) {
+        const filterData = currencyData?.filter((cd) => cd?.Currencyid === loginData?.CurrencyCodeid)[0]
+        console.log("currencyData", filterData);
+        setCurrData(filterData)
+      } else {
+        setCurrData(currencyData)
+      }
+    }
+  }
+
   useEffect(() => {
-    let currencyData = JSON.parse(localStorage.getItem("currencyData"))
-    setCurrData(currencyData)
+    handelCurrencyData();
   }, [])
+
 
   const navigation = useNavigate();
   let currencySymbol = JSON.parse(localStorage.getItem('CURRENCYCOMBO'))
@@ -426,11 +446,10 @@ export default function CartPage() {
       if (response?.Data) {
         setCartListData(response?.Data?.rd);
         setMainRemarks(response?.Data?.rd[0].OrderRemarks);
+        setIsLoading(false);
       }
     } catch (error) {
       console.error("Error:", error);
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -917,7 +936,7 @@ export default function CartPage() {
             }}
           >
             <p className="SmiCartListTitle">
-              My Cart
+                <IoArrowBack style={{height: '25px', width: '25px', marginRight: '10px'}}/>My Cart
             </p>
 
             {cartListData?.length !== 0 && (
@@ -1570,7 +1589,7 @@ export default function CartPage() {
               }}
               onClick={() => setDialogOpen(false)}
             >
-              <FiArrowLeft style={{ color: "black", height: "30px" , width: '30px'}} />
+              <FiArrowLeft style={{ color: "black", height: "30px", width: '30px' }} />
             </div>
           </div>
           <div
@@ -1631,7 +1650,7 @@ export default function CartPage() {
                       (colUpdatedPrice() ?? 0)
                     ).toFixed(2) * lastEnteredQuantity}
                   </span>
-                  <div style={{ border: '1px solid', width: '100px', marginTop: '10px' }}>
+                  <div style={{ border: '1px solid', width: '100px', marginTop: '10px', marginBottom: '15px' }}>
                     <button
                       onClick={() => {
                         if (lastEnteredQuantity !== 1) {
@@ -1944,7 +1963,7 @@ export default function CartPage() {
                 className="smilingAddresingleMobileMain"
                 style={{
                   marginLeft: "30px",
-                  display:'flex',
+                  display: 'flex',
                   flexDirection: 'column',
                   paddingInline: '5%'
                 }}
@@ -1953,7 +1972,7 @@ export default function CartPage() {
                   type="text"
                   placeholder="Add Remarks..."
                   value={remarks}
-                  
+
                   onChange={(event) => handleInputChangeRemarks(event)}
                   className="YourCartMainRemkarBoxSingle1"
                 />
