@@ -79,18 +79,18 @@ export default function FeaturedCollection() {
                     <Slider {...settings} >
                         <div className='linkRingLove'>
 
-                            <div>
+                            <div className='linkRingLoveImgMain'>
                                 <div className='linkLoveRing1'>
-                                    <img src={ring1ImageChange ? ring1hover : "https://www.tanishq.co.in/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw97a38a7c/images/hi-res/503419FIPAA09_1.jpg"} className='likingLoveImages' onMouseEnter={handleMouseEnterRing1} onMouseLeave={handleMouseLeaveRing1} />
+                                    <img src="https://www.tanishq.co.in/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw97a38a7c/images/hi-res/503419FIPAA09_1.jpg" className='likingLoveImages' />
                                 </div>
                                 <div className='linkLoveRing1Desc'>
                                     <p className='ring1Desc'>Lab Grown Diamond 1.97ctw Chain Linking Bracelet BL-01993WHT</p>
                                     {/* <p style={{ fontSize: '12px' }}>White Gold / $4,949.00</p> */}
                                 </div>
                             </div>
-                            <div>
+                            <div className='linkRingLoveImgMain'>
                                 <div className='linkLoveRing2'>
-                                    <img src={ring2ImageChange ? ring2hover : "https://shyamsundarco.com/images/online_jewellery/new/ring//7.jpg?v=1303202491"} className='likingLoveImages' onMouseEnter={handleMouseEnterRing2} onMouseLeave={handleMouseLeaveRing2} />
+                                    <img src={ring2ImageChange ? ring2hover : "https://shyamsundarco.com/images/online_jewellery/new/ring//7.jpg?v=1303202491"} className='likingLoveImages' />
                                 </div>
                                 <div className='linkLoveRing1Desc'>
                                     <p className='ring1Desc'>Lab Grown Diamond 1.97ctw Chain Linking Bracelet BL-01993WHT</p>
@@ -101,39 +101,37 @@ export default function FeaturedCollection() {
                         </div>
 
                         <div className='linkRingLove'>
-                            <div>
+                            <div className='linkRingLoveImgMain'>
                                 <div className='linkLoveRing1'>
-                                    <img src={ring1ImageChange ? ring1hover : ring1} className='likingLoveImages' onMouseEnter={handleMouseEnterRing1} onMouseLeave={handleMouseLeaveRing1} />
+                                    <img src={ring3ImageChange ? ring1hover : "https://www.candere.com/media/jewellery/images/GR00103__1.jpeg"} className='likingLoveImages' />
                                 </div>
                                 <div className='linkLoveRing1Desc'>
                                     <p className='ring1Desc'>Lab Grown Diamond 1.97ctw Chain Linking Bracelet BL-01993WHT</p>
-                                    {/* <p style={{ fontSize: '12px' }}>White Gold</p> */}
                                 </div>
                             </div>
-                            <div>
+                            <div className='linkRingLoveImgMain'>
                                 <div className='linkLoveRing2'>
-                                    <img src={ring2ImageChange ? ring2hover : ring2} className='likingLoveImages' onMouseEnter={handleMouseEnterRing2} onMouseLeave={handleMouseLeaveRing2} />
+                                    <img src={ring4ImageChange ? ring2hover : "https://media.istockphoto.com/id/1219309412/photo/diamond-ring-isolated-on-white-engagement-solitaire-style-ring.jpg?s=612x612&w=0&k=20&c=X5UDpRbiX9vFsZAWh8vt1H5YmrjhPRK2F4bXcWKl5Tw="} className='likingLoveImages' />
                                 </div>
                                 <div className='linkLoveRing1Desc'>
                                     <p className='ring1Desc'>Lab Grown Diamond 1.97ctw Chain Linking Bracelet BL-01993WHT</p>
-                                    {/* <p style={{ fontSize: '12px' }}>White Gold</p> */}
                                 </div>
                             </div>
                         </div>
 
                         <div className='linkRingLove'>
-                            <div>
+                            <div className='linkRingLoveImgMain'>
                                 <div className='linkLoveRing1'>
-                                    <img src={ring1ImageChange ? ring1hover : ring1} className='likingLoveImages' onMouseEnter={handleMouseEnterRing1} onMouseLeave={handleMouseLeaveRing1} />
+                                    <img src="https://www.tanishq.co.in/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw97a38a7c/images/hi-res/503419FIPAA09_1.jpg" className='likingLoveImages' />
                                 </div>
                                 <div className='linkLoveRing1Desc'>
                                     <p className='ring1Desc'>Lab Grown Diamond 1.97ctw Chain Linking Bracelet BL-01993WHT</p>
-                                    {/* <p style={{ fontSize: '12px' }}>White Gold</p> */}
+                                    {/* <p style={{ fontSize: '12px' }}>White Gold / $4,949.00</p> */}
                                 </div>
                             </div>
-                            <div>
+                            <div className='linkRingLoveImgMain'>
                                 <div className='linkLoveRing2'>
-                                    <img src={ring2ImageChange ? ring2hover : ring2} className='likingLoveImages' onMouseEnter={handleMouseEnterRing2} onMouseLeave={handleMouseLeaveRing2} />
+                                    <img src={ring2ImageChange ? ring2hover : "https://shyamsundarco.com/images/online_jewellery/new/ring//7.jpg?v=1303202491"} className='likingLoveImages' />
                                 </div>
                                 <div className='linkLoveRing1Desc'>
                                     <p className='ring1Desc'>Lab Grown Diamond 1.97ctw Chain Linking Bracelet BL-01993WHT</p>
@@ -144,12 +142,12 @@ export default function FeaturedCollection() {
                     </Slider>
                 </div>
                 <div className='linkingLoveImage'>
-                    <img src={linkingLoveImage} className='linkingLoveImageDesign'  />
+                    <img src={linkingLoveImage} className='linkingLoveImageDesign' />
                 </div>
             </div>
 
 
-            <div className='linkingLoveMain'>
+            <div className='linkingLoveMain' style={{marginTop: '40px'}}>
                 <div className='linkingLoveImage'>
                     <img src={floraMain} className='linkingLoveImageDesign' />
                 </div>
@@ -159,38 +157,17 @@ export default function FeaturedCollection() {
                     <p className='linkingShopCol'>SHOP COLLECTION</p>
                     <Slider {...settings} >
                         <div className='linkRingLove'>
-
-                            <div>
+                            <div className='linkRingLoveImgMain'>
                                 <div className='linkLoveRing1'>
-                                    <img src={ring3ImageChange ? ring1hover : "https://www.candere.com/media/jewellery/images/GR00103__1.jpeg"} className='likingLoveImages' onMouseEnter={handleMouseEnterRing3} onMouseLeave={handleMouseLeaveRing3} />
+                                    <img src={ring3ImageChange ? ring1hover : "https://www.candere.com/media/jewellery/images/GR00103__1.jpeg"} className='likingLoveImages' />
                                 </div>
                                 <div className='linkLoveRing1Desc'>
                                     <p className='ring1Desc'>Lab Grown Diamond 1.97ctw Chain Linking Bracelet BL-01993WHT</p>
                                 </div>
                             </div>
-                            <div>
+                            <div className='linkRingLoveImgMain'>
                                 <div className='linkLoveRing2'>
-                                    <img src={ring4ImageChange ? ring2hover : "https://media.istockphoto.com/id/1219309412/photo/diamond-ring-isolated-on-white-engagement-solitaire-style-ring.jpg?s=612x612&w=0&k=20&c=X5UDpRbiX9vFsZAWh8vt1H5YmrjhPRK2F4bXcWKl5Tw="} className='likingLoveImages' onMouseEnter={handleMouseEnterRing4} onMouseLeave={handleMouseLeaveRing4} />
-                                </div>
-                                <div className='linkLoveRing1Desc'>
-                                    <p className='ring1Desc'>Lab Grown Diamond 1.97ctw Chain Linking Bracelet BL-01993WHT</p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div className='linkRingLove'>
-                            <div>
-                                <div className='linkLoveRing1'>
-                                    <img src={ring3ImageChange ? ring1hover : ring1} className='likingLoveImages' onMouseEnter={handleMouseEnterRing3} onMouseLeave={handleMouseLeaveRing3} />
-                                </div>
-                                <div className='linkLoveRing1Desc'>
-                                    <p className='ring1Desc'>Lab Grown Diamond 1.97ctw Chain Linking Bracelet BL-01993WHT</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div className='linkLoveRing2'>
-                                    <img src={ring4ImageChange ? ring2hover : ring2} className='likingLoveImages' onMouseEnter={handleMouseEnterRing4} onMouseLeave={handleMouseLeaveRing4} />
+                                    <img src={ring4ImageChange ? ring2hover : "https://media.istockphoto.com/id/1219309412/photo/diamond-ring-isolated-on-white-engagement-solitaire-style-ring.jpg?s=612x612&w=0&k=20&c=X5UDpRbiX9vFsZAWh8vt1H5YmrjhPRK2F4bXcWKl5Tw="} className='likingLoveImages' />
                                 </div>
                                 <div className='linkLoveRing1Desc'>
                                     <p className='ring1Desc'>Lab Grown Diamond 1.97ctw Chain Linking Bracelet BL-01993WHT</p>
@@ -199,21 +176,41 @@ export default function FeaturedCollection() {
                         </div>
 
                         <div className='linkRingLove'>
-                            <div>
+                            <div className='linkRingLoveImgMain'>
                                 <div className='linkLoveRing1'>
-                                    <img src={ring3ImageChange ? ring1hover : ring1} className='likingLoveImages' onMouseEnter={handleMouseEnterRing3} onMouseLeave={handleMouseLeaveRing3} />
-                                </div>
-                                <div className='linkLoveRing1Desc'>
-                                    <p className='ring1Desc'>Lab Grown Diamond 1.97ctw Chain Linking Bracelet BL-01993WHT</p>
-                                </div>
-                            </div>
-                            <div>
-                                <div className='linkLoveRing2'>
-                                    <img src={ring4ImageChange ? ring2hover : ring2} className='likingLoveImages' onMouseEnter={handleMouseEnterRing4} onMouseLeave={handleMouseLeaveRing4} />
+                                    <img src="https://www.tanishq.co.in/on/demandware.static/-/Sites-Tanishq-product-catalog/default/dw97a38a7c/images/hi-res/503419FIPAA09_1.jpg" className='likingLoveImages' />
                                 </div>
                                 <div className='linkLoveRing1Desc'>
                                     <p className='ring1Desc'>Lab Grown Diamond 1.97ctw Chain Linking Bracelet BL-01993WHT</p>
                                     {/* <p style={{ fontSize: '12px' }}>White Gold / $4,949.00</p> */}
+                                </div>
+                            </div>
+                            <div className='linkRingLoveImgMain'>
+                                <div className='linkLoveRing2'>
+                                    <img src={ring2ImageChange ? ring2hover : "https://shyamsundarco.com/images/online_jewellery/new/ring//7.jpg?v=1303202491"} className='likingLoveImages' />
+                                </div>
+                                <div className='linkLoveRing1Desc'>
+                                    <p className='ring1Desc'>Lab Grown Diamond 1.97ctw Chain Linking Bracelet BL-01993WHT</p>
+                                    {/* <p style={{ fontSize: '12px' }}>White Gold</p> */}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className='linkRingLove'>
+                            <div className='linkRingLoveImgMain'>
+                                <div className='linkLoveRing1'>
+                                    <img src={ring3ImageChange ? ring1hover : "https://www.candere.com/media/jewellery/images/GR00103__1.jpeg"} className='likingLoveImages' />
+                                </div>
+                                <div className='linkLoveRing1Desc'>
+                                    <p className='ring1Desc'>Lab Grown Diamond 1.97ctw Chain Linking Bracelet BL-01993WHT</p>
+                                </div>
+                            </div>
+                            <div className='linkRingLoveImgMain'>
+                                <div className='linkLoveRing2'>
+                                    <img src={ring4ImageChange ? ring2hover : "https://media.istockphoto.com/id/1219309412/photo/diamond-ring-isolated-on-white-engagement-solitaire-style-ring.jpg?s=612x612&w=0&k=20&c=X5UDpRbiX9vFsZAWh8vt1H5YmrjhPRK2F4bXcWKl5Tw="} className='likingLoveImages' />
+                                </div>
+                                <div className='linkLoveRing1Desc'>
+                                    <p className='ring1Desc'>Lab Grown Diamond 1.97ctw Chain Linking Bracelet BL-01993WHT</p>
                                 </div>
                             </div>
                         </div>

@@ -16,19 +16,14 @@
 }
 
 .DiscoverBtn {
-    margin-top: 30px;
-    height: 60px;
+    height: 35px;
     width: 200px;
-    background-color: gray;
+    background-color: #7d7f85;
     color: white;
     cursor: pointer;
     border: none;
-}
-
-.DiscoverBtn:hover {
-    border: 1px solid gray;
-    color: gray;
-    background-color: transparent;
+    font-size: 12px;
+    font-family: 'PT Sans', sans-serif;
 }
 
 @media screen and (max-width: 1024px) {
@@ -39,7 +34,6 @@
 
     .festiveBox {
         position: static !important;
-        background-color: #c0bbb1;
         top: 0;
         left: 0;
         transform: translate(0%, 0%) !important;
@@ -47,32 +41,29 @@
     }
 
     .smilingFestiMainTitle1 {
-        font-size: 12px !important;
+        font-size: 11px !important;
         font-weight: 500;
         margin: 0px;
-        color: white !important;
+        color: gray !important;
+        font-family: 'PT Sans', sans-serif;
+
     }
 
     .festiveBox {
-        padding-top: 35px !important;
+        padding-top: 10px !important;
     }
 
     .smilingFestiMainTitle2 {
-        font-size: 30px !important;
-        color: white !important;
-        
+        font-size: 20px !important;
+        font-family: 'PT Sans', sans-serif;
+        color: gray !important;
+
     }
 
     .smilingFestiMainTitle3 {
-        color: white !important;
-    }
+        color: gray !important;
+        font-family: 'PT Sans', sans-serif;
 
-    .DiscoverBtn {
-        width: 200px !important;
-        height: 50px !important;
-        color: white;
-        background-color: gray;
-        font-weight: 500;
-        font-size: 13px;
     }
+  
 }

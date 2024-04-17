@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './Category.css';
 import { CommonAPI } from '../../../Utils/API/CommonAPI';
 import { CircularProgress } from '@mui/material';
+import { IoArrowBack } from "react-icons/io5";
 
 export default function Category() {
     const [imageURL, setImageURL] = useState('');
@@ -75,7 +76,7 @@ export default function Category() {
                 </div>
             )}
             <p className="SmiCartListTitle">
-                Category
+                <IoArrowBack style={{height: '25px', width: '25px', marginRight: '10px'}}/>Category
             </p>
             {availableImages.length === 0 && !isLoading ?
                 <div
@@ -103,7 +104,7 @@ export default function Category() {
                         <div key={id} className='imagesViewCategoryDiv'>
                             <img src={item.imageURL} alt={`${item.collectionname}-${item.categoryname}`}
                                 className='imagesViewCategory' />
-                            <p>{item.collectionname}</p>
+                            <p className='colletioname'>{item.collectionname}</p>
                         </div>
                     ))}
                 </div>

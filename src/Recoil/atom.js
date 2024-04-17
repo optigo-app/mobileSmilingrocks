@@ -10,6 +10,11 @@ export const WishListCounts = atom({
   default: 0,
 });
 
+export const FilterOpenOverlly = atom({
+  key: 'FilterOpenOverlly',
+  default: 'false',
+});
+
 export const loginState = atom({
   key: 'loginState',
   default: 'false',

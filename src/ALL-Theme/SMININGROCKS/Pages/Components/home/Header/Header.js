@@ -4,6 +4,7 @@ import './Header.css'
 import Tooltip from '@mui/material/Tooltip';
 import { Badge, Dialog, Divider, Drawer, SwipeableDrawer, TextField } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
+import { IoMenuOutline } from "react-icons/io5";
 import { PiStarThin } from "react-icons/pi";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { IoSearchOutline } from "react-icons/io5";
@@ -12,7 +13,7 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { PiStarFourThin } from "react-icons/pi";
 import { IoClose } from "react-icons/io5";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { CartListCounts, HeaderData, HeaderData2, WishListCounts, loginState, newMenuData, openSignInModal, searchData } from "../../../../../../Recoil/atom";
+import { CartListCounts, FilterOpenOverlly, HeaderData, HeaderData2, WishListCounts, loginState, newMenuData, openSignInModal, searchData } from "../../../../../../Recoil/atom";
 import { CommonAPI } from "../../../../Utils/API/CommonAPI";
 import Cart from "./Cart";
 import titleImg from "../../../assets/title/sonasons1.png"
@@ -28,6 +29,7 @@ export default function Header() {
   const navigation = useNavigate();
   const [inputValue, setInputValue] = useState(1);
   const [serachsShowOverlay, setSerachShowOverlay] = useState(false);
+  const getOverlyVaue = useRecoilValue(FilterOpenOverlly)
   const [drawerShowOverlay, setDrawerShowOverlay] = useState(false);
   const [searchText, setSearchText] = useState(null)
   const [isOpen, setIsOpen] = useState(false);
@@ -416,7 +418,6 @@ export default function Header() {
 
   const setGSearch = useSetRecoilState(searchData);
   function searchDataFucn() {
-    alert(searchText)
     let ProductApiData2 = JSON.parse(localStorage.getItem("allproductlist"));
     if (ProductApiData2) {
       let searchTextN = searchText?.toLowerCase();
@@ -455,7 +456,7 @@ export default function Header() {
 
   return (
     <>
-      {serachsShowOverlay && (
+      {/* {serachsShowOverlay && (
         <>
           <div className="smlingSearchoverlay">
             <div className="smlingTopSerachOver">
@@ -464,7 +465,6 @@ export default function Header() {
                 type="text"
                 placeholder="Search..."
                 value={searchText}
-                autoFocus
                 onChange={(e) => setSearchText(e.target.value)}
                 className="serachinputBoxOverly"
                 onKeyDown={searchDataFucn}
@@ -488,10 +488,13 @@ export default function Header() {
                 type="text"
                 placeholder="Search..."
                 value={searchText}
-                autoFocus
                 onChange={(e) => setSearchText(e.target.value)}
                 className="serachinputBoxOverly"
-                onKeyDown={searchDataFucn}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter') {
+                    searchDataFucn();
+                  }
+                }}
               />
               <IoClose
                 style={{
@@ -505,7 +508,7 @@ export default function Header() {
             </div>
           </div>
         </>
-      )}
+      )} */}
 
       {drawerShowOverlay && (
         <>
@@ -575,9 +578,9 @@ export default function Header() {
                     <li style={{ listStyle: 'none' }} onClick={() => navigation("/myWishList")}>
                       <FavoriteBorderIcon
                         style={{
-                          height: "25px",
+                          height: "20px",
                           cursor: "pointer",
-                          width: "25px",
+                          width: "20px",
                           color: "white",
                         }}
                         className="mobileViewSmilingTop1Icone"
@@ -709,38 +712,6 @@ export default function Header() {
                   Wishlist
                 </p>
               </div>
-              {/* <div
-                style={{
-                  display: "flex",
-                  borderBottom: "1px solid white",
-                  alignItems: "end",
-                }}
-              >
-                <input
-                  type="text"
-                  placeholder="Search"
-                  style={{
-                    width: "100%",
-                    borderBottom: "1px solid white",
-                    border: "none",
-                    outline: "none",
-                    backgroundColor: "rgba(192, 187, 177, 1.8)",
-                    marginTop: "15px",
-                    fontWeight: 500,
-                    color: "white",
-                  }}
-                  className="mobileSideBarSearch"
-                />
-                <IoSearchOutline
-                  style={{
-                    height: "20px",
-                    cursor: "pointer",
-                    color: "white",
-                    width: "20px",
-                    marginInline: "5px",
-                  }}
-                />
-              </div> */}
             </div>
           </div>
         </>
@@ -1106,21 +1077,25 @@ export default function Header() {
           </div>
         </div>
       </div>
-      {location.pathname == '/productpage' || location.pathname == '/productdetail' && !serachsShowOverlay ?
+      {(location.pathname == '/productpage' || location.pathname == '/productdetail') && getOverlyVaue !== 'true' && !serachsShowOverlay ?
         <div style={{ display: 'flex', justifyContent: 'space-between', paddingInline: '10px', height: '50px', position: 'fixed', width: '100%', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray', backgroundColor: 'white', zIndex: '111111' }}>
           <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => location.pathname == '/productdetail' ? navigation('/productpage') : navigation('/')} />
           <ul className="mobileViewTopIconeMain" style={{ listStyle: 'none', margin: '0px', display: 'flex', padding: '0px', width: '90%' }}>
             <div className="searchBoxOnlyProductPageMain">
 
-            <input
+              <input
                 type="text"
                 placeholder="Search..."
                 value={searchText}
-                autoFocus
                 onChange={(e) => setSearchText(e.target.value)}
                 className="searchBoxOnlyProductPage"
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter') {
+                    searchDataFucn();
+                  }
+                }}
               />
-              <SearchIcon onClick={searchDataFucn}/>
+              <SearchIcon onClick={searchDataFucn} />
             </div>
             <Badge
               badgeContent={getCartListCount}
@@ -1162,6 +1137,7 @@ export default function Header() {
             style={{
               display: "flex",
               justifyContent: "space-between",
+              height: '100%'
             }}
             className="smilingMobileSubDiv"
           >
@@ -1172,19 +1148,38 @@ export default function Header() {
               }}
               className="mobileViewFirstDiv1"
             >
-              <MenuIcon
+              <IoMenuOutline
                 style={{ fontSize: "35px", color: "white" }}
                 className="muIconeMobileHeader"
                 onClick={toggleDrawerOverlay}
               />
             </div>
-            <div
-              className="mobileViewFirstDiv2"
-            >
-              <a href="/">
-                <img src={titleImg} className="MainlogogMobileImage" />
-              </a>
-            </div>
+            {
+              serachsShowOverlay ?
+                <div className="searchBoxOnlyProductPageMain">
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    className="searchBoxOnlyProductPage"
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter') {
+                        searchDataFucn();
+                      }
+                    }}
+                  />
+                  <SearchIcon onClick={searchDataFucn} />
+                </div>
+                :
+                <div
+                  className="mobileViewFirstDiv2"
+                >
+                  <a href="/" style={{ marginTop: '5px' }}>
+                    <img src={titleImg} className="MainlogogMobileImage" />
+                  </a>
+                </div>
+            }
             <div
               style={{
                 display: "flex",
@@ -1220,9 +1215,9 @@ export default function Header() {
                       <li style={{ listStyle: 'none' }} onClick={() => navigation("/myWishList")}>
                         <FavoriteBorderIcon
                           style={{
-                            height: "25px",
+                            height: "20px",
                             cursor: "pointer",
-                            width: "25px",
+                            width: "20px",
                             color: "white",
                           }}
                           className="mobileViewSmilingTop1Icone"
@@ -1261,7 +1256,7 @@ export default function Header() {
                       onClick={toggleDrawerOverlay}
                     />
                   ) : (
-                    <MenuIcon
+                    <IoMenuOutline
                       style={{ fontSize: "35px", color: "#7d7f85" }}
                       onClick={toggleDrawerOverlay}
                       className="muIconeMobileHeader"
@@ -1272,7 +1267,7 @@ export default function Header() {
                 <div
                   className="mobileViewFirstDiv2"
                 >
-                  <a href="/">
+                  <a href="/" style={{ marginTop: '5px' }}>
                     <img src={titleImg} className="MainlogogMobileImage" />
                   </a>
                 </div>
@@ -1300,9 +1295,9 @@ export default function Header() {
                         <li style={{ listStyle: 'none' }} onClick={() => navigation("/myWishList")}>
                           <FavoriteBorderIcon
                             style={{
-                              height: "25px",
+                              height: "20px",
                               cursor: "pointer",
-                              width: "25px",
+                              width: "20px",
                               color: "#7d7f85",
                             }}
                             className="mobileViewSmilingTop1Icone"

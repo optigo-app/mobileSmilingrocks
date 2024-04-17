@@ -15,7 +15,7 @@
 }
 
 .createBtnRegister{
-    height: 60px;
+    height: 50px;
     width: 420px;
     color: white;
     background-color: #7d7f85;
@@ -25,12 +25,6 @@
     font-weight: 500;
     letter-spacing: 1;
     transition: all 0.5s ease;
-}
-
-.createBtnRegister:hover{
-    background-color: white;
-    color: #7d7f85;
-    border: 1px solid #7d7f85;
 }
 
 .SmilingSignInHere{

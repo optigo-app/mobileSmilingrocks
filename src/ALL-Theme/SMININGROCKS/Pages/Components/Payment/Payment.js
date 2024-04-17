@@ -182,7 +182,7 @@ export default function Payment() {
                 <div className='smilingPaymentMainMobile'>
                     {/* <IoArrowBackOutline style={{ height: '40px', width: '60px', cursor: 'pointer',margin: '' }} onClick={() => navigation('/Delivery')} /> */}
 
-                    <div style={{ padding: '50px' }}>
+                    <div style={{ padding: '30px' }}>
 
                         <div style={{ width: '100%' }}>
                             <p style={{ fontSize: '25px', fontWeight: 500, color: '#5e5e5e' }}>Payment Card Method</p>

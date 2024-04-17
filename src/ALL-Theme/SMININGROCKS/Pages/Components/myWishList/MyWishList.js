@@ -24,7 +24,30 @@ export default function MyWishList() {
     const [isPriseShow, setIsPriceShow] = useState('');
     const setCartCount = useSetRecoilState(CartListCounts)
     const setWishCount = useSetRecoilState(WishListCounts)
+    const [currData, setCurrData] = useState([])
     const navigation = useNavigate();
+
+
+
+    const handelCurrencyData = () => {
+        let currencyData = JSON.parse(localStorage.getItem('CURRENCYCOMBO'));
+        let loginData = JSON.parse(localStorage.getItem('loginUserDetail'));
+        console.log("param", loginData);
+
+        if (currencyData && loginData) {
+            if (Array.isArray(currencyData)) {
+                const filterData = currencyData?.filter((cd) => cd?.Currencyid === loginData?.CurrencyCodeid)[0]
+                console.log("currencyData", filterData);
+                setCurrData(filterData)
+            } else {
+                setCurrData(currencyData)
+            }
+        }
+    }
+
+    useEffect(() => {
+        handelCurrencyData();
+    }, [])
 
 
     const getCountFunc = async () => {
@@ -201,6 +224,11 @@ export default function MyWishList() {
         // navigation("/productdetail");
     };
 
+    const decodeEntities = (html) => {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+    }
 
     return (
         <div>
@@ -241,8 +269,15 @@ export default function MyWishList() {
                                     </div>
                                     <img src={`${imageURL}/${yKey}/${item.DefaultImageName}`} className='smiWishLsitBoxImge' style={{ cursor: 'pointer' }} alt='Wishlist item' onClick={() => handelProductSubmit(item)} />
 
-                                    <p className='smiWishLsitBoxDesc1'>{item.designno}</p>
-                                    <p className='smiWishLsitBoxDesc2'>{item.mastermanagement_goldtypename} / {item.mastermanagement_goldcolorname} / {item.ActualGrossweight} <br /> {isPriseShow == 1 && <p>$ {item.TotalUnitCost}</p>}</p>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginInline: '5px' }}>
+                                        <p className='smiWishLsitBoxDesc1'>{item.designno}</p>
+                                        <p className='smiWishLsitBoxDesc2'>
+                                            {isPriseShow == 1 && <p style={{ display: 'flex', justifyContent: 'end', margin: '0px 5px 0px 0px', fontWeight: 500 }}>
+                                                <div className="currencyFont" dangerouslySetInnerHTML={{ __html: decodeEntities(currData?.Currencysymbol) }} />
+                                                {item.TotalUnitCost}</p>}
+                                        </p>
+                                    </div>
+
                                     <p className='smiWishLsitBoxDesc3' onClick={() => handleAddToCart(item.autocode)}>ADD TO CART +</p>
                                 </div>
                             ))}

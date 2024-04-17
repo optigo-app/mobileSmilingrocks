@@ -1,6 +1,6 @@
 .linkingLoveMain {
     display: flex;
-    margin-top: 50px;
+    margin-top: 30px;
     margin-inline: 90px;
 }
 
@@ -18,23 +18,26 @@
 
 .linkingTitle {
     font-family: 'PT Sans', sans-serif;
-    font-size: 30px;
+    font-size: 20px;
     text-align: center;
     color: #7d7f85;
+    margin: 0px;
 }
 
 .linkingDesc {
     font-family: 'PT Sans', sans-serif;
-    font-size: 15px;
+    font-size: 12px;
     text-align: center;
     color: #7d7f85;
+    margin: 0px;
 }
 
 .linkingShopCol {
     font-family: 'PT Sans', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     text-align: center;
     color: #7d7f85;
+    margin:10px 0px 0px 0px;
 }
 
 .linkRingLove {
@@ -82,6 +85,10 @@
     cursor: pointer;
 }
 
+.linkRingLoveImgMain{
+    width: 50%;
+}
+
 @media screen and (max-width: 1700px) {
 
     .linkingLoveImageDesign{
@@ -100,7 +107,7 @@
 
     .linkingLoveMain {
         display: flex;
-        margin-top: 50px;
+        margin-top: 30px;
         flex-direction: column;
         margin-inline: 10px;
     }

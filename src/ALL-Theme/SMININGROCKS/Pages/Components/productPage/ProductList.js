@@ -8,7 +8,7 @@ import prodListData from "../../jsonFile/Productlist_4_95oztttesi0o50vr.json";
 import filterData from "../../jsonFile/M_4_95oztttesi0o50vr.json";
 import PriceData from "../../jsonFile/Productlist_4_95oztttesi0o50vr_8.json";
 // import PriceData from "../../jsonFile/testingFile/Productlist_4_95oztttesi0o50vr_8_Original.json";
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Checkbox, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Slider } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Checkbox, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Radio, Slider } from "@mui/material";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -17,10 +17,10 @@ import LocalMallIcon from '@mui/icons-material/LocalMall';
 import { CommonAPI } from "../../../Utils/API/CommonAPI";
 import axios from "axios";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { CartListCounts, HeaderData, HeaderData2, WishListCounts, colorstoneQualityColorG, diamondQualityColorG, metalTypeG, newMenuData, priceData, productDataNew, searchData } from "../../../../../Recoil/atom";
+import { CartListCounts, FilterOpenOverlly, HeaderData, HeaderData2, WishListCounts, colorstoneQualityColorG, diamondQualityColorG, metalTypeG, newMenuData, priceData, productDataNew, searchData } from "../../../../../Recoil/atom";
 import { GetCount } from "../../../Utils/API/GetCount";
 import notFound from "../../assets/image-not-found.png";
-
+import { IoCloseSharp } from "react-icons/io5";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { BsFilterLeft } from "react-icons/bs";
@@ -28,17 +28,17 @@ import { FaFilter } from "react-icons/fa";
 
 
 
-export const ProductPageTab = ({ toggleDetailDrawer, toggleShoryBy }) => {
+export const ProductPageTab = ({ toggleShoryBy }) => {
   const [activeTab, setActiveTab] = useState();
 
+  const [openFilterOverlly, setOpenFilterOverlly] = useRecoilState(FilterOpenOverlly)
   const handleTabChange = (event) => {
     event.preventDefault();
     toggleShoryBy();
   };
 
   const handleFilterClick = (event) => {
-    event.preventDefault();
-    toggleDetailDrawer();
+    setOpenFilterOverlly('true')
   };
 
   return (
@@ -107,7 +107,7 @@ function valuetext(value) {
 const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenShoryBy }) => {
 
   const ProductData2 = [];
-
+  const [openFilterOverlly, setOpenFilterOverlly] = useRecoilState(FilterOpenOverlly)
   const [ProductApiData, setProductApiData] = useState([])
   const [ProductApiData2, setProductApiData2] = useState([])
   const [drawerShowOverlay, setDrawerShowOverlay] = useState(false)
@@ -167,10 +167,27 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
   const [isPriceShow, setIsPriceShow] = useState('');
   const [currData, setCurrData] = useState([])
 
+
+  const handelCurrencyData = () => {
+    let currencyData = JSON.parse(localStorage.getItem('CURRENCYCOMBO'));
+    let loginData = JSON.parse(localStorage.getItem('loginUserDetail'));
+    console.log("param", loginData);
+
+    if (currencyData && loginData) {
+      if (Array.isArray(currencyData)) {
+        const filterData = currencyData?.filter((cd) => cd?.Currencyid === loginData?.CurrencyCodeid)[0]
+        console.log("currencyData", filterData);
+        setCurrData(filterData)
+      } else {
+        setCurrData(currencyData)
+      }
+    }
+  }
+
   useEffect(() => {
-    let currencyData = JSON.parse(localStorage.getItem("currencyData"))
-    setCurrData(currencyData)
+    handelCurrencyData();
   }, [])
+
 
   useEffect(() => {
     setTimeout(() => {
@@ -1110,120 +1127,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
     >
       {isOpenDetail &&
         <div>
-          {NewFilterData().map((ele, index) => (
-            <>
-              <Accordion
-                elevation={0}
-                sx={{
-                  borderBottom: "1px solid #c7c8c9",
-                  borderRadius: 0,
-                  marginInline: '15px',
-                  "&.MuiPaper-root.MuiAccordion-root:last-of-type": {
-                    borderBottomLeftRadius: "0px",
-                    borderBottomRightRadius: "0px",
-                  },
-                  "&.MuiPaper-root.MuiAccordion-root:before": {
-                    background: "none",
-                  },
-                }}
-              >
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon sx={{ width: "20px" }} />}
-                  aria-controls="panel1-content"
-                  id="panel1-header"
-                  sx={{
-                    color: "#7f7d85",
-                    borderRadius: 0,
 
-                    "&.MuiAccordionSummary-root": {
-                      padding: 0,
-                    },
-                  }}
-                >
-                  <span
-                    style={{
-                      fontFamily: "TT Commons, sans-serif",
-                      fontSize: "12px",
-                      opacity: "0.7",
-                    }}
-                  >
-                    {ele.label}
-                  </span>
-                </AccordionSummary>
-                <AccordionDetails
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "4px",
-                  }}
-                >
-                  {ele.label === "PRICE" &&
-                    <div>
-                      <Slider
-                        className='netWtSecSlider'
-                        getAriaLabel={() => 'Minimum distance'}
-                        value={value1}
-                        onChange={handleChange1}
-                        valueLabelDisplay="auto"
-                        getAriaValueText={valuetext}
-                        disableSwap
-                      />
-                    </div>}
-
-                  {ele.label === "CENTERSTONE" &&
-                    <div>
-                      <Slider
-                        className='netWtSecSlider'
-                        getAriaLabel={() => 'Minimum distance'}
-                        value={value1}
-                        onChange={handleChange1}
-                        valueLabelDisplay="auto"
-                        getAriaValueText={valuetext}
-                        disableSwap
-                      />
-                    </div>
-                  }
-
-                  {ele?.filterList?.map((flist, i) => (
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "12px",
-                      }}
-                      key={i}
-                    >
-                      <Checkbox
-                        name={`checkbox${index + 1}${i + 1}`}
-                        checked={
-                          filterChecked[`checkbox${index + 1}${i + 1}`]
-                            ?.checked
-                        }
-                        style={{
-                          color: "#7f7d85",
-                          padding: 0,
-                          width: "10px",
-                        }}
-                        onClick={(e) =>
-                          handleCheckboxChange(e, ele, flist)
-                        }
-                        size="small"
-                      />
-                      <small
-                        style={{
-                          fontFamily: "TT Commons, sans-serif",
-                          color: "#7f7d85",
-                          textTransform: "lowercase",
-                        }}
-                      >
-                        {flist}
-                      </small>
-                    </div>
-                  ))}
-                </AccordionDetails>
-              </Accordion>
-            </>
-          ))}
         </div>}
     </Box>
   );
@@ -1253,24 +1157,67 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
       onKeyDown={toggleDrawer(anchor, false)}
     >
       {isOpenShoryBy &&
-        <div style={{paddingInline: '10px'}}>
-          {/* <select
-            style={{
-              width: "100%",
-              border: "none",
-              outline: "none",
-              fontSize: "13px ",
-            }}
-            onChange={handleSortChange}
-            value={selectedSortOption}
-          > */}
-          <option value="None" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('None'); toggleShoryBy(); }}>Recommended</option>
-          <option value="None" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('None'); toggleShoryBy(); }}>New</option>
-          <option value="None" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('None'); toggleShoryBy(); }}>In stock</option>
-          <option value="PRICE HIGH TO LOW" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('PRICE HIGH TO LOW'); toggleShoryBy(); }}>PRICE HIGH TO LOW</option>
-          <option value="PRICE LOW TO HIGH" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('PRICE LOW TO HIGH'); toggleShoryBy(); }}>PRICE LOW TO HIGH</option>
-          {/* </select> */}
-        </div>}
+        // <div style={{ paddingInline: '10px' }}>
+        //   <option value="None" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('None'); toggleShoryBy(); }}>Recommended</option>
+        //   <option value="None" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('None'); toggleShoryBy(); }}>New</option>
+        //   <option value="None" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('None'); toggleShoryBy(); }}>In stock</option>
+        //   <option value="PRICE HIGH TO LOW" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('PRICE HIGH TO LOW'); toggleShoryBy(); }}>PRICE HIGH TO LOW</option>
+        //   <option value="PRICE LOW TO HIGH" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('PRICE LOW TO HIGH'); toggleShoryBy(); }}>PRICE LOW TO HIGH</option>
+        // </div>
+
+        <div style={{ paddingInline: '10px' }}>
+          <label style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            Recommended
+            <input
+              type="radio"
+              name="sortOption"
+              value="None"
+              onClick={() => { handleSortChange('None'); }}
+            />
+          </label>
+
+          <label style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            New
+            <input
+              type="radio"
+              name="sortOption"
+              value="New"
+              onClick={() => { handleSortChange('New'); }}
+            />
+          </label>
+
+          <label style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            In stock
+            <input
+              type="radio"
+              name="sortOption"
+              value="InStock"
+              onClick={() => { handleSortChange('InStock'); }}
+            />
+          </label>
+
+          <label style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            Price High to Low
+            <input
+              type="radio"
+              name="sortOption"
+              value="PriceHighToLow"
+              onClick={() => { handleSortChange('PRICE HIGH TO LOW'); }}
+            />
+          </label>
+
+          <label style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            Price Low to High
+            <input
+              type="radio"
+              name="sortOption"
+              value="PriceLowToHigh"
+              onClick={() => { handleSortChange('PRICE LOW TO HIGH') }}
+            // onClick={() => { handleSortChange('PRICE LOW TO HIGH'); toggleShoryBy(); }}
+            />
+          </label>
+        </div>
+      }
     </Box>
   );
 
@@ -1280,9 +1227,166 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
     return txt.value;
   }
 
+
+  const handleOverlayCancel = () => {
+    setOpenFilterOverlly('false');
+  };
+
+  const stylesn = {
+    overlay: {
+      position: 'fixed',
+      top: '0',
+      left: '0',
+      width: '100%',
+      // height: '100%',
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      zIndex: '1000',
+      transition: 'opacity 0.3s ease', // Added transition for opacity
+      opacity: '0', // Initially set opacity to 0
+      pointerEvents: 'none', // Hide the overlay from mouse events
+    },
+    overlayContent: {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      width: '100%',
+      height: '100%',
+      transform: 'translate(-50%, -50%)',
+      backgroundColor: 'white',
+      padding: '20px',
+      borderRadius: '5px',
+    },
+  };
+
+
   return (
     <div id="top">
+      {/* {openFilterOverlly === 'true' && ( */}
+      <div style={{ ...stylesn.overlay, opacity: '1', pointerEvents: 'auto', height: `${openFilterOverlly === 'true' ? "100%" : "0"}`, transition: "0.4s ease" }}>
+        <div style={stylesn.overlayContent}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <h2 style={{ margin: '0px', padding: '0px' }}>Filter</h2>
+            <IoCloseSharp onClick={handleOverlayCancel} style={{ height: '25px', width: '25px' }} />
+          </div>
+          <div style={{ marginTop: '20px', height: '90%', overflow: 'auto' }}>
+            {NewFilterData().map((ele, index) => (
+              <>
+                <Accordion
+                  elevation={0}
+                  sx={{
+                    borderBottom: "1px solid #c7c8c9",
+                    borderRadius: 0,
+                    marginTop: '0px',
+                    "&.MuiPaper-root.MuiAccordion-root:last-of-type": {
+                      borderBottomLeftRadius: "0px",
+                      borderBottomRightRadius: "0px",
+                    },
+                    "&.MuiPaper-root.MuiAccordion-root:before": {
+                      background: "none",
+                    },
+                  }}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon sx={{ width: "20px" }} />}
+                    aria-controls="panel1-content"
+                    id="panel1-header"
+                    sx={{
+                      color: "#7f7d85",
+                      borderRadius: 0,
 
+                      "&.MuiAccordionSummary-root": {
+                        padding: 0,
+                      },
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: "TT Commons, sans-serif",
+                        fontSize: "12px",
+                        opacity: "0.7",
+                      }}
+                    >
+                      {ele.label}
+                    </span>
+                  </AccordionSummary>
+                  <AccordionDetails
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "4px",
+                    }}
+                  >
+                    {ele.label === "PRICE" &&
+                      <div>
+                        <Slider
+                          className='netWtSecSlider'
+                          getAriaLabel={() => 'Minimum distance'}
+                          value={value1}
+                          onChange={handleChange1}
+                          valueLabelDisplay="auto"
+                          getAriaValueText={valuetext}
+                          disableSwap
+                        />
+                      </div>}
+
+                    {ele.label === "CENTERSTONE" &&
+                      <div>
+                        <Slider
+                          className='netWtSecSlider'
+                          getAriaLabel={() => 'Minimum distance'}
+                          value={value1}
+                          onChange={handleChange1}
+                          valueLabelDisplay="auto"
+                          getAriaValueText={valuetext}
+                          disableSwap
+                        />
+                      </div>
+                    }
+
+                    {ele?.filterList?.map((flist, i) => (
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "12px",
+                        }}
+                        key={i}
+                      >
+                        <Checkbox
+                          name={`checkbox${index + 1}${i + 1}`}
+                          checked={
+                            filterChecked[`checkbox${index + 1}${i + 1}`]
+                              ?.checked
+                          }
+                          style={{
+                            color: "#7f7d85",
+                            padding: 0,
+                            width: "10px",
+                          }}
+                          onClick={(e) =>
+                            handleCheckboxChange(e, ele, flist)
+                          }
+                          size="small"
+                        />
+                        <small
+                          style={{
+                            fontFamily: "TT Commons, sans-serif",
+                            color: "#7f7d85",
+                            textTransform: "lowercase",
+                          }}
+                        >
+                          {flist}
+                        </small>
+                      </div>
+                    ))}
+                  </AccordionDetails>
+                </Accordion>
+              </>
+            ))}
+          </div>
+        </div>
+      </div>
+      {/* )} */}
       <div
         style={{
           height: "100%",
@@ -1490,13 +1594,13 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                 </div>
               </div>
               {/* for mobile */}
-              <Drawer
+              {/* <Drawer
                 anchor="bottom"
                 open={isOpenDetail}
                 onClose={toggleDetailDrawer}
               >
                 {list("bottom")}
-              </Drawer>
+              </Drawer> */}
 
               <Drawer
                 anchor="bottom"
@@ -1539,7 +1643,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                       alignItems: "center",
                       flexWrap: "wrap",
                       marginTop: '15%',
-                      paddingLeft: '12px'
+                      paddingLeft: '2px'
                     }}
                     className="smilingAllProductDataMainMobile"
                   >
@@ -1593,17 +1697,18 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                           </p> */}
                         </div>
                         <div>
-                          <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'space-between', marginInline: '10px' }}>
+                          <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'space-between', marginInline: '3px' }}>
                             {ismetalWShow === 1 &&
-                              <div>
-                                <p className="mobileDeatilDiv1Text1" style={{ margin: '0px', fontSize: '13px' }}>NWT : <span style={{ fontWeight: 600, marginRight: '15px' }}>{(products?.netwt).toFixed(2)}</span></p>
+                              <div style={{width: '35.33%'}}>
+                                <p className="mobileDeatilDiv1Text1" style={{ margin: '0px', fontSize: '11px' }}>NWT : <span style={{ fontWeight: 600, marginRight: '15px' }}>{(products?.netwt).toFixed(2)}</span></p>
                               </div>}
-                            <p className="mobileDeatilDiv1Text2" style={{ margin: '0px', fontSize: '13px', fontWeight: '600' }}>{products?.designno}</p>
-                          </div>
-                          <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'space-between', marginInline: '10px' }}>
+                            <p className="mobileDeatilDiv1Text2" style={{ margin: '0px 15px 0px 0px', fontSize: '11px', fontWeight: '600' }}>{products?.designno}</p>
                             {isGrossWShow === 1 && <div>
-                              <p className="mobileDeatilDiv1Text1" style={{ margin: '0px', fontSize: '13px' }}>GWT : <span style={{ fontWeight: 600, marginRight: '10px' }}>{(products?.Grossweight).toFixed(2)}</span></p>
+                              <p className="mobileDeatilDiv1Text1" style={{ margin: '0px', fontSize: '11px' }}>GWT : <span style={{ fontWeight: 600 }}>{(products?.Grossweight).toFixed(2)}</span></p>
                             </div>}
+                          </div>
+                          <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'center', marginBlock: '5px' }}>
+
                             <p style={{ fontSize: "15px", fontWeight: 'bold', margin: '0px' }} className="mobileDeatilDiv1Text2">
                               {isPriceShow === 1 &&
                                 <span className="feature-count" style={{ display: 'flex' }}>
@@ -1616,8 +1721,8 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                             <button className='smilingAddCartBrtnList' onClick={(e) => handelCartList(products?.checkFlag, products)}>{products?.checkFlag ? 'REMOVE CART' : 'ADD TO CART'}</button>
                           </div> */}
                         </div>
-                        <div style={{ position: "absolute", width: '87%',marginInline:"7%", justifyContent: 'space-between', zIndex: 999999, top: 10, right: 0, display: 'flex' }}>
-                          <div style={{border:'1px solid rgb(186 194 219)', borderRadius: '50px'}}>
+                        <div style={{ position: "absolute", width: '87%', marginInline: "7%", justifyContent: 'space-between', zIndex: 999999, top: 10, right: 0, display: 'flex' }}>
+                          <div style={{ border: '1px solid rgb(186 194 219)', borderRadius: '50px' }}>
                             <Checkbox
                               icon={
                                 <LocalMallOutlinedIcon
@@ -1637,7 +1742,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                             />
                           </div>
 
-                          <div style={{border:'1px solid rgb(186 194 219)', borderRadius: '50px'}}>
+                          <div style={{ border: '1px solid rgb(186 194 219)', borderRadius: '50px' }}>
                             <Checkbox
                               icon={
                                 <FavoriteBorderIcon
