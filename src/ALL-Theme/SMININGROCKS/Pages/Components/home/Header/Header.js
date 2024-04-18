@@ -1133,45 +1133,58 @@ export default function Header() {
           }}
           className="mobileHeaderSmining"
         >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              height: '100%'
-            }}
-            className="smilingMobileSubDiv"
-          >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-              }}
-              className="mobileViewFirstDiv1"
-            >
-              <IoMenuOutline
-                style={{ fontSize: "35px", color: "white" }}
-                className="muIconeMobileHeader"
-                onClick={toggleDrawerOverlay}
-              />
-            </div>
-            {
-              serachsShowOverlay ?
-                <div className="searchBoxOnlyProductPageMain">
+          {
+            serachsShowOverlay ?
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                <div className="searchBoxOnlyHeaderFiexedMain">
                   <input
                     type="text"
                     placeholder="Search..."
                     value={searchText}
                     onChange={(e) => setSearchText(e.target.value)}
-                    className="searchBoxOnlyProductPage"
+                    className="searchBoxOnlyHeaderFiexed"
                     onKeyDown={(event) => {
                       if (event.key === 'Enter') {
                         searchDataFucn();
+                        setSerachShowOverlay(false);
                       }
                     }}
                   />
                   <SearchIcon onClick={searchDataFucn} />
                 </div>
-                :
+                <IoClose
+                  style={{
+                    height: "30px",
+                    width: "30px",
+                    color: "white",
+                    cursor: "pointer",
+                  }}
+                  onClick={toggleOverlay}
+                />
+              </div>
+              :
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  height: '100%'
+                }}
+                className="smilingMobileSubDiv"
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                  className="mobileViewFirstDiv1"
+                >
+                  <IoMenuOutline
+                    style={{ fontSize: "35px", color: "white" }}
+                    className="muIconeMobileHeader"
+                    onClick={toggleDrawerOverlay}
+                  />
+                </div>
+
                 <div
                   className="mobileViewFirstDiv2"
                 >
@@ -1179,73 +1192,85 @@ export default function Header() {
                     <img src={titleImg} className="MainlogogMobileImage" />
                   </a>
                 </div>
-            }
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-end",
-              }}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "flex-end",
+                  }}
 
-              className="mobileViewFirstDiv3"
-            >
+                  className="mobileViewFirstDiv3"
+                >
 
-              {islogin === "true" &&
-                <div className="mobileHeaderFixedMobileLastDiv" style={{ display: 'flex' }}>
+                  {islogin === "true" &&
+                    <div className="mobileHeaderFixedMobileLastDiv" style={{ display: 'flex' }}>
 
-                  <li onClick={toggleOverlay} style={{ listStyle: 'none', width: '40px', textAlign: 'center', marginInline: '10px' }}>
-                    <IoSearchOutline
-                      style={{
-                        height: "20px", cursor: "pointer", width: "20px",
-                        color: "white",
-                      }}
-                      className="mobileViewSmilingTop2Icone"
-                    />
-                  </li>
-
-                  <Badge
-                    badgeContent={getWishListCount}
-                    overlap={"rectangular"}
-                    color="secondary"
-                    style={{ marginInline: '6px' }}
-                    className="smilingHeaderWhishlistIcon"
-                  // className="smilingHeaderWhishlistIcon badge12"
-                  >
-                    <Tooltip title="WishList">
-                      <li style={{ listStyle: 'none' }} onClick={() => navigation("/myWishList")}>
-                        <FavoriteBorderIcon
+                      <li onClick={toggleOverlay} style={{ listStyle: 'none', width: '40px', textAlign: 'center', marginInline: '10px' }}>
+                        <IoSearchOutline
                           style={{
-                            height: "20px",
-                            cursor: "pointer",
-                            width: "20px",
+                            height: "20px", cursor: "pointer", width: "20px",
                             color: "white",
                           }}
-                          className="mobileViewSmilingTop1Icone"
+                          className="mobileViewSmilingTop2Icone"
                         />
                       </li>
-                    </Tooltip>
-                  </Badge>
+
+                      <Badge
+                        badgeContent={getWishListCount}
+                        overlap={"rectangular"}
+                        color="secondary"
+                        style={{ marginInline: '6px' }}
+                        className="smilingHeaderWhishlistIcon"
+                      // className="smilingHeaderWhishlistIcon badge12"
+                      >
+                        <Tooltip title="WishList">
+                          <li style={{ listStyle: 'none' }} onClick={() => navigation("/myWishList")}>
+                            <FavoriteBorderIcon
+                              style={{
+                                height: "20px",
+                                cursor: "pointer",
+                                width: "20px",
+                                color: "white",
+                              }}
+                              className="mobileViewSmilingTop1Icone"
+                            />
+                          </li>
+                        </Tooltip>
+                      </Badge>
 
 
+                    </div>
+                  }
                 </div>
-              }
-            </div>
-          </div>
+              </div>
+          }
+
           {!drawerShowOverlay && (
             <div
               div
               className={`Smining-Top-Header-fixed-main ${isHeaderFixed ? "fixed" : ""
-                } ${serachsShowOverlay ? "searchoverly" : ""}`}
+                }`}
             >
-              <div
-                className="Smining-Top-Header-fixed"
-                style={{ display: "flex" }}
-              >
-                <div
-                  style={{ display: "flex", margin: "5px", alignItems: "center" }}
-                  className="mobileViewFirstDiv1"
-                >
-                  {drawerShowOverlay ? (
+
+              {
+                serachsShowOverlay ?
+                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                    <div className="searchBoxOnlyHeaderFiexedMain">
+                      <input
+                        type="text"
+                        placeholder="Search..."
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
+                        className="searchBoxOnlyHeaderFiexed"
+                        onKeyDown={(event) => {
+                          if (event.key === 'Enter') {
+                            searchDataFucn();
+                            setSerachShowOverlay(false);
+                          }
+                        }}
+                      />
+                      <SearchIcon onClick={searchDataFucn} />
+                    </div>
                     <IoClose
                       style={{
                         height: "30px",
@@ -1253,61 +1278,82 @@ export default function Header() {
                         color: "black",
                         cursor: "pointer",
                       }}
-                      onClick={toggleDrawerOverlay}
+                      onClick={toggleOverlay}
                     />
-                  ) : (
-                    <IoMenuOutline
-                      style={{ fontSize: "35px", color: "#7d7f85" }}
-                      onClick={toggleDrawerOverlay}
-                      className="muIconeMobileHeader"
-
-                    />
-                  )}
-                </div>
-                <div
-                  className="mobileViewFirstDiv2"
-                >
-                  <a href="/" style={{ marginTop: '5px' }}>
-                    <img src={titleImg} className="MainlogogMobileImage" />
-                  </a>
-                </div>
-                {islogin === "true" &&
-                  <div className="mobileViewFirstDiv3" style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '15px' }}>
-                    <Badge
-                      badgeContent={getWishListCount}
-                      overlap={"rectangular"}
-                      color="secondary"
-                      style={{ marginInline: '5px' }}
-                      className="smilingHeaderWhishlistIcon"
-                    >
-
-                      <li onClick={toggleOverlay} style={{ listStyle: 'none', textAlign: 'center', marginInline: '10px' }}>
-                        <IoSearchOutline
-                          style={{
-                            height: "20px", cursor: "pointer", width: "20px",
-                            color: "#7d7f85",
-                          }}
-                          className="mobileViewSmilingTop2Icone"
-                        />
-                      </li>
-
-                      <Tooltip title="WishList">
-                        <li style={{ listStyle: 'none' }} onClick={() => navigation("/myWishList")}>
-                          <FavoriteBorderIcon
-                            style={{
-                              height: "20px",
-                              cursor: "pointer",
-                              width: "20px",
-                              color: "#7d7f85",
-                            }}
-                            className="mobileViewSmilingTop1Icone"
-                          />
-                        </li>
-                      </Tooltip>
-                    </Badge>
                   </div>
-                }
-              </div>
+                  :
+                  <div
+                    className="Smining-Top-Header-fixed"
+                    style={{ display: "flex" }}
+                  >
+                    <div
+                      style={{ display: "flex", margin: "5px", alignItems: "center" }}
+                      className="mobileViewFirstDiv1"
+                    >
+                      {drawerShowOverlay ? (
+                        <IoClose
+                          style={{
+                            height: "30px",
+                            width: "30px",
+                            color: "black",
+                            cursor: "pointer",
+                          }}
+                          onClick={toggleDrawerOverlay}
+                        />
+                      ) : (
+                        <IoMenuOutline
+                          style={{ fontSize: "35px", color: "#7d7f85" }}
+                          onClick={toggleDrawerOverlay}
+                          className="muIconeMobileHeader"
+
+                        />
+                      )}
+                    </div>
+                    <div
+                      className="mobileViewFirstDiv2"
+                    >
+                      <a href="/" style={{ marginTop: '5px' }}>
+                        <img src={titleImg} className="MainlogogMobileImage" />
+                      </a>
+                    </div>
+                    {islogin === "true" &&
+                      <div className="mobileViewFirstDiv3" style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '15px' }}>
+                        <Badge
+                          badgeContent={getWishListCount}
+                          overlap={"rectangular"}
+                          color="secondary"
+                          style={{ marginInline: '5px' }}
+                          className="smilingHeaderWhishlistIcon"
+                        >
+
+                          <li onClick={toggleOverlay} style={{ listStyle: 'none', textAlign: 'center', marginInline: '10px' }}>
+                            <IoSearchOutline
+                              style={{
+                                height: "20px", cursor: "pointer", width: "20px",
+                                color: "#7d7f85",
+                              }}
+                              className="mobileViewSmilingTop2Icone"
+                            />
+                          </li>
+
+                          <Tooltip title="WishList">
+                            <li style={{ listStyle: 'none' }} onClick={() => navigation("/myWishList")}>
+                              <FavoriteBorderIcon
+                                style={{
+                                  height: "20px",
+                                  cursor: "pointer",
+                                  width: "20px",
+                                  color: "#7d7f85",
+                                }}
+                                className="mobileViewSmilingTop1Icone"
+                              />
+                            </li>
+                          </Tooltip>
+                        </Badge>
+                      </div>
+                    }
+                  </div>
+              }
             </div>
           )}
         </div>

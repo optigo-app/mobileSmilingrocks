@@ -63,9 +63,9 @@ const HomeTab = () => {
               <FaUser style={activeTab === "/account" ? styles.activeIcon : styles.icon} />
               <span style={activeTab === "/account" ? styles.activeText : styles.text}>Account</span>
             </NavLink>
-            : <NavLink to="/LoginOption" style={styles.tab} activeClassName="active" onClick={() => handleTabChange("/LoginOption")}>
-              <FaUser style={activeTab === "/LoginOption" ? styles.activeIcon : styles.icon} />
-              <span style={activeTab === "/LoginOption" ? styles.activeText : styles.text}>Login</span>
+            : <NavLink to="/AccountWothoutLogin" style={styles.tab} activeClassName="active" onClick={() => handleTabChange("/AccountWothoutLogin")}>
+              <FaUser style={activeTab === "/AccountWothoutLogin" ? styles.activeIcon : styles.icon} />
+              <span style={activeTab === "/AccountWothoutLogin" ? styles.activeText : styles.text}>Account</span>
             </NavLink>}
 
           {islogin === 'true' ?
@@ -74,6 +74,7 @@ const HomeTab = () => {
                 badgeContent={getCartListCount}
                 overlap={"rectangular"}
                 color="secondary"
+                className="badge12"
                 style={{ marginInline: '10px' }}
               >
                 <Tooltip title="Cart">

@@ -229,7 +229,7 @@ export default function Home() {
         const storedEmail = localStorage.getItem('registerEmail') || '';
 
         const combinedValue = JSON.stringify({
-          autocode:"", FrontEnd_RegNo: `${storeInit?.FrontEnd_RegNo}`, Customerid: `${loginUserDetail?.id}`
+          autocode: "", FrontEnd_RegNo: `${storeInit?.FrontEnd_RegNo}`, Customerid: `${loginUserDetail?.id}`
         });
         const encodedCombinedValue = btoa(combinedValue);
 
@@ -261,7 +261,7 @@ export default function Home() {
     currencyCombo();
   }, []);
 
-  
+
 
 
 
@@ -270,7 +270,7 @@ export default function Home() {
 
 
   return (
-    <div style={{ backgroundColor: '#c0bbb1', paddingTop: '0px' }}>
+    <div style={{ paddingTop: '0px' }}>
       <div className='homeMain'>
         <Video />
         {/* <SmilingRock /> */}

@@ -27,6 +27,8 @@ import "./CartPage.css";
 import { ToastContainer, toast } from "react-toastify";
 import { FiArrowLeft } from "react-icons/fi";
 import { IoArrowBack } from "react-icons/io5";
+import noData from '../../../../assets/noData.png'
+
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -911,6 +913,14 @@ export default function CartPage() {
     setLastEnteredQuantity(lastEnteredQuantity - 1);
   };
 
+  function truncateText(text, maxLength) {
+    if (text.length <= maxLength) {
+      return text;
+    } else {
+      return text.substr(0, maxLength) + '...';
+    }
+  }
+
   // console.log('cartListData', cartListData);
   // console.log('cartSelectData', cartSelectData);
   // console.log('getPriceData', getPriceData);
@@ -936,7 +946,7 @@ export default function CartPage() {
             }}
           >
             <p className="SmiCartListTitle">
-                <IoArrowBack style={{height: '25px', width: '25px', marginRight: '10px'}}/>My Cart
+              <IoArrowBack style={{ height: '25px', width: '25px', marginRight: '10px' }} onClick={() => navigation('/')} />My Cart
             </p>
 
             {cartListData?.length !== 0 && (
@@ -1009,9 +1019,10 @@ export default function CartPage() {
                         flexDirection: "column",
                         justifyContent: "center",
                         alignItems: "center",
-                        margin: "150px 0px",
+                        margin: "170px 0px",
                       }}
                     >
+                      <img src={noData} style={{ height: '180px', width: '190px' }} />
                       <p
                         style={{
                           margin: "0px",
@@ -1019,14 +1030,14 @@ export default function CartPage() {
                           fontWeight: 500,
                         }}
                       >
-                        No Data Available
+                        Your cart is empty!
                       </p>
-                      <p>Please First Add To Cart Data</p>
                       <button
                         className="browseBtnMore"
                         onClick={() => navigation("/productpage")}
+                        style={{ marginTop: '15px' }}
                       >
-                        BROWSE OUR COLLECTION
+                        Shop now
                       </button>
                     </div>
                   )
@@ -1439,7 +1450,11 @@ export default function CartPage() {
                                   className="smilingCartBox1"
                                   style={{ padding: "5px" }}
                                 >
-                                  <p style={{ margin: "10px 0px 5px 0px", fontSize: '14px' }}>{item.TitleLine} <span style={{ fontWeight: 500 }}>- {item.Mastermanagement_CategoryName}({item.designno})</span></p>
+                                  <p style={{ margin: "10px 0px 5px 0px", fontSize: '12px' }}>
+                                    {truncateText(item.TitleLine, 70)} <span style={{ fontWeight: 500 }}>
+                                      - {item.Mastermanagement_CategoryName}({item.designno})
+                                    </span>
+                                  </p>
                                   <span
                                     style={{
                                       fontWeight: "500",
@@ -1615,9 +1630,9 @@ export default function CartPage() {
                 <div style={{ width: '50%' }}>
                   <p
                     style={{
-                      fontSize: "16px",
+                      fontSize: "14px",
                       fontFamily: "FreightDisp Pro Medium",
-                      margin: "20px 0px 5px",
+                      margin: "10px 0px 5px",
                     }}
                   >
                     {prodSelectData?.TitleLine} <span style={{ fontWeight: 500 }}>- {prodSelectData?.Mastermanagement_CategoryName}({prodSelectData?.designno})</span>

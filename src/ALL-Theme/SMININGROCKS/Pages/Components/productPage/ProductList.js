@@ -1699,12 +1699,12 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                         <div>
                           <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'space-between', marginInline: '3px' }}>
                             {ismetalWShow === 1 &&
-                              <div style={{width: '35.33%'}}>
-                                <p className="mobileDeatilDiv1Text1" style={{ margin: '0px', fontSize: '11px' }}>NWT : <span style={{ fontWeight: 600, marginRight: '15px' }}>{(products?.netwt).toFixed(2)}</span></p>
+                              <div>
+                                <p className="mobileDeatilDiv1Text1" style={{ margin: '0px', fontSize: '10px' }}>NWT : <span style={{ fontWeight: 600 }}>{(products?.netwt).toFixed(2)}</span></p>
                               </div>}
-                            <p className="mobileDeatilDiv1Text2" style={{ margin: '0px 15px 0px 0px', fontSize: '11px', fontWeight: '600' }}>{products?.designno}</p>
+                            <p className="mobileDeatilDiv1Text2" style={{ margin: '0px', fontSize: '10px', fontWeight: '600' }}>{products?.designno}</p>
                             {isGrossWShow === 1 && <div>
-                              <p className="mobileDeatilDiv1Text1" style={{ margin: '0px', fontSize: '11px' }}>GWT : <span style={{ fontWeight: 600 }}>{(products?.Grossweight).toFixed(2)}</span></p>
+                              <p className="mobileDeatilDiv1Text1" style={{ margin: '0px', fontSize: '10px' }}>GWT : <span style={{ fontWeight: 600 }}>{(products?.Grossweight).toFixed(2)}</span></p>
                             </div>}
                           </div>
                           <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'center', marginBlock: '5px' }}>

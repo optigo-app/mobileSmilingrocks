@@ -4,13 +4,14 @@ import './MyWishList.css'
 import Footer from '../home/Footer/Footer'
 import { CommonAPI } from '../../../Utils/API/CommonAPI'
 import { useNavigate } from 'react-router-dom'
-import { IoClose } from "react-icons/io5";
+import { IoArrowBack, IoClose } from "react-icons/io5";
 import { CircularProgress } from '@mui/material'
 import { useSetRecoilState } from 'recoil'
 import { CartListCounts, WishListCounts } from '../../../../../Recoil/atom'
 import { GetCount } from '../../../Utils/API/GetCount'
 import { FiArrowLeft } from 'react-icons/fi'
 import titleImg from "../../assets/title/sonasons.png"
+import noData from '../../assets/noData.png'
 
 
 export default function MyWishList() {
@@ -237,14 +238,9 @@ export default function MyWishList() {
                     <CircularProgress className='loadingBarManage' />
                 </div>
             )}
-            <div style={{ display: 'flex', width: '100%', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray', backgroundColor: 'white', zIndex: '111111' }}>
-                <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => navigation('/')} />
-                <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
-                    <img src={titleImg} className="MainlogogMobileImage" />
-                </div>
-            </div>
-
-            <p className='accountPageTitle'>My Wishlist</p>
+            <p className="SmiCartListTitle">
+                <IoArrowBack style={{ height: '25px', width: '25px', marginRight: '10px' }} onClick={() => navigation('/')} />My Wishlist
+            </p>
 
             <div>
                 <div className='smiling-wishlist'>
@@ -256,10 +252,33 @@ export default function MyWishList() {
 
                     <div className='smiWishLsitBoxMain'>
                         {wishlistData?.length === 0 ? !isLoading &&
-                            <div style={{ width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                                <p style={{ margin: '0px', fontSize: '20px', fontWeight: 500 }}>No Data Available</p>
-                                <p>Please First Add To Wishlist Data</p>
-                                <button className='browseBtnMore' onClick={() => navigation('/productpage')}>BROWSE OUR COLLECTION</button>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    margin: "170px 0px",
+                                    width: '100%'
+                                }}
+                            >
+                                <img src={noData} style={{ height: '180px', width: '190px' }} />
+                                <p
+                                    style={{
+                                        margin: "0px",
+                                        fontSize: "20px",
+                                        fontWeight: 500,
+                                    }}
+                                >
+                                    Your cart is empty!
+                                </p>
+                                <button
+                                    className="browseBtnMore"
+                                    onClick={() => navigation("/productpage")}
+                                    style={{ marginTop: '15px' }}
+                                >
+                                    Shop now
+                                </button>
                             </div>
                             :
                             wishlistData?.map(item => (
