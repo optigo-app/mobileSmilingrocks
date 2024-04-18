@@ -4,7 +4,7 @@ import Footer from '../home/Footer/Footer'
 import { CommonAPI } from '../../../Utils/API/CommonAPI';
 import { CircularProgress } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { IoArrowBackOutline } from "react-icons/io5";
+import { IoArrowBack, IoArrowBackOutline } from "react-icons/io5";
 import { useSetRecoilState } from 'recoil';
 import { CartListCounts, WishListCounts } from '../../../../../Recoil/atom';
 import { GetCount } from '../../../Utils/API/GetCount';
@@ -181,32 +181,31 @@ export default function Payment() {
 
                 <div className='smilingPaymentMainMobile'>
                     {/* <IoArrowBackOutline style={{ height: '40px', width: '60px', cursor: 'pointer',margin: '' }} onClick={() => navigation('/Delivery')} /> */}
-
-                    <div style={{ padding: '30px' }}>
-
-                        <div style={{ width: '100%' }}>
-                            <p style={{ fontSize: '25px', fontWeight: 500, color: '#5e5e5e' }}>Payment Card Method</p>
-
-                            <div style={{ marginTop: '40px' }}>
-                                <p style={{ fontSize: '25px', fontWeight: 500, color: '#5e5e5e' }}>Billing Address</p>
+                    <p className="SmiCartListTitle">
+                        <IoArrowBack style={{ height: '25px', width: '25px', marginRight: '10px' }} onClick={() => navigation('/CartPage')} />Order Summary
+                    </p>
+                    <div style={{ padding: '0px 15px 0px 15px' }}>
+                        {/* <div style={{ width: '100%' }}> */}
+                            {/* <p style={{ fontSize: '25px', fontWeight: 500, color: '#5e5e5e' }}>Payment Card Method</p> */}
+                            {/* <div style={{ marginTop: '20px' }}>
                                 <p className='AddressTitle'>Name : <span className='AdressData'>{selectedAdd.shippingfirstname} {selectedAdd.shippinglastname}</span></p>
                                 <p className='AddressTitle'>Address : <span className='AdressData'>{selectedAdd.street}</span></p>
                                 <p className='AddressTitle'>City : <span className='AdressData'>{selectedAdd.city}-{selectedAdd.zip}</span></p>
                                 <p className='AddressTitle'>State : <span className='AdressData'>{selectedAdd.state},{selectedAdd.country}</span></p>
                                 <p className='AddressTitle'>Mobile : <span className='AdressData'>{selectedAdd.shippingmobile}</span></p>
                             </div>
-                        </div>
+                        </div> */}
                         <div style={{ width: '100%', marginTop: '50px' }}>
-                            <p style={{ fontSize: '25px', fontWeight: 500, color: '#5e5e5e', marginBottom: '5px' }}>Shipping Address</p>
-                            <div style={{ marginTop: '0px' }}>
-                                <p style={{ fontSize: '20px', margin: '0px', fontWeight: 500, color: '#5e5e5e' }}>{selectedAdd.shippingfirstname} {selectedAdd.shippinglastname}</p>
-                                <p className='AddressTitle'><span className='AdressData'>{selectedAdd.street}</span></p>
-                                <p className='AddressTitle'><span className='AdressData'>{selectedAdd.city}-{selectedAdd.zip}</span></p>
-                                <p className='AddressTitle'><span className='AdressData'>{selectedAdd.state},{selectedAdd.country}</span></p>
+                            <p className='fontFamiliy' style={{ fontSize: '15px', fontWeight: 500, color: '#5e5e5e' , margin: '0px' }}>Delivery to:</p>
+                            {/* <p className='fontFamiliy' style={{ fontSize: '18px', fontWeight: 500, color: '#5e5e5e', marginBottom: '5px' }}>Shipping Address</p> */}
+                            <div style={{ margin: '0px 0px 0px 5px' }}>
+                                <p style={{ fontSize: '16px', margin: '0px', fontWeight: 500, textTransform: 'capitalize' }}>{selectedAdd.shippingfirstname} {selectedAdd.shippinglastname}</p>
+                                <p className='AddressTitle'><span className='AdressData'>{selectedAdd?.street} ,{selectedAdd.city} - {selectedAdd.country} </span></p>
+                                <p className='AddressTitle'><span className='AdressData'>{selectedAdd.zip}</span></p>
                                 <p className='AddressTitle'><span className='AdressData'>{selectedAdd.shippingmobile}</span></p>
                             </div>
 
-                            <p style={{ fontSize: '25px', fontWeight: 500, color: '#5e5e5e', marginTop: '50px' }}>Order Summary</p>
+                            <p style={{ fontSize: '20px', fontWeight: 500, color: '#5e5e5e', marginTop: '50px' }}>Order Summary</p>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                                 <p>Subtotal</p>
                                 <p>0.00</p>
@@ -224,7 +223,7 @@ export default function Payment() {
                             <button onClick={handlePayment} className='paymentBtn'>PAY ON ACCOUNT</button>
                         </div>
 
-                        <p style={{ color: 'blue', textDecoration: 'underline', marginTop: '10px', textAlign: 'center' }} onClick={() => navigation('/Delivery')}>Cancel</p>
+                        {/* <p style={{ color: 'blue', textDecoration: 'underline', marginTop: '10px', textAlign: 'center' }} onClick={() => navigation('/Delivery')}>Cancel</p> */}
                     </div>
                 </div>
             </div>

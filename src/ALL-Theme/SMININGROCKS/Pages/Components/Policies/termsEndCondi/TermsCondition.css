@@ -1,0 +1,18 @@
+
+.termSubTitle{
+    font-size: 1.1rem;
+    color: #45d4d5;
+    font-weight: 600;
+}
+
+.termsSub-SubTitle{
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.tableData{
+    font-weight: 400;
+    height: 50px;
+    text-align: start;
+    padding-left: 10px;
+}

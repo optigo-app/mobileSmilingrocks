@@ -9,6 +9,7 @@ import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogT
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router';
+import { IoArrowBack } from 'react-icons/io5';
 
 export default function Delivery() {
 
@@ -558,10 +559,11 @@ export default function Delivery() {
                 </div>
             </Dialog>
             <div className='smilingDelivery'>
+                <p className="SmiCartListTitle">
+                    <IoArrowBack style={{ height: '25px', width: '25px', marginRight: '10px' }} onClick={() => navigation('/CartPage')}/>Select delivery address
+                </p>
                 <div className='smilingOrderMain'>
                     <div className='smilingdeliverBox1'>
-                        <p style={{ fontSize: '30px', fontWeight: 500, color: 'gray' }}>Delivery</p>
-                        <p>Order Will be delivered to selected address</p>
                         <div className='smilingDeliveyAddressMain' style={{ display: 'flex', flexWrap: 'wrap' }}>
                             {
                                 addressData?.map((item, index) => (
@@ -586,12 +588,13 @@ export default function Delivery() {
                                 ))
                             }
                         </div>
-                        {!isLoading && <div className='smilingMobileDeliveryBtnMain'>
-                            <button className='smilingAddToAddressBtn' onClick={handleOpen}>ADD NEW ADDRESS</button>
-                            <button style={{ marginInline: '20px' }} className='smilingAddToAddressBtn' onClick={handleContinue}>Continue</button>
-                        </div>}
+
                     </div>
                 </div>
+                {!isLoading && <div className='smilingMobileDeliveryBtnMain'>
+                    <button className='smilingAddToAddressBtn'  style={{backgroundColor: 'rgb(192, 187, 177)'}} onClick={handleOpen}>Add New Address</button>
+                    <button className='smilingAddToAddressBtn' style={{backgroundColor: '#ffd814'}} onClick={handleContinue}>Continue</button>
+                </div>}
             </div>
         </div>
     )

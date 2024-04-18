@@ -1521,7 +1521,7 @@ const ProdDetail = () => {
         <div className="product-detail-container">
           <div className="srprodetail1">
             {imagesData?.length <= 0 ?
-              <Skeleton variant="rectangular" width='100%' height='100%'/>
+              <Skeleton variant="rectangular" width='100%' height='100%' />
               :
               <Slider {...settings}>
                 {imagesData?.map((image, index) => (
@@ -2097,253 +2097,9 @@ const ProdDetail = () => {
                   </p>
                 </div>
               )}
-
-              {/* <div>
-                  <button className="prodetailbtn">
-                    Inquire about product
-                  </button>
-                </div> */}
-
-              <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-
-                {/* <div style={{ marginLeft: "-12px", display: 'flex', alignItems: 'center' }}>
-                  <Checkbox
-                    icon={
-                      <StarBorderIcon
-                        sx={{ fontSize: "25px", color: "#ffd200" }}
-                      />
-                    }
-                    checkedIcon={
-                      <StarIcon sx={{ fontSize: "25px", color: "#ffd200" }} />
-                    }
-                    disableRipple={true}
-                    checked={WishListFlag}
-                    onChange={(e) => handelWishList(e)}
-                  />
-                  <span style={{ fontSize: "16px", color: "#7d7f85" }}>
-                    Add To Wishlist
-                  </span>
-                </div> */}
-
-                {/* <Divider
-                    orientation="vertical"
-                    flexItem
-                    style={{
-                      opacity: 1,
-                      height: "50px",
-                      margin: "10px 10px 0px 10px",
-                    }}
-                  /> */}
-
-                {/* <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
-                  <Checkbox
-                    icon={
-                      <LocalMallOutlinedIcon
-                        sx={{ fontSize: "22px", color: "#ffd200" }}
-                      />
-                    }
-                    checkedIcon={
-                      <LocalMallIcon
-                        sx={{ fontSize: "22px", color: "#ffd200" }}
-                      />
-                    }
-                    disableRipple={true}
-                    // sx={{ padding: "5px" }}
-                    checked={cartFlag}
-                    onChange={(e) => handelCart(e)}
-                  // onClick={()=>}
-                  // value={cartFlag}
-                  // checked={products?.checkFlag}
-                  // onChange={(e) => handelCartList(e, products)}
-                  />
-                  <span style={{ fontSize: "16px", color: "#7d7f85" }}>
-                    Add To Cart
-                  </span>
-                </div> */}
-              </div>
-
-              {/* <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    width: "100%",
-                    marginTop: "15px",
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <img
-                      src={
-                        "https://smilingrocks.com/cdn/shop/files/BM_Logo_v02_small.png?v=1659083102"
-                      }
-                      alt={""}
-                      style={{ width: "48px" }}
-                    />
-                    <p
-                      style={{
-                        textAlign: "center",
-                        fontSize: "12px",
-                        color: "#7f7d85",
-                      }}
-                    >
-                      {" "}
-                      Certified Sustainable Brand
-                    </p>
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <img
-                      src={
-                        "https://smilingrocks.com/cdn/shop/files/Frame_1_b70eff1d-e385-41c6-bf21-8cc1b7f0d15d_small.png?v=1613696587"
-                      }
-                      alt={""}
-                      style={{ width: "48px" }}
-                    />
-                    <p
-                      style={{
-                        textAlign: "center",
-                        fontSize: "12px",
-                        color: "#7f7d85",
-                      }}
-                    >
-                      Lifetime Warranty
-                    </p>
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      flexDirection: "column",
-                    }}
-                  >
-                    <img
-                      src={
-                        "https://smilingrocks.com/cdn/shop/files/Frame_4_4bb99b96-ffc8-4d77-bf9a-62257c771ff1_small.png?v=1613696586"
-                      }
-                      alt={""}
-                      style={{ width: "48px" }}
-                    />
-                    <p
-                      style={{
-                        textAlign: "center",
-                        fontSize: "12px",
-                        color: "#7f7d85",
-                      }}
-                    >
-                      24 Hours Customer Service
-                    </p>
-                  </div>
-                </div>
-
-                <div style={{ fontSize: "12.5px", color: "#7f7d85" }}>
-                  <p>DIAMONDS ARE FOR EVERYONE ®</p>
-
-                  <p>
-                    Sonasons aims to create a Chain of Smile and will
-                    donate 3% of your purchase to your choice of charity during
-                    check-out.
-                    <br /> <u style={{ cursor: "pointer" }}>Learn More</u>
-                  </p>
-
-                  <p>
-                    Custom Jewelry: If you would like to customize this jewelry,
-                    please email us at order@smilingrocks.com.
-                  </p>
-                </div> */}
             </div>
           </div>
         </div>
-        {(designSetList.length !== 0 && showIcateDesign === 1) &&
-          <div className='smilingCompleteLookMainWeb' style={{ position: 'relative', marginInline: '10%', display: 'flex', alignItems: 'center', marginBottom: '7%', marginTop: '7%' }}>
-            <div className='similiarBrand' style={{ right: '0px', position: 'absolute', display: 'flex', alignItems: 'center', flexDirection: 'column', marginBottom: '100px', marginTop: !(productData?.OriginalImagePath) && '120px' }}>
-              <div style={{ marginBottom: '12px' }}>
-                <span style={{ fontFamily: 'FreightDisp Pro Medium', color: '#7d7f85', fontSize: '26px' }}>Complete The Look</span>
-              </div>
-              <div style={{ border: '1px solid #e1e1e1', backgroundColor: 'white', borderRadius: '4px', padding: '30px', display: 'flex', flexDirection: 'column', gap: '40px' }}>
-                {
-                  designSetList?.slice(0, 3)?.map((dsl, i) => (
-                    <>
-                      {/* {i !== 0 && <hr style={{opacity:0.06}}/>} */}
-                      <div style={{ display: 'flex', alignItems: 'center', width: '670px', gap: '30px' }}>
-                        <div >
-                          <img src={!(dsl?.ThumbImagePath) ? notFound : dsl?.imagepath + dsl?.ThumbImagePath.split(",")[0]} alt={""} style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
-                        </div>
-                        <div style={{ display: 'flex', alignItems: 'center', position: 'relative', height: '100px' }}>
-                          <div style={{ display: 'flex', flexDirection: 'column', minWidth: '500px' }}>
-                            <sapn style={{ fontWeight: '500' }}>{dsl?.TitleLine}({dsl?.designno})</sapn>
-                            {/* <span></span> */}
-                            <span style={{ fontSize: '14px', color: '#888' }}>{dsl?.description}</span>
-                          </div>
-                          <div onClick={() => handelDesignSet(dsl)}>
-                            <NavigateNextRoundedIcon />
-                          </div>
-                          {(i !== designSetList?.slice(0, 3).length - 1) && <div style={{ borderBottom: '1px solid #e1e1e1', position: "absolute", bottom: "-18.5px", left: "0", width: "100%", }}></div>}
-                        </div>
-                      </div>
-                    </>
-                  ))
-                }
-              </div>
-            </div>
-
-            <img
-              src={`${uploadLogicPath}/${uKey}/Photo_original/designmanagement_designset/${designUniqueNO}/${completeBackImage}`}
-              style={{ width: '800px' }}
-            />
-          </div>
-        }
-
-        {(designSetList.length !== 0 && showIcateDesign === 1) &&
-          <div className='smilingCompleteLookMainMobile' style={{ position: 'relative', marginInline: '5%', marginBottom: '7%', marginTop: '20px' }}>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <img
-                src={`${uploadLogicPath}/${uKey}/Photo_original/designmanagement_designset/${designUniqueNO}/${completeBackImage}`}
-                className='smilingCompleteLookMainMobileImg'
-              />
-            </div>
-            <div className='similiarBrand' style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', marginTop: !(productData?.OriginalImagePath) && '120px' }}>
-              <div style={{ margin: '12px 0px 12px 0px' }}>
-                <span style={{ fontFamily: 'FreightDisp Pro Medium', color: '#7d7f85', fontSize: '26px' }}>Complete The Look</span>
-              </div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3px', padding: '0px 7px 0px 7px' }}>
-                {designSetList?.map((dsl, i) => (
-                  <div key={i} style={{ width: '49%' }} onClick={() => handelDesignSet(dsl)}>
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid rgba(0, 0, 0, 0.04)', padding: '15px', borderRadius: '4px' }}>
-                      <div>
-                        <img src={!(dsl?.ThumbImagePath) ? notFound : dsl?.imagepath + dsl?.ThumbImagePath.split(",")[0]} alt={""} style={{ width: '150px', height: '150px', objectFit: 'cover' }} />
-                      </div>
-                      <div style={{ marginTop: '15px', textAlign: 'center', height: '40px', overflow: 'hidden' }}>
-                        <div style={{ color: '#7D7f85', fontSize: '13px' }}>
-                          {dsl?.TitleLine} ({dsl?.designno})
-                        </div>
-                        <div style={{ fontSize: '14px', color: '#888' }}>
-                          {dsl?.description}
-                        </div>
-                        {/* <div style={{ marginTop: '10px', cursor: 'pointer' }} onClick={() => handelDesignSet(dsl)}>
-                            <NavigateNextRoundedIcon />
-                          </div> */}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        }
 
         <div className="Acc-container">
           <div
@@ -2585,6 +2341,86 @@ const ProdDetail = () => {
             </ul>
           </div>
         </div>
+
+        {(designSetList.length !== 0 && showIcateDesign === 1) &&
+          <div className='smilingCompleteLookMainWeb' style={{ position: 'relative', marginInline: '10%', display: 'flex', alignItems: 'center', marginBottom: '7%', marginTop: '7%' }}>
+            <div className='similiarBrand' style={{ right: '0px', position: 'absolute', display: 'flex', alignItems: 'center', flexDirection: 'column', marginBottom: '100px', marginTop: !(productData?.OriginalImagePath) && '120px' }}>
+              <div style={{ marginBottom: '12px' }}>
+                <span style={{ fontFamily: 'FreightDisp Pro Medium', color: '#7d7f85', fontSize: '26px' }}>Complete The Look</span>
+              </div>
+              <div style={{ border: '1px solid #e1e1e1', backgroundColor: 'white', borderRadius: '4px', padding: '30px', display: 'flex', flexDirection: 'column', gap: '40px' }}>
+                {
+                  designSetList?.slice(0, 3)?.map((dsl, i) => (
+                    <>
+                      {/* {i !== 0 && <hr style={{opacity:0.06}}/>} */}
+                      <div style={{ display: 'flex', alignItems: 'center', width: '670px', gap: '30px' }}>
+                        <div >
+                          <img src={!(dsl?.ThumbImagePath) ? notFound : dsl?.imagepath + dsl?.ThumbImagePath.split(",")[0]} alt={""} style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', position: 'relative', height: '100px' }}>
+                          <div style={{ display: 'flex', flexDirection: 'column', minWidth: '500px' }}>
+                            <sapn style={{ fontWeight: '500' }}>{dsl?.TitleLine}({dsl?.designno})</sapn>
+                            {/* <span></span> */}
+                            <span style={{ fontSize: '14px', color: '#888' }}>{dsl?.description}</span>
+                          </div>
+                          <div onClick={() => handelDesignSet(dsl)}>
+                            <NavigateNextRoundedIcon />
+                          </div>
+                          {(i !== designSetList?.slice(0, 3).length - 1) && <div style={{ borderBottom: '1px solid #e1e1e1', position: "absolute", bottom: "-18.5px", left: "0", width: "100%", }}></div>}
+                        </div>
+                      </div>
+                    </>
+                  ))
+                }
+              </div>
+            </div>
+
+            <img
+              src={`${uploadLogicPath}/${uKey}/Photo_original/designmanagement_designset/${designUniqueNO}/${completeBackImage}`}
+              style={{ width: '800px' }}
+            />
+          </div>
+        }
+
+        {(designSetList.length !== 0 && showIcateDesign === 1) &&
+          <div className='smilingCompleteLookMainMobile' style={{ position: 'relative', marginInline: '5%', marginBottom: '7%', marginTop: '20px' }}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <img
+                src={`${uploadLogicPath}/${uKey}/Photo_original/designmanagement_designset/${designUniqueNO}/${completeBackImage}`}
+                className='smilingCompleteLookMainMobileImg'
+              />
+            </div>
+            <div className='similiarBrand' style={{ display: 'flex', marginBottom: '100px', alignItems: 'center', flexDirection: 'column', marginTop: !(productData?.OriginalImagePath) && '120px' }}>
+              <div style={{ margin: '12px 0px 12px 0px' }}>
+                <span style={{ fontFamily: 'FreightDisp Pro Medium', color: '#7d7f85', fontSize: '26px' }}>Complete The Look</span>
+              </div>
+              <div style={{ display: 'flex', width: '100%', overflow: 'auto', gap: '3px', padding: '0px 7px 0px 7px' }}>
+                {designSetList?.map((dsl, i) => (
+                  <div key={i} style={{ width: '49%' }} onClick={() => handelDesignSet(dsl)}>
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid rgba(0, 0, 0, 0.04)', padding: '15px', borderRadius: '4px' }}>
+                      <div>
+                        <img src={!(dsl?.ThumbImagePath) ? notFound : dsl?.imagepath + dsl?.ThumbImagePath.split(",")[0]} alt={""} style={{ width: '150px', height: '150px', objectFit: 'cover' }} />
+                      </div>
+                      <div style={{ marginTop: '15px', textAlign: 'center', height: '40px', overflow: 'hidden' }}>
+                        <div style={{ color: '#7D7f85', fontSize: '13px' }}>
+                          {dsl?.TitleLine} ({dsl?.designno})
+                        </div>
+                        <div style={{ fontSize: '14px', color: '#888' }}>
+                          {dsl?.description}
+                        </div>
+                        {/* <div style={{ marginTop: '10px', cursor: 'pointer' }} onClick={() => handelDesignSet(dsl)}>
+                            <NavigateNextRoundedIcon />
+                          </div> */}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        }
+
+
         {/* <div className="compeletethelook_cont">
             <img
               src={

@@ -16,6 +16,13 @@ export default function LoginOption() {
         <div className='paddingTopMobileSet' style={{
             paddingTop: '110px'
         }}>
+            <div style={{ display: 'flex', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray' }}>
+                <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => navigation('/')} />
+                <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
+                    <img src={titleImg} className="MainlogogMobileImage" />
+                </div>
+            </div>
+
             <div className='loginDailog'>
                 <div>
                     <p className='loginDiTile'>Log in or sign up</p>
@@ -30,7 +37,7 @@ export default function LoginOption() {
                             <p style={{ margin: '0px', fontSize: '18px', fontWeight: 500, paddingLeft: '25px' }}>Log in with mobile</p>
                         </div>
                     </div>
-                    <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <p style={{ marginTop: '40px', fontSize: '14px', textAlign: 'center', width: '90%' }}>By continuing, you agree to our Terms of Use. Read our Privacy Policy.</p>
                     </div>
                 </div>

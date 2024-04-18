@@ -52,6 +52,10 @@ import ManageAddress from './Pages/Components/account/address/ManageAddress'
 import ChangePassword from './Pages/Components/account/changePassword/ChangePassword'
 import QuotationQuote from './Pages/Components/account/QuotationQuote/QuotationQuote'
 import MobileViewCompo from './Pages/Components/account/MobileViewCompo'
+import AccountWothoutLogin from './Pages/Components/account/AccountWothoutLogin'
+import DeliveryShipping from './Pages/Components/Policies/deliveryShiping/DeliveryShipping'
+import TermsCondition from './Pages/Components/Policies/termsEndCondi/TermsCondition'
+import PrivacyPolicy from './Pages/Components/Policies/PrivacyPolicy/PrivacyPolicy'
 
 export default function SMININGROCKS_App() {
 
@@ -108,6 +112,15 @@ export default function SMININGROCKS_App() {
                     location.pathname === "/QuotationQuote" ||
                     location.pathname === "/accountledgerdebit" ||
                     location.pathname === "/MobileViewCompo" ||
+                    location.pathname === "/Delivery" ||
+                    location.pathname === "/Confirmation" ||
+                    location.pathname === "/Payment" ||
+                    location.pathname === "/AccountWothoutLogin" ||
+                    location.pathname === "/DeliveryShipping" ||
+                    location.pathname === "/PrivacyPolicy" ||
+                    location.pathname === "/LoginOption" ||
+                    location.pathname === "/WithoutLoginCart" ||
+                    location.pathname === "/TermsCondition" ||
                     location.pathname === "/accountledgercredit") ?
                     null : <Header />}
                 <div>
@@ -152,7 +165,11 @@ export default function SMININGROCKS_App() {
                         <Route path="/OrderHistory" element={<OrderHistory />} />
                         <Route path="/QuotationQuote" element={<QuotationQuote />} />
                         <Route path="/ChangePassword" element={<ChangePassword />} />
+                        <Route path="/AccountWothoutLogin" element={<AccountWothoutLogin />} />
                         <Route path="/MobileViewCompo" element={<MobileViewCompo />} />
+                        <Route path="/DeliveryShipping" element={<DeliveryShipping />} />
+                        <Route path="/TermsCondition" element={<TermsCondition />} />
+                        <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
                     </Routes>
                     {(location.pathname === "/productpage") ?
                          <ProductPageTab toggleDetailDrawer={toggleDetailDrawer} toggleShoryBy={toggleShoryBy}/> : <HomeTab />}

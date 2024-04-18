@@ -1,5 +1,4 @@
 .smilingDelivery {
-    margin-inline: 6%;
     background-color: white;
 }
 
@@ -7,10 +6,6 @@
     display: flex;
     margin-inline: 10%;
     padding-bottom: 50px;
-}
-
-.smilingdeliverBox1 {
-    margin-top: 8%;
 }
 
 .smilingdeliverBox2 {
@@ -75,15 +70,12 @@
 }
 
 .smilingAddToAddressBtn {
-    height: 40px;
-    width: 170px;
+    height: 50px;
+    width: 50%;
     border: none;
     outline: none;
     background-color: white;
-    border: 1px solid lightgray;
-    border-radius: 5px;
     font-weight: 500;
-    margin-top: 10px;
 }
 
 
@@ -130,9 +122,7 @@
 
 
 @media screen and (max-width: 1400px) {
-    .smilingDelivery {
-        margin-inline: 2%;
-    }
+
 
     .smilingAddressPopupMain {
         height: 850px;
@@ -153,9 +143,9 @@
 
     .smilingMobileDeliveryBtnMain {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        position: fixed;
+        bottom: 60px;
+        width: 100%;
     }
 
 

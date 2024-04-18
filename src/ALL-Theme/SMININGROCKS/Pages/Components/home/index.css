@@ -64,14 +64,13 @@
 @media screen and (max-width: 350px) {
 
   .homeMain {
-      margin-inline: 2%;
       padding-bottom: 60px;
   }
 
- 
   .paddingTopMobileSet{
      margin: 65px 0px 0px 0px;
   }
 
 
 }
+

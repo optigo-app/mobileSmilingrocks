@@ -5,8 +5,12 @@ import shop2 from '../../../assets/shopByCategory/shopByCategory2.jpg'
 import shop3 from '../../../assets/shopByCategory/shopByCategory3.webp'
 import shop4 from '../../../assets/shopByCategory/shopByCategory4.jpg'
 import { Colors } from '../../../../lib/consts/Colors'
+import { useNavigate } from 'react-router-dom'
 
 export default function ShopByCategory() {
+
+  const navigation = useNavigate();
+
   return (
     <div>
       <div>
@@ -27,21 +31,25 @@ export default function ShopByCategory() {
         }} className='smilingSopCateMain'>
           <div className='shopByCategoryBox1Main'>
             <div className='shopByCategoryBox'>
-              <img src='https://images.pexels.com/photos/3266703/pexels-photo-3266703.jpeg?auto=compress&cs=tinysrgb&w=600' className='shopByCategoryBoxImg' />
+              <img src='https://images.pexels.com/photos/3266703/pexels-photo-3266703.jpeg?auto=compress&cs=tinysrgb&w=600' className='shopByCategoryBoxImg' onClick={() =>navigation
+            ('/productpage')}/>
               <p style={{ fontWeight: 500, color: Colors.fontColor, textAlign: 'center', fontSize:'11px' }}>RINGS</p>
             </div>
             <div className='shopByCategoryBox'>
-              <img src="https://t3.ftcdn.net/jpg/05/73/04/02/240_F_573040288_qlf74CxChEtpChVqHxVRFAUh9Xx7e284.jpg" className='shopByCategoryBoxImg' />
+              <img src="https://t3.ftcdn.net/jpg/05/73/04/02/240_F_573040288_qlf74CxChEtpChVqHxVRFAUh9Xx7e284.jpg" className='shopByCategoryBoxImg' onClick={() =>navigation
+            ('/productpage')}/>
               <p style={{ fontWeight: 500, color: Colors.fontColor, textAlign: 'center' , fontSize:'11px' }}>EARRINGS</p>
             </div>
           </div>
           <div className='shopByCategoryBox2Main'>
             <div className='shopByCategoryBox'>
-              <img src="https://t3.ftcdn.net/jpg/00/61/20/78/240_F_61207817_eVLm60K8BAHEkIpL9odBurd3Kp7CeLx8.jpg" className='shopByCategoryBoxImg' />
+              <img src="https://t3.ftcdn.net/jpg/00/61/20/78/240_F_61207817_eVLm60K8BAHEkIpL9odBurd3Kp7CeLx8.jpg" className='shopByCategoryBoxImg' onClick={() =>navigation
+            ('/productpage')}/>
               <p style={{ fontWeight: 500, color: Colors.fontColor, textAlign: 'center', fontSize:'11px'  }}>NACKLACES</p>
             </div >
             <div className='shopByCategoryBox'>
-              <img src="https://t4.ftcdn.net/jpg/00/61/20/81/240_F_61208174_Rq7r0NljUzxpso4UfRqZQK1EvHNKMSje.jpg" className='shopByCategoryBoxImg' />
+              <img src="https://t4.ftcdn.net/jpg/00/61/20/81/240_F_61208174_Rq7r0NljUzxpso4UfRqZQK1EvHNKMSje.jpg" className='shopByCategoryBoxImg' onClick={() =>navigation
+            ('/productpage')}/>
               <p style={{ fontWeight: 500, color: Colors.fontColor, textAlign: 'center', fontSize:'11px'  }}>BRACELETS</p>
             </div>
           </div>

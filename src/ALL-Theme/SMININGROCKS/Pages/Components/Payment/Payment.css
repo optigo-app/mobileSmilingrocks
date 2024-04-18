@@ -1,5 +1,4 @@
 .smilingPaymentMain {
-    margin-inline: 6%;
     background-color: white;
 }
 
@@ -18,6 +17,11 @@
     padding: 50px;
 }
 
+.fontFamiliy {
+    font-family: 'PT Sans', sans-serif;
+}
+
+
 .smilingPaySub1Box2 {
     width: 35%;
     padding: 50px;
@@ -26,9 +30,10 @@
 .paymentBtn {
     height: 40px;
     width: 180px;
-    background-color: white;
-    border: 1px solid lightgray;
+    background-color: #ffd814;
     font-weight: 500;
+    border: none;
+    outline: none;
     border-radius: 5px;
 }
 
@@ -46,12 +51,6 @@
     display: flex;
     justify-content: center;
     margin-top: 30px;
-}
-
-@media screen and (max-width:1400px) {
-    .smilingPaymentMain {
-        margin-inline: 4%;
-    }
 }
 
 @media screen and (min-width:1001px) {

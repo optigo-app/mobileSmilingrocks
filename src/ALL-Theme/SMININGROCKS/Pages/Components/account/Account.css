@@ -17,23 +17,19 @@
     display: flex;
     font-size: 18px;
     padding: 10px;
-    height: 150px;
+    height: 175px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 .boxMainTopSection {
     display: flex;
-    border: 1px solid gray;
+    border: 1px solid #e3dada;
     height: 40px;
     display: flex;
     align-items: center;
     border-radius: 5px;
     margin-right: 10px;
     width: 50%;
-}
-
-.smling-AccountTabMain {
-    margin-inline: 10%;
 }
 
 .smlingOrderHistory {
@@ -148,7 +144,7 @@
 }
 
 .menuMainAccount {
-    height: 60px;
+    height: 55px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -159,9 +155,7 @@
 @media screen and (max-width: 1441px) {
 
     .smling-AccountTabMain {
-        margin-inline: 5%;
         padding-bottom: 100px;
-
     }
 }
 

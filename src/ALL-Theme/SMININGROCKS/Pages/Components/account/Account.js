@@ -1,26 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import Header from '../home/Header/Header'
 import './Account.css'
 import { Box, CircularProgress, IconButton, InputAdornment, Tab, Tabs, TextField, Typography } from '@mui/material'
-import Footer from '../home/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
-import ManageAddress from './address/ManageAddress';
-import OrderHistory from './accountOrderHistory/OrderHistory';
-
-import AccountLedger from './accountLedger/AccountLedger';
-import DesignWiseSalesReport from '../sales/DesignWiseSalesReport/DesignWiseSalesReport';
 import { loginState } from '../../../../../Recoil/atom';
 import { useSetRecoilState } from 'recoil';
-import YourProfile from './yourProfile/YourProfile';
-import ChangePassword from './changePassword/ChangePassword';
-import SalesReport from '../sales/salesReport/SalesReport';
-import QuotationJob from './quotationFilters/QuotationJob';
-import QuotationQuote from './QuotationQuote/QuotationQuote';
-import Sales from '../sales/Sales/Sales';
 import { accountDetailPage, accountDetailPages, accountValidation } from '../../../Utils/globalFunctions/GlobalFunction';
 import { FaChevronRight } from "react-icons/fa";
 import { LuBox } from "react-icons/lu";
 import { MdFavoriteBorder } from "react-icons/md";
+import { IoGiftOutline } from "react-icons/io5";
+import { FaHeadset } from "react-icons/fa6";
 
 function CustomTabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -129,6 +118,17 @@ export default function Account() {
                                 <p style={{margin: '0px 0px 0px 10px' , fontWeight: 600}}>Wishlist</p>
                             </div>
                         </div>
+
+                        <div style={{display: 'flex', justifyContent: 'space-around', width: '100%' , marginTop: '10px'}}>
+                            <div className='boxMainTopSection'>
+                                <IoGiftOutline style={{marginLeft: '15px'}}/>
+                                <p style={{margin: '0px 0px 0px 10px' , fontWeight: 600}}>Coupons</p>
+                            </div>
+                            <div className='boxMainTopSection'>
+                                <FaHeadset style={{marginLeft: '15px'}}/>
+                                <p style={{margin: '0px 0px 0px 10px' , fontWeight: 600}}>Help Center</p>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -139,19 +139,19 @@ export default function Account() {
                             <FaChevronRight />
                         </div>
                         <div className='menuMainAccount' onClick={() => naviagation('/OrderHistory')}>
-                            <p className='menuMainAccountTitle'>ORDER HISTORY</p>
+                            <p className='menuMainAccountTitle'>Order History</p>
                             <FaChevronRight />
                         </div>
                         <div className='menuMainAccount' onClick={() => naviagation('/ManageAddress')}>
-                            <p className='menuMainAccountTitle'>MANAGE ADDRESSES</p>
+                            <p className='menuMainAccountTitle'>Manage Address</p>
                             <FaChevronRight />
                         </div>
                         {accountValidation() && <div className='menuMainAccount' onClick={() => naviagation('/MobileViewCompo')}>
-                            <p className='menuMainAccountTitle'>ACCOUNT</p>
+                            <p className='menuMainAccountTitle'>Account</p>
                             <FaChevronRight />
                         </div>}
                         <div className='menuMainAccount' onClick={() => naviagation('/ChangePassword')}>
-                            <p className='menuMainAccountTitle'>CHANGE PASSWORD</p>
+                            <p className='menuMainAccountTitle'>Change Password</p>
                             <FaChevronRight />
                         </div>
 

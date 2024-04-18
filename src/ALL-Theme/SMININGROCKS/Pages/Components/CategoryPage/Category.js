@@ -3,12 +3,14 @@ import './Category.css';
 import { CommonAPI } from '../../../Utils/API/CommonAPI';
 import { CircularProgress } from '@mui/material';
 import { IoArrowBack } from "react-icons/io5";
+import { useNavigate } from 'react-router-dom';
 
 export default function Category() {
     const [imageURL, setImageURL] = useState('');
     const [uKey, setYouKey] = useState('');
     const [availableImages, setAvailableImages] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const navigation = useNavigate();
 
     const checkImageAvailability = async (imageUrl) => {
         try {
@@ -76,7 +78,7 @@ export default function Category() {
                 </div>
             )}
             <p className="SmiCartListTitle">
-                <IoArrowBack style={{height: '25px', width: '25px', marginRight: '10px'}}/>Category
+                <IoArrowBack style={{height: '25px', width: '25px', marginRight: '10px'}} onClick={() => navigation('/')}/>Category
             </p>
             {availableImages.length === 0 && !isLoading ?
                 <div
@@ -99,7 +101,7 @@ export default function Category() {
                     </p>
                 </div>
                 :
-                <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: '80px', marginInline: '15px', marginTop: '20px' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: '80px', marginInline: '5px', marginTop: '20px' }}>
                     {availableImages.map((item, id) => (
                         <div key={id} className='imagesViewCategoryDiv'>
                             <img src={item.imageURL} alt={`${item.collectionname}-${item.categoryname}`}

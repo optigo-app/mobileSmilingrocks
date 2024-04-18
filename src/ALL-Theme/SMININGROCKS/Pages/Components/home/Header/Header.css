@@ -22,6 +22,28 @@
     border-radius: 20px;
 }
 
+
+.searchBoxOnlyHeaderFiexedMain{
+    height: 35px;
+    width: 85%;
+    outline: none;
+    border: 1px solid lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+}
+.searchBoxOnlyHeaderFiexed{
+    height: 30px;
+    width: 80%;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+
+}
+
+
 .smilingCartRemoveBtn {
     height: 40px;
     width: 100px;
@@ -591,7 +613,9 @@
 }
 
 .badge12 .MuiBadge-badge.MuiBadge-standard {
-    background-color: #714f44 !important;
+    /* background-color: #ffd814 !important; */
+    left: 6px;
+    top: 1px;
 }
 
 @media screen and (min-width:1441px) {
@@ -655,7 +679,7 @@
     }
 
     .mobileViewFirstDiv1 {
-        width: 24% !important;
+        width: 21% !important;
     }
 
     .mobileViewFirstDiv2 {
@@ -667,6 +691,7 @@
 
     .mobileViewFirstDiv3 {
         width: 25% !important;
+        margin-bottom: 4px;
     }
 }
 
@@ -907,9 +932,6 @@
         width: 25px !important;
     }
 
-    .MainlogogMobileImage {
-        width: 140px !important;
-    }
 }
 
 .smilingCartTabMain .MuiTabs-scroller {
