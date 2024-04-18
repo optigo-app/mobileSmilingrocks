@@ -33,12 +33,12 @@
 
     .shopByCategoryBox{
         width: 50%!important;
-        margin: 5px!important;
-        height: 230px;
+        margin: 2px!important;
+        height: 200px;
     }
 
     .shopByCategoryBoxImg{
-        height: 90%!important;
+        height: 100%!important;
         width: 100%!important;
         object-fit: cover;
     }

@@ -12,9 +12,7 @@ export default function SmilingBrides() {
         <div className='smilingBridesMain'>
             <div className='smilingBrides'>
                 <p style={{
-                    color: Colors.fontColor,
                     fontSize: '18px',
-                    textAlign: 'center',
                     margin: '0px',
                     fontFamily: 'FreightDispProMedium-Regular,Times New Roman,serif'
                 }} className='smilingBridesMainTitle'>SMILING BRIDES</p>

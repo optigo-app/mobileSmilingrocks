@@ -185,12 +185,13 @@ const OrderHistory = () => {
         Your Order History
       </div> */}
           <div style={{ display: 'flex', width: '100%', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray', backgroundColor: 'white', zIndex: '111111' }}>
-                <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => naviagation('/account')} />
+                <FiArrowLeft style={{ height: '25px',color: "#7d7f85" , width: '25px' }} onClick={() => naviagation('/account')} />
                 <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
-                    <img src={titleImg} className="MainlogogMobileImage" />
+                    {/* <img src={titleImg} className="MainlogogMobileImage" /> */}
+            <p className='accountPageTitle'>Order History</p>
+
                 </div>
             </div>
-            <p className='accountPageTitle'>Order History</p>
             
       {loaderOH ? (
         <Box sx={{ display: "flex", justifyContent: "center", paddingTop: "200px" }}><CircularProgress className='loadingBarManage' /></Box>

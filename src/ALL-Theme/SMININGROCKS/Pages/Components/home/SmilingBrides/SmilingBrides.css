@@ -1,25 +1,26 @@
 .smilingBridesMain {
     display: flex;
-    margin-inline: 90px;
+    position: relative;
 }
 
 .enagementBtn {
     height: 35px;
-    color: white;
     border: none;
-    margin-inline: 18%;
     font-size: 12px;
+    width: 200px;
     font-family: 'PT Sans', sans-serif;
-    background-color: #7d7f85;
+    border: 1px solid white;
+    background-color: transparent;
 }
 
 
 .smilingBrides {
-    width: 25%;
+    width: 60%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    border: 0.5px solid #e1e1e1;
+    align-items: center;
+    position: absolute;
+    bottom: 30px;
 }
 
 .smlingBridesImages {
@@ -33,13 +34,6 @@
     object-fit: cover;
 }
 
-@media screen and (max-width: 1024px) {
-    .smilingBridesMain {
-        margin-inline: 10px;
-    }
-}
-
-
 @media screen and (max-width: 900px) {
     .smilingBridesMain {
         display: flex;
@@ -51,7 +45,6 @@
     }
 
     .smilingBrides {
-        width: 100%;
         order: 2;
     }
 
@@ -63,7 +56,6 @@
         font-size: 12px!important;
         letter-spacing: 1px!important;
         font-weight: 500!important;
-        color: #7d7f85!important;
     }
 }
 
@@ -72,10 +64,6 @@
 }
 @media screen and (max-width: 500px) {
 
-    .smilingBridesMain {
-        margin-top: 20px !important;
-        border: none !important;
-    }
     .smilingBrides{
         border: none !important;
     }

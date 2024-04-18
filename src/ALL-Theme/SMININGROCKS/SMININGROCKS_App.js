@@ -56,6 +56,7 @@ import AccountWothoutLogin from './Pages/Components/account/AccountWothoutLogin'
 import DeliveryShipping from './Pages/Components/Policies/deliveryShiping/DeliveryShipping'
 import TermsCondition from './Pages/Components/Policies/termsEndCondi/TermsCondition'
 import PrivacyPolicy from './Pages/Components/Policies/PrivacyPolicy/PrivacyPolicy'
+import SearchPage from './Pages/Components/SearchPage/SearchPage'
 
 export default function SMININGROCKS_App() {
 
@@ -119,6 +120,7 @@ export default function SMININGROCKS_App() {
                     location.pathname === "/DeliveryShipping" ||
                     location.pathname === "/PrivacyPolicy" ||
                     location.pathname === "/LoginOption" ||
+                    location.pathname === "/SearchPage" ||
                     location.pathname === "/WithoutLoginCart" ||
                     location.pathname === "/TermsCondition" ||
                     location.pathname === "/accountledgercredit") ?
@@ -170,6 +172,7 @@ export default function SMININGROCKS_App() {
                         <Route path="/DeliveryShipping" element={<DeliveryShipping />} />
                         <Route path="/TermsCondition" element={<TermsCondition />} />
                         <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+                        <Route path="/SearchPage" element={<SearchPage />} />
                     </Routes>
                     {(location.pathname === "/productpage") ?
                          <ProductPageTab toggleDetailDrawer={toggleDetailDrawer} toggleShoryBy={toggleShoryBy}/> : <HomeTab />}

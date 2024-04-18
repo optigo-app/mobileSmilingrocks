@@ -18,7 +18,7 @@ export default function FestiveFinds() {
     return (
         <div>
             <div className='FestiveMainImage'>
-                <img src={banner1} style={{ width: '100%', marginTop: '30px' }} />
+                <img src={banner1} style={{ width: '100%', marginTop: '0px' }} />
                 {islogin === 'true' && <div className='festiveBox'>
                     <p className='smilingFestiMainTitle1'>LAB GROWN DIAMONDS</p>
                     <p className='smilingFestiMainTitle2' style={{ fontSize: '40px', margin: '0px' }}>Festive Finds!</p>

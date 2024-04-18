@@ -78,7 +78,8 @@ export default function Category() {
                 </div>
             )}
             <p className="SmiCartListTitle">
-                <IoArrowBack style={{height: '25px', width: '25px', marginRight: '10px'}} onClick={() => navigation('/')}/>Category
+                <IoArrowBack style={{height: '25px', width: '25px', marginRight: '10px'}} onClick={() => navigation('/')}/>
+                Category
             </p>
             {availableImages.length === 0 && !isLoading ?
                 <div
