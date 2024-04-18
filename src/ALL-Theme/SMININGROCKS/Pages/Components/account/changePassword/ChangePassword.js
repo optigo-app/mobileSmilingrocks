@@ -161,12 +161,12 @@ export default function ChangePassword() {
                 </div>
             )}
             <div style={{ display: 'flex', width: '100%', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray', backgroundColor: 'white', zIndex: '111111' }}>
-                <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => naviagation('/account')} />
+                <FiArrowLeft style={{ height: '25px', width: '25px', color: "#7d7f85" }} onClick={() => naviagation('/account')} />
                 <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
-                    <img src={titleImg} className="MainlogogMobileImage" />
+                    {/* <img src={titleImg} className="MainlogogMobileImage" /> */}
+                    <p className='accountPageTitle'>Change Password</p>
                 </div>
             </div>
-            <p className='accountPageTitle'>Change Password</p>
 
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '30px' }}>
                 <TextField

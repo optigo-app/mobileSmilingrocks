@@ -379,7 +379,7 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      setIsHeaderFixed(scrollPosition > 100);
+      setIsHeaderFixed(scrollPosition > 60);
       setIsHeaderFixedDropShow(scrollPosition > 100);
     };
     window.addEventListener('scroll', handleScroll);
@@ -844,19 +844,13 @@ export default function Header() {
                           marginTop: "0px",
                         }}
                       >
-                        {/* <PiStarFourThin
-                          style={{
-                            cursor: "pointer",
-                            height: "35px",
-                            width: "35px",
-                          }}
-                        /> */}
                         <ShoppingCartOutlinedIcon
                           sx={{ height: '30px', width: '30px' }}
                         />
                       </li>
                     </Tooltip>
-                  </Badge></>}
+                  </Badge>
+                </>}
             </ul>
           </div>
         </div>
@@ -1205,16 +1199,32 @@ export default function Header() {
                   {islogin === "true" &&
                     <div className="mobileHeaderFixedMobileLastDiv" style={{ display: 'flex' }}>
 
-                      <li onClick={toggleOverlay} style={{ listStyle: 'none', width: '40px', textAlign: 'center', marginInline: '10px' }}>
-                        <IoSearchOutline
-                          style={{
-                            height: "20px", cursor: "pointer", width: "20px",
-                            color: "white",
-                          }}
-                          className="mobileViewSmilingTop2Icone"
-                        />
-                      </li>
+                      {/* <li style={{ listStyle: 'none', width: '40px', textAlign: 'center', marginInline: '10px', marginTop: '-4px' }}>
+                        <Badge
+                          badgeContent={getCartListCount}
+                          overlap={"rectangular"}
+                          color="secondary"
+                          className="smilingHeaderWhishlistIcon"
 
+                        >
+                          <Tooltip title="Cart">
+                            <li
+                              onClick={toggleCartDrawer(true)}
+                              style={{
+                                height: "20px",
+                                cursor: "pointer",
+                                width: "20px",
+                                color: "white",
+                              }}
+                              className="mobileViewSmilingTop1Icone"
+                            >
+                              <ShoppingCartOutlinedIcon
+                                sx={{ height: '20px', width: '20px' }}
+                              />
+                            </li>
+                          </Tooltip>
+                        </Badge>
+                      </li> */}
                       <Badge
                         badgeContent={getWishListCount}
                         overlap={"rectangular"}
@@ -1251,109 +1261,33 @@ export default function Header() {
               className={`Smining-Top-Header-fixed-main ${isHeaderFixed ? "fixed" : ""
                 }`}
             >
-
-              {
-                serachsShowOverlay ?
-                  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                    <div className="searchBoxOnlyHeaderFiexedMain">
-                      <input
-                        type="text"
-                        placeholder="Search..."
-                        value={searchText}
-                        onChange={(e) => setSearchText(e.target.value)}
-                        className="searchBoxOnlyHeaderFiexed"
-                        onKeyDown={(event) => {
-                          if (event.key === 'Enter') {
-                            searchDataFucn();
-                            setSerachShowOverlay(false);
-                          }
-                        }}
-                      />
-                      <SearchIcon onClick={searchDataFucn} />
-                    </div>
-                    <IoClose
-                      style={{
-                        height: "30px",
-                        width: "30px",
-                        color: "black",
-                        cursor: "pointer",
-                      }}
-                      onClick={toggleOverlay}
-                    />
-                  </div>
-                  :
-                  <div
-                    className="Smining-Top-Header-fixed"
-                    style={{ display: "flex" }}
-                  >
-                    <div
-                      style={{ display: "flex", margin: "5px", alignItems: "center" }}
-                      className="mobileViewFirstDiv1"
-                    >
-                      {drawerShowOverlay ? (
-                        <IoClose
-                          style={{
-                            height: "30px",
-                            width: "30px",
-                            color: "black",
-                            cursor: "pointer",
-                          }}
-                          onClick={toggleDrawerOverlay}
-                        />
-                      ) : (
-                        <IoMenuOutline
-                          style={{ fontSize: "35px", color: "#7d7f85" }}
-                          onClick={toggleDrawerOverlay}
-                          className="muIconeMobileHeader"
-
-                        />
-                      )}
-                    </div>
-                    <div
-                      className="mobileViewFirstDiv2"
-                    >
-                      <a href="/" style={{ marginTop: '5px' }}>
-                        <img src={titleImg} className="MainlogogMobileImage" />
-                      </a>
-                    </div>
-                    {islogin === "true" &&
-                      <div className="mobileViewFirstDiv3" style={{ display: 'flex', justifyContent: 'flex-end', paddingRight: '15px' }}>
-                        <Badge
-                          badgeContent={getWishListCount}
-                          overlap={"rectangular"}
-                          color="secondary"
-                          style={{ marginInline: '5px' }}
-                          className="smilingHeaderWhishlistIcon"
-                        >
-
-                          <li onClick={toggleOverlay} style={{ listStyle: 'none', textAlign: 'center', marginInline: '10px' }}>
-                            <IoSearchOutline
-                              style={{
-                                height: "20px", cursor: "pointer", width: "20px",
-                                color: "#7d7f85",
-                              }}
-                              className="mobileViewSmilingTop2Icone"
-                            />
-                          </li>
-
-                          <Tooltip title="WishList">
-                            <li style={{ listStyle: 'none' }} onClick={() => navigation("/myWishList")}>
-                              <FavoriteBorderIcon
-                                style={{
-                                  height: "20px",
-                                  cursor: "pointer",
-                                  width: "20px",
-                                  color: "#7d7f85",
-                                }}
-                                className="mobileViewSmilingTop1Icone"
-                              />
-                            </li>
-                          </Tooltip>
-                        </Badge>
-                      </div>
-                    }
-                  </div>
-              }
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }} onClick={() => navigation('/SearchPage')}>
+                <div className="searchBoxOnlyHeaderFiexedMain">
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)}
+                    className="searchBoxOnlyHeaderFiexed"
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter') {
+                        searchDataFucn();
+                        setSerachShowOverlay(false);
+                      }
+                    }}
+                  />
+                  <SearchIcon onClick={searchDataFucn} />
+                </div>
+                {/* <IoClose
+                  style={{
+                    height: "30px",
+                    width: "30px",
+                    color: "black",
+                    cursor: "pointer",
+                  }}
+                  onClick={toggleOverlay}
+                /> */}
+              </div>
             </div>
           )}
         </div>

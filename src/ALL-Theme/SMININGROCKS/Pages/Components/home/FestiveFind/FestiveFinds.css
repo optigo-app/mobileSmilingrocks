@@ -4,25 +4,24 @@
 
 .FestiveBannerImage {
     width: 100%;
+    position: absolute;
 }
 
 .festiveBox {
     position: absolute;
-    top: 50%;
-    left: 80%;
-    transform: translate(-50%, -50%);
     text-align: center;
     padding: 20px;
+    top: 40px;
 }
 
 .DiscoverBtn {
     height: 35px;
-    width: 200px;
-    background-color: #7d7f85;
+    width: 150px;
     color: white;
     cursor: pointer;
-    border: none;
     font-size: 12px;
+    background-color: transparent;
+    border: 1px solid white;
     font-family: 'PT Sans', sans-serif;
 }
 
@@ -32,36 +31,25 @@
         flex-direction: column !important;
     }
 
-    .festiveBox {
-        position: static !important;
-        top: 0;
-        left: 0;
-        transform: translate(0%, 0%) !important;
-        text-align: center;
-    }
 
     .smilingFestiMainTitle1 {
         font-size: 11px !important;
         font-weight: 500;
         margin: 0px;
-        color: gray !important;
+        color: white !important;
         font-family: 'PT Sans', sans-serif;
 
-    }
-
-    .festiveBox {
-        padding-top: 10px !important;
     }
 
     .smilingFestiMainTitle2 {
         font-size: 20px !important;
         font-family: 'PT Sans', sans-serif;
-        color: gray !important;
+        color: white !important;
 
     }
 
     .smilingFestiMainTitle3 {
-        color: gray !important;
+        color: white !important;
         font-family: 'PT Sans', sans-serif;
 
     }

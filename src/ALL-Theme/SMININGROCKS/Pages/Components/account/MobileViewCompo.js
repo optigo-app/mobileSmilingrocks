@@ -67,13 +67,12 @@ const MobileViewCompo = () => {
     return (
         <>
             <div style={{ display: 'flex', width: '100%', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray', backgroundColor: 'white', zIndex: '111111' }}>
-                <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => naviagation('/account')} />
+                <FiArrowLeft style={{ height: '25px', width: '25px', color: "#7d7f85"  }} onClick={() => naviagation('/account')} />
                 <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
-                    <img src={titleImg} className="MainlogogMobileImage" />
+                    <p className='accountPageTitle'>Account</p>
                 </div>
             </div>
-            <p className='accountPageTitle'>Account</p>
-            <div style={{margin: '20px 5px 10px 5px'}}>
+            <div style={{ margin: '20px 5px 10px 5px' }}>
                 {accountValidation() && <CustomTabPanel value={value} index={3} className="accountSalesPage">
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <Tabs value={value1} className='accountTabSection' variant="scrollable" onChange={handleChangeSub} aria-label="basic tabs example" sx={{ background: "#7d7f8529", ...tabIndicator }} scrollButtons="auto">

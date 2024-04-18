@@ -25,18 +25,18 @@
 
 .searchBoxOnlyHeaderFiexedMain{
     height: 35px;
-    width: 85%;
+    width: 95%;
     outline: none;
     border: 1px solid lightgray;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 8px;
 }
 .searchBoxOnlyHeaderFiexed{
     height: 30px;
-    width: 80%;
+    width: 85%;
     outline: none;
     border: none;
     border-radius: 20px;
@@ -690,7 +690,7 @@
     }
 
     .mobileViewFirstDiv3 {
-        width: 25% !important;
+        width: 19% !important;
         margin-bottom: 4px;
     }
 }

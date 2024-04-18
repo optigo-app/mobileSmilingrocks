@@ -445,12 +445,13 @@ const ManageAddress = () => {
         <div>
 
             <div style={{ display: 'flex', width: '100%', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray', backgroundColor: 'white', zIndex: '111111' }}>
-                <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => naviagation('/account')} />
+                <FiArrowLeft style={{ height: '25px',color: "#7d7f85" , width: '25px' }} onClick={() => naviagation('/account')} />
                 <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
-                    <img src={titleImg} className="MainlogogMobileImage" />
+                    {/* <img src={titleImg} className="MainlogogMobileImage" /> */}
+            <p className='accountPageTitle'>Manage Address</p>
+
                 </div>
             </div>
-            <p className='accountPageTitle'>Manage Address</p>
 
             {/* <p style={{
                 textAlign: 'center',
@@ -463,7 +464,7 @@ const ManageAddress = () => {
             }} className='savedAddress'>Saved Addresses</p> */}
 
             <Box sx={{ paddingLeft: "15px" }}>
-                <Button className='muiSmilingRocksBtnManage savedAddressManageBtn' variant="contained" sx={{ background: "#7d7f85", padding: "6px 15px", textAlign: "end", fontSize: "0.9rem", marginBottom: "10px", borderRadius: "0" }} onClick={handleOpen}>ADD NEW ADDRESS</Button></Box>
+                <Button className='muiSmilingRocksBtnManage savedAddressManageBtn' variant="contained" sx={{ background: "#7d7f85", padding: "6px 15px", textAlign: "end", fontSize: "0.9rem", marginBottom: "10px", borderRadius: "0",marginTop: '15px' }} onClick={handleOpen}>ADD NEW ADDRESS</Button></Box>
             {/* <Button className='smilingAcoountAddNewBtn' sx={{marginLeft: "auto"}} >ADD NEW ADDRESS</Button> */}
             <RadioGroup
                 aria-labelledby="demo-controlled-radio-buttons-group"
