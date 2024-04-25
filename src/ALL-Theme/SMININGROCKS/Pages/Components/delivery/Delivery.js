@@ -422,14 +422,15 @@ export default function Delivery() {
 
             <Dialog
                 open={openDelete}
+                className='smilingDeliverDelerePopu'
             >
-                <div className='smilingDeliverDelerePopu'>
+                <div style={{padding: '10px'}}>
                     <p style={{ fontSize: '20px', fontWeight: 500 }}>ARE YOU SURE TO DELETE ?</p>
 
                     <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '40px' }}>
                         <button onClick={handleDeleteAddress} style={{
                             height: '35px',
-                            width: '100px',
+                            width: '70px',
                             backgroundColor: 'lightgray',
                             fontWeight: 500,
                             border: 'none',
@@ -438,7 +439,7 @@ export default function Delivery() {
                         }}>YES</button>
                         <button onClick={() => setOpenDelete(false)} style={{
                             height: '35px',
-                            width: '100px',
+                            width: '70px',
                             backgroundColor: 'lightgray',
                             fontWeight: 500,
                             border: 'none',

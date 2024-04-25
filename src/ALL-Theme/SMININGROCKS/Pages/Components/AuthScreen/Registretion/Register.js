@@ -237,7 +237,7 @@ export default function Register() {
         <div style={{ display: 'flex', alignItems: 'center', padding: '0px 0px 0px 5px', borderBottom: '1px solid lightgray' }}>
           <FiArrowLeft style={{ height: '25px', width: '25px' }} onClick={() => navigation('/')} />
           <div style={{ width: '85%', display: 'flex', justifyContent: 'center' }}>
-            <img src={titleImg} className="MainlogogMobileImage" />
+            <img src={titleImg} className="MainlogogMobileImage" onClick={() => navigation('/')} />
           </div>
         </div>
         <div className='smling-register-main'>

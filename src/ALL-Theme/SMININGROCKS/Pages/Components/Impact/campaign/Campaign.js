@@ -2,7 +2,7 @@ import React from "react";
 import ImpCards from "../impact-cards/ImpCards";
 import SustainAbility from "../../sustainAbility/SustainAbility";
 import jointlogo from '../../../assets/Impact/campaign/jointlogo.avif'
-import united from '../../../assets/Impact/campaign/united.jpg'
+import ImpactBottomBanner from '../../../assets/MobileImages/ImpactBottomBanner.jpg'
 import './campaign.css'
 
 const Campaign = () => {
@@ -50,7 +50,7 @@ const Campaign = () => {
         <SustainAbility />
       </div>
       <div className="campaingImages" style={{ padding: "0px 85px 0px", marginTop: '45px' }}>
-        <img src="https://africa-foundation.org/wp-content/uploads/2022/08/AFRICA-FOUNDATION-Banner.jpg" alt={''} style={{width:'100%'}} />
+        <img src={ImpactBottomBanner} alt={''} style={{width:'100%'}} />
       </div>
       <div style={{ padding: "0px 85px 0px", marginTop: '45px' }}>
         <div style={{ display: 'flex', justifyContent: 'center' }}>

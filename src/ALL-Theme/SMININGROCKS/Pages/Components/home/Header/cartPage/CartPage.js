@@ -542,38 +542,33 @@ export default function CartPage() {
   };
 
   const handleSubmit = async (data) => {
-    if (!remarks || remarks.trim() === "") {
-      toast.error("Enter a value for remarks.");
-    } else {
-      try {
-        // setIsLoading(true);
-        const storeInit = JSON.parse(localStorage.getItem("storeInit"));
-        const { FrontEnd_RegNo } = storeInit;
-        const combinedValue = JSON.stringify({
-          designno: `${data.designno}`,
-          autocode: `${data.autocode}`,
-          remarks: `${remarks}`,
-          FrontEnd_RegNo: `${FrontEnd_RegNo}`,
-          Customerid: `${customerID}`,
-        });
-        const encodedCombinedValue = btoa(combinedValue);
-        const body = {
-          con: `{\"id\":\"\",\"mode\":\"SAVEDESIGNREMARK\",\"appuserid\":\"${userEmail}\"}`,
-          f: "Header (handleSingleRemaksSubmit)",
-          p: encodedCombinedValue,
-        };
-        const response = await CommonAPI(body);
-        if (response.Data.rd[0].stat === 1) {
-          await getCartData()
-          toast.success("Add remark successfully");
-        } else {
-          alert("Error");
-        }
-      } catch (error) {
-        console.error("Error:", error);
-      } finally {
-        setIsLoading(false);
+    try {
+      // setIsLoading(true);
+      const storeInit = JSON.parse(localStorage.getItem("storeInit"));
+      const { FrontEnd_RegNo } = storeInit;
+      const combinedValue = JSON.stringify({
+        designno: `${data.designno}`,
+        autocode: `${data.autocode}`,
+        remarks: `${remarks}`,
+        FrontEnd_RegNo: `${FrontEnd_RegNo}`,
+        Customerid: `${customerID}`,
+      });
+      const encodedCombinedValue = btoa(combinedValue);
+      const body = {
+        con: `{\"id\":\"\",\"mode\":\"SAVEDESIGNREMARK\",\"appuserid\":\"${userEmail}\"}`,
+        f: "Header (handleSingleRemaksSubmit)",
+        p: encodedCombinedValue,
+      };
+      const response = await CommonAPI(body);
+      if (response.Data.rd[0].stat === 1) {
+        await getCartData()
+      } else {
+        alert("Error");
       }
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -1612,60 +1607,36 @@ export default function CartPage() {
             style={{ display: !prodSelectData && !cartSelectData && "none" }}
           >
             <div className="popUpcontainer">
-              <div style={{ display: 'flex', marginInline: '5%', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>
-                <div style={{ width: '50%' }}>
-                  <img
-                    src={
-                      prodSelectData?.imagepath +
-                      prodSelectData?.MediumImagePath?.split(",")[0]
-                    }
-                    style={{
-                      borderRadius: "12px",
-                      width: "100%",
-                      height: '90%',
-                      objectFit: 'cover'
-                    }}
-                  />
-                </div>
-                <div style={{ width: '50%' }}>
-                  <p
-                    style={{
-                      fontSize: "14px",
-                      fontFamily: "FreightDisp Pro Medium",
-                      margin: "10px 0px 5px",
-                    }}
-                  >
-                    {prodSelectData?.TitleLine} <span style={{ fontWeight: 500 }}>- {prodSelectData?.Mastermanagement_CategoryName}({prodSelectData?.designno})</span>
-                  </p>
-                  <span
-                    style={{
-                      fontWeight: "500",
-                      fontSize: "18px",
-                      color: "black",
-                      display: 'flex'
-                    }}
-                  >
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: decodeEntities(
-                          currData?.Currencysymbol
-                        ),
+              <div style={{ marginInline: '5%', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>
+                <div style={{ display: 'flex' }}>
+                  <div style={{ width: '50%' }}>
+                    <img
+                      src={
+                        prodSelectData?.imagepath +
+                        prodSelectData?.MediumImagePath?.split(",")[0]
+                      }
+                      style={{
+                        borderRadius: "12px",
+                        width: "100%",
+                        height: '90%',
+                        objectFit: 'cover'
                       }}
-                      style={{ fontFamily: "sans-serif" }}
                     />
-                    {(
-                      ((mtrdData?.V ?? 0) /
-                        currData?.CurrencyRate +
-                        (mtrdData?.W ?? 0)) +
-                      (dqcData ?? 0) +
-                      (csqcData ?? 0) +
-                      (sizeMarkup ?? 0) +
-                      (metalUpdatedPrice() ?? 0) +
-                      (diaUpdatedPrice() ?? 0) +
-                      (colUpdatedPrice() ?? 0)
-                    ).toFixed(2) * lastEnteredQuantity}
-                  </span>
-                  <div style={{ border: '1px solid', width: '100px', marginTop: '10px', marginBottom: '15px' }}>
+                  </div>
+                  <div style={{ width: '50%' }}>
+                    <p
+                      style={{
+                        fontSize: "14px",
+                        fontFamily: "FreightDisp Pro Medium",
+                        margin: "10px 0px 5px",
+                      }}
+                    >
+                      {prodSelectData?.TitleLine} <span style={{ fontWeight: 500 }}>- {prodSelectData?.Mastermanagement_CategoryName}({prodSelectData?.designno})</span>
+                    </p>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div style={{ border: '1px solid', width: '100px', marginTop: '10px', marginBottom: '15px', marginLeft: '20px' }}>
                     <button
                       onClick={() => {
                         if (lastEnteredQuantity !== 1) {
@@ -1689,6 +1660,35 @@ export default function CartPage() {
                       +
                     </button>
                   </div>
+                  <span
+                    style={{
+                      fontWeight: "500",
+                      fontSize: "18px",
+                      color: "black",
+                      display: 'flex',
+                      width: "50%"
+                    }}
+                  >
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: decodeEntities(
+                          currData?.Currencysymbol
+                        ),
+                      }}
+                      style={{ fontFamily: "sans-serif" }}
+                    />
+                    {(
+                      ((mtrdData?.V ?? 0) /
+                        currData?.CurrencyRate +
+                        (mtrdData?.W ?? 0)) +
+                      (dqcData ?? 0) +
+                      (csqcData ?? 0) +
+                      (sizeMarkup ?? 0) +
+                      (metalUpdatedPrice() ?? 0) +
+                      (diaUpdatedPrice() ?? 0) +
+                      (colUpdatedPrice() ?? 0)
+                    ).toFixed(2) * lastEnteredQuantity}
+                  </span>
                 </div>
               </div>
 
@@ -1967,7 +1967,7 @@ export default function CartPage() {
                       fontSize: "16px",
                       fontWeight: "500",
                     }}
-                    onClick={handleCartUpdate}
+                    onClick={() => { handleCartUpdate(); handleSubmit(cartSelectData); }}
                   >
                     Save
                   </span>
@@ -1991,12 +1991,12 @@ export default function CartPage() {
                   onChange={(event) => handleInputChangeRemarks(event)}
                   className="YourCartMainRemkarBoxSingle1"
                 />
-                <button
+                {/* <button
                   onClick={() => handleSubmit(cartSelectData)}
                   className="SmilingAddSingleRemkarBtn"
                 >
                   Add
-                </button>
+                </button> */}
               </div>
             </div>
           </div>

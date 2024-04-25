@@ -1151,71 +1151,70 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
 
   const Newlist = (anchor) => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250, height: '250px' }}
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250, height: 'auto' }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
       {isOpenShoryBy &&
-        // <div style={{ paddingInline: '10px' }}>
-        //   <option value="None" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('None'); toggleShoryBy(); }}>Recommended</option>
-        //   <option value="None" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('None'); toggleShoryBy(); }}>New</option>
-        //   <option value="None" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('None'); toggleShoryBy(); }}>In stock</option>
-        //   <option value="PRICE HIGH TO LOW" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('PRICE HIGH TO LOW'); toggleShoryBy(); }}>PRICE HIGH TO LOW</option>
-        //   <option value="PRICE LOW TO HIGH" style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center' }} onClick={() => { handleSortChange('PRICE LOW TO HIGH'); toggleShoryBy(); }}>PRICE LOW TO HIGH</option>
-        // </div>
-
-        <div style={{ paddingInline: '10px' }}>
-          <label style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            Recommended
-            <input
-              type="radio"
-              name="sortOption"
-              value="None"
-              onClick={() => { handleSortChange('None'); }}
-            />
+        <div>
+          <label className="sortItemLabelProduct" style={{ color: '#888', paddingInline: '15px' }}>
+            SORT BY
           </label>
+          <div style={{ paddingInline: '15px' }}>
+            <label className="sortItemLabelProduct">
+              Recommended
+              <input
+                defaultChecked
+                type="radio"
+                name="sortOption"
+                value="None"
+                onClick={() => { handleSortChange('None'); }}
+              />
+            </label>
 
-          <label style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            New
-            <input
-              type="radio"
-              name="sortOption"
-              value="New"
-              onClick={() => { handleSortChange('New'); }}
-            />
-          </label>
+            <label className="sortItemLabelProduct">
+              New
+              <input
+                type="radio"
+                name="sortOption"
+                value="New"
+                onClick={() => { handleSortChange('New'); }}
+              />
+            </label>
 
-          <label style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            In stock
-            <input
-              type="radio"
-              name="sortOption"
-              value="InStock"
-              onClick={() => { handleSortChange('InStock'); }}
-            />
-          </label>
+            <label className="sortItemLabelProduct">
+              In stock
+              <input
+                type="radio"
+                name="sortOption"
+                value="InStock"
+                onClick={() => { handleSortChange('InStock'); }}
+              />
+            </label>
 
-          <label style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            Price High to Low
-            <input
-              type="radio"
-              name="sortOption"
-              value="PriceHighToLow"
-              onClick={() => { handleSortChange('PRICE HIGH TO LOW'); }}
-            />
-          </label>
+            <label className="sortItemLabelProduct">
+              Price High to Low
+              <input
+                type="radio"
+                name="sortOption"
+                value="PriceHighToLow"
+                onClick={() => { handleSortChange('PRICE HIGH TO LOW'); }}
+              />
+            </label>
 
-          <label style={{ height: '45px', borderBottom: '1px solid lightgray', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            Price Low to High
-            <input
-              type="radio"
-              name="sortOption"
-              value="PriceLowToHigh"
-              onClick={() => { handleSortChange('PRICE LOW TO HIGH') }}
-            // onClick={() => { handleSortChange('PRICE LOW TO HIGH'); toggleShoryBy(); }}
-            />
-          </label>
+
+            <label className="sortItemLabelProduct">
+              Price Low to High
+              <input
+                type="radio"
+                name="sortOption"
+                value="PriceLowToHigh"
+                onClick={() => { handleSortChange('PRICE LOW TO HIGH') }}
+              // onClick={() => { handleSortChange('PRICE LOW TO HIGH'); toggleShoryBy(); }}
+              />
+            </label>
+          </div>
         </div>
       }
     </Box>

@@ -1,6 +1,8 @@
 import React from 'react'
 import Footer from '../../home/Footer/Footer'
 import './Explore.css'
+import explore1 from '../../../assets/MobileImages/exploreMore1.jpg'
+import explore2 from '../../../assets/MobileImages/exploreMore2.jpg'
 
 const Explore = () => {
   return (
@@ -10,7 +12,7 @@ const Explore = () => {
         <div className='exploreMain'>
           <div>
             <img
-              src={'https://media.istockphoto.com/id/544357744/photo/friends-laughing-and-enjoying.jpg?s=612x612&w=0&k=20&c=Pbic5nOf77r61WX7nhGvCq7IStW76FmfiXm6niYYvak='}
+              src={explore1}
               alt={''}
               style={{ width: '735px', height: '459px', objectFit: 'cover' }}
               className='smilingExpolerImgs'
@@ -23,7 +25,7 @@ const Explore = () => {
           </div>
           <div>
             <img
-              src={'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iHccLmdFtnFk/v0/1200x801.jpg'}
+              src={explore2}
               alt={''}
               style={{ width: '735px', height: '459px', objectFit: 'cover' }}
               className='smilingExpolerImgs'

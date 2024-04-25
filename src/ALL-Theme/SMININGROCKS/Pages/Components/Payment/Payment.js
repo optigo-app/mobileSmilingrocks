@@ -121,7 +121,7 @@ export default function Payment() {
         }
     }
     return (
-        <div className='paddingTopMobileSet' style={{ backgroundColor: '#c0bbb1', paddingTop: '110px' }}>
+        <div style={{ backgroundColor: '#c0bbb1'}}>
             {isLoading && (
                 <div className="loader-overlay">
                     <CircularProgress className='loadingBarManage' />
@@ -182,7 +182,7 @@ export default function Payment() {
                 <div className='smilingPaymentMainMobile'>
                     {/* <IoArrowBackOutline style={{ height: '40px', width: '60px', cursor: 'pointer',margin: '' }} onClick={() => navigation('/Delivery')} /> */}
                     <p className="SmiCartListTitle">
-                        <IoArrowBack style={{ height: '25px', width: '25px', marginRight: '10px' }} onClick={() => navigation('/CartPage')} />Order Summary
+                        <IoArrowBack style={{ height: '25px', width: '25px', marginRight: '10px' }} onClick={() => navigation('/Delivery')} />Order Summary
                     </p>
                     <div style={{ padding: '0px 15px 0px 15px' }}>
                         {/* <div style={{ width: '100%' }}> */}
@@ -200,8 +200,7 @@ export default function Payment() {
                             {/* <p className='fontFamiliy' style={{ fontSize: '18px', fontWeight: 500, color: '#5e5e5e', marginBottom: '5px' }}>Shipping Address</p> */}
                             <div style={{ margin: '0px 0px 0px 5px' }}>
                                 <p style={{ fontSize: '16px', margin: '0px', fontWeight: 500, textTransform: 'capitalize' }}>{selectedAdd.shippingfirstname} {selectedAdd.shippinglastname}</p>
-                                <p className='AddressTitle'><span className='AdressData'>{selectedAdd?.street} ,{selectedAdd.city} - {selectedAdd.country} </span></p>
-                                <p className='AddressTitle'><span className='AdressData'>{selectedAdd.zip}</span></p>
+                                <p className='AddressTitle'><span className='AdressData'>{selectedAdd?.street} ,{selectedAdd.city} - {selectedAdd.country} ({selectedAdd.zip}) </span></p>
                                 <p className='AddressTitle'><span className='AdressData'>{selectedAdd.shippingmobile}</span></p>
                             </div>
 

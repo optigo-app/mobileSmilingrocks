@@ -1,6 +1,7 @@
 import React from "react";
 import "./index.css";
-import i1 from "../../assets/Impact/campaign/banner.webp";
+import main from "../../assets/MobileImages/ImpactBackgroundBanner.jpg";
+import ImpactMainBanner from '../../assets/MobileImages/ImpactMainBanner.jpg'
 import Campaign from "./campaign/Campaign";
 import Header from "../home/Header/Header";
 import Explore from "./Explore/Explore";
@@ -12,7 +13,7 @@ const index = () => {
         <div className="back-img-container">
           <img
             src={
-              "https://wallpapers.com/images/featured/tree-background-xgzu0ujdd4khh95j.jpg"
+              main
             }
             alt="..."
             className="impact-container"
@@ -32,7 +33,7 @@ const index = () => {
           }}
           className="main-front-container"
         >
-          <img src="https://www.highspeedtraining.co.uk/hub/wp-content/uploads/2021/07/Class-planting-plants-1.jpg" alt="..." style={{width:'100%'}} />
+          <img src={ImpactMainBanner} alt="..." style={{width:'100%'}} />
 
           <div
             style={{
