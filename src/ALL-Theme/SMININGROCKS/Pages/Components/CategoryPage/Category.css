@@ -13,3 +13,19 @@
     font-family: 'PT Sans', sans-serif;
     font-size: 13px;
 }
+
+.menuItemfont{
+    font-size: 15px;
+    height: 35px;
+    letter-spacing: 0.4;
+    cursor: pointer;
+    font-family: 'TT Commons', sans-serif;
+}
+
+.tabMainSmilingMobile .MuiTabs-indicator{
+    background-color: transparent!important;
+}
+
+.tabMainMenu{
+    border-bottom: 1px solid lightgray!important;
+}

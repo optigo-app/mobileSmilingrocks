@@ -8,6 +8,7 @@ import { TbCategoryFilled } from "react-icons/tb";
 import { useRecoilValue } from 'recoil';
 import { CartListCounts, loginState } from '../../../../Recoil/atom';
 import { Badge, Tooltip } from '@mui/material';
+import { IoMenuOutline } from 'react-icons/io5';
 
 const HomeTab = () => {
   const [activeTab, setActiveTab] = useState("/");
@@ -54,8 +55,8 @@ const HomeTab = () => {
             <span style={activeTab === "/" ? styles.activeText : styles.text}>Home</span>
           </NavLink>
           <NavLink to="/Category" style={styles.tab} activeClassName="active" onClick={() => handleTabChange("/Category")}>
-            <TbCategoryFilled style={activeTab === "/Category" ? styles.activeIcon : styles.icon} />
-            <span style={activeTab === "/Category" ? styles.activeText : styles.text}>Category</span>
+            <IoMenuOutline style={activeTab === "/Category" ? styles.activeIcon : styles.icon} />
+            <span style={activeTab === "/Category" ? styles.activeText : styles.text}>Menu</span>
           </NavLink>
 
           {islogin === 'true' ?

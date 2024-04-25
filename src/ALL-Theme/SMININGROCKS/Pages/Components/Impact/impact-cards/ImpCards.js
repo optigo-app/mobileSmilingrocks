@@ -1,8 +1,8 @@
 import React from "react";
-import image1 from "../../../assets/staticImg/impact2.jpg";
-import image2 from "../../../assets/Impact/campaign/img2.webp";
-import image3 from "../../../assets/Impact/campaign/img3.webp";
-import image4 from "../../../assets/Impact/campaign/img4.webp";
+import image1 from "../../../assets/MobileImages/ImpactBanner1.jpg";
+import image2 from "../../../assets/MobileImages/ImpactBanner2.jpg";
+import image3 from "../../../assets/MobileImages/ImpactBanner3.jpg";
+import image4 from "../../../assets/MobileImages/ImpactBanner4.jpg";
 import edu1 from "../../../assets/Impact/smallogo/edu-logo-1.avif";
 import edu2 from "../../../assets/Impact/smallogo/edu-logo-2.avif";
 import med1 from "../../../assets/Impact/smallogo/med1.avif";
@@ -34,7 +34,7 @@ const ImpCards = () => {
       fund: [{ i: edu1 }, { i: edu2 }]
     },
     {
-      banner: "https://img.freepik.com/premium-photo/people-hands-planting-small-tree-sunset-concept-save-earth_34152-3251.jpg",
+      banner: image2,
       icon: leaf,
       title: "Environmental Protection",
       descript:
@@ -47,7 +47,7 @@ const ImpCards = () => {
       fund: [{ i: trees1 }, { i: tress2 }, { i: tress3 }]
     },
     {
-      banner: "https://media.istockphoto.com/id/1369620254/photo/shot-of-a-doctor-using-a-cotton-ball-on-a-little-girls-arm-while-administering-an-injection.jpg?s=612x612&w=0&k=20&c=1k44-DJxeSdtKIltzVk2tSPs19dW1EO_oeDjvlDsI3g=",
+      banner: image3,
       icon: heart,
       title: "Medical Support",
       descript:
@@ -61,7 +61,7 @@ const ImpCards = () => {
       fund: [{ i: edu2 }, { i: med1 }, { i: med2 }]
     },
     {
-      banner: "https://www.shutterstock.com/image-photo/animals-care-protection-mixed-media-260nw-528609712.jpg",
+      banner: image4,
       icon: paws,
       title: "Animal Protection",
       descript:

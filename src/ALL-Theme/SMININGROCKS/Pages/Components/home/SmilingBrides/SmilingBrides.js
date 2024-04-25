@@ -1,25 +1,28 @@
 import React from 'react'
 import './SmilingBrides.css'
-import bridesImage from '../../../assets/smilingBrides/brides1.webp'
+import bridesImage from '../../../assets/MobileImages/PromoBanner2.jpg'
 import { Colors } from '../../../../lib/consts/Colors'
 import { useNavigate } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { loginState } from '../../../../../../Recoil/atom'
 
 export default function SmilingBrides() {
 
     const navigation = useNavigate();
+    const islogin = useRecoilValue(loginState);
 
     return (
         <div className='smilingBridesMain'>
-            <div className='smilingBrides'>
+            {islogin === 'true' && <div className='smilingBrides'>
                 <p style={{
                     fontSize: '18px',
                     margin: '0px',
                     fontFamily: 'FreightDispProMedium-Regular,Times New Roman,serif'
                 }} className='smilingBridesMainTitle'>SMILING BRIDES</p>
                 <button className='enagementBtn' onClick={() => navigation('/productpage')}>ENGAGEMENT COLLECTION</button>
-            </div>
+            </div>}
             <div className='smlingBridesImages'>
-                <img src="https://www.fashiongonerogue.com/wp-content/uploads/2021/12/Minimal-Look-Model-Gold-Rings-Necklaces-Jewelry.jpg" className='smilingMainImages' alt={''} />
+                <img src={bridesImage} className='smilingMainImages' alt={''} />
             </div>
         </div>
     )

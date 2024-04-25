@@ -1,7 +1,7 @@
 import React from 'react'
 import './FestiveFinds.css'
 import { useNavigate } from 'react-router-dom'
-import banner1 from '../../../assets/newOne.jpg'
+import banner1 from '../../../assets/MobileImages/PromoBanner1.jpg'
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { loginState } from '../../../../../../Recoil/atom';
 

@@ -105,7 +105,7 @@ export default function Account() {
             <div className='Smiling-AccountMain'>
                 <div className='titleMain'>
                     <div style={{width :'100%'}}>
-                        <p style={{margin: '0px' , fontSize: '20px', fontWeight: 600}}>{fName + ' ' + lastNamr}</p>
+                        <p style={{margin: '0px' , fontSize: '25px', fontWeight: 600}}>{fName + ' ' + lastNamr}</p>
                         <p style={{margin: '0px', fontSize: '15px'}}>+91 {userMobile}</p>
 
                         <div style={{display: 'flex', justifyContent: 'space-around', width: '100%' , marginTop: '10px'}}>
