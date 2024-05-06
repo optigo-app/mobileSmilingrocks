@@ -89,7 +89,12 @@ export default function MyWishList() {
                 const response = await CommonAPI(body);
                 if (response.Data) {
                     wishlistData.length === 0 && setIsLoading(false);
-                    setWishlistData(response.Data.rd);
+                    if(response.Data.rd[0].stat === 0){
+                        setWishlistData([]);
+                    }else{
+                        setWishlistData(response.Data.rd);
+                    }
+                        
                 }
             } catch (error) {
                 console.error('Error:', error);

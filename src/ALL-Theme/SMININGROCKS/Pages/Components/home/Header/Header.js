@@ -1129,7 +1129,7 @@ export default function Header() {
         >
           {
             serachsShowOverlay ?
-              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+              <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}  onClick={() => navigation('/SearchPage')}>
                 <div className="searchBoxOnlyHeaderFiexedMain">
                   <input
                     type="text"
@@ -1239,7 +1239,7 @@ export default function Header() {
                   </div>
                 </div>
                 <div>
-                <div className="searchBoxOnlyHeaderFiexedMainTopFixed">
+                <div className="searchBoxOnlyHeaderFiexedMainTopFixed" onClick={() => navigation('/SearchPage')}> 
                   <input
                     type="text"
                     placeholder="Search..."

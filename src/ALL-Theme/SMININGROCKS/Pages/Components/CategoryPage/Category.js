@@ -40,140 +40,155 @@ export default function Category() {
         // nextArrow: false,
     };
 
-    const separateData = (menuData) => {
-
-        let tempMenu0data = Array.from(new Set(menuData?.map(item => JSON.stringify({
-            menuname: item.menuname,
-            param0dataname: item.param0dataname,
-            param0dataid: item.param0dataid,
-            param0name: item.param0name,
-            param0id: item.param0id
-        }))))?.map(item => JSON.parse(item));
-
-        let tempMenu1data = Array.from(new Set(menuData?.map(item => JSON.stringify({
-            param1id: item.param1id,
-            param1name: item.param1name,
-            param1dataid: item.param1dataid,
-            param1dataname: item.param1dataname
-        }))))?.map(item => JSON.parse(item));
-
-        let tempMenu2data = Array.from(new Set(menuData?.map(item => JSON.stringify({
-            param2id: item.param2id,
-            param2name: item.param2name,
-            param2dataid: item.param2dataid,
-            param2dataname: item.param2dataname
-        }))))?.map(item => JSON.parse(item));
-
-        // Update states
-        setMenul0data(tempMenu0data)
-        setMenul1data(tempMenu1data)
-        setMenul2data(tempMenu2data)
-    };
-
-    const transformData = (data) => {
-        const transformedData = data?.reduce((acc, item) => {
-            const existingItem = acc.find(i => i.levelid === item.levelid);
-            if (existingItem) {
-                const existingParam1 = existingItem.param1.find(p => p.param1dataid === item.param1dataid);
-                if (existingParam1) {
-                    if (item.param2id) {
-                        const existingParam2 = existingParam1.param2.find(p => p.param2dataid === item.param2dataid);
-                        if (!existingParam2) {
-                            existingParam1.param2.push({
-                                param2id: item.param2id,
-                                param2name: item.param2name,
-                                param2dataid: item.param2dataid,
-                                param2dataname: item.param2dataname
-                            });
-                        }
-                    }
-                } else {
-                    const newParam1 = {
-                        param1id: item.param1id,
-                        param1name: item.param1name,
-                        param1dataid: item.param1dataid,
-                        param1dataname: item.param1dataname,
-                        menuname: item.menuname, // Include menuname here
-                        param2: []
-                    };
-                    if (item.param2id) {
-                        newParam1.param2.push({
-                            param2id: item.param2id,
-                            param2name: item.param2name,
-                            param2dataid: item.param2dataid,
-                            param2dataname: item.param2dataname
-                        });
-                    }
-                    existingItem.param1.push(newParam1);
-                }
-            } else {
-                const newItem = {
-                    levelid: item.levelid,
-                    menuname: item.menuname,
-                    param0dataname: item.param0dataname,
-                    param0dataid: item.param0dataid,
-                    param0name: item.param0name,
-                    param0id: item.param0id,
-                    param1: []
-                };
-                if (item.param1id) {
-                    const newParam1 = {
-                        param1id: item.param1id,
-                        param1name: item.param1name,
-                        param1dataid: item.param1dataid,
-                        param1dataname: item.param1dataname,
-                        menuname: item.menuname, // Include menuname here
-                        param2: []
-                    };
-                    if (item.param2id) {
-                        newParam1.param2.push({
-                            param2id: item.param2id,
-                            param2name: item.param2name,
-                            param2dataid: item.param2dataid,
-                            param2dataname: item.param2dataname
-                        });
-                    }
-                    newItem.param1.push(newParam1);
-                }
-                acc.push(newItem);
-            }
-            return acc;
-        }, []);
-
-        // setFinalData(transformedData);
-    };
-
-    const getMenuApi = async () => {
-
-        const storeInit = JSON.parse(localStorage.getItem("storeInit")) ?? ""
-        const Customer_id = JSON.parse(localStorage.getItem("loginUserDetail")) ?? ""
-        // if (storeInit && Customer_id) {
-        let pData = JSON.stringify({ "FrontEnd_RegNo": `${storeInit?.FrontEnd_RegNo}`, "Customerid": `${Customer_id?.id ?? 0}` })
-
-        let pEnc = btoa(pData)
-
-        const body = {
-            con: "{\"id\":\"\",\"mode\":\"GETMENU\",\"appuserid\":\"nimesh@ymail.in\"}",
-            f: "onload (GETMENU)",
-            p: pEnc
-        }
-
-        await CommonAPI(body).then((res) => {
-            // console.log("getmenuData",res?.Data?.rd)
-            transformData(res?.Data?.rd)
-            separateData(res?.Data?.rd)
-        })
-        // }
-    }
 
     useEffect(() => {
         if (islogin === 'true') {
-            getMenuApi()
+            
+            let data0 = JSON.parse(localStorage.getItem('tempMenu0data')) ?? "";
+            let data1 = JSON.parse(localStorage.getItem('tempMenu1data')) ?? "";
+            let data2 = JSON.parse(localStorage.getItem('tempMenu2data')) ?? "";
+            setMenul0data(data0);
+            setMenul1data(data1);
+            setMenul2data(data2);
+
+            // getMenuApi()
             const storeInit = JSON.parse(localStorage.getItem('storeInit')) ?? "";
             const { IsB2BWebsite } = storeInit;
             setIsB2BFlaf(IsB2BWebsite);
         }
     }, [islogin])
+
+    // const separateData = (menuData) => {
+
+    //     let tempMenu0data = Array.from(new Set(menuData?.map(item => JSON.stringify({
+    //         menuname: item.menuname,
+    //         param0dataname: item.param0dataname,
+    //         param0dataid: item.param0dataid,
+    //         param0name: item.param0name,
+    //         param0id: item.param0id
+    //     }))))?.map(item => JSON.parse(item));
+
+    //     let tempMenu1data = Array.from(new Set(menuData?.map(item => JSON.stringify({
+    //         param1id: item.param1id,
+    //         param1name: item.param1name,
+    //         param1dataid: item.param1dataid,
+    //         param1dataname: item.param1dataname
+    //     }))))?.map(item => JSON.parse(item));
+
+    //     let tempMenu2data = Array.from(new Set(menuData?.map(item => JSON.stringify({
+    //         param2id: item.param2id,
+    //         param2name: item.param2name,
+    //         param2dataid: item.param2dataid,
+    //         param2dataname: item.param2dataname
+    //     }))))?.map(item => JSON.parse(item));
+
+    //     // Update states
+    //     localStorage.setItem('tempMenu0data', JSON.stringify(tempMenu0data));
+    //     localStorage.setItem('tempMenu1data', JSON.stringify(tempMenu1data));
+    //     localStorage.setItem('tempMenu2data', JSON.stringify(tempMenu2data));
+
+    //     islogin === 'true' && setMenul0data(tempMenu0data);
+    //     islogin === 'true' && setMenul1data(tempMenu1data);
+    //     islogin === 'true' && setMenul2data(tempMenu2data);
+    // };
+
+    // const transformData = (data) => {
+    //     const transformedData = data?.reduce((acc, item) => {
+    //         const existingItem = acc.find(i => i.levelid === item.levelid);
+    //         if (existingItem) {
+    //             const existingParam1 = existingItem.param1.find(p => p.param1dataid === item.param1dataid);
+    //             if (existingParam1) {
+    //                 if (item.param2id) {
+    //                     const existingParam2 = existingParam1.param2.find(p => p.param2dataid === item.param2dataid);
+    //                     if (!existingParam2) {
+    //                         existingParam1.param2.push({
+    //                             param2id: item.param2id,
+    //                             param2name: item.param2name,
+    //                             param2dataid: item.param2dataid,
+    //                             param2dataname: item.param2dataname
+    //                         });
+    //                     }
+    //                 }
+    //             } else {
+    //                 const newParam1 = {
+    //                     param1id: item.param1id,
+    //                     param1name: item.param1name,
+    //                     param1dataid: item.param1dataid,
+    //                     param1dataname: item.param1dataname,
+    //                     menuname: item.menuname, // Include menuname here
+    //                     param2: []
+    //                 };
+    //                 if (item.param2id) {
+    //                     newParam1.param2.push({
+    //                         param2id: item.param2id,
+    //                         param2name: item.param2name,
+    //                         param2dataid: item.param2dataid,
+    //                         param2dataname: item.param2dataname
+    //                     });
+    //                 }
+    //                 existingItem.param1.push(newParam1);
+    //             }
+    //         } else {
+    //             const newItem = {
+    //                 levelid: item.levelid,
+    //                 menuname: item.menuname,
+    //                 param0dataname: item.param0dataname,
+    //                 param0dataid: item.param0dataid,
+    //                 param0name: item.param0name,
+    //                 param0id: item.param0id,
+    //                 param1: []
+    //             };
+    //             if (item.param1id) {
+    //                 const newParam1 = {
+    //                     param1id: item.param1id,
+    //                     param1name: item.param1name,
+    //                     param1dataid: item.param1dataid,
+    //                     param1dataname: item.param1dataname,
+    //                     menuname: item.menuname, // Include menuname here
+    //                     param2: []
+    //                 };
+    //                 if (item.param2id) {
+    //                     newParam1.param2.push({
+    //                         param2id: item.param2id,
+    //                         param2name: item.param2name,
+    //                         param2dataid: item.param2dataid,
+    //                         param2dataname: item.param2dataname
+    //                     });
+    //                 }
+    //                 newItem.param1.push(newParam1);
+    //             }
+    //             acc.push(newItem);
+    //         }
+    //         return acc;
+    //     }, []);
+
+    //     // setFinalData(transformedData);
+    // };
+
+    // const getMenuApi = async () => {
+
+    //     const storeInit = JSON.parse(localStorage.getItem("storeInit")) ?? ""
+    //     const Customer_id = JSON.parse(localStorage.getItem("loginUserDetail")) ?? ""
+    //     // if (storeInit && Customer_id) {
+    //     let pData = JSON.stringify({ "FrontEnd_RegNo": `${storeInit?.FrontEnd_RegNo}`, "Customerid": `${Customer_id?.id ?? 0}` })
+
+    //     let pEnc = btoa(pData)
+
+    //     const body = {
+    //         con: `{\"id\":\"\",\"mode\":\"GETMENU\",\"appuserid\":\"${Customer_id.userid}"\}`,
+    //         f: "onload (GETMENU)",
+    //         p: pEnc
+    //     }
+
+    //     await CommonAPI(body).then((res) => {
+    //         // console.log("getmenuData",res?.Data?.rd)
+    //         transformData(res?.Data?.rd)
+
+    //         separateData(res?.Data?.rd)
+    //     })
+    //     // }
+    // }
+
 
     const fetchData = () => {
         const value = localStorage.getItem('LoginUser');
@@ -247,200 +262,47 @@ export default function Category() {
                             justifyContent: "flex-end",
                         }}
                     >
-
-
-                        {/* <Badge
-                            badgeContent={getWishListCount}
-                            overlap={"rectangular"}
-                            color="secondary"
-                            style={{ marginInline: '5px' }}
-                            className="smilingHeaderWhishlistIcon"
-                        >
-                            <Tooltip title="WishList">
-                                <li style={{ listStyle: 'none' }} onClick={() => navigation("/myWishList")}>
-                                    <FavoriteBorderIcon
-                                        style={{
-                                            height: "20px",
-                                            cursor: "pointer",
-                                            width: "20px",
-                                            color: "white",
-                                        }}
-                                        className="mobileViewSmilingTop1Icone"
-                                    />
-                                </li>
-                            </Tooltip>
-                        </Badge> */}
                     </div>
                     )}
                 </div>
-                {/* <div className="smlingDraweOverlayMain">
-                    <div className="drawrTitlediv">
-                        <p
-                            style={{
-                                margin: "0px",
-                                display: "flex",
-                                justifyContent: "space-between",
-                                height: '35px'
-                            }}
-                            className="drawrTitlem"
-                            onClick={toggleList}
-                        >
-                            FINE JEWELLERY<span>{isOpen ? "-" : "+"}</span>
-                        </p>
-                        <ul className={`my-list-fineJewe ${isOpen ? "open" : ""}`}>
-                            <li style={{ display: 'flex', flexDirection: 'column', marginTop: '10px' }}>
-                                {
-                                    menul0data?.map((md) => (
-                                        <span style={{ fontSize: '12.5px', fontFamily: 'TT Commons, sans-serif', letterSpacing: 0.4, cursor: 'pointer' }}
-                                            onClick={() => handelNewMenuData({ "label": "param0", "data": md })}
-                                        >
-                                            {capitalizeText(md?.menuname)}
-                                        </span>
-                                    ))
-                                }
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="drawrTitlediv" style={{ marginTop: "20px" }}>
-                        <p
-                            style={{
-                                margin: "0px",
-                                display: "flex",
-                                justifyContent: "space-between",
-                                height: '35px'
-
-                            }}
-                            className="drawrTitlem"
-
-                            onClick={toggleListCollection}
-                        >
-                            COLLECTION<span>{isOpenCollection ? "-" : "+"}</span>
-                        </p>
-
-                        <ul
-                            className={`my-list-fineJewe ${isOpenCollection ? "open" : ""
-                                }`}
-                        >
-                            <li style={{ display: 'flex', flexDirection: 'column', marginTop: '10px' }}>
-                                {
-                                    menul1data?.map((md) => (
-                                        <span style={{ fontSize: '12.5px', fontFamily: 'TT Commons, sans-serif', letterSpacing: 0.4, cursor: 'pointer' }}
-                                            onClick={() => handelNewMenuData({ "label": "param1", "data": md })}
-                                        >
-                                            {capitalizeText(md?.param1dataname)}
-                                        </span>
-                                    ))
-                                }
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="drawrTitlediv" style={{ marginTop: "20px" }}>
-                        <p
-                            style={{
-                                margin: "0px",
-                                display: "flex",
-                                justifyContent: "space-between",
-                                height: '35px'
-                            }}
-                            className="drawrTitlem"
-                            onClick={toggleListBouti}
-                        >
-                            BOUTIQUE<span>{isOpenBouti ? "-" : "+"}</span>
-                        </p>
-
-                        <ul className={`my-list-fineJewe ${isOpenBouti ? "open" : ""}`}>
-                            <li style={{ display: 'flex', flexDirection: 'column', marginTop: '10px' }}>
-                                {
-                                    menul2data?.map((md) => (
-                                        <span style={{ fontSize: '12.5px', fontFamily: 'TT Commons, sans-serif', letterSpacing: 0.4, cursor: 'pointer' }}
-                                            onClick={() => handelNewMenuData({ "label": "param2", "data": md })}
-                                        >
-                                            {capitalizeText(md?.param2dataname)}
-                                        </span>
-                                    ))
-                                }
-                            </li>
-                        </ul>
-                    </div>
-                </div> */}
-
-                {/* <Slider {...settings} >
-                    <div>
-                        <ul className="my-list-fineJewe open">
-                            <li style={{ display: 'flex', flexDirection: 'column', marginTop: '10px' }}>
-                                {
-                                    menul0data?.map((md) => (
-                                        <span style={{ fontSize: '12.5px', height: '30px', fontFamily: 'TT Commons, sans-serif', letterSpacing: 0.4, cursor: 'pointer' }}
-                                            onClick={() => handelNewMenuData({ "label": "param0", "data": md })}
-                                        >
-                                            {capitalizeText(md?.menuname)}
-                                        </span>
-                                    ))
-                                }
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <ul
-                            className="my-list-fineJewe open"
-                        >
-                            <li style={{ display: 'flex', flexDirection: 'column', marginTop: '10px' }}>
-                                {
-                                    menul1data?.map((md) => (
-                                        <span style={{ fontSize: '12.5px', height: '30px', fontFamily: 'TT Commons, sans-serif', letterSpacing: 0.4, cursor: 'pointer' }}
-                                            onClick={() => handelNewMenuData({ "label": "param1", "data": md })}
-                                        >
-                                            {capitalizeText(md?.param1dataname)}
-                                        </span>
-                                    ))
-                                }
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <ul className="my-list-fineJewe open">
-                            <li style={{ display: 'flex', flexDirection: 'column', marginTop: '10px' }}>
-                                {
-                                    menul2data?.map((md) => (
-                                        <span style={{ fontSize: '12.5px', height: '30px', fontFamily: 'TT Commons, sans-serif', letterSpacing: 0.4, cursor: 'pointer' }}
-                                            onClick={() => handelNewMenuData({ "label": "param2", "data": md })}
-                                        >
-                                            {capitalizeText(md?.param2dataname)}
-                                        </span>
-                                    ))
-                                }
-                            </li>
-                        </ul>
-                    </div>
-                </Slider> */}
-
             </div>
             <TabContext value={value}>
-                <div className='tabMainMenu'>
+                {islogin === 'true' && <div className='tabMainMenu'>
+                    <Tabs
+                        value={value}
+                        onChange={handleChange}
+                        textColor="primary"
+                        indicatorColor="primary"
+                        centered
+                        className='tabMainSmilingMobile'
+                    >
+                        <Tab label="FINE JEWELLERY" />
+                        <Tab label="COLLECTION" />
+                        <Tab label="BOUTIQUE" />
+                    </Tabs>
+                </div>}
 
-                <Tabs
-                    value={value}
-                    onChange={handleChange}
-                    textColor="primary"
-                    indicatorColor="primary"
-                    centered
-                    className='tabMainSmilingMobile'
-                >
-                    <Tab label="FINE JEWELLERY" />
-                    <Tab label="COLLECTION" />
-                    <Tab label="BOUTIQUE" />
-                </Tabs>
-                </div>
-
+                {islogin !== 'true' && <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', marginTop: '200px' }}>
+                    <p style={{ margin: '0px', fontWeight: 500 }}>No Data Available</p>
+                    <button style={{
+                        height: '35px',
+                        width: '150px',
+                        backgroundColor: '#e1e1e1',
+                        border: 'none',
+                        outline: 'none',
+                        fontSize: '18px',
+                        fontWeight: 500,
+                        borderRadius: '5px',
+                        marginTop: '5px'
+                    }} onClick={() => navigation('/LoginOption')}>Login</button>
+                </div>}
                 <SwipeableViews
                     index={value}
                     onChangeIndex={handleChangeIndex}
                     enableMouseEvents
                     animateTransitions
                 >
-                    <TabPanel value={value} index={0} style={{marginInline: '15%' , padding: '0px'}}>
+                    <TabPanel value={value} index={0} style={{ marginInline: '15%', padding: '0px' }}>
                         <ul className="my-list-fineJewe open">
                             <li style={{ display: 'flex', flexDirection: 'column', marginTop: '10px' }}>
                                 {
@@ -453,7 +315,7 @@ export default function Category() {
                             </li>
                         </ul>
                     </TabPanel>
-                    <TabPanel value={value} index={1} style={{marginInline: '15%' , padding: '0px'}}>
+                    <TabPanel value={value} index={1} style={{ marginInline: '15%', padding: '0px' }}>
                         <ul className="my-list-fineJewe open">
                             <li style={{ display: 'flex', flexDirection: 'column', marginTop: '10px' }}>
                                 {
@@ -466,12 +328,12 @@ export default function Category() {
                             </li>
                         </ul>
                     </TabPanel>
-                    <TabPanel value={value} index={2} style={{marginInline: '15%' , padding: '0px'}}>
+                    <TabPanel value={value} index={2} style={{ marginInline: '15%', padding: '0px' }}>
                         <ul className="my-list-fineJewe open">
                             <li style={{ display: 'flex', flexDirection: 'column', marginTop: '10px' }}>
                                 {
                                     menul2data?.map((md) => (
-                                        <span className='menuItemfont'onClick={() => handelNewMenuData({ "label": "param2", "data": md })} >
+                                        <span className='menuItemfont' onClick={() => handelNewMenuData({ "label": "param2", "data": md })} >
                                             {capitalizeText(md?.param2dataname)}
                                         </span>
                                     ))

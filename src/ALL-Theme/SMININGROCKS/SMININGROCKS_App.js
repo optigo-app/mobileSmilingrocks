@@ -57,12 +57,15 @@ import DeliveryShipping from './Pages/Components/Policies/deliveryShiping/Delive
 import TermsCondition from './Pages/Components/Policies/termsEndCondi/TermsCondition'
 import PrivacyPolicy from './Pages/Components/Policies/PrivacyPolicy/PrivacyPolicy'
 import SearchPage from './Pages/Components/SearchPage/SearchPage'
+import CurrentVersion from './Pages/Components/ProjectVersion/CurrentVersion'
 
 export default function SMININGROCKS_App() {
 
     const location = useLocation();
     const setCartCount = useSetRecoilState(CartListCounts)
     const setWishCount = useSetRecoilState(WishListCounts)
+    const isMobile = window.innerWidth <= 520;
+
 
     const [isOpenDetail, setIsOpenDetail] = useState(false);
     const toggleDetailDrawer = () => {
@@ -89,7 +92,7 @@ export default function SMININGROCKS_App() {
     }, [])
 
 
-
+    if (isMobile) {
     return (
         <>
             <ToastContainer />
@@ -173,6 +176,7 @@ export default function SMININGROCKS_App() {
                         <Route path="/TermsCondition" element={<TermsCondition />} />
                         <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
                         <Route path="/SearchPage" element={<SearchPage />} />
+                        <Route path="/CurrentVersion" element={<CurrentVersion />} />
                     </Routes>
                     {(location.pathname === "/productpage") ?
                          <ProductPageTab toggleDetailDrawer={toggleDetailDrawer} toggleShoryBy={toggleShoryBy}/> : <HomeTab />}
@@ -180,4 +184,14 @@ export default function SMININGROCKS_App() {
             </div>
         </>
     )
+    }
+    else{
+        return (
+            <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+              <h1>it's open only mobile app</h1>
+            </div>
+          );
+    }
+   
+
 }

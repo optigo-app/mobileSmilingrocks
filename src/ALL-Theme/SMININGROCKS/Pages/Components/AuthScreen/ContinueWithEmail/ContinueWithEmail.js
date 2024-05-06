@@ -50,7 +50,7 @@ export default function ContinueWithEmail() {
             const { FrontEnd_RegNo } = storeInit;
 
             const combinedValue = JSON.stringify({
-                userid: `${trimmedEmail}`, FrontEnd_RegNo: `${FrontEnd_RegNo}`
+                userid: `${(trimmedEmail)?.toLowerCase()}`, FrontEnd_RegNo: `${FrontEnd_RegNo}`
             });
             const encodedCombinedValue = btoa(combinedValue);
             const body = {

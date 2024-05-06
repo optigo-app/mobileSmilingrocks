@@ -30,8 +30,8 @@ export default function Home() {
 
       const header = {
         Authorization: 'Bearer optigo_json_api',
-        domain: 'gstore.orail.co.in',
-        version: 'V4',
+        domain: 'tstore.orail.co.in',
+        version: 'V6',
         sp: "1"
         // domain: 'zen',
       };
@@ -252,6 +252,31 @@ export default function Home() {
 
     }
 
+
+    const getMenuApi = async () => {
+      const storeInit = JSON.parse(localStorage.getItem("storeInit")) ?? ""
+      const Customer_id = JSON.parse(localStorage.getItem("loginUserDetail")) ?? ""
+      // if (storeInit && Customer_id) {
+      let pData = JSON.stringify({ "FrontEnd_RegNo": `${storeInit?.FrontEnd_RegNo}`, "Customerid": `${Customer_id?.id ?? 0}` })
+
+      let pEnc = btoa(pData)
+
+      const body = {
+        con: `{\"id\":\"\",\"mode\":\"GETMENU\",\"appuserid\":\"${Customer_id.userid}"\}`,
+        f: "onload (GETMENU)",
+        p: pEnc
+      }
+
+      await CommonAPI(body).then((res) => {
+        // console.log("getmenuData",res?.Data?.rd)
+        transformData(res?.Data?.rd)
+
+        separateData(res?.Data?.rd)
+      })
+      // }
+    }
+
+
     fetchData();
     getColorImgData();
     getMetalTypeData();
@@ -259,8 +284,110 @@ export default function Home() {
     getColorStoneQualityData();
     getMetalColor();
     currencyCombo();
+    getMenuApi();
   }, []);
 
+  const transformData = (data) => {
+    const transformedData = data?.reduce((acc, item) => {
+      const existingItem = acc.find(i => i.levelid === item.levelid);
+      if (existingItem) {
+        const existingParam1 = existingItem.param1.find(p => p.param1dataid === item.param1dataid);
+        if (existingParam1) {
+          if (item.param2id) {
+            const existingParam2 = existingParam1.param2.find(p => p.param2dataid === item.param2dataid);
+            if (!existingParam2) {
+              existingParam1.param2.push({
+                param2id: item.param2id,
+                param2name: item.param2name,
+                param2dataid: item.param2dataid,
+                param2dataname: item.param2dataname
+              });
+            }
+          }
+        } else {
+          const newParam1 = {
+            param1id: item.param1id,
+            param1name: item.param1name,
+            param1dataid: item.param1dataid,
+            param1dataname: item.param1dataname,
+            menuname: item.menuname, // Include menuname here
+            param2: []
+          };
+          if (item.param2id) {
+            newParam1.param2.push({
+              param2id: item.param2id,
+              param2name: item.param2name,
+              param2dataid: item.param2dataid,
+              param2dataname: item.param2dataname
+            });
+          }
+          existingItem.param1.push(newParam1);
+        }
+      } else {
+        const newItem = {
+          levelid: item.levelid,
+          menuname: item.menuname,
+          param0dataname: item.param0dataname,
+          param0dataid: item.param0dataid,
+          param0name: item.param0name,
+          param0id: item.param0id,
+          param1: []
+        };
+        if (item.param1id) {
+          const newParam1 = {
+            param1id: item.param1id,
+            param1name: item.param1name,
+            param1dataid: item.param1dataid,
+            param1dataname: item.param1dataname,
+            menuname: item.menuname, // Include menuname here
+            param2: []
+          };
+          if (item.param2id) {
+            newParam1.param2.push({
+              param2id: item.param2id,
+              param2name: item.param2name,
+              param2dataid: item.param2dataid,
+              param2dataname: item.param2dataname
+            });
+          }
+          newItem.param1.push(newParam1);
+        }
+        acc.push(newItem);
+      }
+      return acc;
+    }, []);
+
+    // setFinalData(transformedData);
+  };
+
+  const separateData = (menuData) => {
+
+    let tempMenu0data = Array.from(new Set(menuData?.map(item => JSON.stringify({
+      menuname: item.menuname,
+      param0dataname: item.param0dataname,
+      param0dataid: item.param0dataid,
+      param0name: item.param0name,
+      param0id: item.param0id
+    }))))?.map(item => JSON.parse(item));
+
+    let tempMenu1data = Array.from(new Set(menuData?.map(item => JSON.stringify({
+      param1id: item.param1id,
+      param1name: item.param1name,
+      param1dataid: item.param1dataid,
+      param1dataname: item.param1dataname
+    }))))?.map(item => JSON.parse(item));
+
+    let tempMenu2data = Array.from(new Set(menuData?.map(item => JSON.stringify({
+      param2id: item.param2id,
+      param2name: item.param2name,
+      param2dataid: item.param2dataid,
+      param2dataname: item.param2dataname
+    }))))?.map(item => JSON.parse(item));
+    // Update states
+    localStorage.setItem('tempMenu0data', JSON.stringify(tempMenu0data));
+    localStorage.setItem('tempMenu1data', JSON.stringify(tempMenu1data));
+    localStorage.setItem('tempMenu2data', JSON.stringify(tempMenu2data));
+  };
 
 
 
@@ -273,17 +400,21 @@ export default function Home() {
     <div style={{ paddingTop: '0px' }}>
       <div className='homeMain'>
         <Video />
-        {/* <SmilingRock /> */}
-        <ShopByCategory />
-        <FestiveFinds />
-        {/* <DaimondEveyone /> */}
-        <SmilingBrides />
-        <FeaturedCollection />
+     
         <div style={{ marginTop: '60px' }}>
           <SustainAbility />
         </div>
-        {/* <ShopifySection /> */}
       </div>
     </div>
   )
 }
+        {/*  <ShopByCategory />
+        <FestiveFinds />
+        <SmilingBrides />
+        <FeaturedCollection />
+      
+      
+      
+      <SmilingRock /> */}
+        {/* <DaimondEveyone /> */}
+        {/* <ShopifySection /> */}

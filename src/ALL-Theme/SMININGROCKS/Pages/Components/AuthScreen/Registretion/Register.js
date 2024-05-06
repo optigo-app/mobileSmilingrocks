@@ -147,8 +147,6 @@ export default function Register() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
     const errors = {};
     if (!firstName.trim()) {
       errors.firstName = 'First Name is required';
@@ -191,7 +189,7 @@ export default function Register() {
         const storeInit = JSON.parse(localStorage.getItem('storeInit'));
         const { FrontEnd_RegNo, IsB2BWebsite } = storeInit;
         const combinedValue = JSON.stringify({
-          firstname: `${firstName}`, lastname: `${lastName}`, userid: `${email}`, country_code: '91', mobile: `${mobileNo}`, pass: `${hashedPassword}`, IsB2BWebsite: `${IsB2BWebsite}`, FrontEnd_RegNo: `${FrontEnd_RegNo}`, Customerid: '0'
+          firstname: `${firstName}`, lastname: `${lastName}`, userid: `${`${(email)?.toLowerCase()}`}`, country_code: '91', mobile: `${mobileNo}`, pass: `${hashedPassword}`, IsB2BWebsite: `${IsB2BWebsite}`, FrontEnd_RegNo: `${FrontEnd_RegNo}`, Customerid: '0'
         });
         const encodedCombinedValue = btoa(combinedValue);
         const body = {
@@ -200,7 +198,7 @@ export default function Register() {
           "p": encodedCombinedValue
         }
         const response = await CommonAPI(body);
-        console.log('ressssssssssssssssss', response);
+        
         if (response.Data.rd[0].stat === 1) {
           localStorage.setItem('LoginUser', 'true')
           localStorage.setItem('loginUserDetail', JSON.stringify(response.Data?.rd[0]));

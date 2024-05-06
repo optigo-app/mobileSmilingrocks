@@ -167,6 +167,8 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
   const [isPriceShow, setIsPriceShow] = useState('');
   const [currData, setCurrData] = useState([])
 
+  const [storeInitData, setstoreInitData] = useState({})
+
 
   const handelCurrencyData = () => {
     let currencyData = JSON.parse(localStorage.getItem('CURRENCYCOMBO'));
@@ -185,6 +187,8 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
   }
 
   useEffect(() => {
+    let data = JSON.parse(localStorage.getItem('storeInit'));
+    setstoreInitData(data);
     handelCurrencyData();
   }, [])
 
@@ -1059,6 +1063,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
   };
 
   const handlePageReload = () => {
+    setFilterChecked({})
     setNewProData(ProductApiData2);
     setMinPrice(0)
     setMaxPrice(maxPrice)
@@ -1258,6 +1263,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
   };
 
 
+  
   return (
     <div id="top">
       {/* {openFilterOverlly === 'true' && ( */}
@@ -1321,11 +1327,18 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                           className='netWtSecSlider'
                           getAriaLabel={() => 'Minimum distance'}
                           value={value1}
-                          onChange={handleChange1}
+                          min={minPrice}
+                          max={maxPrice}
+                          size="small"
+                          onChange={handlePriceChange}
                           valueLabelDisplay="auto"
                           getAriaValueText={valuetext}
                           disableSwap
                         />
+                        <div className="d-flex w-100 justify-content-between align-items-center mt-1">
+                          <input value={value1[0]} className="minmaxvalpl" disabled />
+                          <input value={value1[1]} className="minmaxvalpl" disabled />
+                        </div>
                       </div>}
 
                     {ele.label === "CENTERSTONE" &&
@@ -1382,7 +1395,12 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                 </Accordion>
               </>
             ))}
+            {/* <div style={{position: 'absolute', bottom: '15px', width: '100%'}}>
+              <Button className="filterClearBtn" onClick={handlePageReload}>CLEAR ALL</Button>
+              <Button className="apllyFiletrFtn" >APPLY FILTERS</Button>
+            </div> */}
           </div>
+
         </div>
       </div>
       {/* )} */}
@@ -1642,7 +1660,8 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                       alignItems: "center",
                       flexWrap: "wrap",
                       marginTop: '15%',
-                      paddingLeft: '2px'
+                      paddingLeft: '2px',
+                      paddingBottom: '100px'
                     }}
                     className="smilingAllProductDataMainMobile"
                   >
@@ -1661,13 +1680,39 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                         className="smilingProductImageBox"
 
                       >
-                        <div onClick={() => handelProductSubmit(products)}>
+                        <div onClick={() => handelProductSubmit(products)} style={{height: '220px'}}>
+
+                          {/* src={
+                                  hoveredImageUrls[i] ? hoveredImageUrls[i] : updatedColorImage[i] ? updatedColorImage[i] :
+                                    (storeInitData ?
+                                      `${storeInitData?.DesignImageFol}${products?.DesignFolderName}/${storeInitData?.ImgMe}/${products?.DefaultImageName}`
+                                      :
+                                      notFound)
+                                } */}
+
+                          {/* <img
+                            className="prod_img"
+                            src={
+                              hoveredImageUrls[i] ? hoveredImageUrls[i] :
+                                (storeInitData ?
+                                  `${storeInitData?.DesignImageFol}${products?.DesignFolderName}/${storeInitData?.ImgMe}/${products?.DefaultImageName}`
+                                  :
+                                  notFound)
+                            }
+                            onMouseEnter={() => handleHoverImageShow(products?.MediumImagePath?.split(",")[0], i, products?.RollOverImageName, products?.imagepath)}
+                            // onMouseEnter={() => handleHoverImageShow(products?.MediumImagePath?.split(",")[0], i, isColorWiseImageShow === 1 ? products?.ColorWiseRollOverImageName : products?.RollOverImageName, products?.imagepath)}
+                            onMouseLeave={() => handleMouseLeave(i)}
+                            style={{ objectFit: 'cover' }}
+                            alt="#"
+                          /> */}
+
+
                           <img
                             className="prod_img"
                             src={
-                              hoveredImageUrls[i] ? hoveredImageUrls[i] : // Check if hover image URL exists
+                              hoveredImageUrls[i] ? hoveredImageUrls[i] :
                                 (products?.MediumImagePath ?
-                                  (products?.imagepath + products?.MediumImagePath?.split(",")[0])
+                                  (storeInitData?.DesignImageFol + products?.MediumImagePath?.split(",")[0])
                                   :
                                   notFound)
                             }
@@ -1699,11 +1744,11 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                           <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'space-between', marginInline: '3px' }}>
                             {ismetalWShow === 1 &&
                               <div>
-                                <p className="mobileDeatilDiv1Text1" style={{ margin: '0px', fontSize: '10px' }}>NWT : <span style={{ fontWeight: 600 }}>{(products?.netwt).toFixed(2)}</span></p>
+                                <p className="mobileDeatilDiv1Text1" style={{ margin: '0px', fontSize: '10px' }}>NWT : <span style={{ fontWeight: 600 }}>{(products?.netwt)?.toFixed(2)}</span></p>
                               </div>}
                             <p className="mobileDeatilDiv1Text2" style={{ margin: '0px', fontSize: '10px', fontWeight: '600' }}>{products?.designno}</p>
                             {isGrossWShow === 1 && <div>
-                              <p className="mobileDeatilDiv1Text1" style={{ margin: '0px', fontSize: '10px' }}>GWT : <span style={{ fontWeight: 600 }}>{(products?.Grossweight).toFixed(2)}</span></p>
+                              <p className="mobileDeatilDiv1Text1" style={{ margin: '0px', fontSize: '10px' }}>GWT : <span style={{ fontWeight: 600 }}>{(products?.Grossweight)?.toFixed(2)}</span></p>
                             </div>}
                           </div>
                           <div className="mobileDeatilDiv1" style={{ display: 'flex', justifyContent: 'center', marginBlock: '5px' }}>
@@ -1720,8 +1765,8 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                             <button className='smilingAddCartBrtnList' onClick={(e) => handelCartList(products?.checkFlag, products)}>{products?.checkFlag ? 'REMOVE CART' : 'ADD TO CART'}</button>
                           </div> */}
                         </div>
-                        <div style={{ position: "absolute", width: '87%', marginInline: "7%", justifyContent: 'space-between', zIndex: 999999, top: 10, right: 0, display: 'flex' }}>
-                          <div style={{ border: '1px solid rgb(186 194 219)', borderRadius: '50px' }}>
+                        <div style={{ position: "absolute", width: '87%', marginInline: "7%", justifyContent: 'flex-end', zIndex: 999999, top: 10, right: 0, display: 'flex' }}>
+                          {/* <div style={{ border: '1px solid rgb(186 194 219)', borderRadius: '50px' }}>
                             <Checkbox
                               icon={
                                 <LocalMallOutlinedIcon
@@ -1739,18 +1784,19 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                               checked={products?.checkFlag}
                               onChange={(e) => handelCartList(e, products)}
                             />
-                          </div>
+                          </div> */}
 
-                          <div style={{ border: '1px solid rgb(186 194 219)', borderRadius: '50px' }}>
+                          <div style={{ borderRadius: '50px' }}>
+                            {/* <div style={{ border: '1px solid rgb(186 194 219)', borderRadius: '50px' }}> */}
                             <Checkbox
                               icon={
                                 <FavoriteBorderIcon
-                                  sx={{ fontSize: "17px", color: "rgb(186 194 219)" }}
+                                  sx={{ fontSize: "20px", color: "rgb(186 194 219)" }}
                                 />
                               }
                               checkedIcon={
                                 <FavoriteIcon
-                                  sx={{ fontSize: "17px", color: "rgb(186 194 219)" }}
+                                  sx={{ fontSize: "20px", color: "rgb(186 194 219)" }}
                                 />
                               }
                               disableRipple={true}
@@ -1759,7 +1805,6 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                               checked={products?.wishCheck}
                               onChange={(e) => handelWishList(e, products)}
                             />
-
                           </div>
                         </div>
                       </div>
