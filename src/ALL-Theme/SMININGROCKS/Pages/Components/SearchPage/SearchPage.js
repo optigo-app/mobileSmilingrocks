@@ -33,11 +33,12 @@ export default function SearchPage() {
                 return false;
             });
             console.log('datadatadata',data);
-            if (data.length > 0) {
+            if (data?.length > 0) {
                 setGSearch(data);
                 navigation('/productpage');
             } else {
-                setGSearch([]);
+                setGSearch(ProductApiData2);
+                navigation('/productpage');
             }
         } else {
             setGSearch([]);

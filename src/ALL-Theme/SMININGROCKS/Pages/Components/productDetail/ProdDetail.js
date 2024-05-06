@@ -144,7 +144,7 @@ const ProdDetail = () => {
     setmtTypeOption(loginInfo?.cmboMetalType)
 
     if (loginInfo?.cmboDiaQualityColor !== "" && !loginInfo?.cmboDiaQualityColor) {
-      let qualityColor = `${loginInfo?.cmboDiaQualityColor.split("#@#")[0]?.toUpperCase()}_${loginInfo?.cmboDiaQualityColor.split("#@#")[1]?.toUpperCase()}`
+      let qualityColor = `${loginInfo?.cmboDiaQualityColor?.split("#@#")[0]?.toUpperCase()}_${loginInfo?.cmboDiaQualityColor?.split("#@#")[1]?.toUpperCase()}`
       setDiaQColOpt(qualityColor)
     }
     else {
@@ -153,7 +153,7 @@ const ProdDetail = () => {
       }
     }
 
-    let csQualColor = `${loginInfo?.cmboCSQualityColor.split("#@#")[0]?.toUpperCase()}-${loginInfo?.cmboCSQualityColor.split("#@#")[1]?.toUpperCase()}`
+    let csQualColor = `${loginInfo?.cmboCSQualityColor?.split("#@#")[0]?.toUpperCase()}-${loginInfo?.cmboCSQualityColor?.split("#@#")[1]?.toUpperCase()}`
 
     let dqcc = ColorStoneQualityColor?.find((dqc) => `${dqc.Quality}-${dqc.color}` === csQualColor)
 
@@ -1509,6 +1509,52 @@ const ProdDetail = () => {
     beforeChange: (current, next) => setCurrentSlide(next),
   };
   console.log("default media", imagesData);
+
+
+  const [imageURL, setImageURL] = useState('');
+  const [customerID, setCustomerID] = useState('');
+  const [yKey, setYouKey] = useState('');
+  const [wishlistData, setWishlistData] = useState([]);
+  const [userEmail, setUserEmail] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const storeInit = JSON.parse(localStorage.getItem('storeInit'));
+        const storedData = localStorage.getItem('loginUserDetail');
+        const ImageURL = localStorage.getItem('UploadLogicalPath');
+        setImageURL(ImageURL);
+        const data = JSON.parse(storedData);
+        const customerid = data.id;
+        const priseShow = storeInit.IsPriceShow;
+        setIsPriceShow(priseShow);
+        setCustomerID(data.id);
+        const customerEmail = data.userid;
+        setUserEmail(customerEmail);
+        const { FrontEnd_RegNo, ukey } = storeInit;
+        setYouKey(ukey);
+        const combinedValue = JSON.stringify({
+          is_show_stock_website: "0", PageSize: "1000", CurrentPage: "1", FrontEnd_RegNo: `${FrontEnd_RegNo}`, Customerid: `${customerid}`, UploadLogicalPath: "", ukey: `${ukey}`, ThumDefImg: "", CurrencyRate: '1'
+        });
+        const encodedCombinedValue = btoa(combinedValue);
+        const body = {
+          "con": `{\"id\":\"Store\",\"mode\":\"GetWishList\",\"appuserid\":\"${customerEmail}\"}`,
+          "f": "MyWishList (GetWishList)",
+          p: encodedCombinedValue
+        };
+        const response = await CommonAPI(body);
+        if (response.Data) {
+          setWishlistData(response.Data.rd);
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      } finally {
+      }
+    };
+    fetchData();
+  }, []);
+
+
   return (
     <div
       style={{
@@ -2420,6 +2466,30 @@ const ProdDetail = () => {
           </div>
         }
 
+
+        {wishlistData?.length !== 0 &&
+          <div style={{padding: '5px'}}>
+          <div className='recentlyMain'>
+            <p style={{ fontSize: '22px',color:'gray', margin: '10px 0px 10px 20px', fontWeight: 600, }}>Recently View</p>
+            <div style={{ display: 'flex', width: '100%', overflow: 'auto', gap: '3px', padding: '0px 7px 0px 7px', marginBottom: '7%', }}>
+              {wishlistData?.map((dsl, i) => (
+                <div key={i} style={{ width: '49%' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', border: '1px solid rgb(0 0 0 / 9%)', margin: '5px', borderRadius: '4px' }}>
+                    <div>
+                      <img src={`${imageURL}/${yKey}/${dsl.DefaultImageName}`} alt={""} style={{ width: '150px', height: '150px', objectFit: 'cover' }} />
+                    </div>
+                    <div style={{ marginTop: '15px', textAlign: 'center', height: '40px', overflow: 'hidden' }}>
+                      <div style={{ color: '#7D7f85', fontSize: '13px' }}>
+                        {dsl?.TitleLine} ({dsl?.designno})
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          </div>
+        }
 
         {/* <div className="compeletethelook_cont">
             <img

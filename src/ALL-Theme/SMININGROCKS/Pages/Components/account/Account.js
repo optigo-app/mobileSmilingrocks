@@ -105,26 +105,26 @@ export default function Account() {
             <div className='Smiling-AccountMain'>
                 <div className='titleMain'>
                     <div style={{width :'100%'}}>
-                        <p style={{margin: '0px' , fontSize: '25px', fontWeight: 600}}>{fName + ' ' + lastNamr}</p>
-                        <p style={{margin: '0px', fontSize: '15px'}}>+91 {userMobile}</p>
+                        <p style={{margin: '0px' , fontSize: '25px', fontWeight: 600, paddingInline: '10px'}}>{fName + ' ' + lastNamr}</p>
+                        <p style={{margin: '0px', fontSize: '15px', paddingInline: '10px' }}>+91 {userMobile}</p>
 
-                        <div style={{display: 'flex', justifyContent: 'space-around', width: '100%' , marginTop: '10px'}}>
+                        <div style={{display: 'flex', justifyContent: 'space-around', width: '100%' , marginTop: '10px', paddingInline: '10px'}}>
                             <div className='boxMainTopSection'>
                                 <LuBox style={{marginLeft: '15px'}}/>
                                 <p style={{margin: '0px 0px 0px 10px' , fontWeight: 600, fontSize: '15px'}}>Orders</p>
                             </div>
-                            <div className='boxMainTopSection'>
+                            <div className='boxMainTopSection' style={{marginRight: '0px'}}>
                                 <MdFavoriteBorder style={{marginLeft: '15px'}}/>
                                 <p style={{margin: '0px 0px 0px 10px' , fontWeight: 600, fontSize: '15px'}}>Wishlist</p>
                             </div>
                         </div>
 
-                        <div style={{display: 'flex', justifyContent: 'space-around', width: '100%' , marginTop: '10px'}}>
+                        <div style={{display: 'flex', justifyContent: 'space-around', width: '100%' , marginTop: '10px', paddingInline: '10px'}}>
                             <div className='boxMainTopSection'>
                                 <IoGiftOutline style={{marginLeft: '15px'}}/>
                                 <p style={{margin: '0px 0px 0px 10px' , fontWeight: 600, fontSize: '15px'}}>Coupons</p>
                             </div>
-                            <div className='boxMainTopSection'>
+                            <div className='boxMainTopSection' style={{marginRight: '0px'}}>
                                 <FaHeadset style={{marginLeft: '15px'}}/>
                                 <p style={{margin: '0px 0px 0px 10px' , fontWeight: 600, fontSize: '15px'}}>Help Center</p>
                             </div>

@@ -203,12 +203,7 @@ const OrderHistory = () => {
                 <div className="border orderHistory p-1 px-0 my-4" key={e?.id} onClick={() => handleClick(e)}>
                   <div className=" d-flex w-100 justify-content-between align-items-center p-1 d_block">
                     <div className="w-25 _w50_oh">
-                      <div className="d-flex justify-content-start w-100 align-items-center py-2 d_block">
-                        <div className="text-secondary fw-bold fs-5 ps-3 pe-5 fs_Small_2">
-                          {e?.OrderPrefix}
-                          {e?.orderno}
-                        </div>
-                        <div
+                    <div
                           className={`d-flex align-items-center  ${getStatusColor(e?.b2c_MasterManagement_ProgressStatusId
                           )} fs-5 fs_small fs_Small_2 pad_Setup`}
                           style={{textTransform:'uppercase'}}
@@ -218,22 +213,30 @@ const OrderHistory = () => {
                           </div>
                           {e?.b2c_MasterManagement_ProgressStatusName}
                         </div>
+                      <div className="d-flex w-100 align-items-center py-2" style={{display: 'flex', justifyContent: 'space-between'}}>
+                        <div className="text-secondary fw-bold fs-5 ps-3 pe-5 fs_Small_2">
+                          {e?.OrderPrefix}
+                          {e?.orderno}
+                        </div>
+                         <div>
+                              Date &nbsp;&nbsp;:&nbsp;&nbsp;{" "}
+                              <span className="text-danger">{e?.orderEntryDate}</span>
+                         </div>
                       </div>
-                      <div className="py-2 text-secondary ps-3">
-                        Date &nbsp;&nbsp;:&nbsp;&nbsp;{" "}
-                        <span className="text-danger">{e?.orderEntryDate}</span>
-                      </div>
+                      <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                       <div className="py-2 text-secondary ps-3">
                         items&nbsp;&nbsp; : &nbsp;&nbsp;(
                         <span className="text-danger">{e?.TotalQuantity}</span>)
                       </div>
-                    </div>
-                    <div className="py-2 pe-5 w-50 d-flex fs_price_oh _color fw-bold center_price px_change">
+                      <div className="d-flex fs_price_oh _color fw-bold center_price">
                       <div
                         dangerouslySetInnerHTML={{ __html: e?.Currencysymbol }}
                       ></div>{" "}
                       <div className="px-1">{e?.orderAmountwithvat}</div>
                     </div>
+                    </div>
+                    </div>
+                 
                   </div>
                   {/* <Accordion sx={{boxShadow:'none'}}>
                             <AccordionSummary>

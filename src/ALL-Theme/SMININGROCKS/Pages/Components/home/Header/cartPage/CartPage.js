@@ -103,11 +103,15 @@ export default function CartPage() {
   //   const getPriceData = useRecoilValue(priceData);
   const [currData, setCurrData] = useState()
 
+  const [isPriceShow, setIsPriceShow] = useState('');
 
 
   const handelCurrencyData = () => {
     let currencyData = JSON.parse(localStorage.getItem('CURRENCYCOMBO'));
     let loginData = JSON.parse(localStorage.getItem('loginUserDetail'));
+    let storeinit = JSON.parse(localStorage.getItem("storeInit"))
+    setIsPriceShow(storeinit.IsPriceShow);
+
     console.log("param", loginData);
 
     if (currencyData && loginData) {
@@ -446,7 +450,11 @@ export default function CartPage() {
       const response = await CommonAPI(body);
 
       if (response?.Data) {
+        if(response.Data.rd[0].stat === 0){
+        setCartListData([]);
+      }else{
         setCartListData(response?.Data?.rd);
+      }
         setMainRemarks(response?.Data?.rd[0].OrderRemarks);
         setIsLoading(false);
       }
@@ -455,6 +463,7 @@ export default function CartPage() {
     }
   };
 
+  console.log('cartListDatacartListDatacartListData', cartListData);
   const handleRemove = async (data) => {
     try {
       setIsLoading(true);
@@ -673,6 +682,7 @@ export default function CartPage() {
         pd?.autocode === isCartData?.autocode
     )[0]
 
+    console.log('finaaaaaaaaaaaaaaaaaaaaaaaaaa', finalProdData);
     if (finalProdData) {
       setProdSelectData(finalProdData)
     }
@@ -909,10 +919,10 @@ export default function CartPage() {
   };
 
   function truncateText(text, maxLength) {
-    if (text.length <= maxLength) {
+    if (text?.length <= maxLength) {
       return text;
     } else {
-      return text.substr(0, maxLength) + '...';
+      return text?.substr(0, maxLength) + '...';
     }
   }
 
@@ -948,7 +958,7 @@ export default function CartPage() {
               <div>
                 {!dialogOpen && <div className="smiCartPagePlaceOrderBtn">
                   <div>
-                    <span
+                    {isPriceShow === 1 && <span
                       style={{
                         fontWeight: "500",
                         fontSize: "18px",
@@ -965,7 +975,7 @@ export default function CartPage() {
                         style={{ fontFamily: "sans-serif" }}
                       />
                       {totalValue}
-                    </span>
+                    </span>}
                   </div>
                   <button
                     className="placeOrderCartPageBtnMobile"
@@ -1003,6 +1013,8 @@ export default function CartPage() {
               style={{
                 paddingInline: "10px",
                 display: "flex",
+
+
               }}
             >
               <div className="smilingCartDeatilSub2">
@@ -1446,11 +1458,12 @@ export default function CartPage() {
                                   style={{ padding: "5px" }}
                                 >
                                   <p style={{ margin: "10px 0px 5px 0px", fontSize: '12px' }}>
-                                    {truncateText(item.TitleLine, 70)} <span style={{ fontWeight: 500 }}>
+                                    {truncateText(item.TitleLine, 70)}
+                                    <span style={{ fontWeight: 500 }}>
                                       - {item.Mastermanagement_CategoryName}({item.designno})
                                     </span>
                                   </p>
-                                  <span
+                                  {isPriceShow === 1 && <span
                                     style={{
                                       fontWeight: "500",
                                       fontSize: "18px",
@@ -1479,7 +1492,7 @@ export default function CartPage() {
                                       // ).toFixed(2) ?? 
                                       item?.UnitCost
                                     }
-                                  </span>
+                                  </span>}
                                 </div>
                               </div>
                               <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'row-reverse' }}>

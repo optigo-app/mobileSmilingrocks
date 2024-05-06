@@ -78,7 +78,10 @@ export const productListApiCall = async() =>{
         "72": "similarband",
         "73": "DefaultSize",
         "74": "imagepath",
-        "75": "ProducttypeName"
+        "75": "ProducttypeName",
+        // "76":"ImageName",
+        // "77":"VideoName",
+        // "78":"DesignFolderName"
       };
 
 

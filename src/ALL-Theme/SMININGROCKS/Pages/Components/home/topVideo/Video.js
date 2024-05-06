@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Video.css'
 import demovide from '../../../assets/Video/demo2.mp4'
 import banner1 from '../../../assets/MobileImages/HomepageMainBannerImage1.jpg'
 import banner2 from '../../../assets/MobileImages/HomepageMainBannerImage2.jpg'
 import banner3 from '../../../assets/MobileImages/HomepageMainBannerImage3.jpg'
 import banner4 from '../../../assets//MobileImages/HomepageMainBannerImage4.jpg'
-
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick'
+import { useNavigate } from 'react-router-dom'
 
 
 export default function Video() {
@@ -24,9 +24,12 @@ export default function Video() {
     autoplaySpeed: 3000,
     // prevArrow: false, 
     // nextArrow: false,
-    
+
   };
 
+
+  const naviagtion = useNavigate();
+  
   return (
     <div>
       {/* <video width="500" autoPlay controls loop style={{ height: 'auto', width: '100%' }}> */}
@@ -35,22 +38,25 @@ export default function Video() {
       </video> */}
 
       <Slider {...settings}>
-        <div className='homePageSliderImagwMain'>
+        <div className='homePageSliderImagwMain' onClick={() => naviagtion('/productpage')}>
           <img src={banner1} className='homePageSliderImagw' />
         </div>
 
-        <div className='homePageSliderImagwMain'>
+        {/* <div className='homePageSliderImagwMain'>
           <img src={banner2} className='homePageSliderImagw' />
         </div>
 
         <div className='homePageSliderImagwMain'>
-          <img src={banner3} className='homePageSliderImagw' />
+          <img src={banner3} className='homePageSliderImagw' />.
         </div>
-        
+
         <div className='homePageSliderImagwMain'>
           <img src={banner4} className='homePageSliderImagw' />
-        </div>
+        </div> */}
       </Slider>
+      <div className='gradient_background'>
+        <p>Grab flat $50 off with code FRI600 | Konw More</p>
+      </div>
     </div>
   )
 }
