@@ -35,7 +35,7 @@ export default function WithoutLoginCart() {
                     fontWeight: 500,
                     borderRadius: '5px',
                     marginTop: '5px'
-                }} onClick={() => navigation('/LoginOption')}>Login</button>
+                }} onClick={() => navigation('/signin')}>Login</button>
             </div>
         </div>
     )

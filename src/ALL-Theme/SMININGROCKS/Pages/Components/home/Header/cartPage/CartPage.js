@@ -450,11 +450,11 @@ export default function CartPage() {
       const response = await CommonAPI(body);
 
       if (response?.Data) {
-        if(response.Data.rd[0].stat === 0){
-        setCartListData([]);
-      }else{
-        setCartListData(response?.Data?.rd);
-      }
+        if (response.Data.rd[0].stat === 0) {
+          setCartListData([]);
+        } else {
+          setCartListData(response?.Data?.rd);
+        }
         setMainRemarks(response?.Data?.rd[0].OrderRemarks);
         setIsLoading(false);
       }
@@ -1620,19 +1620,20 @@ export default function CartPage() {
             style={{ display: !prodSelectData && !cartSelectData && "none" }}
           >
             <div className="popUpcontainer">
-              <div style={{ marginInline: '5%', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px' }}>
+              <div style={{ marginInline: '5%', boxShadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px', width: '90%' }}>
                 <div style={{ display: 'flex' }}>
-                  <div style={{ width: '50%' }}>
+                  <div style={{ width: '50%', height: '150px' }}>
                     <img
-                      src={
-                        prodSelectData?.imagepath +
-                        prodSelectData?.MediumImagePath?.split(",")[0]
-                      }
+                      // src={
+                      //   prodSelectData?.imagepath +
+                      //   prodSelectData?.MediumImagePath?.split(",")[0]
+                      // }
+                      src={`${imageURL}/${yKey}/${cartSelectData?.DefaultImageName}`}
                       style={{
                         borderRadius: "12px",
                         width: "100%",
                         height: '90%',
-                        objectFit: 'cover'
+                        // objectFit: 'cover'
                       }}
                     />
                   </div>

@@ -160,7 +160,7 @@ const ProdDetail = () => {
     if (dqcc) {
       setCSQOpt(csQualColor)
     } else {
-      let ref = `${ColorStoneQualityColor[0].Quality}-${ColorStoneQualityColor[0].color}`
+      let ref = `${ColorStoneQualityColor[0]?.Quality}-${ColorStoneQualityColor[0]?.color}`
       setCSQOpt(ref)
     }
 

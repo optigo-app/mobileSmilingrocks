@@ -88,7 +88,8 @@ export default function Register() {
     } else if (fieldName === 'email') {
       if (!value.trim()) {
         setErrors(prevErrors => ({ ...prevErrors, email: 'Email is required' }));
-      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+      } else if (/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value)) {
+      // } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
         setErrors(prevErrors => ({ ...prevErrors, email: 'Please enter a valid email address' }));
       } else {
         setErrors(prevErrors => ({ ...prevErrors, email: '' }));

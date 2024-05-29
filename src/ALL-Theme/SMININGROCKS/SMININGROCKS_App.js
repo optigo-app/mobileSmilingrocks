@@ -64,7 +64,7 @@ export default function SMININGROCKS_App() {
     const location = useLocation();
     const setCartCount = useSetRecoilState(CartListCounts)
     const setWishCount = useSetRecoilState(WishListCounts)
-    const isMobile = window.innerWidth <= 520;
+    const isMobile = window.innerWidth <= 1300;
 
 
     const [isOpenDetail, setIsOpenDetail] = useState(false);
@@ -122,7 +122,7 @@ export default function SMININGROCKS_App() {
                     location.pathname === "/AccountWothoutLogin" ||
                     location.pathname === "/DeliveryShipping" ||
                     location.pathname === "/PrivacyPolicy" ||
-                    location.pathname === "/LoginOption" ||
+                    location.pathname === "/signin" ||
                     location.pathname === "/SearchPage" ||
                     location.pathname === "/WithoutLoginCart" ||
                     location.pathname === "/TermsCondition" ||
@@ -161,7 +161,7 @@ export default function SMININGROCKS_App() {
                         <Route path="/Delivery" element={<Delivery />} />
                         <Route path="/Payment" element={<Payment />} />
                         <Route path="/Confirmation" element={<Confirmation />} />
-                        <Route path="/LoginOption" element={<LoginOption />} />
+                        <Route path="/signin" element={<LoginOption />} />
                         <Route path="/CartPage" element={<CartPage />} />
                         <Route path="/Category" element={<Category />} />
                         <Route path="/WithoutLoginCart" element={<WithoutLoginCart />} />

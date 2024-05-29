@@ -29,7 +29,7 @@ export default function Video() {
 
 
   const naviagtion = useNavigate();
-  
+
   return (
     <div>
       {/* <video width="500" autoPlay controls loop style={{ height: 'auto', width: '100%' }}> */}
@@ -38,11 +38,12 @@ export default function Video() {
       </video> */}
 
       <Slider {...settings}>
-        <div className='homePageSliderImagwMain' onClick={() => naviagtion('/productpage')}>
+        {/* onClick={() => naviagtion('/productpage')} */}
+        <div className='homePageSliderImagwMain'>
           <img src={banner1} className='homePageSliderImagw' />
         </div>
 
-        {/* <div className='homePageSliderImagwMain'>
+        <div className='homePageSliderImagwMain'>
           <img src={banner2} className='homePageSliderImagw' />
         </div>
 
@@ -52,7 +53,7 @@ export default function Video() {
 
         <div className='homePageSliderImagwMain'>
           <img src={banner4} className='homePageSliderImagw' />
-        </div> */}
+        </div>
       </Slider>
       <div className='gradient_background'>
         <p>Grab flat $50 off with code FRI600 | Konw More</p>
