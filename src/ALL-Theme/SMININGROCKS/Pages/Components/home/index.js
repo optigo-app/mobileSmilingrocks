@@ -17,11 +17,12 @@ import { Button, Dialog } from '@mui/material';
 import { IoMdMail } from "react-icons/io";
 import { FaMobileAlt } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { CommonAPI } from '../../../Utils/API/CommonAPI';
 
 export default function Home() {
 
+  const { name } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -60,6 +61,13 @@ export default function Home() {
       }
     }
 
+    const queryParams = new URLSearchParams(window.location.search);
+    const Authorization = queryParams.get('Authorization');
+    const ismobile = queryParams.get('ismobile');
+    const token = queryParams.get('token');
+    console.log('Authorization',Authorization); 
+    console.log('ismobile',ismobile); 
+    console.log('token',token); 
 
     const getMetalTypeData = async () => {
       try {
