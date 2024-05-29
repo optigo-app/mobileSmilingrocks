@@ -24,6 +24,10 @@ export default function Home() {
 
   const { name } = useParams();
 
+  const [Authorizationn , setAuthorization] = useState('');
+  const [ismobilee , setismobile] = useState('');
+  const [tokenn, settoken] = useState('');
+
   useEffect(() => {
     const fetchData = async () => {
       // const APIURL = 'http://zen/api/';
@@ -65,6 +69,9 @@ export default function Home() {
     const Authorization = queryParams.get('Authorization');
     const ismobile = queryParams.get('ismobile');
     const token = queryParams.get('token');
+    setAuthorization(Authorization);
+    setismobile(ismobile)
+    settoken(token)
     console.log('Authorization',Authorization); 
     console.log('ismobile',ismobile); 
     console.log('token',token); 
@@ -401,6 +408,9 @@ export default function Home() {
   return (
     <div style={{ paddingTop: '0px' }}>
       <div className='homeMain'>
+        <h1>{Authorizationn}</h1>
+        <h1>{ismobilee}</h1>
+        <h1>{tokenn}</h1>
         <Video />
         <ShopByCategory />
         <FestiveFinds />
