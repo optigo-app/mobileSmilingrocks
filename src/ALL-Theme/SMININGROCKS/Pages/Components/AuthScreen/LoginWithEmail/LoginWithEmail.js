@@ -36,14 +36,12 @@ export default function LoginWithEmail() {
     const setWishCount = useSetRecoilState(WishListCounts)
 
     const getCountFunc = async () => {
-
         await GetCount().then((res) => {
             if (res) {
                 setCartCount(res.CountCart)
                 setWishCount(res.WishCount)
             }
         })
-
     }
 
 
