@@ -294,7 +294,7 @@ export default function Category() {
                         fontWeight: 500,
                         borderRadius: '5px',
                         marginTop: '5px'
-                    }} onClick={() => navigation('/LoginOption')}>Login</button>
+                    }} onClick={() => navigation('/signin')}>Login</button>
                 </div>}
                 <SwipeableViews
                     index={value}

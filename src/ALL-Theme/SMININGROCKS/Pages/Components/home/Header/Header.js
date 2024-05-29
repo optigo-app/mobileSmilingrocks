@@ -699,7 +699,7 @@ export default function Header() {
                 {islogin === 'false' && (
                   <div
                     style={{ cursor: "pointer", color: 'white' }}
-                    onClick={() => { toggleDrawerOverlay(); navigation("/LoginOption"); }}
+                    onClick={() => { toggleDrawerOverlay(); navigation("/signin"); }}
                   >
                     <p style={{ color: "white", margin: "0px", fontSize: '12px', fontWeight: 500 }}>{LOGIN}</p>
                   </div>
@@ -801,7 +801,7 @@ export default function Header() {
                 <li
                   className="nav-li-smining"
                   style={{ cursor: "pointer" }}
-                  onClick={() => navigation('/LoginOption')}
+                  onClick={() => navigation('/signin')}
                 >
                   {LOGIN}
                 </li>
@@ -1013,7 +1013,7 @@ export default function Header() {
                   <li
                     className="nav-li-smining-fixed"
                     style={{ cursor: "pointer" }}
-                    onClick={() => navigation('/LoginOption')}
+                    onClick={() => navigation('/signin')}
 
                   >
                     {LOGIN}

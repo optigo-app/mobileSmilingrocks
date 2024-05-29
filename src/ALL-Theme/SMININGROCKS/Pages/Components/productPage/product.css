@@ -98,31 +98,31 @@
 }
 
 .apllyFiletrFtn{
-    background-color: #ffd814;
-    height: 40px;
-    border: none;
-    outline: none;
-    width: 45%;
-    color: black;
-    border-radius: 10px;
-    margin-inline: 10px;
-    font-weight: 600;
+    background-color: #ffd814!important;
+    height: 40px!important;
+    border: none!important;
+    outline: none!important;
+    width: 45%!important;
+    color: black!important;
+    border-radius: 10px!important;
+    margin-inline: 10px!important;
+    font-weight: 600!important;
 }
 .apllyFiletrFtn:hover{
-    background-color: #ffd814;
+    background-color: #ffd814!important;
 }
 .filterClearBtn{
-    background-color: #ddd4a6;
-    height: 40px;
-    border: none;
-    color: black;
-    outline: none;
-    width: 45%;
-    font-weight: 600;
-    border-radius: 10px;
+    background-color: #ddd4a6!important;
+    height: 40px!important;
+    border: none!important;
+    color: black!important;
+    outline: none!important;
+    width: 45%!important;
+    font-weight: 600!important;
+    border-radius: 10px!important;
 }
 .filterClearBtn:hover{
-    background-color: #ddd4a6;
+    background-color: #ddd4a6!important;
 }
 
 

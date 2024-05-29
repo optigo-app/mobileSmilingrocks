@@ -553,7 +553,6 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
   }, [])
 
   const handelWishList = async (event, prod) => {
-
     try {
       setWishFlag(event.target.checked)
 
@@ -562,7 +561,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
         const storeInit = JSON.parse(localStorage.getItem("storeInit"))
         const UserEmail = localStorage.getItem("registerEmail")
         const Customer_id = JSON.parse(localStorage.getItem("loginUserDetail"));
-
+        // alert(JSON.stringify(Customer_id?.id))
         const product = prod
 
         const finalJSON = {
@@ -660,14 +659,16 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
           p: encodedCombinedValue,
         };
 
-        await CommonAPI(body).then(async (res) => {
+        setTimeout(async () => {
+          await CommonAPI(body).then(async (res) => {
+            console.log('ressssss', res);
+            if (res?.Data?.rd[0]?.msg === "success") {
+              await getCartAndWishListData()
+              getCountFunc()
+            } 
+          })
+        }, 2000);
 
-          if (res?.Data?.rd[0]?.msg === "success") {
-
-            await getCartAndWishListData()
-            getCountFunc()
-          }
-        })
       }
       else {
         // {"designlist":"'MCJ10'","isselectall":"0","FrontEnd_RegNo":"95oztttesi0o50vr","Customerid":"856"}
@@ -1063,6 +1064,8 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
   };
 
   const handlePageReload = () => {
+    // window.location.reload();
+
     setFilterChecked({})
     setNewProData(ProductApiData2);
     setMinPrice(0)
@@ -1263,7 +1266,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
   };
 
 
-  
+
   return (
     <div id="top">
       {/* {openFilterOverlly === 'true' && ( */}
@@ -1367,8 +1370,11 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                         <Checkbox
                           name={`checkbox${index + 1}${i + 1}`}
                           checked={
+                            // filterChecked[`checkbox${index + 1}${i + 1}`]
+                            //   ?.checked
                             filterChecked[`checkbox${index + 1}${i + 1}`]
-                              ?.checked
+                            ? filterChecked[`checkbox${index + 1}${i + 1}`]?.checked
+                            : false
                           }
                           style={{
                             color: "#7f7d85",
@@ -1395,10 +1401,10 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                 </Accordion>
               </>
             ))}
-            {/* <div style={{position: 'absolute', bottom: '15px', width: '100%'}}>
-              <Button className="filterClearBtn" onClick={handlePageReload}>CLEAR ALL</Button>
+            <div style={{position: 'absolute', bottom: '15px', width: '100%'}}>
+              <Button className="filterClearBtn" onClick={() => handlePageReload()}>CLEAR ALL</Button>
               <Button className="apllyFiletrFtn" >APPLY FILTERS</Button>
-            </div> */}
+            </div>
           </div>
 
         </div>
@@ -1579,9 +1585,14 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                             >
                               <Checkbox
                                 name={`checkbox${index + 1}${i + 1}`}
+                                // checked={
+                                //   filterChecked[`checkbox${index + 1}${i + 1}`]
+                                //     ?.checked
+                                // }
                                 checked={
                                   filterChecked[`checkbox${index + 1}${i + 1}`]
-                                    ?.checked
+                                    ? filterChecked[`checkbox${index + 1}${i + 1}`]?.checked
+                                    : false
                                 }
                                 style={{
                                   color: "#7f7d85",
@@ -1680,7 +1691,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                         className="smilingProductImageBox"
 
                       >
-                        <div onClick={() => handelProductSubmit(products)} style={{height: '220px'}}>
+                        <div onClick={() => handelProductSubmit(products)} style={{ height: '220px' }}>
 
                           {/* src={
                                   hoveredImageUrls[i] ? hoveredImageUrls[i] : updatedColorImage[i] ? updatedColorImage[i] :
@@ -1786,7 +1797,7 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                             />
                           </div> */}
 
-                          <div style={{ borderRadius: '50px' }}>
+                          <Button style={{ borderRadius: '50px', padding: '0px', minWidth: '0px' }} onClick={(e) => handelWishList(e, products)}>
                             {/* <div style={{ border: '1px solid rgb(186 194 219)', borderRadius: '50px' }}> */}
                             <Checkbox
                               icon={
@@ -1803,9 +1814,8 @@ const ProductList = ({ toggleDetailDrawer, isOpenDetail, toggleShoryBy, isOpenSh
                               sx={{ padding: "5px" }}
 
                               checked={products?.wishCheck}
-                              onChange={(e) => handelWishList(e, products)}
                             />
-                          </div>
+                          </Button>
                         </div>
                       </div>
                     ))}

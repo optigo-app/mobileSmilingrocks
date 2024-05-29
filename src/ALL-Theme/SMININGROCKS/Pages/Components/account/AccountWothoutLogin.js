@@ -20,7 +20,7 @@ export default function AccountWothoutLogin() {
                 </p>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginInline: '10px' }}>
                     <p className='fontFamiliy' style={{ margin: '0px', fontSize: '16px' }}>Log in to get exclusive offers</p>
-                    <button className='loginBtnAccount' onClick={() => navigation('/LoginOption')} >Log In</button>
+                    <button className='loginBtnAccount' onClick={() => navigation('/signin')} >Log In</button>
                 </div>
             </div>
 

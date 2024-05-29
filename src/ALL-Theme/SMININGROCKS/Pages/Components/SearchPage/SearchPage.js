@@ -20,6 +20,7 @@ export default function SearchPage() {
 
 
     const setGSearch = useSetRecoilState(searchData);
+    
     function searchDataFucn() {
         let ProductApiData2 = JSON.parse(localStorage.getItem("allproductlist"));
         if (ProductApiData2) {

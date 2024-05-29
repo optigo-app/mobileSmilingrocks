@@ -109,11 +109,11 @@ export default function Account() {
                         <p style={{margin: '0px', fontSize: '15px', paddingInline: '10px' }}>+91 {userMobile}</p>
 
                         <div style={{display: 'flex', justifyContent: 'space-around', width: '100%' , marginTop: '10px', paddingInline: '10px'}}>
-                            <div className='boxMainTopSection'>
+                            <div className='boxMainTopSection'  onClick={() => naviagation('/OrderHistory')}>
                                 <LuBox style={{marginLeft: '15px'}}/>
                                 <p style={{margin: '0px 0px 0px 10px' , fontWeight: 600, fontSize: '15px'}}>Orders</p>
                             </div>
-                            <div className='boxMainTopSection' style={{marginRight: '0px'}}>
+                            <div className='boxMainTopSection' style={{marginRight: '0px'}} onClick={() => naviagation('/myWishList')}>
                                 <MdFavoriteBorder style={{marginLeft: '15px'}}/>
                                 <p style={{margin: '0px 0px 0px 10px' , fontWeight: 600, fontSize: '15px'}}>Wishlist</p>
                             </div>

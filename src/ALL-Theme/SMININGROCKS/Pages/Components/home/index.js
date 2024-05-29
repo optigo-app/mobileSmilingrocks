@@ -390,17 +390,14 @@ export default function Home() {
   };
 
 
-
-
-
-
-
-
   return (
     <div style={{ paddingTop: '0px' }}>
       <div className='homeMain'>
         <Video />
-     
+        <ShopByCategory />
+        <FestiveFinds />
+        <SmilingBrides />
+        <FeaturedCollection />
         <div style={{ marginTop: '60px' }}>
           <SustainAbility />
         </div>
@@ -408,13 +405,10 @@ export default function Home() {
     </div>
   )
 }
-        {/*  <ShopByCategory />
-        <FestiveFinds />
-        <SmilingBrides />
-        <FeaturedCollection />
+{/*  
       
       
       
       <SmilingRock /> */}
-        {/* <DaimondEveyone /> */}
-        {/* <ShopifySection /> */}
+{/* <DaimondEveyone /> */ }
+{/* <ShopifySection /> */ }
