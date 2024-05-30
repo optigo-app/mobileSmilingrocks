@@ -291,7 +291,7 @@ export default function MyWishList() {
                                     <div style={{ position: 'absolute', right: '20px', top: '5px' }}>
                                         <IoClose style={{ height: '30px', width: '30px', cursor: 'pointer', color: 'rgb(0 0 0 / 66%)' }} onClick={() => handleRemoveWichList(item)} />
                                     </div>
-                                    <img src={`${imageURL}/${yKey}/${item.DefaultImageName}`} className='smiWishLsitBoxImge' style={{ cursor: 'pointer' }} alt='Wishlist item' onClick={() => handelProductSubmit(item)} />
+                                    <img src={`${imageURL}/${yKey}/${item.DefaultImageName}`} className='smiWishLsitBoxImge' style={{ cursor: 'pointer' , minHeight: '200px' }} alt='Wishlist item' onClick={() => handelProductSubmit(item)} />
 
                                     <div style={{ display: 'flex', justifyContent: 'space-between', marginInline: '5px' }}>
                                         <p className='smiWishLsitBoxDesc1'>{item.designno}</p>

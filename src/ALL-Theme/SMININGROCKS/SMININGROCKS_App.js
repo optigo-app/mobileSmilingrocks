@@ -92,7 +92,7 @@ export default function SMININGROCKS_App() {
     }, [])
 
 
-    // if (isMobile) {
+    if (isMobile) {
         return (
             <>
                 <ToastContainer />
@@ -184,14 +184,14 @@ export default function SMININGROCKS_App() {
                 </div>
             </>
         )
-    // }
-    // else {
-    //     return (
-    //         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-    //             <h1>it's open only mobile app</h1>
-    //         </div>
-    //     );
-    // }
+    }
+    else {
+        return (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <h1>it's open only mobile app</h1>
+            </div>
+        );
+    }
 
 
 }

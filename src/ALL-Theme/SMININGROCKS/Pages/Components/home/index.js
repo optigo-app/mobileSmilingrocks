@@ -30,6 +30,7 @@ export default function Home() {
 
 
   const [tokenn, setmobiletokenn] = useState('');
+  const [authorization, setAuthrzaron] = useState('');
   const navigation = useNavigate();
   const [isDevice, setIsdevice] = useState('');
   const [islogin, setislogin] = useRecoilState(loginState);
@@ -70,7 +71,7 @@ let designDataCall = async () => {
     const token = queryParams.get('token');
     setmobiletokenn(token);
     setIsdevice(ismobile);
-
+    setAuthrzaron(Authorization);
 
     const fetchDataLogin = () => {
       const value = localStorage.getItem('LoginUser');
@@ -113,8 +114,6 @@ let designDataCall = async () => {
         console.error('Error:', error);
       }
     }
-
-
     const getMetalTypeData = async () => {
       try {
         const storedEmail = localStorage.getItem('registerEmail') || '';
@@ -357,11 +356,14 @@ let designDataCall = async () => {
 
   const handleSubmit = async () => {
 
+    const queryParams = new URLSearchParams(window.location.search);
+    const token = queryParams.get('token');
+
     try {
       // const storeInit = JSON.parse(localStorage.getItem('storeInit'));
       // const { FrontEnd_RegNo } = storeInit;
       const combinedValue = JSON.stringify({
-        userid: '', mobileno: '', pass: '', mobiletoken: `${tokenn}`, FrontEnd_RegNo: ''
+        userid: '', mobileno: '', pass: '', mobiletoken: `${token}`, FrontEnd_RegNo: ''
       });
       const encodedCombinedValue = btoa(combinedValue);
       const body = {
@@ -494,6 +496,9 @@ let designDataCall = async () => {
   return (
     <div style={{ paddingTop: '0px' }}>
       <div className='homeMain'>
+        {/* <h1>{authorization}</h1>
+        <h1>{isDevice}</h1>
+        <h1>{tokenn}</h1> */}
         <Video />
         <ShopByCategory />
         <FestiveFinds />
@@ -502,6 +507,7 @@ let designDataCall = async () => {
         <div style={{ marginTop: '60px' }}>
           <SustainAbility />
         </div>
+        
       </div>
     </div>
   )
