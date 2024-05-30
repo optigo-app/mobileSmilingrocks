@@ -19,16 +19,66 @@ import { FaMobileAlt } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { useNavigate, useParams } from 'react-router-dom';
 import { CommonAPI } from '../../../Utils/API/CommonAPI';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { CartListCounts, designSet, loginState, productDataNew, WishListCounts } from '../../../../../Recoil/atom';
+import { DesignSet } from '../../../Utils/API/DesignSet';
+import { productListApiCall } from '../../../Utils/API/ProductListAPI';
+import { GetCount } from '../../../Utils/API/GetCount';
+import { getDesignPriceList } from '../../../Utils/API/PriceDataApi';
 
 export default function Home() {
 
-  const { name } = useParams();
 
-  const [Authorizationn , setAuthorization] = useState('');
-  const [ismobilee , setismobile] = useState('');
-  const [tokenn, settoken] = useState('');
+  const [tokenn, setmobiletokenn] = useState('');
+  const [authorization, setAuthrzaron] = useState('');
+  const navigation = useNavigate();
+  const [isDevice, setIsdevice] = useState('');
+  const [islogin, setislogin] = useRecoilState(loginState);
+
+
+  const setCartCount = useSetRecoilState(CartListCounts)
+  const setWishCount = useSetRecoilState(WishListCounts)
+  const setPdData = useSetRecoilState(productDataNew)
+  const setDesignList = useSetRecoilState(designSet)
+
+  const getCountFunc = async () => {
+    await GetCount().then((res) => {
+        if (res) {
+            setCartCount(res.CountCart)
+            setWishCount(res.WishCount)
+        }
+    })
+}
+
+
+let pdDataCalling = async () => {
+    await productListApiCall().then((res) => {
+        setPdData(res)
+    })
+}
+
+let designDataCall = async () => {
+    await DesignSet().then((res) => {
+        setDesignList(res)
+    })
+}
 
   useEffect(() => {
+
+    const queryParams = new URLSearchParams(window.location.search);
+    const Authorization = queryParams.get('Authorization');
+    const ismobile = queryParams.get('ismobile');
+    const token = queryParams.get('token');
+    setmobiletokenn(token);
+    setIsdevice(ismobile);
+    setAuthrzaron(Authorization);
+
+    const fetchDataLogin = () => {
+      const value = localStorage.getItem('LoginUser');
+      const val = (value === 'true' ? 'true' : 'false')
+      setislogin(val);
+    };
+
     const fetchData = async () => {
       // const APIURL = 'http://zen/api/';
       const APIURL = 'https://api.optigoapps.com/test/store.aspx';
@@ -64,18 +114,6 @@ export default function Home() {
         console.error('Error:', error);
       }
     }
-
-    const queryParams = new URLSearchParams(window.location.search);
-    const Authorization = queryParams.get('Authorization');
-    const ismobile = queryParams.get('ismobile');
-    const token = queryParams.get('token');
-    setAuthorization(Authorization);
-    setismobile(ismobile)
-    settoken(token)
-    console.log('Authorization',Authorization); 
-    console.log('ismobile',ismobile); 
-    console.log('token',token); 
-
     const getMetalTypeData = async () => {
       try {
         const storedEmail = localStorage.getItem('registerEmail') || '';
@@ -291,8 +329,8 @@ export default function Home() {
       // }
     }
 
-
     fetchData();
+    fetchDataLogin();
     getColorImgData();
     getMetalTypeData();
     getQualityColor();
@@ -301,6 +339,56 @@ export default function Home() {
     currencyCombo();
     getMenuApi();
   }, []);
+
+
+  useEffect(() => {
+    console.log('islogin',isDevice);
+    console.log('isloginislogin',islogin);
+    console.log('isloginislogin tokenn',tokenn);
+    const queryParams = new URLSearchParams(window.location.search);
+    const Authorization = queryParams.get('Authorization');
+    const ismobile = queryParams.get('ismobile');
+    const token = queryParams.get('token');
+    if (ismobile === '1' && islogin === 'false' && token !== undefined && token !== null && token !== '') {
+      handleSubmit();
+    }
+  }, [])
+
+  const handleSubmit = async () => {
+
+    const queryParams = new URLSearchParams(window.location.search);
+    const token = queryParams.get('token');
+
+    try {
+      // const storeInit = JSON.parse(localStorage.getItem('storeInit'));
+      // const { FrontEnd_RegNo } = storeInit;
+      const combinedValue = JSON.stringify({
+        userid: '', mobileno: '', pass: '', mobiletoken: `${token}`, FrontEnd_RegNo: ''
+      });
+      const encodedCombinedValue = btoa(combinedValue);
+      const body = {
+        "con": "{\"id\":\"\",\"mode\":\"WEBLOGINMOBILETOKEN\"}",
+        "f": "LoginWithEmail (handleSubmit)",
+        p: encodedCombinedValue
+      };
+      const response = await CommonAPI(body);
+      console.log('ressssssssssssssssss', response);
+
+      if (response.Data.rd[0].stat === 1) {
+        setislogin('true')
+        localStorage.setItem('LoginUser', 'true')
+        localStorage.setItem('loginUserDetail', JSON.stringify(response.Data.rd[0]));
+        navigation('/');
+        pdDataCalling()
+        designDataCall()
+        getCountFunc()
+        getDesignPriceList()
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    } finally {
+    }
+  };
 
   const transformData = (data) => {
     const transformedData = data?.reduce((acc, item) => {
@@ -408,9 +496,9 @@ export default function Home() {
   return (
     <div style={{ paddingTop: '0px' }}>
       <div className='homeMain'>
-        <h1>{Authorizationn}</h1>
-        <h1>{ismobilee}</h1>
-        <h1>{tokenn}</h1>
+        {/* <h1>{authorization}</h1>
+        <h1>{isDevice}</h1>
+        <h1>{tokenn}</h1> */}
         <Video />
         <ShopByCategory />
         <FestiveFinds />
@@ -419,6 +507,7 @@ export default function Home() {
         <div style={{ marginTop: '60px' }}>
           <SustainAbility />
         </div>
+        
       </div>
     </div>
   )
